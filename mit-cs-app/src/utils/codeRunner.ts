@@ -1,44 +1,37 @@
-const PISTON_API = 'https://emkc.org/api/v2/piston';
+const WANDBOX_API = 'https://wandbox.org/api';
 
-const LANGUAGE_ALIASES: Record<string, string[]> = {
-  python: ['python', 'python3', 'py'],
-  javascript: ['javascript', 'node', 'nodejs', 'node.js', 'js'],
-  java: ['java'],
-  c: ['c', 'gcc'],
-  cpp: ['c++', 'cpp', 'g++'],
+const LANGUAGE_MAP: Record<string, string> = {
+  python: 'Python',
+  javascript: 'JavaScript',
+  java: 'Java',
+  c: 'C',
+  cpp: 'C++',
 };
 
-let runtimeCache: Record<string, string> | null = null;
-
-async function getRuntimes(): Promise<Record<string, string>> {
-  if (runtimeCache) return runtimeCache;
-  try {
-    const res = await fetch(`${PISTON_API}/runtimes`, { method: 'GET' });
-    if (!res.ok) return {};
-    const data: Array<{ language: string; version: string; aliases: string[] }> = await res.json();
-    const map: Record<string, string> = {};
-    for (const runtime of data) {
-      map[runtime.language.toLowerCase()] = runtime.version;
-      for (const alias of runtime.aliases ?? []) {
-        map[alias.toLowerCase()] = runtime.version;
-      }
-    }
-    runtimeCache = map;
-    return map;
-  } catch {
-    return {};
-  }
+interface WandboxCompiler {
+  name: string;
+  language: string;
 }
 
-async function resolveRuntime(language: string): Promise<{ language: string; version: string }> {
-  const runtimes = await getRuntimes();
-  const aliases = LANGUAGE_ALIASES[language.toLowerCase()] ?? [language.toLowerCase()];
-  for (const alias of aliases) {
-    if (runtimes[alias]) {
-      return { language: alias, version: runtimes[alias] };
-    }
+let compilerCache: Record<string, string> | null = null;
+
+async function getCompilerName(language: string): Promise<string | null> {
+  if (!compilerCache) {
+    compilerCache = {};
+    try {
+      const res = await fetch(`${WANDBOX_API}/list.json`);
+      if (res.ok) {
+        const list: WandboxCompiler[] = await res.json();
+        for (const item of list) {
+          if (!compilerCache[item.language]) {
+            compilerCache[item.language] = item.name;
+          }
+        }
+      }
+    } catch {}
   }
-  return { language: language.toLowerCase(), version: '0' };
+  const wandboxLang = LANGUAGE_MAP[language.toLowerCase()];
+  return wandboxLang ? (compilerCache[wandboxLang] ?? null) : null;
 }
 
 export interface RunResult {
@@ -60,28 +53,31 @@ export async function runCode(
   stdin = ''
 ): Promise<RunResult> {
   try {
-    const lang = await resolveRuntime(language);
-    const response = await fetch(`${PISTON_API}/execute`, {
+    const compiler = await getCompilerName(language);
+    if (!compiler) {
+      return { stdout: '', stderr: '', error: `Unsupported language: ${language}` };
+    }
+    const res = await fetch(`${WANDBOX_API}/compile.json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        language: lang.language,
-        version: lang.version,
-        files: [{ content: code }],
+        compiler,
+        code,
         stdin,
       }),
     });
-    if (!response.ok) {
-      const body = await response.text().catch(() => '');
-      return { stdout: '', stderr: '', error: `API error ${response.status}: ${body}` };
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      return { stdout: '', stderr: '', error: `API error ${res.status}: ${body}` };
     }
-    const data = await response.json();
-    const run = data.run ?? {};
-    return {
-      stdout: run.stdout ?? '',
-      stderr: run.stderr ?? '',
-      error: run.signal ? `Killed: ${run.signal}` : '',
-    };
+    const data = await res.json();
+    const compileError = data.compiler_error ?? '';
+    const stdout = data.program_output ?? '';
+    const stderr = data.program_error ?? '';
+    if (compileError) {
+      return { stdout: '', stderr: compileError, error: compileError };
+    }
+    return { stdout, stderr, error: '' };
   } catch (e: any) {
     return { stdout: '', stderr: '', error: e?.message ?? 'Network error — check your connection' };
   }
