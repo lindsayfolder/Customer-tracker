@@ -1,11 +1,11 @@
 const PISTON_API = 'https://emkc.org/api/v2/piston';
 
 const LANGUAGE_MAP: Record<string, { language: string; version: string }> = {
-  python: { language: 'python', version: '3.10.0' },
-  javascript: { language: 'javascript', version: '18.15.0' },
-  java: { language: 'java', version: '15.0.2' },
-  c: { language: 'c', version: '10.2.0' },
-  cpp: { language: 'c++', version: '10.2.0' },
+  python: { language: 'python', version: '*' },
+  javascript: { language: 'javascript', version: '*' },
+  java: { language: 'java', version: '*' },
+  c: { language: 'c', version: '*' },
+  cpp: { language: 'c++', version: '*' },
 };
 
 export interface RunResult {
