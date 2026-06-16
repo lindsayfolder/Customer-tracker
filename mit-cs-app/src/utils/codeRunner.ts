@@ -105,15 +105,15 @@ export function checkTestCases(
   output: string,
   testCases: { expectedOutput: string; description: string }[]
 ): TestResult[] {
-  const lines = output.trim().split('\n');
-  return testCases.map((tc, i) => {
-    const actual = (lines[i] ?? '').trim();
+  const normalizedOutput = output.trim();
+  return testCases.map((tc) => {
     const expected = tc.expectedOutput.trim();
+    const passed = normalizedOutput.includes(expected);
     return {
       description: tc.description,
-      passed: actual === expected,
+      passed,
       expected,
-      actual,
+      actual: normalizedOutput,
     };
   });
 }
