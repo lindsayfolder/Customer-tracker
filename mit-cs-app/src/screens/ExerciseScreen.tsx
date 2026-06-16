@@ -133,7 +133,12 @@ export default function ExerciseScreen() {
               <TextInput
                 style={[styles.editor, { color: theme.codeText }]}
                 value={code}
-                onChangeText={setCode}
+                onChangeText={(text) => setCode(
+                  text
+                    .replace(/[“”]/g, '"')
+                    .replace(/[‘’]/g, "'")
+                    .replace(/[–—]/g, '-')
+                )}
                 multiline
                 autoCapitalize="none"
                 autoCorrect={false}

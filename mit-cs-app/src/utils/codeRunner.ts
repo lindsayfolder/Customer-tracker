@@ -59,6 +59,13 @@ export interface TestResult {
   actual: string;
 }
 
+function sanitize(code: string): string {
+  return code
+    .replace(/[""]/g, '"')
+    .replace(/['']/g, "'")
+    .replace(/[–—]/g, '-');
+}
+
 export async function runCode(
   code: string,
   language: string,
@@ -66,6 +73,7 @@ export async function runCode(
 ): Promise<RunResult> {
   try {
     const compiler = await getCompilerName(language);
+    code = sanitize(code);
     if (!compiler) {
       return { stdout: '', stderr: '', error: `Unsupported language: ${language}` };
     }
