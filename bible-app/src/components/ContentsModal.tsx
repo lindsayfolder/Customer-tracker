@@ -18,6 +18,11 @@ export function ContentsModal({
   const expandedBook = BOOKS.find((b) => b.id === expandedBookId)!;
   const chapters = Array.from({ length: expandedBook.chapters }, (_, i) => i + 1);
 
+  function pick(c: number) {
+    onSelectChapter(expandedBookId, c);
+    onClose();
+  }
+
   return (
     <div className={`modal-screen${open ? " open" : ""}`}>
       <div className="modal-head">
@@ -26,8 +31,37 @@ export function ContentsModal({
           &#10005;
         </button>
       </div>
+
+      <div className="book-strip">
+        {BOOKS.map((b) => (
+          <button
+            key={b.id}
+            type="button"
+            className={`book-chip${b.id === expandedBookId ? " active" : ""}`}
+            onClick={() => setExpandedBookId(b.id)}
+          >
+            {bookAbbr(b, lang)}
+          </button>
+        ))}
+      </div>
+
       <div className="modal-body">
         <div className="contents-hint">{t.contentsHint}</div>
+
+        <div className="chapter-panel">
+          <div className="chapter-panel-title">{expandedBook.label[lang]}</div>
+          <div className="chapter-grid">
+            {chapters.map((c) => (
+              <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="section-label">
+          <span>{t.contentsTitle}</span>
+        </div>
         <div className="book-grid">
           {BOOKS.map((b) => (
             <button
@@ -38,21 +72,6 @@ export function ContentsModal({
             >
               <span className="glyph">{bookAbbr(b, lang)}</span>
               <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
-            </button>
-          ))}
-        </div>
-        <div className="chapter-grid">
-          {chapters.map((c) => (
-            <button
-              key={c}
-              type="button"
-              className="chapter-cell"
-              onClick={() => {
-                onSelectChapter(expandedBookId, c);
-                onClose();
-              }}
-            >
-              {c}
             </button>
           ))}
         </div>
