@@ -188,6 +188,10 @@ button { font-family: inherit; }
 .modal-close { width: 30px; height: 30px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper-panel); color: var(--ink); font-size: 15px; line-height: 1; cursor: pointer; }
 .modal-body { flex: 1; overflow-y: auto; padding: 14px 16px 28px; }
 
+.book-strip { flex: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: var(--paper); border-bottom: 2px solid var(--hairline); -webkit-overflow-scrolling: touch; }
+.book-chip { flex: none; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 11px; font-weight: 800; font-size: 13px; color: var(--ink-soft); white-space: nowrap; cursor: pointer; }
+.book-chip.active { background: var(--gold); color: #1c1207; }
+
 .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .book-cell { border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 12px; padding: 10px 4px; text-align: center; cursor: pointer; }
 .book-cell.active { background: var(--gold); }
@@ -195,7 +199,7 @@ button { font-family: inherit; }
 .book-cell .code { font-size: 9.5px; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; display: block; margin-top: 2px; }
 .contents-hint { font-size: 11.5px; color: var(--ink-faint); line-height: 1.5; margin-bottom: 12px; }
 
-.chapter-panel { grid-column: 1 / -1; background: var(--ink); border-radius: 14px; padding: 14px; margin: 2px 0 4px; animation: panel-in 0.18s ease; }
+.chapter-panel { grid-column: 1 / -1; background: var(--ink); border-radius: 14px; padding: 14px; margin: 2px 0 4px; scroll-margin-top: 14px; scroll-margin-bottom: 14px; animation: panel-in 0.18s ease; }
 .chapter-panel-title { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 17px; color: var(--paper); text-align: center; margin-bottom: 12px; }
 .chapter-panel .chapter-grid { grid-template-columns: repeat(6, 1fr); }
 .chapter-panel .chapter-cell { border: none; background: var(--paper-panel); color: var(--ink); }
