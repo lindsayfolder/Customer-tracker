@@ -1,5 +1,8 @@
 # Inkverse — comic-styled AI Bible reader
 
+**Live:** https://lindsayfolder.github.io/Customer-tracker/ — open on any
+phone and use "Add to Home Screen" to install it (see below).
+
 A phone-installable Bible reader: the **complete Bible, all 66 books**, in
 four public-domain versions (KJV, WEB, 和合本 Traditional, 和合本
 Simplified), 5 AI-drawn main points per chapter with tap-to-deep-dive,
