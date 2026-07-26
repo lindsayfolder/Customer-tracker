@@ -1,9 +1,16 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { UI } from "../data/languages";
-import { BOOKS, bookAbbr } from "../data/books";
+import { BOOKS, bookAbbr, type BookMeta } from "../data/books";
 
 const COLUMNS = 4;
+
+function chunk(items: BookMeta[], size: number): BookMeta[][] {
+  const rows: BookMeta[][] = [];
+  for (let i = 0; i < items.length; i += size) rows.push(items.slice(i, i + size));
+  return rows;
+}
+const ROWS = chunk(BOOKS, COLUMNS);
 
 export function ContentsModal({
   open,
@@ -58,35 +65,36 @@ export function ContentsModal({
 
       <div className="modal-body">
         <div className="contents-hint">{t.contentsHint}</div>
-        <div className="book-grid">
-          {BOOKS.map((b, i) => {
-            const row = Math.floor(i / COLUMNS);
-            const isRowEnd = (i + 1) % COLUMNS === 0 || i === BOOKS.length - 1;
-            return (
-              <Fragment key={b.id}>
-                <button
-                  type="button"
-                  className={`book-cell${b.id === expandedBookId ? " active" : ""}`}
-                  onClick={() => setExpandedBookId(b.id)}
-                >
-                  <span className="glyph">{bookAbbr(b, lang)}</span>
-                  <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
-                </button>
-                {isRowEnd && row === expandedRow && (
-                  <div className="chapter-panel" ref={panelRef}>
-                    <div className="chapter-panel-title">{expandedBook.label[lang]}</div>
-                    <div className="chapter-grid">
-                      {chapters.map((c) => (
-                        <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
-                          {c}
-                        </button>
-                      ))}
-                    </div>
+        <div className="book-rows">
+          {ROWS.map((rowBooks, rowIndex) => (
+            <Fragment key={rowIndex}>
+              <div className="book-row">
+                {rowBooks.map((b) => (
+                  <button
+                    key={b.id}
+                    type="button"
+                    className={`book-cell${b.id === expandedBookId ? " active" : ""}`}
+                    onClick={() => setExpandedBookId(b.id)}
+                  >
+                    <span className="glyph">{bookAbbr(b, lang)}</span>
+                    <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
+              {rowIndex === expandedRow && (
+                <div className="chapter-panel" ref={panelRef}>
+                  <div className="chapter-panel-title">{expandedBook.label[lang]}</div>
+                  <div className="chapter-grid">
+                    {chapters.map((c) => (
+                      <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
+                        {c}
+                      </button>
+                    ))}
                   </div>
-                )}
-              </Fragment>
-            );
-          })}
+                </div>
+              )}
+            </Fragment>
+          ))}
         </div>
       </div>
     </div>
