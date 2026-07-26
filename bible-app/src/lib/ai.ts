@@ -1,4 +1,4 @@
-import type { ChapterContent } from "../data/genesis1";
+import type { Point, Verse } from "../data/genesis1";
 import type { LangKey } from "../data/languages";
 import type { BookMeta } from "../data/books";
 
@@ -12,15 +12,15 @@ export class AiNotConfiguredError extends Error {}
  * browser. An API key embedded in client code is visible to anyone who opens
  * devtools — the proxy is what keeps it private. Configure the proxy's URL
  * in Settings (stored as `aiEndpoint`); until it's set, this throws
- * AiNotConfiguredError and the caller falls back to bundled/cached content.
+ * AiNotConfiguredError.
  */
 export async function generateChapterInsights(
   book: BookMeta,
   chapter: number,
   lang: LangKey,
-  verses: { n: number; t: string }[],
+  verses: Verse[],
   aiEndpoint: string,
-): Promise<ChapterContent> {
+): Promise<Point[]> {
   if (!aiEndpoint) {
     throw new AiNotConfiguredError("No AI endpoint configured in Settings.");
   }
@@ -41,9 +41,9 @@ export async function generateChapterInsights(
     throw new Error(`AI generation failed: ${res.status} ${await res.text().catch(() => "")}`);
   }
 
-  const data = (await res.json()) as ChapterContent;
+  const data = (await res.json()) as { points?: Point[] };
   if (!data?.points?.length) {
     throw new Error("AI response missing points.");
   }
-  return data;
+  return data.points;
 }

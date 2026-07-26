@@ -26,7 +26,23 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // Only the app shell is precached (~300KB). Scripture JSON under
+        // /bible/** is deliberately NOT globbed here — it's fetched lazily
+        // per book as the user actually reads (see lib/scripture.ts) and
+        // persisted for offline use by the runtime-caching rule below, so
+        // storage only grows with what's actually been read.
         globPatterns: ["**/*.{js,css,html,woff2,png,svg}"],
+        runtimeCaching: [
+          {
+            urlPattern: /\/bible\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-text",
+              expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
     }),
   ],

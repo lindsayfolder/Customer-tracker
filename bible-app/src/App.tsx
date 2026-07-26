@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useApp } from "./context/AppContext";
 import { UI, LANGUAGES, fmt, type LangKey } from "./data/languages";
-import { GENESIS_1, type ChapterContent } from "./data/genesis1";
+import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
 import { BOOKS } from "./data/books";
 import { ListenButton } from "./components/ListenButton";
 import { Drawer } from "./components/Drawer";
@@ -9,7 +9,8 @@ import { ContentsModal } from "./components/ContentsModal";
 import { SearchModal } from "./components/SearchModal";
 import { SettingsModal } from "./components/SettingsModal";
 import { Toast } from "./components/Toast";
-import { getCachedChapter, putCachedChapter } from "./lib/db";
+import { getCachedPoints, putCachedPoints } from "./lib/db";
+import { loadChapterVerses } from "./lib/scripture";
 import { generateChapterInsights, AiNotConfiguredError } from "./lib/ai";
 import { stripHtml, tts } from "./lib/tts";
 
@@ -25,7 +26,8 @@ export default function App() {
   const [openPointIndex, setOpenPointIndex] = useState<number | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey | null>(null);
-  const [content, setContent] = useState<ChapterContent | null>(null);
+  const [verses, setVerses] = useState<Verse[] | null>(null);
+  const [points, setPoints] = useState<Point[] | null>(null);
   const [generating, setGenerating] = useState(false);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
@@ -39,15 +41,37 @@ export default function App() {
     else document.documentElement.setAttribute("data-theme", settings.theme);
   }, [settings.theme]);
 
+  // scripture: always loaded from the bundled per-book JSON (all 66 books)
+  useEffect(() => {
+    let cancelled = false;
+    setVerses(null);
+    loadChapterVerses(bookId, chapter, lang)
+      .then((v) => {
+        if (!cancelled) setVerses(v);
+      })
+      .catch(() => {
+        if (!cancelled) toast("Couldn't load that chapter's text — check your connection.");
+      });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookId, chapter, lang]);
+
+  // AI insights: cached in IndexedDB, seeded for Genesis 1, otherwise
+  // generated on demand once an AI endpoint is configured.
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      if (bookId === "gen" && chapter === 1) {
-        if (!cancelled) setContent(GENESIS_1[lang]);
-        return;
+      const cached = await getCachedPoints(bookId, chapter, lang);
+      if (cancelled) return;
+      if (cached) {
+        setPoints(cached);
+      } else if (bookId === "gen" && chapter === 1) {
+        setPoints(GENESIS_1[lang].points);
+      } else {
+        setPoints(null);
       }
-      const cached = await getCachedChapter(bookId, chapter, lang);
-      if (!cancelled) setContent(cached);
     }
     load();
     return () => {
@@ -62,9 +86,9 @@ export default function App() {
     }
     setGenerating(true);
     try {
-      const result = await generateChapterInsights(book, chapter, lang, content?.verses ?? [], settings.aiEndpoint);
-      await putCachedChapter(bookId, chapter, lang, result, settings.cacheCapMB, settings.keepFavorites);
-      setContent(result);
+      const result = await generateChapterInsights(book, chapter, lang, verses ?? [], settings.aiEndpoint);
+      await putCachedPoints(bookId, chapter, lang, result, settings.cacheCapMB, settings.keepFavorites);
+      setPoints(result);
       refreshCacheUsage();
     } catch (err) {
       if (err instanceof AiNotConfiguredError) toast(t.needsKeyMsg);
@@ -99,9 +123,15 @@ export default function App() {
       setModal(target);
     }
   }
+  function goToChapter(bId: string, c: number) {
+    setBookId(bId);
+    setChapter(c);
+    setTab("scripture");
+    setOpenPointIndex(null);
+  }
 
-  const point = content && openPointIndex !== null ? content.points[openPointIndex] : null;
-  const chapterEyebrow = fmt(t.chapterEyebrow, { c: chapter });
+  const point = points && openPointIndex !== null ? points[openPointIndex] : null;
+  const chapterEyebrow = fmt(t.chapterEyebrow, { book: book.label[lang], c: chapter });
 
   return (
     <div className="app-shell">
@@ -136,11 +166,6 @@ export default function App() {
           <div className="chapter-head">
             <div className="chapter-eyebrow">{chapterEyebrow}</div>
             <div className="chapter-title">{book.label[lang]}</div>
-            <div className="chapter-sub">
-              {lang.startsWith("zh")
-                ? "神用六日說話立定秩序，看一切甚好。"
-                : "God speaks the world into order across six days, then calls it very good."}
-            </div>
           </div>
 
           <div className="tabbar">
@@ -153,11 +178,11 @@ export default function App() {
           </div>
 
           {tab === "scripture" ? (
-            content ? (
+            verses ? (
               <div>
-                <ListenButton id="scripture" text={content.verses.map((v) => v.t).join(" ")} />
+                <ListenButton id="scripture" text={verses.map((v) => v.t).join(" ")} />
                 <div className="verse-list">
-                  {content.verses.map((v) => (
+                  {verses.map((v) => (
                     <div className="verse-row" key={v.n}>
                       <div className="verse-num">{v.n}</div>
                       <div className="verse-text">{v.t}</div>
@@ -167,7 +192,7 @@ export default function App() {
                 <div className="scripture-note">{t.scriptureNote}</div>
               </div>
             ) : (
-              <div className="empty-note">{t.sampleOnlyMsg}</div>
+              <div className="empty-note">{t.loadingLabel}</div>
             )
           ) : (
             <div>
@@ -175,9 +200,9 @@ export default function App() {
                 <span>{t.sectionLeft}</span>
                 <span>{t.sectionRight}</span>
               </div>
-              {content ? (
+              {points ? (
                 <div className="point-list">
-                  {content.points.map((p, i) => (
+                  {points.map((p, i) => (
                     <button key={i} type="button" className="point-card" onClick={() => openDetail(i)}>
                       <div className="point-num">{i + 1}</div>
                       <div className="point-body">
@@ -193,7 +218,7 @@ export default function App() {
               ) : (
                 <div>
                   <div className="empty-note">{t.sampleOnlyMsg}</div>
-                  <button type="button" className="generate-btn" disabled={generating} onClick={handleGenerate}>
+                  <button type="button" className="generate-btn" disabled={generating || !verses} onClick={handleGenerate}>
                     {generating ? t.generatingMsg : t.generateBtn}
                   </button>
                 </div>
@@ -235,12 +260,7 @@ export default function App() {
       <ContentsModal
         open={modal === "contents"}
         onClose={() => setModal(null)}
-        onSelectChapter={(bId, c) => {
-          setBookId(bId);
-          setChapter(c);
-          setTab("scripture");
-          setOpenPointIndex(null);
-        }}
+        onSelectChapter={(bId, c) => goToChapter(bId, c)}
       />
 
       <SearchModal

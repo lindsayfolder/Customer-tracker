@@ -51,12 +51,13 @@ export interface UiStrings {
   generateBtn: string;
   generatingMsg: string;
   needsKeyMsg: string;
+  loadingLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
   en: {
     storageChip: "AI cache {n} MB",
-    chapterEyebrow: "Genesis · Chapter {c}",
+    chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
     sectionLeft: "5 Main Points",
@@ -98,10 +99,11 @@ export const UI: Record<LangKey, UiStrings> = {
     generateBtn: "Generate 5 points with AI",
     generatingMsg: "Thinking through the chapter…",
     needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
+    loadingLabel: "Loading…",
   },
   web: {
     storageChip: "AI cache {n} MB",
-    chapterEyebrow: "Genesis · Chapter {c}",
+    chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
     sectionLeft: "5 Main Points",
@@ -143,10 +145,11 @@ export const UI: Record<LangKey, UiStrings> = {
     generateBtn: "Generate 5 points with AI",
     generatingMsg: "Thinking through the chapter…",
     needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
+    loadingLabel: "Loading…",
   },
   "zh-hant": {
     storageChip: "AI 快取 {n} MB",
-    chapterEyebrow: "創世記 · 第 {c} 章",
+    chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "經文",
     tabInsights: "洞見",
     sectionLeft: "五個要點",
@@ -188,10 +191,11 @@ export const UI: Record<LangKey, UiStrings> = {
     generateBtn: "用 AI 生成五個要點",
     generatingMsg: "正在解讀這一章……",
     needsKeyMsg: "請在設定中加入 AI 金鑰以生成新的章節。",
+    loadingLabel: "載入中……",
   },
   "zh-hans": {
     storageChip: "AI 缓存 {n} MB",
-    chapterEyebrow: "创世记 · 第 {c} 章",
+    chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "经文",
     tabInsights: "洞见",
     sectionLeft: "五个要点",
@@ -233,6 +237,7 @@ export const UI: Record<LangKey, UiStrings> = {
     generateBtn: "用 AI 生成五个要点",
     generatingMsg: "正在解读这一章……",
     needsKeyMsg: "请在设置中加入 AI 密钥以生成新的章节。",
+    loadingLabel: "载入中……",
   },
 };
 

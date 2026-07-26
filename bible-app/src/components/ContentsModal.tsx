@@ -12,12 +12,11 @@ export function ContentsModal({
   onClose: () => void;
   onSelectChapter: (bookId: string, chapter: number) => void;
 }) {
-  const { lang, toast } = useApp();
+  const { lang } = useApp();
   const t = UI[lang];
-  const [expandedBook, setExpandedBook] = useState("gen");
-
-  const chapters = Array.from({ length: 12 }, (_, i) => i + 1);
-  const hasSeed = (bookId: string, chapter: number) => bookId === "gen" && chapter === 1;
+  const [expandedBookId, setExpandedBookId] = useState("gen");
+  const expandedBook = BOOKS.find((b) => b.id === expandedBookId)!;
+  const chapters = Array.from({ length: expandedBook.chapters }, (_, i) => i + 1);
 
   return (
     <div className={`modal-screen${open ? " open" : ""}`}>
@@ -34,8 +33,8 @@ export function ContentsModal({
             <button
               key={b.id}
               type="button"
-              className={`book-cell${b.id === expandedBook ? " active" : ""}`}
-              onClick={() => setExpandedBook(b.id)}
+              className={`book-cell${b.id === expandedBookId ? " active" : ""}`}
+              onClick={() => setExpandedBookId(b.id)}
             >
               <span className="glyph">{bookAbbr(b, lang)}</span>
               <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
@@ -47,14 +46,10 @@ export function ContentsModal({
             <button
               key={c}
               type="button"
-              className={`chapter-cell${hasSeed(expandedBook, c) ? " active" : ""}`}
+              className="chapter-cell"
               onClick={() => {
-                if (hasSeed(expandedBook, c)) {
-                  onSelectChapter(expandedBook, c);
-                  onClose();
-                } else {
-                  toast(t.sampleOnlyMsg);
-                }
+                onSelectChapter(expandedBookId, c);
+                onClose();
               }}
             >
               {c}

@@ -1,5 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
-import type { ChapterContent } from "../data/genesis1";
+import type { Point } from "../data/genesis1";
 import type { LangKey } from "../data/languages";
 
 interface CacheEntry {
@@ -7,7 +7,7 @@ interface CacheEntry {
   bookId: string;
   chapter: number;
   lang: LangKey;
-  content: ChapterContent;
+  points: Point[];
   sizeBytes: number;
   lastAccessed: number;
   favorite: boolean;
@@ -57,8 +57,8 @@ function cacheKey(bookId: string, chapter: number, lang: LangKey) {
   return `${bookId}-${chapter}-${lang}`;
 }
 
-function byteSize(content: ChapterContent): number {
-  return new Blob([JSON.stringify(content)]).size;
+function byteSize(points: Point[]): number {
+  return new Blob([JSON.stringify(points)]).size;
 }
 
 export const DEFAULT_SETTINGS: AppSettings = {
@@ -82,24 +82,20 @@ export async function saveSettings(settings: AppSettings): Promise<void> {
   await db.put("settings", settings);
 }
 
-export async function getCachedChapter(
-  bookId: string,
-  chapter: number,
-  lang: LangKey,
-): Promise<ChapterContent | null> {
+export async function getCachedPoints(bookId: string, chapter: number, lang: LangKey): Promise<Point[] | null> {
   const db = await getDb();
   const entry = await db.get("chapters", cacheKey(bookId, chapter, lang));
   if (!entry) return null;
   entry.lastAccessed = Date.now();
   await db.put("chapters", entry);
-  return entry.content;
+  return entry.points;
 }
 
-export async function putCachedChapter(
+export async function putCachedPoints(
   bookId: string,
   chapter: number,
   lang: LangKey,
-  content: ChapterContent,
+  points: Point[],
   capMB: number,
   keepFavoritesExempt: boolean,
 ): Promise<void> {
@@ -111,8 +107,8 @@ export async function putCachedChapter(
     bookId,
     chapter,
     lang,
-    content,
-    sizeBytes: byteSize(content),
+    points,
+    sizeBytes: byteSize(points),
     lastAccessed: Date.now(),
     favorite: existing?.favorite ?? false,
   };
@@ -147,7 +143,7 @@ export async function getCacheUsageMB(): Promise<number> {
 async function evictIfOverCap(capMB: number, keepFavoritesExempt: boolean): Promise<void> {
   const db = await getDb();
   const capBytes = capMB * 1024 * 1024;
-  let all = await db.getAll("chapters");
+  const all = await db.getAll("chapters");
   let totalBytes = all.reduce((sum, e) => sum + e.sizeBytes, 0);
   if (totalBytes <= capBytes) return;
 

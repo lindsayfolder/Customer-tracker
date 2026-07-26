@@ -32,11 +32,14 @@ await page.waitForTimeout(350);
 await page.click("text=Contents");
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-5-contents.png" });
-await page.click(".chapter-cell:has-text('2')"); // not seeded -> toast
-await page.waitForTimeout(200);
-await page.screenshot({ path: "/tmp/qa-6-toast.png" });
-await page.waitForTimeout(2200);
-await page.click(".chapter-cell.active"); // chapter 1 -> closes modal
+await page.click(".chapter-cell >> text='2'"); // whole Bible is real now — this navigates for real
+await page.waitForTimeout(400);
+await page.screenshot({ path: "/tmp/qa-6-chapter2.png" });
+await page.click(".menu-btn");
+await page.waitForTimeout(350);
+await page.click("text=Contents");
+await page.waitForTimeout(400);
+await page.click(".chapter-cell >> text='1'"); // back to chapter 1
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-7-back-home.png" });
 
