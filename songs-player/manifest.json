@@ -1,0 +1,14 @@
+{
+  "name": "K-Pop Mix Player",
+  "short_name": "K-Pop Mix",
+  "description": "A personal K-pop song player with your own library and YouTube playback.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#15111a",
+  "theme_color": "#15111a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
