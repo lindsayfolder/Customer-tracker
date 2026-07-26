@@ -15,6 +15,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      // Registered manually in main.tsx via virtual:pwa-register, so a
+      // detected update forces an immediate reload instead of silently
+      // waiting for a future navigation (which was leaving devices running
+      // a stale mix of old/new hashed assets across rapid deploys).
+      injectRegister: false,
       includeAssets: ["icons/icon-192.png", "icons/icon-512.png"],
       manifest: {
         name: "Inkverse — AI Bible Reader",
