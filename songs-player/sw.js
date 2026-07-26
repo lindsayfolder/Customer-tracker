@@ -1,5 +1,13 @@
-const CACHE = "kpop-player-v1";
-const ASSETS = ["./", "./index.html", "./manifest.json", "./icon.svg"];
+const CACHE = "kpop-player-v2";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./icon.svg",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-180.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));

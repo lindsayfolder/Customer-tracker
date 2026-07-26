@@ -11,10 +11,8 @@
   </defs>
   <rect width="512" height="512" rx="112" fill="url(#glow)"/>
   <g fill="url(#note)">
-    <circle cx="185" cy="360" r="52"/>
-    <circle cx="365" cy="326" r="52"/>
-    <rect x="227" y="120" width="26" height="248"/>
-    <rect x="337" y="96" width="26" height="238"/>
-    <path d="M227 120 L363 96 L363 150 L227 174 Z"/>
+    <circle cx="200" cy="366" r="62"/>
+    <rect x="256" y="96" width="30" height="272" rx="6"/>
+    <path d="M286 96 C 340 118, 372 152, 372 206 C 372 224, 362 236, 348 240 C 358 220, 354 198, 330 178 C 312 163, 292 152, 286 146 Z"/>
   </g>
 </svg>
