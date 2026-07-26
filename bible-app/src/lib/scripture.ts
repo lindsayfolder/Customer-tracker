@@ -17,7 +17,7 @@ function loadBookFile(bookId: string, lang: LangKey): Promise<BookFile> {
   const key = `${lang}-${bookId}`;
   let p = memCache.get(key);
   if (!p) {
-    p = fetch(`/bible/${lang}/${bookId}.json`).then((res) => {
+    p = fetch(`${import.meta.env.BASE_URL}bible/${lang}/${bookId}.json`).then((res) => {
       if (!res.ok) throw new Error(`Failed to load ${key}: ${res.status}`);
       return res.json() as Promise<BookFile>;
     });
