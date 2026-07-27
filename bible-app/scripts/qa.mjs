@@ -32,6 +32,8 @@ await page.waitForTimeout(350);
 await page.click("text=Contents");
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-5-contents.png" });
+await page.click(".book-cell:has-text('GEN')"); // two-step: book grid -> chapter grid
+await page.waitForTimeout(300);
 await page.click(".chapter-cell >> text='2'"); // whole Bible is real now — this navigates for real
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-6-chapter2.png" });
@@ -39,6 +41,8 @@ await page.click(".menu-btn");
 await page.waitForTimeout(350);
 await page.click("text=Contents");
 await page.waitForTimeout(400);
+await page.click(".book-cell:has-text('GEN')");
+await page.waitForTimeout(300);
 await page.click(".chapter-cell >> text='1'"); // back to chapter 1
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-7-back-home.png" });

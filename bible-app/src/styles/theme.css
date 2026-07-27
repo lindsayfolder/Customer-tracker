@@ -191,26 +191,16 @@ button { font-family: inherit; }
 
 .book-strip { flex: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: var(--paper); border-bottom: 2px solid var(--hairline); }
 .book-chip { flex: none; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 11px; font-weight: 800; font-size: 13px; color: var(--ink-soft); white-space: nowrap; cursor: pointer; }
-.book-chip.active { background: var(--gold); color: #1c1207; }
 
 .book-rows { display: flex; flex-direction: column; gap: 8px; }
 .book-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .book-cell { border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 12px; padding: 10px 4px; text-align: center; cursor: pointer; }
-.book-cell.active { background: var(--gold); }
 .book-cell .glyph { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 17px; display: block; }
 .book-cell .code { font-size: 9.5px; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; display: block; margin-top: 2px; }
 .contents-hint { font-size: 11.5px; color: var(--ink-faint); line-height: 1.5; margin-bottom: 12px; }
 
-.chapter-panel { background: var(--ink); border-radius: 14px; padding: 14px; scroll-margin-top: 14px; scroll-margin-bottom: 14px; animation: panel-in 0.18s ease; }
-.chapter-panel-title { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 17px; color: var(--paper); text-align: center; margin-bottom: 12px; }
-.chapter-panel .chapter-grid { grid-template-columns: repeat(6, 1fr); }
-.chapter-panel .chapter-cell { border: none; background: var(--paper-panel); color: var(--ink); }
-.chapter-panel .chapter-cell.active { background: var(--gold); }
-@keyframes panel-in { from { opacity: 0; transform: scaleY(0.96); } to { opacity: 1; transform: scaleY(1); } }
-@media (prefers-reduced-motion: reduce) { .chapter-panel { animation: none; } }
 .chapter-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
 .chapter-cell { border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 9px; padding: 7px 0; text-align: center; font-weight: 800; font-size: 12.5px; cursor: pointer; }
-.chapter-cell.active { background: var(--gold); }
 
 .scope-row { display: flex; gap: 6px; margin-bottom: 10px; }
 .scope-btn { flex: 1; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 4px; font-weight: 800; font-size: 11.5px; text-transform: uppercase; color: var(--ink-soft); cursor: pointer; }

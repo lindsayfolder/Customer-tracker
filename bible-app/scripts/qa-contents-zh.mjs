@@ -15,41 +15,17 @@ await page.waitForSelector(".app-shell");
 await page.click(".lang-pill:has-text('繁體')");
 await page.waitForTimeout(200);
 
-// Open Contents.
+// Open Contents — two-step now: book grid first, chapter grid after tapping a book.
 await page.click(".menu-btn");
 await page.waitForTimeout(350);
 await page.click("text=目錄");
 await page.waitForTimeout(400);
+await page.screenshot({ path: "/tmp/qa-zh-1-books.png" });
 
-const bodyHandle = await page.$(".modal-body");
-const scrollInfo = await bodyHandle.evaluate((el) => ({
-  scrollHeight: el.scrollHeight,
-  clientHeight: el.clientHeight,
-}));
-console.log("modal-body scrollHeight/clientHeight:", JSON.stringify(scrollInfo));
-
+const bookCellCount = await page.$$eval(".book-cell", (cells) => cells.length);
+console.log("book-cell count in DOM (book step):", bookCellCount);
 const bookRowCount = await page.$$eval(".book-row", (rows) => rows.length);
 console.log("book-row count in DOM:", bookRowCount);
-const bookCellCount = await page.$$eval(".book-cell", (cells) => cells.length);
-console.log("book-cell count in DOM:", bookCellCount);
-
-// Scroll through in steps, screenshotting each, to see how far real content renders.
-const steps = 8;
-for (let i = 0; i <= steps; i++) {
-  const frac = i / steps;
-  await bodyHandle.evaluate((el, frac) => {
-    el.scrollTop = Math.round((el.scrollHeight - el.clientHeight) * frac);
-  }, frac);
-  await page.waitForTimeout(150);
-  await page.screenshot({ path: `/tmp/qa-zh-scroll-${i}.png` });
-}
-
-// Check the last book row's cells actually have visible text/bounding boxes.
-const lastRowText = await page.$$eval(".book-row", (rows) => {
-  const last = rows[rows.length - 1];
-  return last ? Array.from(last.querySelectorAll(".book-cell")).map((c) => c.textContent) : null;
-});
-console.log("last book-row cell text:", JSON.stringify(lastRowText));
 
 const allCellRects = await page.$$eval(".book-cell", (cells) =>
   cells.map((c) => {
@@ -60,6 +36,33 @@ const allCellRects = await page.$$eval(".book-cell", (cells) =>
 const zeroSized = allCellRects.filter((c) => c.w === 0 || c.h === 0);
 console.log("total book-cells:", allCellRects.length, "zero-sized cells:", zeroSized.length);
 if (zeroSized.length) console.log("sample zero-sized:", JSON.stringify(zeroSized.slice(0, 5)));
+
+// Scroll the book grid to bottom and confirm the last row (Jude/Revelation) is intact.
+const bodyHandle = await page.$(".modal-body");
+await bodyHandle.evaluate((el) => {
+  el.scrollTop = el.scrollHeight - el.clientHeight;
+});
+await page.waitForTimeout(150);
+await page.screenshot({ path: "/tmp/qa-zh-2-books-bottom.png" });
+const lastRowText = await page.$$eval(".book-row", (rows) => {
+  const last = rows[rows.length - 1];
+  return last ? Array.from(last.querySelectorAll(".book-cell")).map((c) => c.textContent) : null;
+});
+console.log("last book-row cell text:", JSON.stringify(lastRowText));
+
+// Tap the last book (Revelation, 啟) and confirm its chapter grid (22 chapters) renders.
+await page.click(".book-cell:has-text('啟')");
+await page.waitForTimeout(300);
+await page.screenshot({ path: "/tmp/qa-zh-3-chapters.png" });
+const chapterCellCount = await page.$$eval(".chapter-cell", (cells) => cells.length);
+console.log("chapter-cell count for Revelation (expect 22):", chapterCellCount);
+
+// Back to the book grid.
+await page.click(".back-tab");
+await page.waitForTimeout(300);
+await page.screenshot({ path: "/tmp/qa-zh-4-back-to-books.png" });
+const backToBooks = await page.$$eval(".book-cell", (cells) => cells.length);
+console.log("book-cell count after back (expect 66):", backToBooks);
 
 await browser.close();
 console.log("console/page errors:", JSON.stringify(errors, null, 2));

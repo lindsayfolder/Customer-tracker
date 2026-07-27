@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { UI } from "../data/languages";
 import { BOOKS, bookAbbr, type BookMeta } from "../data/books";
@@ -23,21 +23,26 @@ export function ContentsModal({
 }) {
   const { lang } = useApp();
   const t = UI[lang];
-  const [expandedBookId, setExpandedBookId] = useState("gen");
-  const expandedIndex = BOOKS.findIndex((b) => b.id === expandedBookId);
-  const expandedRow = Math.floor(expandedIndex / COLUMNS);
-  const expandedBook = BOOKS[expandedIndex];
-  const chapters = Array.from({ length: expandedBook.chapters }, (_, i) => i + 1);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState<"books" | "chapters">("books");
+  const [selectedBookId, setSelectedBookId] = useState("gen");
+  const selectedBook = BOOKS.find((b) => b.id === selectedBookId) ?? BOOKS[0];
+  const chapters = Array.from({ length: selectedBook.chapters }, (_, i) => i + 1);
 
-  // Jumping to a book (from the quick strip or the grid itself) shouldn't
-  // require hunting for where its panel landed — scroll it into view.
+  // Each screen (book grid, chapter grid) stays small on its own, so it can't
+  // trigger the WebKit paint bug that showed up when both lived together in
+  // one long scrolling list. Reset to the book list every time the modal
+  // reopens.
   useEffect(() => {
-    if (open) panelRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, [expandedBookId, open]);
+    if (open) setStep("books");
+  }, [open]);
+
+  function openBook(bookId: string) {
+    setSelectedBookId(bookId);
+    setStep("chapters");
+  }
 
   function pick(c: number) {
-    onSelectChapter(expandedBookId, c);
+    onSelectChapter(selectedBookId, c);
     onClose();
   }
 
@@ -50,53 +55,49 @@ export function ContentsModal({
         </button>
       </div>
 
-      <div className="book-strip">
-        {BOOKS.map((b) => (
-          <button
-            key={b.id}
-            type="button"
-            className={`book-chip${b.id === expandedBookId ? " active" : ""}`}
-            onClick={() => setExpandedBookId(b.id)}
-          >
-            {bookAbbr(b, lang)}
-          </button>
-        ))}
-      </div>
+      {step === "books" ? (
+        <>
+          <div className="book-strip">
+            {BOOKS.map((b) => (
+              <button key={b.id} type="button" className="book-chip" onClick={() => openBook(b.id)}>
+                {bookAbbr(b, lang)}
+              </button>
+            ))}
+          </div>
 
-      <div className="modal-body">
-        <div className="contents-hint">{t.contentsHint}</div>
-        <div className="book-rows">
-          {ROWS.map((rowBooks, rowIndex) => (
-            <Fragment key={rowIndex}>
-              <div className="book-row">
-                {rowBooks.map((b) => (
-                  <button
-                    key={b.id}
-                    type="button"
-                    className={`book-cell${b.id === expandedBookId ? " active" : ""}`}
-                    onClick={() => setExpandedBookId(b.id)}
-                  >
-                    <span className="glyph">{bookAbbr(b, lang)}</span>
-                    <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
-                  </button>
-                ))}
-              </div>
-              {rowIndex === expandedRow && (
-                <div className="chapter-panel" ref={panelRef}>
-                  <div className="chapter-panel-title">{expandedBook.label[lang]}</div>
-                  <div className="chapter-grid">
-                    {chapters.map((c) => (
-                      <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
-                        {c}
-                      </button>
-                    ))}
-                  </div>
+          <div className="modal-body">
+            <div className="contents-hint">{t.contentsHint}</div>
+            <div className="book-rows">
+              {ROWS.map((rowBooks, rowIndex) => (
+                <div className="book-row" key={rowIndex}>
+                  {rowBooks.map((b) => (
+                    <button key={b.id} type="button" className="book-cell" onClick={() => openBook(b.id)}>
+                      <span className="glyph">{bookAbbr(b, lang)}</span>
+                      <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
+                    </button>
+                  ))}
                 </div>
-              )}
-            </Fragment>
-          ))}
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="modal-body">
+          <button type="button" className="back-tab" onClick={() => setStep("books")}>
+            <span aria-hidden="true">&larr;</span> {t.contentsTitle}
+          </button>
+          <div className="chapter-head">
+            <div className="chapter-title">{selectedBook.label[lang]}</div>
+          </div>
+          <div className="chapter-grid">
+            {chapters.map((c) => (
+              <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
+                {c}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
