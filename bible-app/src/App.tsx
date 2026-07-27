@@ -11,6 +11,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import { Toast } from "./components/Toast";
 import { getCachedPoints, putCachedPoints } from "./lib/db";
 import { loadChapterVerses } from "./lib/scripture";
+import { loadChapterPoints } from "./lib/insights";
 import { generateChapterInsights, AiNotConfiguredError } from "./lib/ai";
 import { stripHtml, tts } from "./lib/tts";
 
@@ -58,8 +59,9 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId, chapter, lang]);
 
-  // AI insights: cached in IndexedDB, seeded for Genesis 1, otherwise
-  // generated on demand once an AI endpoint is configured.
+  // AI insights: cached in IndexedDB first, then the pre-generated bundle
+  // (see lib/insights.ts), then the Genesis 1 seed, and only falls back to
+  // live generation (handleGenerate) for a chapter none of those cover yet.
   useEffect(() => {
     let cancelled = false;
     async function load() {
@@ -67,6 +69,12 @@ export default function App() {
       if (cancelled) return;
       if (cached) {
         setPoints(cached);
+        return;
+      }
+      const pre = await loadChapterPoints(bookId, chapter, lang);
+      if (cancelled) return;
+      if (pre) {
+        setPoints(pre);
       } else if (bookId === "gen" && chapter === 1) {
         setPoints(GENESIS_1[lang].points);
       } else {

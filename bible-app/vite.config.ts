@@ -54,6 +54,15 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          {
+            urlPattern: /\/insights\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-insights",
+              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
         ],
       },
     }),
