@@ -163,6 +163,7 @@ export default function App() {
 
       <div className="panels">
         <div className={`view list${openPointIndex !== null ? " is-hidden" : ""}`}>
+          <div className="view-scroll">
           <div className="chapter-head">
             <div className="chapter-eyebrow">{chapterEyebrow}</div>
             <div className="chapter-title">{book.label[lang]}</div>
@@ -225,9 +226,11 @@ export default function App() {
               )}
             </div>
           )}
+          </div>
         </div>
 
         <div className={`view detail${openPointIndex !== null ? " is-active" : ""}`}>
+          <div className="view-scroll">
           {point && (
             <>
               <button type="button" className="back-tab" onClick={closeDetail}>
@@ -252,6 +255,7 @@ export default function App() {
               </div>
             </>
           )}
+          </div>
         </div>
       </div>
 
