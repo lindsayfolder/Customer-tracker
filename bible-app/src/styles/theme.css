@@ -186,7 +186,7 @@ button { font-family: inherit; }
 .modal-head { display: flex; align-items: center; justify-content: space-between; padding: max(env(safe-area-inset-top), 20px) 16px 12px; border-bottom: 3px solid var(--ink); flex: none; }
 .modal-head h2 { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 20px; font-weight: 400; margin: 0; color: var(--ink); }
 .modal-close { width: 30px; height: 30px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper-panel); color: var(--ink); font-size: 15px; line-height: 1; cursor: pointer; }
-.modal-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; transform: translateZ(0); padding: 14px 16px 28px; }
+.modal-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 14px 16px 28px; }
 
 .book-strip { flex: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: var(--paper); border-bottom: 2px solid var(--hairline); -webkit-overflow-scrolling: touch; }
 .book-chip { flex: none; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 11px; font-weight: 800; font-size: 13px; color: var(--ink-soft); white-space: nowrap; cursor: pointer; }
