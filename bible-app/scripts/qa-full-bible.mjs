@@ -42,12 +42,13 @@ await page.waitForTimeout(200);
 const n2 = await openContentsAndGo("JOH", 3, "john3-zhhant");
 if (n2 !== 36) errors.push(`John 3 should have 36 verses, got ${n2}`);
 
-// Check the AI-insights empty state + generate button shows for a real, non-Genesis-1 chapter
+// Every chapter now ships pre-generated AI insights, so a real, non-Genesis-1
+// chapter should show its 5 points directly rather than the Generate button.
 await page.click(".tab-btn:nth-child(2)"); // Insights tab
 await page.waitForTimeout(200);
-await page.screenshot({ path: "/tmp/full-john3-insights-empty.png" });
-const generateBtnVisible = await page.locator(".generate-btn").isVisible();
-if (!generateBtnVisible) errors.push("Generate button should be visible for a chapter with no cached AI insights");
+await page.screenshot({ path: "/tmp/full-john3-insights.png" });
+const pointCount = await page.locator(".point-card").count();
+if (pointCount !== 5) errors.push(`John 3 should show 5 pre-generated insight points, got ${pointCount}`);
 
 // WEB version, Psalm 23
 await page.click(".lang-pill:has-text('WEB')");
