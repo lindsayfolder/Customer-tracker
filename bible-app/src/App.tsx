@@ -138,6 +138,28 @@ export default function App() {
     setOpenPointIndex(null);
   }
 
+  const bookIndex = BOOKS.findIndex((b) => b.id === bookId);
+  function adjacentChapter(direction: 1 | -1): { bookId: string; chapter: number } | null {
+    if (direction === -1) {
+      if (chapter > 1) return { bookId, chapter: chapter - 1 };
+      const prevBook = BOOKS[bookIndex - 1];
+      return prevBook ? { bookId: prevBook.id, chapter: prevBook.chapters } : null;
+    }
+    if (chapter < book.chapters) return { bookId, chapter: chapter + 1 };
+    const nextBook = BOOKS[bookIndex + 1];
+    return nextBook ? { bookId: nextBook.id, chapter: 1 } : null;
+  }
+  const prevTarget = adjacentChapter(-1);
+  const nextTarget = adjacentChapter(1);
+  function goAdjacent(direction: 1 | -1) {
+    const target = direction === -1 ? prevTarget : nextTarget;
+    if (!target) return;
+    tts.stop();
+    setBookId(target.bookId);
+    setChapter(target.chapter);
+    setOpenPointIndex(null);
+  }
+
   const point = points && openPointIndex !== null ? points[openPointIndex] : null;
   const chapterEyebrow = fmt(t.chapterEyebrow, { book: book.label[lang], c: chapter });
 
@@ -234,6 +256,25 @@ export default function App() {
               )}
             </div>
           )}
+
+          <div className="chapter-nav">
+            <button
+              type="button"
+              className="chapter-nav-btn"
+              disabled={!prevTarget}
+              onClick={() => goAdjacent(-1)}
+            >
+              <span aria-hidden="true">&larr;</span> {t.prevChapterLabel}
+            </button>
+            <button
+              type="button"
+              className="chapter-nav-btn next"
+              disabled={!nextTarget}
+              onClick={() => goAdjacent(1)}
+            >
+              {t.nextChapterLabel} <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
           </div>
         </div>
 

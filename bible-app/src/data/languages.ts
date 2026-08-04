@@ -52,6 +52,8 @@ export interface UiStrings {
   generatingMsg: string;
   needsKeyMsg: string;
   loadingLabel: string;
+  prevChapterLabel: string;
+  nextChapterLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -100,6 +102,8 @@ export const UI: Record<LangKey, UiStrings> = {
     generatingMsg: "Thinking through the chapter…",
     needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
     loadingLabel: "Loading…",
+    prevChapterLabel: "Previous",
+    nextChapterLabel: "Next",
   },
   web: {
     storageChip: "AI cache {n} MB",
@@ -146,6 +150,8 @@ export const UI: Record<LangKey, UiStrings> = {
     generatingMsg: "Thinking through the chapter…",
     needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
     loadingLabel: "Loading…",
+    prevChapterLabel: "Previous",
+    nextChapterLabel: "Next",
   },
   "zh-hant": {
     storageChip: "AI 快取 {n} MB",
@@ -192,6 +198,8 @@ export const UI: Record<LangKey, UiStrings> = {
     generatingMsg: "正在解讀這一章……",
     needsKeyMsg: "請在設定中加入 AI 金鑰以生成新的章節。",
     loadingLabel: "載入中……",
+    prevChapterLabel: "上一章",
+    nextChapterLabel: "下一章",
   },
   "zh-hans": {
     storageChip: "AI 缓存 {n} MB",
@@ -238,6 +246,8 @@ export const UI: Record<LangKey, UiStrings> = {
     generatingMsg: "正在解读这一章……",
     needsKeyMsg: "请在设置中加入 AI 密钥以生成新的章节。",
     loadingLabel: "载入中……",
+    prevChapterLabel: "上一章",
+    nextChapterLabel: "下一章",
   },
 };
 
