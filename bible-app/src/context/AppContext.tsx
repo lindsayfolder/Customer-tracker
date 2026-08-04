@@ -1,14 +1,12 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LangKey } from "../data/languages";
-import { DEFAULT_SETTINGS, getCacheUsageMB, loadSettings, saveSettings, type AppSettings } from "../lib/db";
+import { DEFAULT_SETTINGS, loadSettings, saveSettings, type AppSettings } from "../lib/db";
 
 interface AppContextValue {
   lang: LangKey;
   setLang: (l: LangKey) => void;
   settings: AppSettings;
   updateSettings: (patch: Partial<AppSettings>) => void;
-  cacheUsageMB: number;
-  refreshCacheUsage: () => void;
   toast: (msg: string) => void;
   toastMsg: string | null;
 }
@@ -18,7 +16,6 @@ const AppContext = createContext<AppContextValue | null>(null);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<LangKey>("en");
   const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
-  const [cacheUsageMB, setCacheUsageMB] = useState(0);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
   const toastTimer = useRef<number | undefined>(undefined);
   const [ready, setReady] = useState(false);
@@ -29,7 +26,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLangState(s.lastLang);
       setReady(true);
     });
-    getCacheUsageMB().then(setCacheUsageMB);
   }, []);
 
   const setLang = useCallback(
@@ -51,10 +47,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     [settings, ready],
   );
 
-  const refreshCacheUsage = useCallback(() => {
-    getCacheUsageMB().then(setCacheUsageMB);
-  }, []);
-
   const toast = useCallback((msg: string) => {
     setToastMsg(msg);
     window.clearTimeout(toastTimer.current);
@@ -62,7 +54,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ lang, setLang, settings, updateSettings, cacheUsageMB, refreshCacheUsage, toast, toastMsg }}>
+    <AppContext.Provider value={{ lang, setLang, settings, updateSettings, toast, toastMsg }}>
       {children}
     </AppContext.Provider>
   );

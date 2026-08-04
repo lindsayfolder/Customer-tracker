@@ -66,9 +66,6 @@ await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-10-settings.png" });
 await page.click(".seg-btn:has-text('Dark')");
 await page.screenshot({ path: "/tmp/qa-11-dark.png" });
-await page.click(".clear-btn");
-await page.waitForTimeout(200);
-await page.screenshot({ path: "/tmp/qa-12-cleared-toast.png" });
 
 await browser.close();
 

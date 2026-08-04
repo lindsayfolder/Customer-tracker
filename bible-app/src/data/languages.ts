@@ -8,7 +8,6 @@ export const LANGUAGES: { key: LangKey; label: string; speechLang: string }[] = 
 ];
 
 export interface UiStrings {
-  storageChip: string;
   chapterEyebrow: string;
   tabScripture: string;
   tabInsights: string;
@@ -35,22 +34,11 @@ export interface UiStrings {
   themeLight: string;
   themeDark: string;
   themeAuto: string;
-  aiCacheLabel: string;
-  cacheUsedTpl: string;
-  cacheCapTpl: string;
-  keepFavLabel: string;
-  cacheExplain: string;
-  clearCacheBtn: string;
-  clearedMsg: string;
   aboutLabel: string;
   versionLabel: string;
-  sampleOnlyMsg: string;
   listenLabel: string;
   stopLabel: string;
   ttsUnavailable: string;
-  generateBtn: string;
-  generatingMsg: string;
-  needsKeyMsg: string;
   loadingLabel: string;
   prevChapterLabel: string;
   nextChapterLabel: string;
@@ -58,7 +46,6 @@ export interface UiStrings {
 
 export const UI: Record<LangKey, UiStrings> = {
   en: {
-    storageChip: "AI cache {n} MB",
     chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
@@ -85,28 +72,16 @@ export const UI: Record<LangKey, UiStrings> = {
     themeLight: "Light",
     themeDark: "Dark",
     themeAuto: "Auto",
-    aiCacheLabel: "AI cache",
-    cacheUsedTpl: "{n} MB used",
-    cacheCapTpl: "Cap: {n}",
-    keepFavLabel: "Never auto-clear favorites",
-    cacheExplain: "Chapters you haven't reopened in a while are removed automatically to stay under the cap. Nothing is deleted while you're offline, and reopening a chapter regenerates it in seconds.",
-    clearCacheBtn: "Clear AI cache now",
-    clearedMsg: "Cleared — scripture stays, only AI insights were removed.",
     aboutLabel: "About",
     versionLabel: "Version",
-    sampleOnlyMsg: "This chapter hasn't been read yet — connect an AI key in Settings to generate it, or come back once it's cached.",
     listenLabel: "Listen",
     stopLabel: "Stop",
     ttsUnavailable: "Voice isn't available on this device/browser.",
-    generateBtn: "Generate 5 points with AI",
-    generatingMsg: "Thinking through the chapter…",
-    needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
     loadingLabel: "Loading…",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
   web: {
-    storageChip: "AI cache {n} MB",
     chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
@@ -133,28 +108,16 @@ export const UI: Record<LangKey, UiStrings> = {
     themeLight: "Light",
     themeDark: "Dark",
     themeAuto: "Auto",
-    aiCacheLabel: "AI cache",
-    cacheUsedTpl: "{n} MB used",
-    cacheCapTpl: "Cap: {n}",
-    keepFavLabel: "Never auto-clear favorites",
-    cacheExplain: "Chapters you haven't reopened in a while are removed automatically to stay under the cap. Nothing is deleted while you're offline, and reopening a chapter regenerates it in seconds.",
-    clearCacheBtn: "Clear AI cache now",
-    clearedMsg: "Cleared — scripture stays, only AI insights were removed.",
     aboutLabel: "About",
     versionLabel: "Version",
-    sampleOnlyMsg: "This chapter hasn't been read yet — connect an AI key in Settings to generate it, or come back once it's cached.",
     listenLabel: "Listen",
     stopLabel: "Stop",
     ttsUnavailable: "Voice isn't available on this device/browser.",
-    generateBtn: "Generate 5 points with AI",
-    generatingMsg: "Thinking through the chapter…",
-    needsKeyMsg: "Add an AI key in Settings to generate new chapters.",
     loadingLabel: "Loading…",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
   "zh-hant": {
-    storageChip: "AI 快取 {n} MB",
     chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "經文",
     tabInsights: "洞見",
@@ -181,28 +144,16 @@ export const UI: Record<LangKey, UiStrings> = {
     themeLight: "淺色",
     themeDark: "深色",
     themeAuto: "自動",
-    aiCacheLabel: "AI 快取",
-    cacheUsedTpl: "已使用 {n} MB",
-    cacheCapTpl: "上限：{n}",
-    keepFavLabel: "我的最愛永不自動清除",
-    cacheExplain: "長時間沒有重新開啟的章節會自動移除，以維持在上限之內。離線時不會刪除任何內容，重新開啟章節只需幾秒即可重新生成。",
-    clearCacheBtn: "立即清除 AI 快取",
-    clearedMsg: "已清除——經文仍保留，只移除了 AI 要點內容。",
     aboutLabel: "關於",
     versionLabel: "版本",
-    sampleOnlyMsg: "這一章還沒有生成過——請在設定中加入 AI 金鑰來生成，或等它被快取後再回來看看。",
     listenLabel: "朗讀",
     stopLabel: "停止",
     ttsUnavailable: "此裝置或瀏覽器無法使用語音功能。",
-    generateBtn: "用 AI 生成五個要點",
-    generatingMsg: "正在解讀這一章……",
-    needsKeyMsg: "請在設定中加入 AI 金鑰以生成新的章節。",
     loadingLabel: "載入中……",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
   },
   "zh-hans": {
-    storageChip: "AI 缓存 {n} MB",
     chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "经文",
     tabInsights: "洞见",
@@ -229,22 +180,11 @@ export const UI: Record<LangKey, UiStrings> = {
     themeLight: "浅色",
     themeDark: "深色",
     themeAuto: "自动",
-    aiCacheLabel: "AI 缓存",
-    cacheUsedTpl: "已使用 {n} MB",
-    cacheCapTpl: "上限：{n}",
-    keepFavLabel: "我的收藏永不自动清除",
-    cacheExplain: "长时间没有重新打开的章节会自动移除，以维持在上限之内。离线时不会删除任何内容，重新打开章节只需几秒即可重新生成。",
-    clearCacheBtn: "立即清除 AI 缓存",
-    clearedMsg: "已清除——经文仍保留，只移除了 AI 要点内容。",
     aboutLabel: "关于",
     versionLabel: "版本",
-    sampleOnlyMsg: "这一章还没有生成过——请在设置中加入 AI 密钥来生成，或等它被缓存后再回来看看。",
     listenLabel: "朗读",
     stopLabel: "停止",
     ttsUnavailable: "此设备或浏览器无法使用语音功能。",
-    generateBtn: "用 AI 生成五个要点",
-    generatingMsg: "正在解读这一章……",
-    needsKeyMsg: "请在设置中加入 AI 密钥以生成新的章节。",
     loadingLabel: "载入中……",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",

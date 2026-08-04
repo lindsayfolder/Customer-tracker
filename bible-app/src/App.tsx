@@ -9,16 +9,14 @@ import { ContentsModal } from "./components/ContentsModal";
 import { SearchModal } from "./components/SearchModal";
 import { SettingsModal } from "./components/SettingsModal";
 import { Toast } from "./components/Toast";
-import { getCachedPoints, putCachedPoints } from "./lib/db";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
-import { generateChapterInsights, AiNotConfiguredError } from "./lib/ai";
 import { stripHtml, tts } from "./lib/tts";
 
 export type ModalKey = "contents" | "search" | "settings";
 
 export default function App() {
-  const { lang, setLang, settings, toast, refreshCacheUsage } = useApp();
+  const { lang, setLang, settings, toast } = useApp();
   const t = UI[lang];
 
   const [bookId, setBookId] = useState("gen");
@@ -29,7 +27,6 @@ export default function App() {
   const [modal, setModal] = useState<ModalKey | null>(null);
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
-  const [generating, setGenerating] = useState(false);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
 
@@ -59,18 +56,11 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId, chapter, lang]);
 
-  // AI insights: cached in IndexedDB first, then the pre-generated bundle
-  // (see lib/insights.ts), then the Genesis 1 seed, and only falls back to
-  // live generation (handleGenerate) for a chapter none of those cover yet.
+  // AI insights: every chapter ships pre-generated in the bundle (see
+  // lib/insights.ts); the Genesis 1 seed is kept as a defensive fallback.
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      const cached = await getCachedPoints(bookId, chapter, lang);
-      if (cancelled) return;
-      if (cached) {
-        setPoints(cached);
-        return;
-      }
       const pre = await loadChapterPoints(bookId, chapter, lang);
       if (cancelled) return;
       if (pre) {
@@ -86,25 +76,6 @@ export default function App() {
       cancelled = true;
     };
   }, [bookId, chapter, lang]);
-
-  async function handleGenerate() {
-    if (!settings.aiEndpoint) {
-      toast(t.needsKeyMsg);
-      return;
-    }
-    setGenerating(true);
-    try {
-      const result = await generateChapterInsights(book, chapter, lang, verses ?? [], settings.aiEndpoint);
-      await putCachedPoints(bookId, chapter, lang, result, settings.cacheCapMB, settings.keepFavorites);
-      setPoints(result);
-      refreshCacheUsage();
-    } catch (err) {
-      if (err instanceof AiNotConfiguredError) toast(t.needsKeyMsg);
-      else toast("AI generation failed — check your endpoint in Settings.");
-    } finally {
-      setGenerating(false);
-    }
-  }
 
   function openDetail(i: number) {
     tts.stop();
@@ -247,12 +218,7 @@ export default function App() {
                   ))}
                 </div>
               ) : (
-                <div>
-                  <div className="empty-note">{t.sampleOnlyMsg}</div>
-                  <button type="button" className="generate-btn" disabled={generating || !verses} onClick={handleGenerate}>
-                    {generating ? t.generatingMsg : t.generateBtn}
-                  </button>
-                </div>
+                <div className="empty-note">{t.loadingLabel}</div>
               )}
             </div>
           )}
