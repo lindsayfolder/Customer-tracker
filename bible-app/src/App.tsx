@@ -8,9 +8,11 @@ import { Drawer } from "./components/Drawer";
 import { ContentsModal } from "./components/ContentsModal";
 import { SearchModal } from "./components/SearchModal";
 import { SettingsModal } from "./components/SettingsModal";
+import { MapModal } from "./components/MapModal";
 import { Toast } from "./components/Toast";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
+import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
 
 export type ModalKey = "contents" | "search" | "settings";
@@ -25,6 +27,7 @@ export default function App() {
   const [openPointIndex, setOpenPointIndex] = useState<number | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey | null>(null);
+  const [mapOpen, setMapOpen] = useState(false);
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
 
@@ -166,8 +169,15 @@ export default function App() {
         <div className={`view list${openPointIndex !== null ? " is-hidden" : ""}`}>
           <div className="view-scroll">
           <div className="chapter-head">
-            <div className="chapter-eyebrow">{chapterEyebrow}</div>
-            <div className="chapter-title">{book.label[lang]}</div>
+            <div>
+              <div className="chapter-eyebrow">{chapterEyebrow}</div>
+              <div className="chapter-title">{book.label[lang]}</div>
+            </div>
+            {bookHasMap(bookId) && (
+              <button type="button" className="map-btn" onClick={() => setMapOpen(true)}>
+                <span aria-hidden="true">&#128506;</span> {t.mapLabel}
+              </button>
+            )}
           </div>
 
           <div className="tabbar">
@@ -300,6 +310,8 @@ export default function App() {
       />
 
       <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />
+
+      <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
 
       <Toast />
     </div>

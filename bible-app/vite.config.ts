@@ -39,11 +39,14 @@ export default defineConfig({
       },
       workbox: {
         // Only the app shell is precached (~300KB). Scripture JSON under
-        // /bible/** is deliberately NOT globbed here — it's fetched lazily
-        // per book as the user actually reads (see lib/scripture.ts) and
-        // persisted for offline use by the runtime-caching rule below, so
-        // storage only grows with what's actually been read.
-        globPatterns: ["**/*.{js,css,html,woff2,png,svg}"],
+        // /bible/**, AI insights under /insights/**, and book maps under
+        // /maps/** are deliberately NOT globbed here — each is fetched
+        // lazily as the user actually reads (see lib/scripture.ts,
+        // lib/insights.ts, lib/maps.ts) and persisted for offline use by
+        // the runtime-caching rules below, so storage only grows with
+        // what's actually been opened.
+        globPatterns: ["**/*.{js,css,html,woff2,png}"],
+        globIgnores: ["maps/**"],
         runtimeCaching: [
           {
             urlPattern: /\/bible\/.*\.json$/,
@@ -60,6 +63,15 @@ export default defineConfig({
             options: {
               cacheName: "bible-insights",
               expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/maps\/.*\.svg$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-maps",
+              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
