@@ -1,0 +1,93 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Canaan (north), with Jericho -->
+  <path d="M255,12 C315,2 380,12 412,38 C428,58 420,84 390,95 C345,106 285,96 258,70 C246,55 250,28 255,12 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="278" y="34" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="20" fill="#1c1a17">
+    <tspan x="278" dy="0">迦南</tspan>
+    <tspan x="278" dy="1.15em">迦南</tspan>
+  </text>
+
+  <!-- Jericho marker -->
+  <circle cx="390" cy="70" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="298" y="88" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="298" dy="0">耶利哥</tspan>
+    <tspan x="298" dy="1.15em">耶利哥</tspan>
+  </text>
+
+  <!-- Wilderness of Zin -->
+  <path d="M160,148 C220,118 320,122 380,148 C420,168 428,218 408,258 C388,294 328,308 268,298 C208,288 158,268 143,228 C133,198 145,168 160,148 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="180" y="185" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="180" dy="0">尋的曠野</tspan>
+    <tspan x="180" dy="1.15em">寻的旷野</tspan>
+  </text>
+
+  <!-- Kadesh-barnea marker -->
+  <circle cx="300" cy="228" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="195" y="248" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="195" dy="0">加低斯巴尼亞</tspan>
+    <tspan x="195" dy="1.15em">加低斯巴尼亚</tspan>
+  </text>
+
+  <!-- Wilderness of Sin (south, with Sinai) -->
+  <path d="M150,300 C130,352 140,412 182,446 C232,470 302,464 350,438 C390,412 404,368 394,328 C384,294 338,278 288,284 C238,288 180,285 150,300 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="190" y="358" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="190" dy="0">曠野</tspan>
+    <tspan x="190" dy="1.15em">旷野</tspan>
+  </text>
+
+  <!-- Mt. Sinai marker -->
+  <path d="M250,420 l10,-24 l10,24 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
+  <text x="278" y="414" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="278" dy="0">西乃山</tspan>
+    <tspan x="278" dy="1.15em">西乃山</tspan>
+  </text>
+
+  <!-- Salt (Dead) Sea -->
+  <path d="M440,98 C462,92 482,104 486,130 C492,172 496,212 486,242 C478,262 454,268 440,252 C430,232 428,190 430,150 C431,128 434,108 440,98 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="452" y="170" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c" transform="rotate(80 452 170)">
+    <tspan x="452" dy="0">鹽海</tspan>
+    <tspan x="452" dy="1.15em">盐海</tspan>
+  </text>
+
+  <!-- Jordan river -->
+  <path d="M440,98 C428,68 412,44 400,20" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
+  <text x="414" y="42" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c" transform="rotate(70 414 42)">
+    <tspan x="414" dy="0">約但河</tspan>
+    <tspan x="414" dy="1.15em">约但河</tspan>
+  </text>
+
+  <!-- Plains of Moab -->
+  <path d="M500,88 C562,58 632,68 666,110 C690,146 684,192 654,216 C610,240 550,236 514,206 C494,180 490,138 495,110 C497,102 498,94 500,88 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="548" y="138" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="548" dy="0">摩押</tspan>
+    <tspan x="548" dy="1.15em">摩押</tspan>
+  </text>
+
+  <!-- Plains of Moab marker -->
+  <circle cx="520" cy="178" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="470" y="200" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="470" dy="0">摩押平原</tspan>
+    <tspan x="470" dy="1.15em">摩押平原</tspan>
+  </text>
+
+  <!-- Route: Sinai -> Kadesh-barnea -> Plains of Moab -->
+  <path d="M262,412 C256,356 274,298 298,236 C350,258 418,292 458,268 C494,246 508,212 516,184"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M508,180 L522,177 L513,194 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- compass -->
+  <g transform="translate(60,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

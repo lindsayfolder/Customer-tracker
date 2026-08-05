@@ -1,0 +1,166 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea (backdrop; landmasses drawn on top) -->
+  <path d="M20,180 C120,150 220,170 320,155 C420,140 520,160 620,150 C660,145 690,160 700,180 C710,220 690,260 680,300 C650,340 600,360 540,355 C460,350 400,370 320,360 C240,352 160,365 90,340 C50,320 30,280 25,240 C20,220 18,200 20,180 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="300" y="314" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c">
+    <tspan x="300" dy="0">地中海</tspan>
+    <tspan x="300" dy="1.15em">地中海</tspan>
+  </text>
+  <text x="292" y="120" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#2c5f7c">
+    <tspan x="292" dy="0">愛琴海</tspan>
+    <tspan x="292" dy="1.15em">爱琴海</tspan>
+  </text>
+
+  <!-- Italy -->
+  <path d="M40,90 C70,80 100,95 105,130 C110,170 90,210 95,250 C98,270 80,280 60,270 C40,255 30,220 35,180 C38,150 30,110 40,90 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="35" y="222" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="35" dy="0">義大利</tspan>
+    <tspan x="35" dy="1.15em">义大利</tspan>
+  </text>
+
+  <!-- Malta -->
+  <path d="M100,290 C112,285 122,292 120,302 C118,312 105,315 98,308 C93,300 95,293 100,290 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+
+  <!-- Macedonia -->
+  <path d="M150,55 C210,40 280,50 310,80 C325,100 315,125 290,135 C250,148 190,140 155,120 C135,105 135,75 150,55 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="155" y="88" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="155" dy="0">馬其頓</tspan>
+    <tspan x="155" dy="1.15em">马其顿</tspan>
+  </text>
+
+  <!-- Achaia -->
+  <path d="M140,150 C190,135 260,140 295,165 C315,185 305,215 275,230 C230,248 175,240 150,215 C132,195 130,170 140,150 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="195" y="160" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="20" fill="#1c1a17">
+    <tspan x="195" dy="0">亞該亞</tspan>
+    <tspan x="195" dy="1.15em">亚该亚</tspan>
+  </text>
+
+  <!-- Asia Minor -->
+  <path d="M330,60 C400,40 480,45 540,75 C575,95 585,135 570,175 C555,215 500,235 440,230 C380,225 335,200 320,160 C310,120 315,85 330,60 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="380" y="80" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="380" dy="0">小亞細亞</tspan>
+    <tspan x="380" dy="1.15em">小亚细亚</tspan>
+  </text>
+
+  <!-- Cyprus -->
+  <path d="M480,245 C505,238 528,248 530,265 C532,282 512,292 492,288 C475,283 470,265 480,245 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+
+  <!-- Syria / Judea (Levant coast) -->
+  <path d="M580,90 C620,80 660,95 670,130 C680,180 660,230 670,280 C680,330 665,380 640,410 C615,430 585,420 575,390 C565,340 580,290 570,240 C562,190 570,130 580,90 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="592" y="92" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="20" fill="#1c1a17">
+    <tspan x="592" dy="0">敘利亞</tspan>
+    <tspan x="592" dy="1.15em">叙利亚</tspan>
+  </text>
+  <text x="586" y="352" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="586" dy="0">猶太</tspan>
+    <tspan x="586" dy="1.15em">犹太</tspan>
+  </text>
+
+  <!-- Route: Jerusalem -> Antioch -> Cyprus -> Galatia -> Philippi -> Athens -> Corinth -> Ephesus -> Malta -> Rome -->
+  <path d="M630,390 C625,320 618,230 615,150 C600,205 550,235 505,262 C480,220 465,185 450,155 C380,125 300,100 232,85 C222,130 212,180 205,232 C195,222 180,205 165,190 C245,195 315,196 357,197 C300,240 205,270 108,298 C97,260 80,210 68,165"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M82,180 L68,162 L88,175 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- 1 Jerusalem -->
+  <circle cx="630" cy="390" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="630" y="394" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">1</text>
+  <text x="598" y="418" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="598" dy="0">耶路撒冷</tspan>
+    <tspan x="598" dy="1.15em">耶路撒冷</tspan>
+  </text>
+
+  <!-- 2 Antioch -->
+  <circle cx="610" cy="145" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="610" y="149" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">2</text>
+  <text x="573" y="172" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="573" dy="0">安提阿</tspan>
+    <tspan x="573" dy="1.15em">安提阿</tspan>
+  </text>
+
+  <!-- 3 Cyprus -->
+  <circle cx="505" cy="262" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="505" y="266" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">3</text>
+  <text x="505" y="228" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#1c1a17">
+    <tspan x="505" dy="0">居比路</tspan>
+    <tspan x="505" dy="1.15em">居比路</tspan>
+  </text>
+
+  <!-- 4 Galatia: Iconium/Lystra -->
+  <circle cx="450" cy="155" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="450" y="159" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">4</text>
+  <text x="455" y="182" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#1c1a17">
+    <tspan x="455" dy="0">以哥念與路司得</tspan>
+    <tspan x="455" dy="1.15em">以哥念与路司得</tspan>
+  </text>
+
+  <!-- 5 Philippi -->
+  <circle cx="232" cy="85" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="232" y="89" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">5</text>
+  <text x="246" y="78" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#1c1a17">
+    <tspan x="246" dy="0">腓立比</tspan>
+    <tspan x="246" dy="1.15em">腓立比</tspan>
+  </text>
+
+  <!-- 6 Athens -->
+  <circle cx="205" cy="232" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="205" y="236" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">6</text>
+  <text x="212" y="250" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="212" dy="0">雅典</tspan>
+    <tspan x="212" dy="1.15em">雅典</tspan>
+  </text>
+
+  <!-- 7 Corinth -->
+  <circle cx="165" cy="190" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="165" y="194" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">7</text>
+  <text x="93" y="184" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="93" dy="0">哥林多</tspan>
+    <tspan x="93" dy="1.15em">哥林多</tspan>
+  </text>
+
+  <!-- 8 Ephesus -->
+  <circle cx="357" cy="197" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="357" y="201" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">8</text>
+  <text x="372" y="188" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="372" dy="0">以弗所</tspan>
+    <tspan x="372" dy="1.15em">以弗所</tspan>
+  </text>
+
+  <!-- 9 Malta: shipwreck -->
+  <circle cx="108" cy="298" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="108" y="302" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">9</text>
+  <text x="46" y="264" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#1c1a17">
+    <tspan x="46" dy="0">米利大</tspan>
+    <tspan x="46" dy="1.15em">米利大</tspan>
+  </text>
+  <text x="46" y="320" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="13" fill="#1c1a17">
+    <tspan x="46" dy="0">（船難）</tspan>
+    <tspan x="46" dy="1.15em">（船难）</tspan>
+  </text>
+
+  <!-- 10 Rome -->
+  <circle cx="68" cy="165" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="68" y="169" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">10</text>
+  <text x="68" y="125" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="68" dy="0">羅馬</tspan>
+    <tspan x="68" dy="1.15em">罗马</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(670,45)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

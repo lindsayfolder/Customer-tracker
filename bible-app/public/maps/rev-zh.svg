@@ -1,0 +1,107 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Aegean Sea -->
+  <path d="M0,0 L180,0 C195,50 165,90 190,140 C210,190 175,240 195,290 C215,340 180,390 195,440 C200,455 190,470 180,480 L0,480 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="30" y="237" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c">
+    <tspan x="30" dy="0">愛琴海</tspan>
+    <tspan x="30" dy="1.15em">爱琴海</tspan>
+  </text>
+
+  <!-- Asia Minor -->
+  <path d="M160,20 C280,0 450,10 570,40 C640,60 680,120 665,190 C655,240 675,290 655,350 C630,410 560,450 460,455 C380,458 320,440 280,400 C250,368 260,330 235,290 C210,250 230,200 215,160 C205,120 170,60 160,20 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="368" y="80" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="368" dy="0">小亞細亞</tspan>
+    <tspan x="368" dy="1.15em">小亚细亚</tspan>
+  </text>
+  <text x="356" y="118" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="12" fill="#55503f">
+    <tspan x="356" dy="0">（羅馬亞西亞省）</tspan>
+    <tspan x="356" dy="1.15em">（罗马亚西亚省）</tspan>
+  </text>
+
+  <!-- Patmos -->
+  <path d="M95,365 C110,358 128,365 130,380 C132,395 115,405 100,400 C88,395 85,378 95,365 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <circle cx="112" cy="382" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="124" y="380" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="124" dy="0">拔摩</tspan>
+    <tspan x="124" dy="1.15em">拔摩</tspan>
+  </text>
+  <text x="124" y="416" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="13" fill="#55503f">
+    <tspan x="124" dy="0">（約翰的異象）</tspan>
+    <tspan x="124" dy="1.15em">（约翰的异象）</tspan>
+  </text>
+
+  <!-- Circuit of the seven churches -->
+  <path d="M270,340 C255,300 245,260 250,220 C255,180 262,145 270,110 C300,120 335,130 360,150 C348,180 335,210 330,240 C355,248 385,258 410,270 C405,300 400,330 400,360"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M392,352 L400,368 L410,352 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- 1 Ephesus -->
+  <circle cx="270" cy="340" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="270" y="344" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">1</text>
+  <text x="282" y="344" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="282" dy="0">以弗所</tspan>
+    <tspan x="282" dy="1.15em">以弗所</tspan>
+  </text>
+
+  <!-- 2 Smyrna -->
+  <circle cx="250" cy="220" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="250" y="224" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">2</text>
+  <text x="262" y="222" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="262" dy="0">士每拿</tspan>
+    <tspan x="262" dy="1.15em">士每拿</tspan>
+  </text>
+
+  <!-- 3 Pergamum -->
+  <circle cx="270" cy="110" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="270" y="114" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">3</text>
+  <text x="282" y="104" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="282" dy="0">別迦摩</tspan>
+    <tspan x="282" dy="1.15em">别迦摩</tspan>
+  </text>
+
+  <!-- 4 Thyatira -->
+  <circle cx="360" cy="150" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="360" y="154" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">4</text>
+  <text x="372" y="155" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="15" fill="#1c1a17">
+    <tspan x="372" dy="0">推雅推喇</tspan>
+    <tspan x="372" dy="1.15em">推雅推喇</tspan>
+  </text>
+
+  <!-- 5 Sardis -->
+  <circle cx="330" cy="240" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="330" y="244" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">5</text>
+  <text x="286" y="268" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="286" dy="0">撒狄</tspan>
+    <tspan x="286" dy="1.15em">撒狄</tspan>
+  </text>
+
+  <!-- 6 Philadelphia -->
+  <circle cx="410" cy="270" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="410" y="274" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">6</text>
+  <text x="422" y="264" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="15" fill="#1c1a17">
+    <tspan x="422" dy="0">非拉鐵非</tspan>
+    <tspan x="422" dy="1.15em">非拉铁非</tspan>
+  </text>
+
+  <!-- 7 Laodicea -->
+  <circle cx="400" cy="360" r="9" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="400" y="364" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#fbf6ea">7</text>
+  <text x="412" y="363" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="16" fill="#1c1a17">
+    <tspan x="412" dy="0">老底嘉</tspan>
+    <tspan x="412" dy="1.15em">老底嘉</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(650,420)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

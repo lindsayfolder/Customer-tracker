@@ -1,0 +1,75 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea -->
+  <path d="M0,20 C40,10 70,40 60,90 C50,150 70,220 55,290 C45,350 65,410 40,460 L0,460 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="4" y="112" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c" transform="rotate(90 4 112)">
+    <tspan x="4" dy="0">大海</tspan>
+    <tspan x="4" dy="1.15em">大海</tspan>
+  </text>
+
+  <!-- Israel (northern kingdom) -->
+  <path d="M140,55 C210,40 320,45 380,68 C420,88 428,140 405,178 C388,212 345,230 295,224 C245,218 185,214 158,188 C128,162 118,105 140,55 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="220" y="66" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="220" dy="0">以色列</tspan>
+    <tspan x="220" dy="1.15em">以色列</tspan>
+  </text>
+
+  <!-- Judah (southern kingdom) -->
+  <path d="M160,215 C225,208 340,212 382,232 C412,252 417,302 400,342 C384,382 338,412 288,417 C238,422 188,402 163,362 C142,322 148,255 160,215 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="220" y="248" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="220" dy="0">猶大</tspan>
+    <tspan x="220" dy="1.15em">犹大</tspan>
+  </text>
+
+  <!-- Assyria corner region (northeast) -->
+  <path d="M580,0 L720,0 L720,110 C670,98 615,65 592,28 C583,15 579,6 580,0 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="710" y="38" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="end">
+    <tspan x="710" dy="0">亞述</tspan>
+    <tspan x="710" dy="1.15em">亚述</tspan>
+  </text>
+
+  <!-- Babylon edge region (east) -->
+  <path d="M720,205 C695,222 675,260 685,300 C692,325 705,335 720,340 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="710" y="258" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="end">
+    <tspan x="710" dy="0">巴比倫</tspan>
+    <tspan x="710" dy="1.15em">巴比伦</tspan>
+  </text>
+
+  <!-- Samaria marker -->
+  <circle cx="300" cy="135" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="196" y="160" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="196" dy="0">撒瑪利亞</tspan>
+    <tspan x="196" dy="1.15em">撒玛利亚</tspan>
+  </text>
+
+  <!-- Jerusalem marker -->
+  <circle cx="278" cy="320" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="176" y="348" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="176" dy="0">耶路撒冷</tspan>
+    <tspan x="176" dy="1.15em">耶路撒冷</tspan>
+  </text>
+
+  <!-- Route: Assyria -> Samaria (fall of the north, 2 Kings 17) -->
+  <path d="M600,75 C510,90 400,108 312,128" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M300,122 L316,127 L303,138 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- Route: Babylon -> Jerusalem (fall of the south, 2 Kings 25) -->
+  <path d="M690,290 C570,300 400,310 296,317" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M282,313 L297,317 L285,328 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- compass -->
+  <g transform="translate(70,430)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

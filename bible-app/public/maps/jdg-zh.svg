@@ -1,0 +1,129 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Great Sea sliver, west -->
+  <path d="M0,250 C25,238 55,248 60,275 C64,300 50,320 25,322 C10,323 0,315 0,305 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="12" y="292" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="13" fill="#2c5f7c" transform="rotate(80 12 292)">
+    <tspan x="12" dy="0">大海</tspan>
+    <tspan x="12" dy="1.15em">大海</tspan>
+  </text>
+
+  <!-- Galilee (north) -->
+  <path d="M210,20 C270,5 350,10 400,35 C425,50 430,80 410,105 C385,130 330,140 275,130 C230,122 200,100 195,65 C193,45 200,30 210,20 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="233" y="36" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="233" dy="0">加利利</tspan>
+    <tspan x="233" dy="1.15em">加利利</tspan>
+  </text>
+  <text x="198" y="112" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="198" dy="0">底波拉與巴拉</tspan>
+    <tspan x="198" dy="1.15em">底波拉与巴拉</tspan>
+  </text>
+
+  <!-- Mt. Tabor marker -->
+  <path d="M290,90 l10,-22 l10,22 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
+  <text x="314" y="86" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="314" dy="0">他泊山</tspan>
+    <tspan x="314" dy="1.15em">他泊山</tspan>
+  </text>
+
+  <!-- Manasseh (center) -->
+  <path d="M170,150 C230,125 320,130 380,155 C415,172 422,215 400,248 C375,278 310,288 250,278 C200,270 165,240 160,200 C158,180 162,165 170,150 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="200" y="182" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="200" dy="0">瑪拿西</tspan>
+    <tspan x="200" dy="1.15em">玛拿西</tspan>
+  </text>
+  <text x="205" y="252" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="205" dy="0">基甸</tspan>
+    <tspan x="205" dy="1.15em">基甸</tspan>
+  </text>
+
+  <!-- Ophrah marker -->
+  <circle cx="255" cy="215" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="266" y="217" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="266" dy="0">俄弗拉</tspan>
+    <tspan x="266" dy="1.15em">俄弗拉</tspan>
+  </text>
+
+  <!-- Benjamin (south-center) -->
+  <path d="M375,268 C420,248 475,255 505,285 C525,308 520,340 495,358 C465,378 415,375 388,352 C368,332 365,300 375,268 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="390" y="284" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="390" dy="0">便雅憫</tspan>
+    <tspan x="390" dy="1.15em">便雅悯</tspan>
+  </text>
+
+  <!-- Ehud marker -->
+  <circle cx="430" cy="308" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="398" y="332" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="398" dy="0">以笏</tspan>
+    <tspan x="398" dy="1.15em">以笏</tspan>
+  </text>
+
+  <!-- Jordan river -->
+  <path d="M535,140 C528,220 540,300 530,382" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
+  <text x="542" y="248" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c" transform="rotate(82 542 248)">
+    <tspan x="542" dy="0">約但河</tspan>
+    <tspan x="542" dy="1.15em">约但河</tspan>
+  </text>
+
+  <!-- Moab (east, Ehud's route origin) -->
+  <path d="M560,255 C610,232 665,245 690,282 C710,315 702,358 670,382 C635,405 585,398 562,368 C545,344 545,308 555,278 C557,270 558,262 560,255 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="588" y="308" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="21" fill="#1c1a17">
+    <tspan x="588" dy="0">摩押</tspan>
+    <tspan x="588" dy="1.15em">摩押</tspan>
+  </text>
+
+  <!-- Philistia (southwest) -->
+  <path d="M25,310 C15,360 25,415 65,448 C110,475 165,468 195,432 C215,405 205,365 185,335 C160,302 105,296 60,300 C48,301 32,304 25,310 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="45" y="366" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="45" dy="0">非利士</tspan>
+    <tspan x="45" dy="1.15em">非利士</tspan>
+  </text>
+  <text x="86" y="437" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="86" dy="0">參孫</tspan>
+    <tspan x="86" dy="1.15em">参孙</tspan>
+  </text>
+
+  <!-- Gaza marker -->
+  <circle cx="75" cy="410" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="89" y="402" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="89" dy="0">迦薩</tspan>
+    <tspan x="89" dy="1.15em">迦萨</tspan>
+  </text>
+
+  <!-- Timnah marker -->
+  <circle cx="155" cy="355" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="169" y="349" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="169" dy="0">亭拿</tspan>
+    <tspan x="169" dy="1.15em">亭拿</tspan>
+  </text>
+
+  <!-- Route: Midianite raiders sweeping in from the east -->
+  <path d="M660,200 C580,190 480,195 400,205 C350,210 300,212 263,214"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M263,208 L263,220 L249,214 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+  <text x="545" y="176" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="545" dy="0">米甸人</tspan>
+    <tspan x="545" dy="1.15em">米甸人</tspan>
+  </text>
+
+  <!-- Route: Ehud carries tribute to Moab, then flees back to Benjamin -->
+  <path d="M600,310 C560,308 490,306 448,306"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M446,300 L446,312 L432,306 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

@@ -1,0 +1,64 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Medo-Persia (drawn first, large, expanding around/behind Babylon) -->
+  <path d="M300,80 C400,55 540,60 630,110 C700,150 710,240 685,320 C660,405 570,455 470,445 C400,438 345,405 320,350 C300,300 310,230 330,175 C345,140 320,110 300,80 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="460" y="158" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="460" dy="0">瑪代波斯</tspan>
+    <tspan x="460" dy="1.15em">玛代波斯</tspan>
+  </text>
+  <text x="420" y="212" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#55503f">
+    <tspan x="420" dy="0">主前539年攻陷巴比倫</tspan>
+    <tspan x="420" dy="1.15em">主前539年攻陷巴比伦</tspan>
+  </text>
+
+  <!-- Babylon (drawn on top, distinct region carved from Persia's expanse) -->
+  <path d="M50,170 C30,250 45,340 105,395 C165,445 255,435 320,400 C365,377 385,335 378,285 C372,230 345,175 285,148 C205,113 110,120 50,170 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="130" y="280" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="130" dy="0">巴比倫</tspan>
+    <tspan x="130" dy="1.15em">巴比伦</tspan>
+  </text>
+  <text x="105" y="328" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#55503f">
+    <tspan x="105" dy="0">但以理事奉君王</tspan>
+    <tspan x="105" dy="1.15em">但以理事奉君王</tspan>
+  </text>
+
+  <!-- Euphrates -->
+  <path d="M190,150 C205,220 185,300 205,385 C212,405 222,420 235,435" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
+  <text x="150" y="255" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c" transform="rotate(75 150 255)">
+    <tspan x="150" dy="0">伯拉河</tspan>
+    <tspan x="150" dy="1.15em">伯拉河</tspan>
+  </text>
+
+  <!-- Babylon marker -->
+  <circle cx="230" cy="250" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="230" y="205" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="230" dy="0">巴比倫</tspan>
+    <tspan x="230" dy="1.15em">巴比伦</tspan>
+  </text>
+
+  <!-- Shushan (Susa) marker -->
+  <circle cx="560" cy="270" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="515" y="295" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="515" dy="0">書珊</tspan>
+    <tspan x="515" dy="1.15em">书珊</tspan>
+  </text>
+
+  <!-- Route: Babylon -> Shushan, marking the shift of empires across Daniel's life -->
+  <path d="M230,250 C310,240 400,235 480,245 C510,250 535,258 552,266"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <!-- arrowhead -->
+  <path d="M544,258 L558,268 L542,274 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

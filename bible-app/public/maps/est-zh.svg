@@ -1,0 +1,55 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- The Persian Empire, spanning the known world -->
+  <path d="M60,120 C150,85 300,68 400,73 C500,78 605,88 662,130 C692,160 686,222 668,272 C648,332 558,372 458,382 C358,392 238,388 158,365 C88,345 48,300 44,240 C40,180 46,150 60,120 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="235" y="100" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="28" fill="#1c1a17">
+    <tspan x="235" dy="0">波斯帝國</tspan>
+    <tspan x="235" dy="1.15em">波斯帝国</tspan>
+  </text>
+
+  <!-- Susa, the capital -->
+  <circle cx="330" cy="235" r="8" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="346" y="222" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="346" dy="0">書珊</tspan>
+    <tspan x="346" dy="1.15em">书珊</tspan>
+  </text>
+  <text x="346" y="270" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="346" dy="0">故事發生地</tspan>
+    <tspan x="346" dy="1.15em">故事发生地</tspan>
+  </text>
+
+  <!-- Edge markers conveying the empire's vast reach -->
+  <circle cx="605" cy="150" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="580" y="118" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="580" dy="0">印度</tspan>
+    <tspan x="580" dy="1.15em">印度</tspan>
+  </text>
+
+  <circle cx="90" cy="330" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="45" y="345" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="45" dy="0">古實</tspan>
+    <tspan x="45" dy="1.15em">古实</tspan>
+  </text>
+  <text x="20" y="388" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="13" fill="#55503f">
+    <tspan x="20" dy="0">（衣索比亞）</tspan>
+    <tspan x="20" dy="1.15em">（衣索比亚）</tspan>
+  </text>
+
+  <!-- scale caption -->
+  <text x="360" y="414" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="18" fill="#2c5f7c">
+    <tspan x="360" dy="0">從印度直到古實，共一百二十七省</tspan>
+    <tspan x="360" dy="1.15em">从印度直到古实，共一百二十七省</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(655,430)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

@@ -1,0 +1,66 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea -->
+  <path d="M0,20 C40,10 70,40 60,90 C50,150 70,220 55,290 C45,350 65,410 40,460 L0,460 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="28" y="95" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="15" fill="#2c5f7c">
+    <tspan x="28" dy="0">大海</tspan>
+    <tspan x="28" dy="1.15em">大海</tspan>
+  </text>
+
+  <!-- Israel (northern kingdom) -->
+  <path d="M140,55 C210,40 320,45 380,68 C420,88 428,140 405,178 C388,212 345,230 295,224 C245,218 185,214 158,188 C128,162 118,105 140,55 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="175" y="72" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="175" dy="0">以色列</tspan>
+    <tspan x="175" dy="1.15em">以色列</tspan>
+  </text>
+
+  <!-- Judah (southern kingdom) -->
+  <path d="M160,240 C225,232 340,236 382,256 C412,276 417,326 400,366 C384,406 338,436 288,441 C238,446 188,426 163,386 C142,346 148,280 160,240 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="178" y="392" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="178" dy="0">猶大</tspan>
+    <tspan x="178" dy="1.15em">犹大</tspan>
+  </text>
+
+  <!-- border / split between the two kingdoms -->
+  <path d="M150,226 C220,214 320,216 400,232" fill="none" stroke="#1c1a17" stroke-width="2" stroke-dasharray="6,6"/>
+
+  <!-- Samaria marker -->
+  <circle cx="300" cy="135" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="200" y="138" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="200" dy="0">撒瑪利亞</tspan>
+    <tspan x="200" dy="1.15em">撒玛利亚</tspan>
+  </text>
+
+  <!-- Jerusalem marker -->
+  <circle cx="278" cy="345" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="292" y="333" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="292" dy="0">耶路撒冷</tspan>
+    <tspan x="292" dy="1.15em">耶路撒冷</tspan>
+  </text>
+  <text x="292" y="372" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="292" dy="0">聖殿</tspan>
+    <tspan x="292" dy="1.15em">圣殿</tspan>
+  </text>
+
+  <!-- Dead Sea -->
+  <path d="M410,330 C432,320 456,332 460,362 C464,392 440,415 415,410 C395,405 386,378 390,352 C392,340 400,335 410,330 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="470" y="348" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c">
+    <tspan x="470" dy="0">鹽海</tspan>
+    <tspan x="470" dy="1.15em">盐海</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(70,430)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

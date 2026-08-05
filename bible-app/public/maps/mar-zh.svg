@@ -1,0 +1,76 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea -->
+  <path d="M0,0 L90,0 C75,120 100,240 80,360 C70,410 85,450 75,480 L0,480 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="14" y="160" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="19" fill="#2c5f7c" transform="rotate(-90 14 160)">
+    <tspan x="14" dy="0">地中海</tspan>
+    <tspan x="14" dy="1.15em">地中海</tspan>
+  </text>
+
+  <!-- Galilee -->
+  <path d="M150,60 C220,35 320,40 380,75 C420,100 430,150 405,190 C380,225 320,240 260,225 C210,213 175,185 160,145 C148,115 145,85 150,60 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="185" y="120" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="185" dy="0">加利利</tspan>
+    <tspan x="185" dy="1.15em">加利利</tspan>
+  </text>
+
+  <!-- Sea of Galilee -->
+  <ellipse cx="385" cy="150" rx="32" ry="24" fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="340" y="178" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c">
+    <tspan x="340" dy="0">加利利海</tspan>
+    <tspan x="340" dy="1.15em">加利利海</tspan>
+  </text>
+
+  <!-- Decapolis -->
+  <path d="M430,110 C480,80 560,85 610,120 C650,150 655,200 625,235 C590,270 520,275 470,250 C440,233 425,200 425,165 C425,145 425,125 430,110 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="470" y="165" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="470" dy="0">低加波利</tspan>
+    <tspan x="470" dy="1.15em">低加波利</tspan>
+  </text>
+
+  <!-- Judea -->
+  <path d="M230,300 C280,280 350,282 390,310 C415,330 420,370 405,405 C390,440 340,460 290,450 C250,442 225,415 215,380 C207,350 212,320 230,300 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="253" y="353" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="253" dy="0">猶太</tspan>
+    <tspan x="253" dy="1.15em">犹太</tspan>
+  </text>
+
+  <!-- Capernaum marker -->
+  <circle cx="395" cy="122" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="400" y="78" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17">
+    <tspan x="400" dy="0">迦百農</tspan>
+    <tspan x="400" dy="1.15em">迦百农</tspan>
+  </text>
+
+  <!-- Jerusalem marker -->
+  <circle cx="310" cy="380" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="325" y="340" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="325" dy="0">耶路撒冷</tspan>
+    <tspan x="325" dy="1.15em">耶路撒冷</tspan>
+  </text>
+
+  <!-- Route: Capernaum -> Jerusalem -->
+  <path d="M395,122 C370,190 340,260 320,330 C315,350 312,365 310,377"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <!-- arrowhead -->
+  <path d="M300,368 L312,380 L297,384 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+  <text x="360" y="232" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="15" fill="#a8620a">
+    <tspan x="360" dy="0">上耶路撒冷去</tspan>
+    <tspan x="360" dy="1.15em">上耶路撒冷去</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>
