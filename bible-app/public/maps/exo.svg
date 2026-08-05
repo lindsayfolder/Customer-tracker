@@ -4,41 +4,41 @@
   <!-- Mediterranean Sea -->
   <path d="M0,60 C120,40 260,70 400,50 C520,35 620,55 720,45 L720,140 C600,120 500,140 400,130 C280,120 140,150 0,135 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="180" y="90" font-family="Georgia, serif" font-style="italic" font-size="15" fill="#2c5f7c">Mediterranean Sea</text>
+  <text x="180" y="90" font-family="Georgia, serif" font-style="italic" font-size="23" fill="#2c5f7c">Mediterranean Sea</text>
 
   <!-- Egypt / Nile delta landmass -->
   <path d="M40,130 C20,220 60,320 130,400 C180,440 260,430 300,380 C330,330 300,250 320,190 C280,150 200,120 130,125 C100,127 60,128 40,130 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="90" y="260" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">EGYPT</text>
+  <text x="90" y="260" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">EGYPT</text>
 
   <!-- Nile river -->
   <path d="M180,140 C190,200 175,270 190,340 C198,370 210,395 225,415" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="150" y="200" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(78 150 200)">Nile</text>
+  <text x="150" y="200" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(78 150 200)">Nile</text>
 
   <!-- Goshen marker -->
   <circle cx="230" cy="175" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="244" y="180" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Goshen</text>
+  <text x="244" y="180" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Goshen</text>
 
   <!-- Red Sea -->
   <path d="M300,190 C330,240 340,300 320,360 C305,400 280,430 260,450 C300,420 350,380 365,320 C378,260 360,210 330,175 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="335" y="330" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#2c5f7c" transform="rotate(70 335 330)">Red Sea</text>
+  <text x="335" y="330" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#2c5f7c" transform="rotate(70 335 330)">Red Sea</text>
 
   <!-- Sinai peninsula -->
   <path d="M340,180 C400,170 460,210 470,280 C476,330 440,380 390,395 C360,400 340,370 335,330 C330,280 335,225 340,180 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="370" y="250" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">SINAI</text>
-  <text x="365" y="270" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">Wilderness of Sin</text>
+  <text x="370" y="250" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">SINAI</text>
+  <text x="365" y="270" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">Wilderness of Sin</text>
 
   <!-- Mount Sinai marker -->
   <path d="M415,330 l10,-24 l10,24 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
   <circle cx="425" cy="330" r="0" />
-  <text x="435" y="332" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Mt. Sinai</text>
+  <text x="435" y="332" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Mt. Sinai</text>
 
   <!-- Canaan -->
   <path d="M300,60 C340,50 390,55 420,90 C440,120 430,160 400,180 C370,195 335,185 315,160 C300,130 295,90 300,60 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="330" y="115" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">CANAAN</text>
+  <text x="330" y="115" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">CANAAN</text>
 
   <!-- Route: Goshen -> Red Sea crossing -> Sinai wilderness -> Mt Sinai -->
   <path d="M230,175 C260,200 290,220 305,255 C315,278 320,285 335,300 C355,315 380,320 415,325"
@@ -48,13 +48,13 @@
 
   <!-- Red Sea crossing marker -->
   <circle cx="305" cy="255" r="6" fill="#fbf6ea" stroke="#c97a12" stroke-width="3"/>
-  <text x="230" y="248" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">Red Sea crossing</text>
+  <text x="290" y="300" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#a8620a" text-anchor="middle">Red Sea crossing</text>
 
   <!-- compass -->
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

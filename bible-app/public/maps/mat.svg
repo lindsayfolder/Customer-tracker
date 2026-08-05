@@ -4,59 +4,59 @@
   <!-- Mediterranean Sea -->
   <path d="M0,0 L130,0 C110,90 145,180 120,270 C100,350 130,420 110,480 L0,480 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="18" y="260" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#2c5f7c" transform="rotate(-90 18 260)">Mediterranean Sea</text>
+  <text x="18" y="260" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#2c5f7c" transform="rotate(-90 18 260)">Mediterranean Sea</text>
 
   <!-- Galilee (north) -->
   <path d="M220,50 C280,30 360,35 410,70 C450,100 460,150 440,195 C415,230 360,245 300,235 C255,228 220,200 210,160 C200,120 205,80 220,50 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="255" y="110" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">GALILEE</text>
+  <text x="255" y="110" font-family="Georgia, serif" font-weight="700" font-size="28" fill="#1c1a17">GALILEE</text>
 
   <!-- Sea of Galilee -->
   <ellipse cx="392" cy="140" rx="30" ry="22" fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="352" y="177" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#2c5f7c">Sea of Galilee</text>
+  <text x="352" y="177" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#2c5f7c">Sea of Galilee</text>
 
   <!-- Judea (south) -->
   <path d="M230,300 C270,280 330,278 370,300 C400,318 410,355 400,395 C390,435 350,460 300,455 C260,450 225,425 215,385 C207,350 210,320 230,300 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="255" y="345" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">JUDEA</text>
+  <text x="255" y="345" font-family="Georgia, serif" font-weight="700" font-size="28" fill="#1c1a17">JUDEA</text>
 
   <!-- Egypt (southwest) -->
   <path d="M40,340 C30,390 55,440 110,460 C150,470 190,455 205,420 C215,395 205,365 180,345 C145,320 80,320 40,340 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="72" y="405" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">EGYPT</text>
+  <text x="72" y="405" font-family="Georgia, serif" font-weight="700" font-size="28" fill="#1c1a17">EGYPT</text>
 
   <!-- Capernaum marker -->
   <circle cx="400" cy="118" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="408" y="112" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Capernaum</text>
+  <text x="408" y="112" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Capernaum</text>
 
   <!-- Nazareth marker -->
   <circle cx="250" cy="190" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="180" y="182" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Nazareth</text>
+  <text x="180" y="182" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Nazareth</text>
 
   <!-- Jerusalem marker -->
   <circle cx="320" cy="385" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="332" y="390" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Jerusalem</text>
+  <text x="332" y="390" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Jerusalem</text>
 
   <!-- Bethlehem marker -->
   <circle cx="305" cy="420" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="235" y="435" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Bethlehem</text>
+  <text x="235" y="435" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Bethlehem</text>
 
   <!-- Egypt waypoint -->
   <circle cx="115" cy="395" r="6" fill="#fbf6ea" stroke="#c97a12" stroke-width="3"/>
-  <text x="45" y="378" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">flight into Egypt</text>
+  <text x="45" y="378" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#a8620a">flight into Egypt</text>
 
   <!-- Route: Bethlehem -> Egypt -> Nazareth -> Capernaum -> Jerusalem -->
   <path d="M305,420 C230,415 150,405 115,395 C160,340 210,260 235,215 C240,205 245,197 250,190 C300,165 355,140 400,118 C415,175 400,250 375,310 C355,355 335,375 322,383"
         fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
   <!-- arrowhead -->
   <path d="M312,372 L324,384 L308,388 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
-  <text x="335" y="330" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">the Passion</text>
+  <text x="345" y="308" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#a8620a">the Passion</text>
 
   <!-- compass -->
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

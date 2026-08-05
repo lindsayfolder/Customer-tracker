@@ -4,26 +4,26 @@
   <!-- Medo-Persia (drawn first, large, expanding around/behind Babylon) -->
   <path d="M300,80 C400,55 540,60 630,110 C700,150 710,240 685,320 C660,405 570,455 470,445 C400,438 345,405 320,350 C300,300 310,230 330,175 C345,140 320,110 300,80 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="460" y="170" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">MEDO-PERSIA</text>
-  <text x="420" y="192" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">Conquers Babylon, 539 BC</text>
+  <text x="460" y="170" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">MEDO-PERSIA</text>
+  <text x="420" y="192" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">Conquers Babylon, 539 BC</text>
 
   <!-- Babylon (drawn on top, distinct region carved from Persia's expanse) -->
   <path d="M50,170 C30,250 45,340 105,395 C165,445 255,435 320,400 C365,377 385,335 378,285 C372,230 345,175 285,148 C205,113 110,120 50,170 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="130" y="290" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">BABYLON</text>
-  <text x="105" y="312" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">Daniel serves the king</text>
+  <text x="130" y="290" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">BABYLON</text>
+  <text x="105" y="312" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">Daniel serves the king</text>
 
   <!-- Euphrates -->
   <path d="M190,150 C205,220 185,300 205,385 C212,405 222,420 235,435" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="150" y="260" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(75 150 260)">Euphrates</text>
+  <text x="150" y="260" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c" transform="rotate(75 150 260)">Euphrates</text>
 
   <!-- Babylon marker -->
   <circle cx="230" cy="250" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="244" y="255" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Babylon</text>
+  <text x="230" y="232" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17" text-anchor="middle">Babylon</text>
 
   <!-- Shushan (Susa) marker -->
   <circle cx="560" cy="270" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="500" y="300" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Shushan</text>
+  <text x="500" y="300" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Shushan</text>
 
   <!-- Route: Babylon -> Shushan, marking the shift of empires across Daniel's life -->
   <path d="M230,250 C310,240 400,235 480,245 C510,250 535,258 552,266"
@@ -35,7 +35,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

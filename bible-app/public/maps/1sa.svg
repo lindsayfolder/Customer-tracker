@@ -4,44 +4,36 @@
   <!-- Mediterranean Sea -->
   <path d="M0,20 C40,10 70,40 60,90 C50,150 70,220 55,290 C45,350 65,410 40,460 L0,460 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="8" y="120" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(90 8 120)">Great Sea</text>
+  <text x="8" y="120" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(90 8 120)">Great Sea</text>
 
   <!-- Philistia -->
   <path d="M90,255 C130,240 178,252 192,290 C202,322 196,362 174,392 C154,417 112,420 92,393 C76,368 76,315 90,255 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="88" y="285" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">PHILISTIA</text>
-
-  <!-- Ekron marker -->
-  <circle cx="150" cy="300" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="100" y="316" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Ekron</text>
-
-  <!-- Gath marker -->
-  <circle cx="160" cy="355" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="110" y="372" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Gath</text>
+  <text x="130" y="278" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" transform="rotate(90 130 278)">PHILISTIA</text>
 
   <!-- Benjamin & Judah hill country -->
   <path d="M140,55 C210,40 320,45 380,68 C420,88 428,140 405,178 C412,200 417,302 400,342 C384,382 338,412 288,417 C238,422 188,402 163,362 C142,322 148,255 158,188 C128,162 118,105 140,55 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="200" y="105" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#1c1a17">BENJAMIN</text>
-  <text x="205" y="400" font-family="Georgia, serif" font-weight="700" font-size="19" fill="#1c1a17">JUDAH</text>
+  <text x="200" y="105" font-family="Georgia, serif" font-weight="700" font-size="26" fill="#1c1a17">BENJAMIN</text>
+  <text x="205" y="400" font-family="Georgia, serif" font-weight="700" font-size="29" fill="#1c1a17">JUDAH</text>
 
   <!-- Gibeah marker (Saul's base) -->
   <circle cx="300" cy="145" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="314" y="150" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Gibeah</text>
+  <text x="314" y="150" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Gibeah</text>
 
   <!-- Bethlehem marker (David's hometown) -->
   <circle cx="255" cy="315" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="195" y="345" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Bethlehem</text>
+  <text x="195" y="345" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Bethlehem</text>
 
   <!-- Dead Sea -->
   <path d="M410,270 C435,258 462,270 470,305 C478,340 458,368 428,365 C405,362 392,335 396,305 C398,290 402,278 410,270 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="428" y="252" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c">Dead Sea</text>
+  <text x="428" y="252" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c">Dead Sea</text>
 
   <!-- En Gedi marker (wilderness refuge) -->
   <circle cx="415" cy="335" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="393" y="322" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="end">En Gedi</text>
-  <text x="393" y="336" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f" text-anchor="end">wilderness</text>
+  <text x="393" y="322" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="end">En Gedi</text>
+  <text x="393" y="336" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#55503f" text-anchor="end">wilderness</text>
 
   <!-- Route: Gibeah -> En Gedi (David's flight from Saul) -->
   <path d="M300,150 C340,190 360,240 380,270 C395,295 402,312 408,325"
@@ -52,7 +44,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

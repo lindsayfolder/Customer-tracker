@@ -4,41 +4,41 @@
   <!-- Canaan -->
   <path d="M50,60 C140,30 260,35 340,60 C395,80 415,130 405,190 C398,240 410,290 400,340 C390,395 350,440 290,455 C220,470 130,460 80,420 C45,390 40,340 48,290 C55,240 40,190 45,140 C47,110 48,80 50,60 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="90" y="120" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">CANAAN</text>
+  <text x="90" y="120" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">CANAAN</text>
 
   <!-- Ai marker -->
   <circle cx="330" cy="160" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="344" y="164" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Ai</text>
+  <text x="344" y="164" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Ai</text>
 
   <!-- Jericho marker -->
   <circle cx="385" cy="215" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="300" y="219" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Jericho</text>
+  <text x="378" y="219" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17" text-anchor="end">Jericho</text>
 
   <!-- Hebron marker (southern campaign) -->
   <circle cx="200" cy="358" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="214" y="362" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Hebron</text>
+  <text x="214" y="362" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Hebron</text>
 
   <!-- Hazor marker (northern campaign) -->
   <circle cx="140" cy="88" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="154" y="92" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Hazor</text>
+  <text x="154" y="92" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Hazor</text>
 
   <!-- Jordan river -->
   <path d="M452,30 C446,120 457,220 452,300 C450,340 454,362 460,382" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="466" y="200" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(85 466 200)">Jordan</text>
+  <text x="466" y="200" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(85 466 200)">Jordan</text>
 
   <!-- Dead Sea -->
   <path d="M445,385 C460,375 490,378 505,395 C520,415 515,440 495,452 C470,462 445,455 438,435 C433,415 438,398 445,385 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="450" y="420" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c">Salt Sea</text>
+  <text x="450" y="420" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c">Salt Sea</text>
 
   <!-- Moab (east of Jordan, journey's origin) -->
   <path d="M490,260 C540,235 600,245 630,280 C655,312 650,360 625,395 C605,425 570,450 530,445 C500,440 485,410 480,375 C475,335 480,295 490,260 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="520" y="345" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">MOAB</text>
+  <text x="520" y="345" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">MOAB</text>
 
   <!-- Jordan crossing marker -->
   <circle cx="452" cy="235" r="6" fill="#fbf6ea" stroke="#c97a12" stroke-width="3"/>
-  <text x="330" y="228" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">Jordan crossing</text>
+  <text x="405" y="268" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#a8620a" text-anchor="end">Jordan crossing</text>
 
   <!-- Route: crossing -> Jericho -> Ai -> south sweep (Hebron) -> north sweep (Hazor) -->
   <path d="M452,235 C420,225 400,220 385,215 C365,198 345,178 330,160 C280,210 220,290 200,355 C170,300 130,190 140,90"
@@ -49,7 +49,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

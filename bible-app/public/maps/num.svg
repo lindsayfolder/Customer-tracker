@@ -4,47 +4,47 @@
   <!-- Canaan (north), with Jericho -->
   <path d="M255,12 C315,2 380,12 412,38 C428,58 420,84 390,95 C345,106 285,96 258,70 C246,55 250,28 255,12 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="278" y="52" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#1c1a17">CANAAN</text>
+  <text x="278" y="52" font-family="Georgia, serif" font-weight="700" font-size="23" fill="#1c1a17">CANAAN</text>
 
   <!-- Jericho marker -->
   <circle cx="390" cy="70" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="300" y="86" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Jericho</text>
+  <text x="300" y="86" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Jericho</text>
 
   <!-- Wilderness of Zin -->
   <path d="M160,148 C220,118 320,122 380,148 C420,168 428,218 408,258 C388,294 328,308 268,298 C208,288 158,268 143,228 C133,198 145,168 160,148 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="168" y="200" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">WILDERNESS OF ZIN</text>
+  <text x="168" y="200" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">WILDERNESS OF ZIN</text>
 
   <!-- Kadesh-barnea marker -->
   <circle cx="300" cy="228" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="200" y="250" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Kadesh-barnea</text>
+  <text x="200" y="250" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Kadesh-barnea</text>
 
   <!-- Wilderness of Sin (south, with Sinai) -->
   <path d="M150,300 C130,352 140,412 182,446 C232,470 302,464 350,438 C390,412 404,368 394,328 C384,294 338,278 288,284 C238,288 180,285 150,300 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="190" y="372" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#1c1a17">WILDERNESS</text>
+  <text x="190" y="372" font-family="Georgia, serif" font-weight="700" font-size="23" fill="#1c1a17">WILDERNESS</text>
 
   <!-- Mt. Sinai marker -->
   <path d="M250,420 l10,-24 l10,24 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
-  <text x="274" y="422" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Mt. Sinai</text>
+  <text x="274" y="422" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Mt. Sinai</text>
 
   <!-- Salt (Dead) Sea -->
   <path d="M440,98 C462,92 482,104 486,130 C492,172 496,212 486,242 C478,262 454,268 440,252 C430,232 428,190 430,150 C431,128 434,108 440,98 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="448" y="185" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(80 448 185)">Salt Sea</text>
+  <text x="448" y="185" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(80 448 185)">Salt Sea</text>
 
   <!-- Jordan river -->
   <path d="M440,98 C428,68 412,44 400,20" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="410" y="55" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(70 410 55)">Jordan</text>
+  <text x="410" y="55" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c" transform="rotate(70 410 55)">Jordan</text>
 
   <!-- Plains of Moab -->
   <path d="M500,88 C562,58 632,68 666,110 C690,146 684,192 654,216 C610,240 550,236 514,206 C494,180 490,138 495,110 C497,102 498,94 500,88 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="548" y="150" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">MOAB</text>
+  <text x="548" y="150" font-family="Georgia, serif" font-weight="700" font-size="28" fill="#1c1a17">MOAB</text>
 
   <!-- Plains of Moab marker -->
   <circle cx="520" cy="178" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="440" y="204" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Plains of Moab</text>
+  <text x="470" y="204" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Plains of Moab</text>
 
   <!-- Route: Sinai -> Kadesh-barnea -> Plains of Moab -->
   <path d="M262,412 C256,356 274,298 298,236 C350,258 418,292 458,268 C494,246 508,212 516,184"
@@ -55,7 +55,7 @@
   <g transform="translate(60,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

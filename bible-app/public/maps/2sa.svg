@@ -4,30 +4,30 @@
   <!-- Mediterranean Sea -->
   <path d="M0,20 C40,10 70,40 60,90 C50,150 70,220 55,290 C45,350 65,410 40,460 L0,460 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="8" y="120" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(90 8 120)">Great Sea</text>
+  <text x="8" y="120" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(90 8 120)">Great Sea</text>
 
   <!-- Philistia (west front) -->
   <path d="M90,255 C130,240 178,252 192,290 C202,322 196,362 174,392 C154,417 112,420 92,393 C76,368 76,315 90,255 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="88" y="330" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#1c1a17">PHILISTIA</text>
+  <text x="130" y="278" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" transform="rotate(90 130 278)">PHILISTIA</text>
 
   <!-- Aram / Syria (north front) -->
   <path d="M220,0 L480,0 L480,58 C420,74 340,70 280,53 C245,42 225,22 220,0 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="278" y="38" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">ARAM</text>
+  <text x="278" y="38" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">ARAM</text>
 
   <!-- Israel / Judah (David's kingdom) -->
   <path d="M140,55 C210,40 320,45 380,68 C420,88 428,140 405,178 C412,200 417,302 400,342 C384,382 338,412 288,417 C238,422 188,402 163,362 C142,322 148,255 158,188 C128,162 118,105 140,55 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="185" y="235" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">ISRAEL</text>
+  <text x="185" y="235" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">ISRAEL</text>
 
   <!-- Hebron marker (first capital) -->
   <circle cx="240" cy="378" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="180" y="395" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Hebron</text>
+  <text x="180" y="395" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Hebron</text>
 
   <!-- Jerusalem marker (later capital) -->
   <circle cx="278" cy="320" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="292" y="316" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Jerusalem</text>
+  <text x="292" y="316" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Jerusalem</text>
 
   <!-- Route: Hebron -> Jerusalem -->
   <path d="M240,378 C252,360 264,340 273,326" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
@@ -36,7 +36,7 @@
   <!-- Ammon (east front) -->
   <path d="M430,150 C480,120 560,125 605,160 C640,190 645,240 615,275 C585,308 520,310 475,285 C445,268 425,220 430,150 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="480" y="200" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">AMMON</text>
+  <text x="480" y="200" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">AMMON</text>
 
   <!-- Dead Sea -->
   <path d="M398,296 C412,288 428,296 430,314 C432,332 416,344 402,340 C392,336 388,316 392,304 C394,300 396,298 398,296 Z"
@@ -45,8 +45,8 @@
   <!-- Edom & Moab (south/east front) -->
   <path d="M420,320 C460,295 530,300 570,330 C600,355 605,400 575,420 C540,440 470,435 435,410 C410,392 405,355 420,320 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="450" y="368" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">EDOM</text>
-  <text x="450" y="386" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">and Moab</text>
+  <text x="450" y="368" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">EDOM</text>
+  <text x="450" y="386" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">and Moab</text>
 
   <!-- War arrows radiating from the kingdom -->
   <path d="M300,220 C310,180 315,140 318,108" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
@@ -65,7 +65,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

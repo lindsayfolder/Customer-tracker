@@ -4,65 +4,65 @@
   <!-- Great Sea sliver, west -->
   <path d="M0,250 C25,238 55,248 60,275 C64,300 50,320 25,322 C10,323 0,315 0,305 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="8" y="290" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#2c5f7c" transform="rotate(80 8 290)">Great Sea</text>
+  <text x="8" y="290" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#2c5f7c" transform="rotate(80 8 290)">Great Sea</text>
 
   <!-- Galilee (north) -->
   <path d="M210,20 C270,5 350,10 400,35 C425,50 430,80 410,105 C385,130 330,140 275,130 C230,122 200,100 195,65 C193,45 200,30 210,20 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="230" y="45" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">GALILEE</text>
-  <text x="212" y="118" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f">Deborah &amp; Barak</text>
+  <text x="230" y="45" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">GALILEE</text>
+  <text x="212" y="118" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#55503f">Deborah &amp; Barak</text>
 
   <!-- Mt. Tabor marker -->
   <path d="M290,90 l10,-22 l10,22 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
-  <text x="314" y="92" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Mt. Tabor</text>
+  <text x="314" y="92" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Mt. Tabor</text>
 
   <!-- Manasseh (center) -->
   <path d="M170,150 C230,125 320,130 380,155 C415,172 422,215 400,248 C375,278 310,288 250,278 C200,270 165,240 160,200 C158,180 162,165 170,150 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="195" y="192" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">MANASSEH</text>
-  <text x="205" y="242" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f">Gideon</text>
+  <text x="195" y="192" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">MANASSEH</text>
+  <text x="205" y="242" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#55503f">Gideon</text>
 
   <!-- Ophrah marker -->
   <circle cx="255" cy="215" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="180" y="205" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Ophrah</text>
+  <text x="266" y="228" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Ophrah</text>
 
   <!-- Benjamin (south-center) -->
   <path d="M375,268 C420,248 475,255 505,285 C525,308 520,340 495,358 C465,378 415,375 388,352 C368,332 365,300 375,268 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="390" y="300" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">BENJAMIN</text>
+  <text x="390" y="300" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">BENJAMIN</text>
 
   <!-- Ehud marker -->
   <circle cx="430" cy="308" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="404" y="332" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Ehud</text>
+  <text x="404" y="332" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Ehud</text>
 
   <!-- Jordan river -->
   <path d="M535,140 C528,220 540,300 530,382" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="540" y="255" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(82 540 255)">Jordan</text>
+  <text x="540" y="255" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c" transform="rotate(82 540 255)">Jordan</text>
 
   <!-- Moab (east, Ehud's route origin) -->
   <path d="M560,255 C610,232 665,245 690,282 C710,315 702,358 670,382 C635,405 585,398 562,368 C545,344 545,308 555,278 C557,270 558,262 560,255 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="588" y="322" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#1c1a17">MOAB</text>
+  <text x="588" y="322" font-family="Georgia, serif" font-weight="700" font-size="23" fill="#1c1a17">MOAB</text>
 
   <!-- Philistia (southwest) -->
   <path d="M25,310 C15,360 25,415 65,448 C110,475 165,468 195,432 C215,405 205,365 185,335 C160,302 105,296 60,300 C48,301 32,304 25,310 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="48" y="380" font-family="Georgia, serif" font-weight="700" font-size="15" fill="#1c1a17">PHILISTIA</text>
-  <text x="88" y="440" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f">Samson</text>
+  <text x="48" y="380" font-family="Georgia, serif" font-weight="700" font-size="23" fill="#1c1a17">PHILISTIA</text>
+  <text x="88" y="440" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#55503f">Samson</text>
 
   <!-- Gaza marker -->
   <circle cx="75" cy="410" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="89" y="414" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Gaza</text>
+  <text x="89" y="414" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Gaza</text>
 
   <!-- Timnah marker -->
   <circle cx="155" cy="355" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="169" y="359" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Timnah</text>
+  <text x="169" y="359" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Timnah</text>
 
   <!-- Route: Midianite raiders sweeping in from the east -->
   <path d="M660,200 C580,190 480,195 400,205 C350,210 300,212 263,214"
         fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
   <path d="M263,208 L263,220 L249,214 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
-  <text x="540" y="184" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f">Midianite raiders</text>
+  <text x="540" y="184" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#55503f">Midianite raiders</text>
 
   <!-- Route: Ehud carries tribute to Moab, then flees back to Benjamin -->
   <path d="M600,310 C560,308 490,306 448,306"
@@ -73,7 +73,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

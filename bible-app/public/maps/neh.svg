@@ -4,28 +4,28 @@
   <!-- Mediterranean Sea -->
   <path d="M0,60 C30,50 55,90 45,150 C35,210 55,270 40,330 C30,375 45,410 30,450 L0,450 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="6" y="200" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(90 6 200)">Great Sea</text>
+  <text x="6" y="200" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(90 6 200)">Great Sea</text>
 
   <!-- Judah -->
   <path d="M110,150 C168,133 258,140 296,168 C320,192 322,238 304,274 C288,306 246,328 202,322 C160,317 120,298 106,260 C92,222 96,178 110,150 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="128" y="188" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">JUDAH</text>
+  <text x="128" y="188" font-family="Georgia, serif" font-weight="700" font-size="28" fill="#1c1a17">JUDAH</text>
 
   <!-- Persia -->
   <path d="M410,70 C500,45 620,55 675,105 C712,140 715,215 690,270 C665,325 590,365 510,358 C445,352 400,310 388,255 C376,195 385,120 410,70 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="470" y="115" font-family="Georgia, serif" font-weight="700" font-size="19" fill="#1c1a17">PERSIA</text>
+  <text x="470" y="115" font-family="Georgia, serif" font-weight="700" font-size="29" fill="#1c1a17">PERSIA</text>
 
   <!-- Susa marker -->
   <circle cx="605" cy="215" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="618" y="220" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Susa</text>
-  <text x="500" y="245" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">the citadel, Persian capital</text>
+  <text x="618" y="220" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Susa</text>
+  <text x="500" y="245" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">the citadel, Persian capital</text>
 
   <!-- Jerusalem marker with rebuilt city wall -->
   <circle cx="222" cy="240" r="15" fill="none" stroke="#1c1a17" stroke-width="2"/>
   <circle cx="222" cy="240" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="178" y="270" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Jerusalem</text>
-  <text x="150" y="285" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">walls rebuilt</text>
+  <text x="178" y="270" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Jerusalem</text>
+  <text x="150" y="285" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">walls rebuilt</text>
 
   <!-- Route: Susa -> Jerusalem (Nehemiah's journey) -->
   <path d="M592,222 C480,222 360,225 250,232" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
@@ -35,7 +35,7 @@
   <g transform="translate(70,430)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

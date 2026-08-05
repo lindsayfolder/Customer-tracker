@@ -4,51 +4,51 @@
   <!-- Mediterranean Sea (west) -->
   <path d="M0,0 L180,0 C158,80 200,160 172,240 C148,320 190,400 168,480 L0,480 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="22" y="255" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#2c5f7c" transform="rotate(-90 22 255)">Mediterranean Sea</text>
+  <text x="22" y="255" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#2c5f7c" transform="rotate(-90 22 255)">Mediterranean Sea</text>
 
   <!-- Israel (coastal strip) -->
   <path d="M150,120 C182,98 232,108 250,150 C266,192 260,242 255,292 C250,342 240,392 210,422 C180,442 155,420 150,382 C144,320 150,250 145,190 C143,160 145,140 150,120 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="168" y="270" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">ISRAEL</text>
+  <text x="168" y="270" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">ISRAEL</text>
 
   <!-- Assyria (east) -->
   <path d="M280,150 C340,88 450,68 540,90 C620,108 692,150 706,220 C716,280 700,340 660,392 C610,447 520,460 440,440 C370,423 320,390 295,330 C275,280 270,220 280,150 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="440" y="185" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">ASSYRIA</text>
-  <text x="418" y="207" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">the great city, Nineveh</text>
+  <text x="440" y="185" font-family="Georgia, serif" font-weight="700" font-size="31" fill="#1c1a17">ASSYRIA</text>
+  <text x="418" y="207" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#55503f">the great city, Nineveh</text>
 
   <!-- Tigris -->
   <path d="M480,90 C470,180 490,270 470,360 C462,390 450,415 435,435" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="440" y="250" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(80 440 250)">Tigris</text>
+  <text x="440" y="250" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c" transform="rotate(80 440 250)">Tigris</text>
 
   <!-- Joppa marker -->
   <circle cx="160" cy="220" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="172" y="212" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Joppa</text>
+  <text x="172" y="212" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Joppa</text>
 
   <!-- Nineveh marker -->
   <circle cx="520" cy="252" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="533" y="257" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Nineveh</text>
+  <text x="533" y="257" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Nineveh</text>
 
   <!-- Wrong-way route: Joppa fleeing west toward Tarshish, interrupted -->
   <path d="M160,225 C132,238 104,246 76,258" fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
   <path d="M62,268 C50,275 40,270 28,278" fill="none" stroke="#c97a12" stroke-width="3" stroke-dasharray="1,9" stroke-linecap="round"/>
-  <text x="14" y="255" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">Tarshish</text>
+  <text x="14" y="255" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#a8620a">Tarshish</text>
   <!-- the great fish -->
   <path d="M32,296 C42,288 58,288 66,296 C58,304 42,304 32,296 Z M66,296 L74,289 L74,303 Z" fill="#2c5f7c" stroke="#1c1a17" stroke-width="1.5"/>
-  <text x="8" y="320" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c">swallowed by a great fish</text>
+  <text x="8" y="320" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c">swallowed by a great fish</text>
 
   <!-- True route: Joppa to Nineveh -->
   <path d="M160,220 C222,198 300,208 372,225 C432,238 480,242 508,248"
         fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
   <!-- arrowhead -->
   <path d="M500,240 L514,248 L498,254 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
-  <text x="300" y="200" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">at last, to Nineveh</text>
+  <text x="300" y="270" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#a8620a">at last, to Nineveh</text>
 
   <!-- compass -->
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->

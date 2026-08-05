@@ -4,51 +4,51 @@
   <!-- Great Sea (Mediterranean), NW corner -->
   <path d="M0,30 C50,15 110,35 150,25 C175,20 195,35 200,60 L200,130 C155,112 110,125 65,115 C35,108 15,113 0,108 Z"
         fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
-  <text x="40" y="80" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#2c5f7c">Great Sea</text>
+  <text x="40" y="80" font-family="Georgia, serif" font-style="italic" font-size="22" fill="#2c5f7c">Great Sea</text>
 
   <!-- Canaan -->
   <path d="M115,65 C170,50 235,58 270,95 C298,128 296,175 278,215 C265,252 250,292 218,312 C182,328 140,312 122,280 C104,242 100,192 103,142 C105,112 106,86 115,65 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="145" y="195" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#1c1a17">CANAAN</text>
+  <text x="145" y="195" font-family="Georgia, serif" font-weight="700" font-size="26" fill="#1c1a17">CANAAN</text>
 
   <!-- Bethel marker -->
   <circle cx="212" cy="128" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="226" y="132" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Bethel</text>
+  <text x="226" y="132" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Bethel</text>
 
   <!-- Hebron marker -->
   <circle cx="192" cy="258" r="6.5" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="206" y="262" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Hebron</text>
+  <text x="206" y="262" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17">Hebron</text>
 
   <!-- Aram (Haran region), north -->
   <path d="M368,55 C410,20 470,15 512,42 C548,64 556,105 528,132 C496,158 444,152 408,130 C378,113 358,86 368,55 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="388" y="42" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">ARAM</text>
+  <text x="388" y="42" font-family="Georgia, serif" font-weight="700" font-size="25" fill="#1c1a17">ARAM</text>
 
   <!-- Haran marker -->
   <circle cx="460" cy="95" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="474" y="99" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Haran</text>
+  <text x="474" y="99" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Haran</text>
 
   <!-- Mesopotamia -->
   <path d="M520,148 C580,118 652,128 690,170 C716,208 710,270 700,320 C696,372 680,424 638,442 C598,458 556,440 538,408 C518,378 514,336 520,296 C526,246 514,190 520,148 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="550" y="200" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">MESOPOTAMIA</text>
+  <text x="550" y="200" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">MESOPOTAMIA</text>
 
   <!-- Euphrates river -->
   <path d="M462,118 C486,178 526,228 566,268 C602,306 630,348 652,384" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="520" y="255" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(50 520 255)">Euphrates</text>
+  <text x="520" y="255" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#2c5f7c" transform="rotate(50 520 255)">Euphrates</text>
 
   <!-- Ur marker -->
   <circle cx="655" cy="388" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
-  <text x="640" y="410" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Ur</text>
+  <text x="640" y="410" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#1c1a17">Ur</text>
 
   <!-- Egypt -->
   <path d="M30,318 C18,368 28,420 70,450 C112,476 162,466 182,430 C198,398 188,358 170,328 C150,302 100,298 60,304 C48,306 35,310 30,318 Z"
         fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
-  <text x="55" y="392" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#1c1a17">EGYPT</text>
+  <text x="55" y="392" font-family="Georgia, serif" font-weight="700" font-size="26" fill="#1c1a17">EGYPT</text>
 
   <!-- Nile river -->
   <path d="M112,318 C104,358 116,400 98,442" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
-  <text x="80" y="380" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(80 80 380)">Nile</text>
+  <text x="80" y="380" font-family="Georgia, serif" font-style="italic" font-size="19" fill="#2c5f7c" transform="rotate(80 80 380)">Nile</text>
 
   <!-- Route: Ur -> Haran -> Bethel -> Hebron -->
   <path d="M652,382 C570,320 495,225 462,115 C410,88 305,98 255,118 C222,132 214,128 212,132 C200,168 194,215 192,250"
@@ -63,7 +63,7 @@
   <g transform="translate(650,60)">
     <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
     <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
-    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="20" fill="#1c1a17" text-anchor="middle">N</text>
   </g>
 
   <!-- border frame -->
