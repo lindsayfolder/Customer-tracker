@@ -97,9 +97,9 @@
         fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
   <!-- arrowhead -->
   <path d="M348,388 L335,393 L348,398 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
-  <text x="210" y="210" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#a8620a">
-    <tspan x="210" dy="0">上耶路撒冷之路</tspan>
-    <tspan x="210" dy="1.15em">上耶路撒冷之路</tspan>
+  <text x="345" y="232" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="13" fill="#a8620a">
+    <tspan x="345" dy="0">上耶路撒冷之路</tspan>
+    <tspan x="345" dy="1.15em">上耶路撒冷之路</tspan>
   </text>
 
   <!-- compass -->
