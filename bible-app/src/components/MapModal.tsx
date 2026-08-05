@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { UI } from "../data/languages";
-import { loadBookMap } from "../lib/maps";
+import { loadBookMap, loadBookMapZh } from "../lib/maps";
 
 export function MapModal({ open, bookId, bookLabel, onClose }: { open: boolean; bookId: string; bookLabel: string; onClose: () => void }) {
   const { lang } = useApp();
   const t = UI[lang];
   const [svg, setSvg] = useState<string | null>(null);
+  const [svgZh, setSvgZh] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
     setSvg(null);
+    setSvgZh(null);
     loadBookMap(bookId).then((s) => {
       if (!cancelled) setSvg(s);
+    });
+    loadBookMapZh(bookId).then((s) => {
+      if (!cancelled) setSvgZh(s);
     });
     return () => {
       cancelled = true;
@@ -30,9 +35,18 @@ export function MapModal({ open, bookId, bookLabel, onClose }: { open: boolean; 
       </div>
       <div className="modal-body">
         {svg ? (
-          <div className="maparea" dangerouslySetInnerHTML={{ __html: svg }} />
+          <>
+            <div className="map-section-label">{t.mapEnglishSection}</div>
+            <div className="maparea" dangerouslySetInnerHTML={{ __html: svg }} />
+          </>
         ) : (
           <div className="empty-note">{t.loadingLabel}</div>
+        )}
+        {svgZh && (
+          <>
+            <div className="map-section-label">{t.mapChineseSection}</div>
+            <div className="maparea" dangerouslySetInnerHTML={{ __html: svgZh }} />
+          </>
         )}
       </div>
     </div>

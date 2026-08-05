@@ -41,6 +41,8 @@ export interface UiStrings {
   ttsUnavailable: string;
   loadingLabel: string;
   mapLabel: string;
+  mapEnglishSection: string;
+  mapChineseSection: string;
   prevChapterLabel: string;
   nextChapterLabel: string;
 }
@@ -80,6 +82,8 @@ export const UI: Record<LangKey, UiStrings> = {
     ttsUnavailable: "Voice isn't available on this device/browser.",
     loadingLabel: "Loading…",
     mapLabel: "Map",
+    mapEnglishSection: "English",
+    mapChineseSection: "Chinese (Traditional / Simplified)",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
@@ -117,6 +121,8 @@ export const UI: Record<LangKey, UiStrings> = {
     ttsUnavailable: "Voice isn't available on this device/browser.",
     loadingLabel: "Loading…",
     mapLabel: "Map",
+    mapEnglishSection: "English",
+    mapChineseSection: "Chinese (Traditional / Simplified)",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
@@ -154,6 +160,8 @@ export const UI: Record<LangKey, UiStrings> = {
     ttsUnavailable: "此裝置或瀏覽器無法使用語音功能。",
     loadingLabel: "載入中……",
     mapLabel: "地圖",
+    mapEnglishSection: "英文",
+    mapChineseSection: "中文（繁體／簡體）",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
   },
@@ -191,6 +199,8 @@ export const UI: Record<LangKey, UiStrings> = {
     ttsUnavailable: "此设备或浏览器无法使用语音功能。",
     loadingLabel: "载入中……",
     mapLabel: "地图",
+    mapEnglishSection: "英文",
+    mapChineseSection: "中文（繁体／简体）",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
   },

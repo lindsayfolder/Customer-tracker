@@ -129,6 +129,8 @@ button { font-family: inherit; }
 .map-btn:active { transform: translateY(1px) scale(0.97); }
 .maparea { background: var(--paper-panel); border: 2.5px solid var(--ink); border-radius: 16px; box-shadow: 3px 3px 0 var(--hairline); overflow: hidden; }
 .maparea svg { display: block; width: 100%; height: auto; }
+.maparea + .map-section-label { margin-top: 22px; }
+.map-section-label { font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
 
 .tabbar { display: flex; gap: 6px; margin: 2px 2px 16px; background: var(--paper-panel); border: 2.5px solid var(--ink); border-radius: 14px; padding: 4px; }
 .tab-btn { flex: 1; font-weight: 800; font-size: 12.5px; letter-spacing: 0.03em; text-transform: uppercase; border: none; border-radius: 10px; padding: 8px 6px; background: transparent; color: var(--ink-soft); cursor: pointer; }

@@ -1,0 +1,91 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea -->
+  <path d="M0,60 C120,40 260,70 400,50 C520,35 620,55 720,45 L720,140 C600,120 500,140 400,130 C280,120 140,150 0,135 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="170" y="82" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="19" fill="#2c5f7c">
+    <tspan x="170" dy="0">地中海</tspan>
+    <tspan x="170" dy="1.15em">地中海</tspan>
+  </text>
+
+  <!-- Egypt / Nile delta landmass -->
+  <path d="M40,130 C20,220 60,320 130,400 C180,440 260,430 300,380 C330,330 300,250 320,190 C280,150 200,120 130,125 C100,127 60,128 40,130 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="85" y="250" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="24" fill="#1c1a17">
+    <tspan x="85" dy="0">埃及</tspan>
+    <tspan x="85" dy="1.15em">埃及</tspan>
+  </text>
+
+  <!-- Nile river -->
+  <path d="M180,140 C190,200 175,270 190,340 C198,370 210,395 225,415" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
+  <text x="150" y="195" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c" transform="rotate(78 150 195)">
+    <tspan x="150" dy="0">尼羅河</tspan>
+    <tspan x="150" dy="1.15em">尼罗河</tspan>
+  </text>
+
+  <!-- Goshen marker -->
+  <circle cx="230" cy="175" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="244" y="170" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="244" dy="0">歌珊</tspan>
+    <tspan x="244" dy="1.15em">歌珊</tspan>
+  </text>
+
+  <!-- Red Sea -->
+  <path d="M300,190 C330,240 340,300 320,360 C305,400 280,430 260,450 C300,420 350,380 365,320 C378,260 360,210 330,175 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="335" y="322" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="16" fill="#2c5f7c" transform="rotate(70 335 322)">
+    <tspan x="335" dy="0">紅海</tspan>
+    <tspan x="335" dy="1.15em">红海</tspan>
+  </text>
+
+  <!-- Sinai peninsula -->
+  <path d="M340,180 C400,170 460,210 470,280 C476,330 440,380 390,395 C360,400 340,370 335,330 C330,280 335,225 340,180 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="365" y="240" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="365" dy="0">西奈</tspan>
+    <tspan x="365" dy="1.15em">西奈</tspan>
+  </text>
+  <text x="358" y="292" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-size="14" fill="#55503f">
+    <tspan x="358" dy="0">汛的曠野</tspan>
+    <tspan x="358" dy="1.15em">汛的旷野</tspan>
+  </text>
+
+  <!-- Mount Sinai marker -->
+  <path d="M415,330 l10,-24 l10,24 z" fill="#a8620a" stroke="#1c1a17" stroke-width="2"/>
+  <text x="440" y="325" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="19" fill="#1c1a17">
+    <tspan x="440" dy="0">西奈山</tspan>
+    <tspan x="440" dy="1.15em">西奈山</tspan>
+  </text>
+
+  <!-- Canaan -->
+  <path d="M300,60 C340,50 390,55 420,90 C440,120 430,160 400,180 C370,195 335,185 315,160 C300,130 295,90 300,60 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="325" y="103" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="22" fill="#1c1a17">
+    <tspan x="325" dy="0">迦南</tspan>
+    <tspan x="325" dy="1.15em">迦南</tspan>
+  </text>
+
+  <!-- Route: Goshen -> Red Sea crossing -> Sinai wilderness -> Mt Sinai -->
+  <path d="M230,175 C260,200 290,220 305,255 C315,278 320,285 335,300 C355,315 380,320 415,325"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <!-- arrowhead -->
+  <path d="M408,318 L420,325 L406,332 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- Red Sea crossing marker -->
+  <circle cx="305" cy="255" r="6" fill="#fbf6ea" stroke="#c97a12" stroke-width="3"/>
+  <text x="290" y="292" text-anchor="middle" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="14" fill="#a8620a">
+    <tspan x="290" dy="0">過紅海處</tspan>
+    <tspan x="290" dy="1.15em">过红海处</tspan>
+  </text>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="PingFang TC, PingFang SC, Microsoft YaHei, Heiti SC, sans-serif" font-weight="700" font-size="18" fill="#1c1a17" text-anchor="middle">北</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>
