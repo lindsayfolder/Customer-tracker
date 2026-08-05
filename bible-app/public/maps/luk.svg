@@ -1,0 +1,75 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Great Sea (Mediterranean) sliver, west edge -->
+  <path d="M0,0 L60,0 C40,80 55,160 35,240 C20,320 45,400 20,480 L0,480 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="18" y="220" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c" transform="rotate(-90 18 220)">Great Sea</text>
+
+  <!-- Galilee -->
+  <path d="M90,50 C170,25 290,30 380,55 C425,68 445,105 435,145 C425,182 375,198 305,193 C225,188 145,182 100,155 C70,135 65,90 90,50 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="150" y="100" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">GALILEE</text>
+
+  <!-- Sea of Galilee -->
+  <path d="M355,110 C378,98 405,105 415,128 C422,150 405,168 382,165 C360,162 345,142 348,122 C349,117 351,113 355,110 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="330" y="186" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c">Sea of Galilee</text>
+
+  <!-- Nazareth -->
+  <circle cx="205" cy="150" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="216" y="155" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Nazareth</text>
+
+  <!-- Capernaum -->
+  <circle cx="388" cy="100" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="398" y="96" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Capernaum</text>
+
+  <!-- Jordan river -->
+  <path d="M370,165 C378,220 355,270 372,320 C382,355 395,385 388,420" fill="none" stroke="#2c5f7c" stroke-width="5" stroke-linecap="round"/>
+  <text x="330" y="260" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(75 330 260)">Jordan</text>
+
+  <!-- Samaria -->
+  <path d="M150,215 C215,195 300,200 350,225 C378,245 380,278 355,300 C315,328 235,322 180,302 C150,285 140,248 150,215 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="185" y="262" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">SAMARIA</text>
+
+  <!-- Perea -->
+  <path d="M410,215 C465,198 525,208 555,245 C575,275 565,315 535,338 C495,362 445,352 415,322 C395,292 398,250 410,215 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="440" y="278" font-family="Georgia, serif" font-weight="700" font-size="16" fill="#1c1a17">PEREA</text>
+
+  <!-- Judea -->
+  <path d="M150,350 C220,328 320,332 390,352 C420,368 428,400 410,428 C378,455 300,460 220,450 C168,442 145,398 150,350 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="168" y="400" font-family="Georgia, serif" font-weight="700" font-size="18" fill="#1c1a17">JUDEA</text>
+
+  <!-- Dead Sea -->
+  <path d="M400,400 C420,392 440,400 442,420 C444,440 425,452 405,448 C390,444 385,425 390,412 C392,406 396,402 400,400 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="388" y="465" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#2c5f7c">Dead Sea</text>
+
+  <!-- Jericho -->
+  <circle cx="415" cy="378" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="330" y="373" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17">Jericho</text>
+
+  <!-- Jerusalem -->
+  <circle cx="330" cy="393" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="342" y="398" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Jerusalem</text>
+
+  <!-- Route: long winding journey to Jerusalem (Luke 9-19), via Samaria/Perea -->
+  <path d="M350,195 C310,225 270,235 300,265 C330,292 385,278 415,308 C440,335 420,362 415,378 C412,383 405,388 395,393 C378,395 358,394 340,393"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <!-- arrowhead -->
+  <path d="M348,388 L335,393 L348,398 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+  <text x="220" y="240" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#a8620a">Journey to Jerusalem</text>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>

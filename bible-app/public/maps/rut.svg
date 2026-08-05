@@ -1,0 +1,42 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- Mediterranean Sea -->
+  <path d="M0,20 C40,10 70,40 60,90 C50,150 70,220 55,290 C45,350 65,410 40,460 L0,460 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="8" y="120" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#2c5f7c" transform="rotate(90 8 120)">Great Sea</text>
+
+  <!-- Judah -->
+  <path d="M160,215 C225,208 340,212 382,232 C412,252 417,302 400,342 C384,382 338,412 288,417 C238,422 188,402 163,362 C142,322 148,255 160,215 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="195" y="405" font-family="Georgia, serif" font-weight="700" font-size="19" fill="#1c1a17">JUDAH</text>
+
+  <!-- Bethlehem marker -->
+  <circle cx="255" cy="300" r="7" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="195" y="330" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Bethlehem</text>
+
+  <!-- Dead Sea -->
+  <path d="M400,280 C420,270 445,280 452,310 C458,340 440,365 415,362 C395,360 385,335 388,310 C390,298 393,288 400,280 Z"
+        fill="#dce8ec" stroke="#2c5f7c" stroke-width="2.5"/>
+  <text x="392" y="255" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#2c5f7c">Dead Sea</text>
+
+  <!-- Moab -->
+  <path d="M460,160 C520,145 590,160 620,210 C645,250 640,310 610,355 C580,395 520,410 475,390 C440,375 425,335 430,290 C435,240 440,195 460,160 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="497" y="235" font-family="Georgia, serif" font-weight="700" font-size="19" fill="#1c1a17">MOAB</text>
+
+  <!-- Route: Moab -> Bethlehem (Naomi and Ruth's journey) -->
+  <path d="M530,280 C480,265 440,270 415,285 C380,300 310,300 262,300"
+        fill="none" stroke="#c97a12" stroke-width="4" stroke-dasharray="2,10" stroke-linecap="round"/>
+  <path d="M270,292 L255,300 L270,308 Z" fill="#c97a12" stroke="#1c1a17" stroke-width="1.5"/>
+
+  <!-- compass -->
+  <g transform="translate(650,60)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>
