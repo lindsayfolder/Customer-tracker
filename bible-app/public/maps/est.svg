@@ -1,0 +1,34 @@
+<svg viewBox="0 0 720 480" width="100%" height="480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" fill="#fbf6ea"/>
+
+  <!-- The Persian Empire, spanning the known world -->
+  <path d="M60,120 C150,85 300,68 400,73 C500,78 605,88 662,130 C692,160 686,222 668,272 C648,332 558,372 458,382 C358,392 238,388 158,365 C88,345 48,300 44,240 C40,180 46,150 60,120 Z"
+        fill="#f1e9d8" stroke="#1c1a17" stroke-width="3"/>
+  <text x="235" y="112" font-family="Georgia, serif" font-weight="700" font-size="21" fill="#1c1a17">THE PERSIAN EMPIRE</text>
+
+  <!-- Susa, the capital -->
+  <circle cx="330" cy="235" r="8" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="346" y="230" font-family="Georgia, serif" font-weight="700" font-size="17" fill="#1c1a17">SUSA</text>
+  <text x="346" y="248" font-family="Georgia, serif" font-style="italic" font-size="12" fill="#55503f">the citadel, where the story unfolds</text>
+
+  <!-- Edge markers conveying the empire's vast reach -->
+  <circle cx="605" cy="150" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="580" y="135" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">India</text>
+
+  <circle cx="90" cy="330" r="6" fill="#c97a12" stroke="#1c1a17" stroke-width="2.5"/>
+  <text x="55" y="355" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#1c1a17">Cush</text>
+  <text x="35" y="370" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#55503f">(Ethiopia)</text>
+
+  <!-- scale caption -->
+  <text x="360" y="425" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#2c5f7c" text-anchor="middle">127 provinces, from India to Ethiopia</text>
+
+  <!-- compass -->
+  <g transform="translate(655,430)">
+    <circle r="26" fill="#fbf6ea" stroke="#1c1a17" stroke-width="2.5"/>
+    <path d="M0,-18 L6,0 L0,18 L-6,0 Z" fill="#1c1a17"/>
+    <text y="-30" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#1c1a17" text-anchor="middle">N</text>
+  </g>
+
+  <!-- border frame -->
+  <rect x="2" y="2" width="716" height="476" fill="none" stroke="#1c1a17" stroke-width="2"/>
+</svg>
