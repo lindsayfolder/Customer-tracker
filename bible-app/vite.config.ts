@@ -38,15 +38,17 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Only the app shell is precached (~300KB). Scripture JSON under
-        // /bible/**, AI insights under /insights/**, and book maps under
-        // /maps/** are deliberately NOT globbed here — each is fetched
-        // lazily as the user actually reads (see lib/scripture.ts,
-        // lib/insights.ts, lib/maps.ts) and persisted for offline use by
-        // the runtime-caching rules below, so storage only grows with
-        // what's actually been opened.
-        globPatterns: ["**/*.{js,css,html,woff2,png}"],
-        globIgnores: ["maps/**"],
+        // Everything is precached during install — app shell, all 66 books
+        // of scripture in all 4 versions, all 66 books of AI insights in
+        // all 3 languages, and all 21 book maps (~31 MB total, largest
+        // single file ~480 KB, well under Workbox's 2 MB per-file cache
+        // limit). That's a deliberate choice: this app is meant to be
+        // installed once and then read with zero network dependency ever
+        // again, including for a book/chapter/version combination the
+        // reader has never opened before — not just for content already
+        // visited. The one-time install download is the cost of that.
+        globPatterns: ["**/*.{js,css,html,woff2,png,json,svg}"],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         runtimeCaching: [
           {
             urlPattern: /\/bible\/.*\.json$/,

@@ -33,13 +33,15 @@ is readable immediately, no configuration needed.
 npm run build
 ```
 
-Output goes to `dist/` — the app shell precaches at ~300 KB (HTML, CSS, JS,
-subset comic fonts, icons); scripture text (~17 MB across all 66 books × 4
-versions) and AI insights (~14 MB across all 66 books × 3 languages) are
-**never precached** — each book/language is fetched only the first time
-it's opened and cached by the service worker after that, so a phone that
-only ever reads a few books stays at a few hundred KB, not the full ~31 MB.
-Deploy `dist/` to any static host with HTTPS: [Vercel](https://vercel.com),
+Output goes to `dist/` — the service worker precaches everything (~30 MB:
+app shell, all 66 books × 4 scripture versions, all 66 books × 3 languages
+of AI insights, all 21 book maps) during install, so the app works fully
+offline from the moment install finishes — including for a book, chapter,
+or language a reader has never opened before, not just content they've
+already visited. That one-time download is the deliberate tradeoff for an
+app meant to be installed once (e.g. on a flight, at home on wifi) and read
+anywhere after, with zero live network dependency ever again. Deploy
+`dist/` to any static host with HTTPS: [Vercel](https://vercel.com),
 [Netlify](https://netlify.com), or [Cloudflare
 Pages](https://pages.cloudflare.com) all have free tiers that are more than
 enough for this.
