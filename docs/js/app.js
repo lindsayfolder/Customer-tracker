@@ -64,7 +64,7 @@ function escapeHtml(s) {
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[c]));
 }
-const PALETTE = ["#6d28d9", "#db2777", "#059669", "#d97706", "#2563eb", "#dc2626", "#0891b2", "#7c3aed"];
+const PALETTE = ["#4a1a2c", "#b6486f", "#c97b4a", "#8a6d3f", "#5c7a6e", "#6b4d6b", "#9c5b46", "#5c6b8a"];
 function colorForIndex(i) { return PALETTE[i % PALETTE.length]; }
 function initials(name) {
   return (name || "?").trim().split(/\s+/).slice(0, 2).map(w => w[0]).join("").toUpperCase() || "?";

@@ -1,17 +1,17 @@
 :root {
-  --violet: #6d28d9;
-  --violet-dark: #4c1d95;
-  --pink: #db2777;
-  --bg: #faf7ff;
-  --card: #ffffff;
-  --ink: #241b3a;
-  --ink-soft: #6b6280;
-  --border: #ece6fb;
-  --danger: #dc2626;
-  --danger-bg: #fef2f2;
-  --ok: #059669;
+  --violet: #4a1a2c;
+  --violet-dark: #2e0f1c;
+  --pink: #b6486f;
+  --bg: #faf3ec;
+  --card: #fffdfb;
+  --ink: #3a2530;
+  --ink-soft: #8c7278;
+  --border: #f0e2d9;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
+  --ok: #6b8f71;
   --radius: 16px;
-  --shadow: 0 2px 10px rgba(76, 29, 149, 0.08);
+  --shadow: 0 2px 10px rgba(74, 26, 44, 0.10);
 }
 
 * { box-sizing: border-box; }
@@ -38,7 +38,7 @@ button, input, select, textarea {
   background: linear-gradient(135deg, var(--violet), var(--violet-dark));
   color: #fff;
   padding-top: env(safe-area-inset-top);
-  box-shadow: 0 2px 12px rgba(76,29,149,0.25);
+  box-shadow: 0 2px 12px rgba(74,26,44,0.25);
 }
 
 .app-header-inner {
@@ -145,8 +145,8 @@ button, input, select, textarea {
   font-size: 12px;
   font-weight: 700;
 }
-.predict-pill.soon { background: #fdf2f8; color: var(--pink); }
-.predict-pill.ok { background: #f2f0fd; color: var(--violet); }
+.predict-pill.soon { background: #f9e4ea; color: var(--pink); }
+.predict-pill.ok { background: #f3e6df; color: var(--violet); }
 .predict-pill.overdue { background: var(--danger-bg); color: var(--danger); }
 .predict-pill.unknown { background: #f4f4f5; color: var(--ink-soft); }
 
@@ -184,7 +184,7 @@ button, input, select, textarea {
 .edit-link { margin-left: auto; background: none; border: none; color: var(--violet); font-weight: 700; font-size: 13px; cursor: pointer; }
 
 .stats-card {
-  background: linear-gradient(135deg, #f4f0ff, #fdf2f8);
+  background: linear-gradient(135deg, #f7e6da, #fbeef1);
   border-radius: var(--radius);
   padding: 18px;
   margin-bottom: 16px;
@@ -255,7 +255,7 @@ button, input, select, textarea {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(36, 27, 58, 0.55);
+  background: rgba(58, 37, 48, 0.55);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -331,7 +331,7 @@ button, input, select, textarea {
 .color-dot.selected { border-color: var(--ink); }
 
 .share-text-box {
-  background: #f8f6ff;
+  background: #faf1e9;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px 14px;
@@ -377,7 +377,7 @@ button, input, select, textarea {
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  background: #f2f0fd;
+  background: #f5e9de;
   border-radius: 12px;
   padding: 12px 14px;
   font-size: 12px;
