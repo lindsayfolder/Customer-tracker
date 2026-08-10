@@ -1,9 +1,9 @@
-import { useApp } from "../context/AppContext";
-import { UI } from "../data/languages";
+import { useApp, EXPECTED_PRECACHE_ENTRIES } from "../context/AppContext";
+import { UI, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
 
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { lang, settings, updateSettings } = useApp();
+  const { lang, settings, updateSettings, offlineReady, offlineCount } = useApp();
   const t = UI[lang];
 
   return (
@@ -46,6 +46,14 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
                 {choice === "light" ? t.themeLight : choice === "dark" ? t.themeDark : t.themeAuto}
               </button>
             ))}
+          </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-label">{t.offlineStatusLabel}</div>
+          <div className={`offline-status${offlineReady ? " ready" : ""}`}>
+            <span className="dot" />
+            {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: EXPECTED_PRECACHE_ENTRIES })}
           </div>
         </div>
 
