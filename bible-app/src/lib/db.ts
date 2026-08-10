@@ -1,4 +1,3 @@
-import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 import type { LangKey } from "../data/languages";
 
 export interface AppSettings {
@@ -8,30 +7,7 @@ export interface AppSettings {
   lastLang: LangKey;
 }
 
-interface InkverseDB extends DBSchema {
-  settings: {
-    key: string;
-    value: AppSettings;
-  };
-}
-
-const DB_NAME = "inkverse";
-const DB_VERSION = 1;
-
-let dbPromise: Promise<IDBPDatabase<InkverseDB>> | null = null;
-
-function getDb() {
-  if (!dbPromise) {
-    dbPromise = openDB<InkverseDB>(DB_NAME, DB_VERSION, {
-      upgrade(db) {
-        if (!db.objectStoreNames.contains("settings")) {
-          db.createObjectStore("settings", { keyPath: "id" });
-        }
-      },
-    });
-  }
-  return dbPromise;
-}
+const STORAGE_KEY = "inkverse-settings";
 
 export const DEFAULT_SETTINGS: AppSettings = {
   id: "app",
@@ -40,13 +16,28 @@ export const DEFAULT_SETTINGS: AppSettings = {
   lastLang: "en",
 };
 
+// localStorage, not IndexedDB: writes are synchronous and commit
+// immediately, unlike an IndexedDB transaction which resolves on a later
+// microtask/event-loop turn. On an installed ("Add to Home Screen") iOS
+// app, backgrounding or closing the app can kill its process before an
+// in-flight IndexedDB write reaches disk, silently dropping settings
+// changes like font size — a reader would see them "not stick" every
+// time. localStorage's synchronous write has no such window.
 export async function loadSettings(): Promise<AppSettings> {
-  const db = await getDb();
-  const s = await db.get("settings", "app");
-  return s ?? DEFAULT_SETTINGS;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
 }
 
 export async function saveSettings(settings: AppSettings): Promise<void> {
-  const db = await getDb();
-  await db.put("settings", settings);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  } catch {
+    // Storage full or unavailable (e.g. private browsing) — settings
+    // simply won't persist this session, nothing else to do about it.
+  }
 }
