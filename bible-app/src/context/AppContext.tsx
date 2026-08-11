@@ -2,7 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState, ty
 import type { LangKey } from "../data/languages";
 import { UI } from "../data/languages";
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, type AppSettings } from "../lib/db";
-import { getCachedEntryCount, isReadyCount, EXPECTED_PRECACHE_ENTRIES } from "../lib/offlineStatus";
+import { isReadyCount } from "../lib/offlineStatus";
+import { runBulkDownload, TOTAL_CONTENT_FILES } from "../lib/bulkOfflineDownload";
 
 interface AppContextValue {
   lang: LangKey;
@@ -34,33 +35,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  // Polls actual Cache Storage — not just "is a service worker
-  // registered" — since that can be true long before the one-time ~30MB
-  // offline download finishes. Surfaces a real signal in Settings instead
-  // of leaving the reader to guess whether it's safe to go offline yet.
+  // Downloads the offline content library in small resumable batches from
+  // ordinary page code (see lib/bulkOfflineDownload.ts for why this isn't
+  // done as one atomic service-worker install step). Surfaces real
+  // progress in Settings instead of leaving the reader to guess whether
+  // it's safe to go offline yet, and toasts once on the transition to
+  // fully ready.
   useEffect(() => {
     let cancelled = false;
-    let firstCheckDone = false;
     let toastedThisSession = false;
+    let sawNotReady = false;
 
-    async function check() {
-      const count = await getCachedEntryCount();
+    runBulkDownload((done, total) => {
       if (cancelled) return;
-      setOfflineCount(count);
-      const nowReady = isReadyCount(count);
-      if (nowReady && firstCheckDone && !toastedThisSession) {
+      setOfflineCount(done);
+      const nowReady = isReadyCount(done, total);
+      // Only announce the *transition* into ready — a returning reader
+      // who was already fully cached from a previous visit shouldn't get
+      // a "ready!" toast every time they simply open the app.
+      if (!nowReady) sawNotReady = true;
+      if (nowReady && sawNotReady && !toastedThisSession) {
         toastedThisSession = true;
         toast(UI[lang].offlineReadyToast);
       }
-      firstCheckDone = true;
       setOfflineReady(nowReady);
-    }
+    });
 
-    check();
-    const interval = window.setInterval(check, 4000);
     return () => {
       cancelled = true;
-      window.clearInterval(interval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -105,4 +107,4 @@ export function useApp(): AppContextValue {
   return ctx;
 }
 
-export { EXPECTED_PRECACHE_ENTRIES };
+export { TOTAL_CONTENT_FILES };

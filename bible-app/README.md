@@ -33,15 +33,24 @@ is readable immediately, no configuration needed.
 npm run build
 ```
 
-Output goes to `dist/` — the service worker precaches everything (~30 MB:
-app shell, all 66 books × 4 scripture versions, all 66 books × 3 languages
-of AI insights, all 21 book maps) during install, so the app works fully
-offline from the moment install finishes — including for a book, chapter,
-or language a reader has never opened before, not just content they've
-already visited. That one-time download is the deliberate tradeoff for an
-app meant to be installed once (e.g. on a flight, at home on wifi) and read
-anywhere after, with zero live network dependency ever again. Deploy
-`dist/` to any static host with HTTPS: [Vercel](https://vercel.com),
+Output goes to `dist/` — the service worker precaches only the small app
+shell (~300 KB) at install time, so the app boots fast and reliably even
+on iOS Safari, which doesn't guarantee a service worker's install step can
+run indefinitely in the background. The full ~30 MB library (all 66 books
+× 4 scripture versions, all 66 books × 3 languages of AI insights, all 21
+book maps) downloads separately from ordinary page code right after the
+app boots (see `src/lib/bulkOfflineDownload.ts`), in small batches that
+skip anything already cached, pause while the tab is hidden, and retry
+individual failures — so it survives being backgrounded, interrupted, or
+reopened mid-download without losing progress or restarting from zero. A
+live "Downloading… X / 504" → "Ready — works with no connection" status is
+shown in Settings, with a one-time toast on completion. Once finished, the
+app works fully offline, including for a book/chapter/version a reader has
+never opened before, not just content they've already visited — that
+one-time download is the deliberate tradeoff for an app meant to be
+installed once (e.g. on wifi at home) and read anywhere after, with zero
+live network dependency ever again. Deploy `dist/` to any static host with
+HTTPS: [Vercel](https://vercel.com),
 [Netlify](https://netlify.com), or [Cloudflare
 Pages](https://pages.cloudflare.com) all have free tiers that are more than
 enough for this.
@@ -108,15 +117,22 @@ src/
   data/          book list (all 66), language/UI strings, Genesis 1 seed
                  insights
   lib/           scripture.ts (lazy per-book fetch), insights.ts (lazy
-                 per-book AI insights fetch), db.ts (font/theme/language
-                 settings persistence), tts.ts (speech synthesis)
-  context/       app-wide state (language, settings, toast)
-  components/    Drawer, ContentsModal, SearchModal, SettingsModal, etc.
+                 per-book AI insights fetch), maps.ts (lazy per-book map
+                 fetch), bulkOfflineDownload.ts (the resumable one-time
+                 offline download), offlineStatus.ts (ready/not-ready
+                 check for the Settings indicator), db.ts (font/theme/
+                 language settings persistence via localStorage),
+                 tts.ts (speech synthesis)
+  context/       app-wide state (language, settings, toast, offline status)
+  components/    Drawer, ContentsModal, SearchModal, SettingsModal,
+                 MapModal, etc.
   App.tsx        screen layout and navigation
 public/
-  bible/<version>/<bookId>.json     all 66 books × 4 versions, fetched lazily
+  bible/<version>/<bookId>.json     all 66 books × 4 versions
   insights/<lang>/<bookId>.json     all 66 books × 3 languages of AI Deep
-                                     Dive insights, fetched lazily
+                                     Dive insights
+  maps/<bookId>[-zh].svg            21 books × English + bilingual Chinese
+                                     illustrative maps
 scripts/
   gen-icons.mjs        regenerates public/icons/*.png from the SVG mark
   zh-hans-convert.py   derives public/insights/zh-hans from zh-hant via OpenCC

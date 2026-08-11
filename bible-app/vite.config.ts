@@ -38,17 +38,22 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Everything is precached during install — app shell, all 66 books
-        // of scripture in all 4 versions, all 66 books of AI insights in
-        // all 3 languages, and all 21 book maps (~31 MB total, largest
-        // single file ~480 KB, well under Workbox's 2 MB per-file cache
-        // limit). That's a deliberate choice: this app is meant to be
-        // installed once and then read with zero network dependency ever
-        // again, including for a book/chapter/version combination the
-        // reader has never opened before — not just for content already
-        // visited. The one-time install download is the cost of that.
-        globPatterns: ["**/*.{js,css,html,woff2,png,json,svg}"],
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        // Only the small app shell is precached at install time (~300KB) —
+        // deliberately, so the service worker installs fast and reliably
+        // even on iOS Safari, which doesn't guarantee an install event can
+        // run indefinitely in the background. The full ~30MB of scripture/
+        // insights/maps content (all 66 books x 4 versions, all 66 books x
+        // 3 insight languages, all 21 maps) is instead downloaded from
+        // ordinary page code after the app has booted (see
+        // lib/bulkOfflineDownload.ts), in small resumable batches that
+        // write into the exact same cache names these runtime-caching
+        // rules read from — so a lazy fetch from scripture.ts/insights.ts/
+        // maps.ts transparently finds it already cached, same as before.
+        // An earlier version tried to precache everything atomically
+        // inside the install event and got stuck partway on iOS with no
+        // way to resume; this version can pause/resume around backgrounding
+        // and retries failed files individually instead of all-or-nothing.
+        globPatterns: ["**/*.{js,css,html,woff2,png}"],
         runtimeCaching: [
           {
             urlPattern: /\/bible\/.*\.json$/,

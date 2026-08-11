@@ -1,4 +1,4 @@
-import { useApp, EXPECTED_PRECACHE_ENTRIES } from "../context/AppContext";
+import { useApp, TOTAL_CONTENT_FILES } from "../context/AppContext";
 import { UI, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
 
@@ -53,7 +53,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
           <div className="settings-label">{t.offlineStatusLabel}</div>
           <div className={`offline-status${offlineReady ? " ready" : ""}`}>
             <span className="dot" />
-            {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: EXPECTED_PRECACHE_ENTRIES })}
+            {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: TOTAL_CONTENT_FILES })}
           </div>
         </div>
 

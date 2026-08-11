@@ -1,4 +1,4 @@
-const BOOKS_WITH_MAPS = new Set([
+export const BOOKS_WITH_MAPS = new Set([
   "gen", "exo", "num", "jos", "jdg", "rut", "1sa", "2sa", "1ki", "2ki",
   "ezr", "neh", "est", "dan", "jon",
   "mat", "mar", "luk", "joh", "act", "rev",
