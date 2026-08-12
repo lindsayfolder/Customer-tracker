@@ -180,6 +180,25 @@ export default function App() {
             )}
           </div>
 
+          <div className="chapter-nav chapter-nav-top">
+            <button
+              type="button"
+              className="chapter-nav-btn"
+              disabled={!prevTarget}
+              onClick={() => goAdjacent(-1)}
+            >
+              <span aria-hidden="true">&larr;</span> {t.prevChapterLabel}
+            </button>
+            <button
+              type="button"
+              className="chapter-nav-btn next"
+              disabled={!nextTarget}
+              onClick={() => goAdjacent(1)}
+            >
+              {t.nextChapterLabel} <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+
           <div className="tabbar">
             <button type="button" className={`tab-btn${tab === "scripture" ? " active" : ""}`} onClick={() => switchTab("scripture")}>
               {t.tabScripture}

@@ -175,6 +175,7 @@ button { font-family: inherit; }
 .caption-box.callout { border-color: var(--gold); border-style: solid; background: color-mix(in srgb, var(--gold) 10%, var(--paper-panel)); }
 
 .chapter-nav { display: flex; gap: 10px; margin-top: 18px; }
+.chapter-nav-top { margin: 0 0 16px; }
 .chapter-nav-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 14px; padding: 12px 10px; font-weight: 800; font-size: 18.5px; color: var(--ink); cursor: pointer; box-shadow: 3px 3px 0 var(--hairline); }
 .chapter-nav-btn:active { transform: translateY(1px) scale(0.98); box-shadow: 1px 1px 0 var(--hairline); }
 .chapter-nav-btn.next { color: #1c1207; background: var(--gold); }
