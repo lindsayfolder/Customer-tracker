@@ -14,11 +14,16 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
-      // Registered manually in main.tsx via virtual:pwa-register, so a
-      // detected update forces an immediate reload instead of silently
-      // waiting for a future navigation (which was leaving devices running
-      // a stale mix of old/new hashed assets across rapid deploys).
+      // "autoUpdate" makes vite-plugin-pwa's client script silently
+      // auto-activate and reload on its own schedule, which completely
+      // bypasses onNeedRefresh — the manual "Check for updates" / "Update
+      // available" flow in lib/appUpdate.ts would never fire. "prompt" is
+      // required for that flow: a new service worker installs and waits,
+      // onNeedRefresh fires so Settings can show "Update available," and
+      // activation only happens when the reader taps "Update now" (see
+      // main.tsx / lib/appUpdate.ts).
+      registerType: "prompt",
+      // Registered manually in main.tsx via virtual:pwa-register.
       injectRegister: false,
       includeAssets: ["icons/icon-192.png", "icons/icon-512.png"],
       manifest: {
