@@ -49,7 +49,15 @@ app works fully offline, including for a book/chapter/version a reader has
 never opened before, not just content they've already visited — that
 one-time download is the deliberate tradeoff for an app meant to be
 installed once (e.g. on wifi at home) and read anywhere after, with zero
-live network dependency ever again. Deploy `dist/` to any static host with
+live network dependency ever again.
+
+Future redeploys don't need reinstalling. The app detects a new build in
+the background and shows an **"Update available"** button in Settings ("App
+updates" section, next to "Offline copy") rather than reloading on its own —
+a silent reload could interrupt someone mid-chapter. Tap it to apply the new
+version (reloads once). There's also a manual "Check for updates" button
+for confirming you're current without waiting for the browser's own
+periodic check. See `src/lib/appUpdate.ts`. Deploy `dist/` to any static host with
 HTTPS: [Vercel](https://vercel.com),
 [Netlify](https://netlify.com), or [Cloudflare
 Pages](https://pages.cloudflare.com) all have free tiers that are more than
@@ -120,9 +128,10 @@ src/
                  per-book AI insights fetch), maps.ts (lazy per-book map
                  fetch), bulkOfflineDownload.ts (the resumable one-time
                  offline download), offlineStatus.ts (ready/not-ready
-                 check for the Settings indicator), db.ts (font/theme/
-                 language settings persistence via localStorage),
-                 tts.ts (speech synthesis)
+                 check for the Settings indicator), appUpdate.ts (manual
+                 "check for updates" / "update available" state for
+                 Settings), db.ts (font/theme/language settings
+                 persistence via localStorage), tts.ts (speech synthesis)
   context/       app-wide state (language, settings, toast, offline status)
   components/    Drawer, ContentsModal, SearchModal, SettingsModal,
                  MapModal, etc.

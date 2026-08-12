@@ -47,6 +47,12 @@ export interface UiStrings {
   offlinePreparingTpl: string;
   offlineReadyLabel: string;
   offlineReadyToast: string;
+  updateStatusLabel: string;
+  updateCheckButton: string;
+  updateCheckingLabel: string;
+  updateUpToDateLabel: string;
+  updateAvailableLabel: string;
+  updateApplyButton: string;
   prevChapterLabel: string;
   nextChapterLabel: string;
 }
@@ -92,6 +98,12 @@ export const UI: Record<LangKey, UiStrings> = {
     offlinePreparingTpl: "Downloading… {n} / {total} — keep this open on wifi",
     offlineReadyLabel: "Ready — works with no connection",
     offlineReadyToast: "Offline copy ready — you can go offline now.",
+    updateStatusLabel: "App updates",
+    updateCheckButton: "Check for updates",
+    updateCheckingLabel: "Checking…",
+    updateUpToDateLabel: "You're on the latest version",
+    updateAvailableLabel: "Update available",
+    updateApplyButton: "Update now",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
@@ -135,6 +147,12 @@ export const UI: Record<LangKey, UiStrings> = {
     offlinePreparingTpl: "Downloading… {n} / {total} — keep this open on wifi",
     offlineReadyLabel: "Ready — works with no connection",
     offlineReadyToast: "Offline copy ready — you can go offline now.",
+    updateStatusLabel: "App updates",
+    updateCheckButton: "Check for updates",
+    updateCheckingLabel: "Checking…",
+    updateUpToDateLabel: "You're on the latest version",
+    updateAvailableLabel: "Update available",
+    updateApplyButton: "Update now",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
   },
@@ -178,6 +196,12 @@ export const UI: Record<LangKey, UiStrings> = {
     offlinePreparingTpl: "下載中…… {n} / {total}——請保持開啟並連線 Wi-Fi",
     offlineReadyLabel: "已就緒——無需連線即可使用",
     offlineReadyToast: "離線內容已下載完成，現在可以離線使用了。",
+    updateStatusLabel: "應用程式更新",
+    updateCheckButton: "檢查更新",
+    updateCheckingLabel: "檢查中……",
+    updateUpToDateLabel: "目前已是最新版本",
+    updateAvailableLabel: "有可用更新",
+    updateApplyButton: "立即更新",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
   },
@@ -221,6 +245,12 @@ export const UI: Record<LangKey, UiStrings> = {
     offlinePreparingTpl: "下载中…… {n} / {total}——请保持开启并连接 Wi-Fi",
     offlineReadyLabel: "已就绪——无需联网即可使用",
     offlineReadyToast: "离线内容已下载完成，现在可以离线使用了。",
+    updateStatusLabel: "应用更新",
+    updateCheckButton: "检查更新",
+    updateCheckingLabel: "检查中……",
+    updateUpToDateLabel: "目前已是最新版本",
+    updateAvailableLabel: "有可用更新",
+    updateApplyButton: "立即更新",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
   },

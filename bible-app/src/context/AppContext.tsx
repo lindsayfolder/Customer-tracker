@@ -4,6 +4,7 @@ import { UI } from "../data/languages";
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, type AppSettings } from "../lib/db";
 import { isReadyCount } from "../lib/offlineStatus";
 import { runBulkDownload, TOTAL_CONTENT_FILES } from "../lib/bulkOfflineDownload";
+import { applyUpdate, checkForUpdate, getUpdateState, subscribeUpdateState } from "../lib/appUpdate";
 
 interface AppContextValue {
   lang: LangKey;
@@ -14,6 +15,10 @@ interface AppContextValue {
   toastMsg: string | null;
   offlineReady: boolean;
   offlineCount: number;
+  updateAvailable: boolean;
+  checkingForUpdate: boolean;
+  checkForUpdate: () => void;
+  applyUpdate: () => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -26,6 +31,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [offlineReady, setOfflineReady] = useState(false);
   const [offlineCount, setOfflineCount] = useState(0);
+  const [updateState, setUpdateState] = useState(getUpdateState());
 
   useEffect(() => {
     loadSettings().then((s) => {
@@ -67,6 +73,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => subscribeUpdateState(() => setUpdateState(getUpdateState())), []);
+
   const setLang = useCallback(
     (l: LangKey) => {
       setLangState(l);
@@ -94,7 +102,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   return (
     <AppContext.Provider
-      value={{ lang, setLang, settings, updateSettings, toast, toastMsg, offlineReady, offlineCount }}
+      value={{
+        lang,
+        setLang,
+        settings,
+        updateSettings,
+        toast,
+        toastMsg,
+        offlineReady,
+        offlineCount,
+        updateAvailable: updateState.available,
+        checkingForUpdate: updateState.checking,
+        checkForUpdate,
+        applyUpdate,
+      }}
     >
       {children}
     </AppContext.Provider>

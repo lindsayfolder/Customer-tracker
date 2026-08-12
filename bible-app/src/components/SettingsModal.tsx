@@ -3,7 +3,17 @@ import { UI, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
 
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { lang, settings, updateSettings, offlineReady, offlineCount } = useApp();
+  const {
+    lang,
+    settings,
+    updateSettings,
+    offlineReady,
+    offlineCount,
+    updateAvailable,
+    checkingForUpdate,
+    checkForUpdate,
+    applyUpdate,
+  } = useApp();
   const t = UI[lang];
 
   return (
@@ -55,6 +65,22 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
             <span className="dot" />
             {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: TOTAL_CONTENT_FILES })}
           </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-label">{t.updateStatusLabel}</div>
+          {updateAvailable ? (
+            <button type="button" className="update-btn available" onClick={() => applyUpdate()}>
+              {t.updateAvailableLabel} — {t.updateApplyButton}
+            </button>
+          ) : (
+            <button type="button" className="update-btn" disabled={checkingForUpdate} onClick={() => checkForUpdate()}>
+              {checkingForUpdate ? t.updateCheckingLabel : t.updateCheckButton}
+            </button>
+          )}
+          {!updateAvailable && !checkingForUpdate && (
+            <div className="update-hint">{t.updateUpToDateLabel}</div>
+          )}
         </div>
 
         <div className="settings-section">

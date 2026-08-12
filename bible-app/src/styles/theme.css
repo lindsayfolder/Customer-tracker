@@ -251,6 +251,11 @@ button { font-family: inherit; }
 .offline-status.ready .dot { background: var(--gold); animation: none; }
 @keyframes offline-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
+.update-btn { width: 100%; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 12px; padding: 11px 13px; font-weight: 800; font-size: 12.5px; color: var(--ink); cursor: pointer; }
+.update-btn:disabled { opacity: 0.55; cursor: default; }
+.update-btn.available { border-color: var(--gold); background: var(--gold); color: #1c1207; }
+.update-hint { margin-top: 8px; font-size: 11.5px; font-weight: 700; color: var(--ink-faint); }
+
 .toast { position: fixed; left: 50%; bottom: max(env(safe-area-inset-bottom), 18px); transform: translate(-50%, 12px); background: var(--ink); color: var(--paper); font-weight: 700; font-size: 12px; padding: 9px 16px; border-radius: 20px; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 30; max-width: 82%; text-align: center; box-shadow: 0 8px 20px var(--shadow); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
