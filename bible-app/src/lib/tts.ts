@@ -8,6 +8,39 @@ class TtsController {
     typeof window !== "undefined" && "speechSynthesis" in window ? window.speechSynthesis : null;
   private activeId: string | null = null;
   private listeners = new Map<string, Set<Listener>>();
+  private wakeLock: WakeLockSentinel | null = null;
+
+  constructor() {
+    if (typeof document !== "undefined") {
+      // The Wake Lock API auto-releases when the tab is hidden, so a
+      // re-lock is needed on return — this is what actually stops "screen
+      // went dark, reading stopped": without holding the screen awake, the
+      // OS auto-dims/locks after inactivity and the phone suspends page JS,
+      // which silently kills mid-chapter speech synthesis.
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && this.activeId && this.synth?.speaking) {
+          this.acquireWakeLock();
+        }
+      });
+    }
+  }
+
+  private async acquireWakeLock() {
+    try {
+      if ("wakeLock" in navigator) {
+        this.wakeLock = await navigator.wakeLock.request("screen");
+      }
+    } catch {
+      // Not supported, or the OS denied it — Listen still works, it just
+      // won't survive the screen auto-dimming.
+    }
+  }
+
+  private releaseWakeLock() {
+    const lock = this.wakeLock;
+    this.wakeLock = null;
+    lock?.release().catch(() => {});
+  }
 
   get isSupported(): boolean {
     return this.synth !== null;
@@ -39,6 +72,7 @@ class TtsController {
   stop() {
     if (!this.synth) return;
     this.synth.cancel();
+    this.releaseWakeLock();
     const prev = this.activeId;
     this.activeId = null;
     if (prev) this.notify(prev, false);
@@ -59,14 +93,17 @@ class TtsController {
     utter.rate = 0.95;
     utter.onend = () => {
       this.activeId = null;
+      this.releaseWakeLock();
       this.notify(id, false);
     };
     utter.onerror = () => {
       this.activeId = null;
+      this.releaseWakeLock();
       this.notify(id, false);
     };
     this.activeId = id;
     this.notify(id, true);
+    this.acquireWakeLock();
     this.synth.speak(utter);
   }
 }
