@@ -31,7 +31,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
             className="settings-slider"
             type="range"
             min={0.85}
-            max={1.35}
+            max={2.2}
             step={0.05}
             value={settings.fontScale}
             onChange={(e) => {
