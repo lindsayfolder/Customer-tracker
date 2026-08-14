@@ -69,8 +69,8 @@ export default function HomeScreen() {
       />
       <OfflineBanner isOnline={isOnline} />
       <View style={styles.header}>
-        <Text style={[styles.logo, { color: theme.text }]}>MIT CS</Text>
-        <Text style={[styles.subtitle, { color: theme.subtext }]}>Learn computer science from MIT's curriculum</Text>
+        <Text style={[styles.logo, { color: theme.text }]}>CS Courses</Text>
+        <Text style={[styles.subtitle, { color: theme.subtext }]}>Learn computer science — algorithms, math, AI and more</Text>
       </View>
       <FlatList
         data={courses}
