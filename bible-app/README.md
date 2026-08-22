@@ -147,15 +147,21 @@ public/
                                      below the 3 trimmed insight points on
                                      the same Insights tab: a summary,
                                      themes, key verses, and a personal
-                                     application line. English and
-                                     Traditional Chinese are hand-written
-                                     the same way the insights are;
-                                     Simplified Chinese is reserved for
-                                     real DeepSeek-generated content rather
-                                     than an OpenCC conversion, so it reads
-                                     as a genuinely distinct AI voice. Only
-                                     a Genesis 1-3 pilot exists so far —
-                                     not yet in the bulk offline download.
+                                     application line. Simplified Chinese
+                                     is the source of truth here — real
+                                     DeepSeek-generated content (see
+                                     scripts/generate_deepseek_explain.py,
+                                     run locally since this content
+                                     pipeline needs live API access).
+                                     Traditional Chinese is mechanically
+                                     derived from it via OpenCC (see
+                                     scripts/explain-zhhant-convert.py);
+                                     English is a faithful translation of
+                                     the same Simplified Chinese content,
+                                     so all four language tabs say the
+                                     same thing. Only a Genesis 1-3 pilot
+                                     exists so far — not yet in the bulk
+                                     offline download.
   maps/<bookId>[-zh].svg            21 books × English + bilingual Chinese
                                      illustrative maps
 scripts/
