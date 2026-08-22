@@ -87,6 +87,21 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          {
+            // Second AI-explanation track (lib/explain.ts). Not yet in the
+            // bulk offline manifest — only Genesis 1-3 (en/zh-hant) exists
+            // so far, and pre-fetching 66 books' worth of 404s would stall
+            // the offline-ready progress bar. This rule still lets whatever
+            // does exist get cached for offline reuse after a normal visit,
+            // same as insights/maps before the bulk downloader existed.
+            urlPattern: /\/explain\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-explain",
+              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
         ],
       },
     }),

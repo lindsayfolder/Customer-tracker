@@ -55,6 +55,8 @@ export interface UiStrings {
   updateApplyButton: string;
   prevChapterLabel: string;
   nextChapterLabel: string;
+  explainSectionLabel: string;
+  explainApplicationLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -62,7 +64,7 @@ export const UI: Record<LangKey, UiStrings> = {
     chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
-    sectionLeft: "5 Main Points",
+    sectionLeft: "3 Main Points",
     sectionRight: "AI-drawn",
     aiTag: "AI deep dive",
     backTab: "Back to chapter",
@@ -106,12 +108,14 @@ export const UI: Record<LangKey, UiStrings> = {
     updateApplyButton: "Update now",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
+    explainSectionLabel: "Further Insight",
+    explainApplicationLabel: "Application:",
   },
   web: {
     chapterEyebrow: "{book} · Chapter {c}",
     tabScripture: "Scripture",
     tabInsights: "Insights",
-    sectionLeft: "5 Main Points",
+    sectionLeft: "3 Main Points",
     sectionRight: "AI-drawn",
     aiTag: "AI deep dive",
     backTab: "Back to chapter",
@@ -155,12 +159,14 @@ export const UI: Record<LangKey, UiStrings> = {
     updateApplyButton: "Update now",
     prevChapterLabel: "Previous",
     nextChapterLabel: "Next",
+    explainSectionLabel: "Further Insight",
+    explainApplicationLabel: "Application:",
   },
   "zh-hant": {
     chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "經文",
     tabInsights: "洞見",
-    sectionLeft: "五個要點",
+    sectionLeft: "三個要點",
     sectionRight: "AI 生成",
     aiTag: "AI 深度解析",
     backTab: "返回本章",
@@ -204,12 +210,14 @@ export const UI: Record<LangKey, UiStrings> = {
     updateApplyButton: "立即更新",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
+    explainSectionLabel: "延伸解讀",
+    explainApplicationLabel: "應用：",
   },
   "zh-hans": {
     chapterEyebrow: "{book} · 第 {c} 章",
     tabScripture: "经文",
     tabInsights: "洞见",
-    sectionLeft: "五个要点",
+    sectionLeft: "三个要点",
     sectionRight: "AI 生成",
     aiTag: "AI 深度解析",
     backTab: "返回本章",
@@ -253,6 +261,8 @@ export const UI: Record<LangKey, UiStrings> = {
     updateApplyButton: "立即更新",
     prevChapterLabel: "上一章",
     nextChapterLabel: "下一章",
+    explainSectionLabel: "延伸解读",
+    explainApplicationLabel: "应用：",
   },
 };
 

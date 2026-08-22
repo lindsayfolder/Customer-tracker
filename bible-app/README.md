@@ -125,7 +125,9 @@ src/
   data/          book list (all 66), language/UI strings, Genesis 1 seed
                  insights
   lib/           scripture.ts (lazy per-book fetch), insights.ts (lazy
-                 per-book AI insights fetch), maps.ts (lazy per-book map
+                 per-book AI insights fetch), explain.ts (lazy per-book
+                 fetch for the second, summary/themes/application-style AI
+                 explanation — see below), maps.ts (lazy per-book map
                  fetch), bulkOfflineDownload.ts (the resumable one-time
                  offline download), offlineStatus.ts (ready/not-ready
                  check for the Settings indicator), appUpdate.ts (manual
@@ -139,7 +141,21 @@ src/
 public/
   bible/<version>/<bookId>.json     all 66 books × 4 versions
   insights/<lang>/<bookId>.json     all 66 books × 3 languages of AI Deep
-                                     Dive insights
+                                     Dive insights (trimmed to the first 3
+                                     points on screen — see explain/ below)
+  explain/<lang>/<bookId>.json      second AI-explanation track, merged
+                                     below the 3 trimmed insight points on
+                                     the same Insights tab: a summary,
+                                     themes, key verses, and a personal
+                                     application line. English and
+                                     Traditional Chinese are hand-written
+                                     the same way the insights are;
+                                     Simplified Chinese is reserved for
+                                     real DeepSeek-generated content rather
+                                     than an OpenCC conversion, so it reads
+                                     as a genuinely distinct AI voice. Only
+                                     a Genesis 1-3 pilot exists so far —
+                                     not yet in the bulk offline download.
   maps/<bookId>[-zh].svg            21 books × English + bilingual Chinese
                                      illustrative maps
 scripts/

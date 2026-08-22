@@ -48,7 +48,7 @@ await page.click(".tab-btn:nth-child(2)"); // Insights tab
 await page.waitForTimeout(200);
 await page.screenshot({ path: "/tmp/full-john3-insights.png" });
 const pointCount = await page.locator(".point-card").count();
-if (pointCount !== 5) errors.push(`John 3 should show 5 pre-generated insight points, got ${pointCount}`);
+if (pointCount !== 3) errors.push(`John 3 should show 3 pre-generated insight points, got ${pointCount}`);
 
 // WEB version, Psalm 23
 await page.click(".lang-pill:has-text('WEB')");

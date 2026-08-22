@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useApp } from "./context/AppContext";
 import { UI, LANGUAGES, fmt, type LangKey } from "./data/languages";
 import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
+import type { ChapterExplain } from "./data/explain";
 import { BOOKS } from "./data/books";
 import { ListenButton } from "./components/ListenButton";
 import { Drawer } from "./components/Drawer";
@@ -12,6 +13,7 @@ import { MapModal } from "./components/MapModal";
 import { Toast } from "./components/Toast";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
+import { loadChapterExplain } from "./lib/explain";
 import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
 
@@ -30,6 +32,7 @@ export default function App() {
   const [mapOpen, setMapOpen] = useState(false);
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
+  const [explain, setExplain] = useState<ChapterExplain | null>(null);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
 
@@ -75,6 +78,20 @@ export default function App() {
       }
     }
     load();
+    return () => {
+      cancelled = true;
+    };
+  }, [bookId, chapter, lang]);
+
+  // Second AI voice (see lib/explain.ts): summary/themes/application style,
+  // merged below the trimmed 3-point list rather than a separate tab. Not
+  // every chapter/language is covered yet, so this quietly resolves to
+  // null and the section is simply omitted.
+  useEffect(() => {
+    let cancelled = false;
+    loadChapterExplain(bookId, chapter, lang).then((e) => {
+      if (!cancelled) setExplain(e);
+    });
     return () => {
       cancelled = true;
     };
@@ -233,7 +250,7 @@ export default function App() {
               </div>
               {points ? (
                 <div className="point-list">
-                  {points.map((p, i) => (
+                  {points.slice(0, 3).map((p, i) => (
                     <button key={i} type="button" className="point-card" onClick={() => openDetail(i)}>
                       <div className="point-num">{i + 1}</div>
                       <div className="point-body">
@@ -248,6 +265,36 @@ export default function App() {
                 </div>
               ) : (
                 <div className="empty-note">{t.loadingLabel}</div>
+              )}
+              {explain && (
+                <div className="explain-block">
+                  <div className="section-label">
+                    <span>{t.explainSectionLabel}</span>
+                  </div>
+                  <div className="caption-box">{explain.summary}</div>
+                  {explain.themes.length > 0 && (
+                    <div className="tag-row">
+                      {explain.themes.map((th) => (
+                        <span key={th} className="theme-tag">{th}</span>
+                      ))}
+                    </div>
+                  )}
+                  <ul className="explain-points">
+                    {explain.keyPoints.map((kp, i) => (
+                      <li key={i}>{kp}</li>
+                    ))}
+                  </ul>
+                  {explain.keyVerses.length > 0 && (
+                    <div className="tag-row">
+                      {explain.keyVerses.map((v) => (
+                        <span key={v} className="verse-tag">{v}</span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="caption-box callout">
+                    <b>{t.explainApplicationLabel}</b> {explain.application}
+                  </div>
+                </div>
               )}
             </div>
           )}

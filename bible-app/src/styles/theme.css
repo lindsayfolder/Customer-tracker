@@ -158,6 +158,13 @@ button { font-family: inherit; }
 .point-teaser { font-size: calc(12px * var(--font-scale, 1)); color: var(--ink-soft); line-height: 1.4; margin: 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .point-arrow { flex: none; font-family: "Bangers", sans-serif; color: var(--azure); font-size: 18px; }
 
+.explain-block { margin-top: 20px; padding-top: 18px; border-top: 3px solid var(--ink); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.theme-tag { font-size: 13.5px; font-weight: 800; color: var(--azure); background: var(--azure-soft); border-radius: 20px; padding: 4px 11px; }
+.verse-tag { font-size: 13.5px; font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 2px solid var(--ink); border-radius: 20px; padding: 3px 10px; font-variant-numeric: tabular-nums; }
+.explain-points { margin: 10px 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; }
+.explain-points li { font-size: calc(13.5px * var(--font-scale, 1)); line-height: 1.6; color: var(--ink); }
+
 .view.detail { transform: translateX(100%); opacity: 0; pointer-events: none; }
 .view.list.is-hidden { transform: translateX(-30%); opacity: 0; pointer-events: none; }
 .view.detail.is-active { transform: translateX(0); opacity: 1; pointer-events: auto; }
