@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 """Derive Traditional Chinese "explain" (DeepSeek-track) files from the
-Simplified Chinese ones via OpenCC (s2twp — Taiwan-standard phrasing).
+Simplified Chinese ones via OpenCC (s2tw — Taiwan-standard characters,
+WITHOUT the "wp" phrase-vocabulary substitution layer).
+
+IMPORTANT: this deliberately does NOT use s2twp. s2twp applies a Taiwan
+regional-vocabulary dictionary on top of script conversion (e.g. 软件 ->
+軟體), and it has been observed to badly misfire on ordinary prose that
+happens to contain a substring matching a tech/IT term: "士师时代"
+(the Judges era) became "計程車師時代" ("taxi-driver era", because "的士"
+= taxi slang got matched across a word boundary), and "保存生命"
+(preserve life) became "儲存生命" ("save/store data", a computing verb).
+Both are same-length substitutions a character-level audit alone won't
+catch. s2tw keeps the same correct Taiwan character preferences (為 not
+爲, 裡 not 里, etc.) without this phrase-substitution risk.
 
 This is the reverse direction of scripts/zh-hans-convert.py: there, the
 Traditional file is the hand-sourced original and Simplified is the
@@ -29,7 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "explain" / "zh-hans"
 DST = ROOT / "public" / "explain" / "zh-hant"
 
-converter = opencc.OpenCC("s2twp")
+converter = opencc.OpenCC("s2tw")
 
 # Known-safe corrections for this content domain (devotional Bible
 # commentary never discusses corporate mergers/acquisitions, so blindly
