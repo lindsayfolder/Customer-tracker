@@ -46,6 +46,7 @@ POST_FIXES = {
     "併賜": "並賜",
     "地面幹了": "地面乾了",
     "幹了": "乾了",  # "X幹了" almost always means dried up (乾), not "did X" (幹), in this content
+    "儘性": "盡性",  # "尽心尽性尽力" (with all heart/soul/strength) always means "to the utmost" (盡), never "as much as possible" (儘)
 }
 
 
