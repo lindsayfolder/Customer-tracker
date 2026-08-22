@@ -4,12 +4,18 @@ Generates the Simplified Chinese "DeepSeek explanation" content for
 Inkverse using DeepSeek's API. Only needs Python 3 (built into macOS;
 on Windows install from python.org if `python3 --version` fails).
 
-Usage (no arguments needed for the Genesis 1-3 pilot):
-    python3 generate_deepseek_explain.py
+Usage — generates the WHOLE book by default:
+    python3 generate_deepseek_explain.py <book_id>
+    e.g. python3 generate_deepseek_explain.py exo
 
-To generate a different book/chapter range later:
+To generate just part of a book:
     python3 generate_deepseek_explain.py <book_id> <start_chapter> <end_chapter>
     e.g. python3 generate_deepseek_explain.py exo 1 10
+
+Saves progress to disk after EVERY chapter (not just at the end), and
+picks up where it left off if you run the same command again — so it's
+safe to stop partway (closing the laptop, Ctrl+C, a dropped connection)
+without losing anything already generated.
 
 Your API key is asked for at runtime (not stored in this file). Output is
 saved to a JSON file in the current folder AND printed to the screen —
@@ -126,38 +132,63 @@ def call_deepseek(api_key, book_name, chapter, attempt=1):
 
 def main():
     args = sys.argv[1:]
-    book_id = args[0] if len(args) > 0 else "gen"
-    start_ch = int(args[1]) if len(args) > 1 else 1
-    end_ch = int(args[2]) if len(args) > 2 else 3
-
+    if not args:
+        print("Usage: python3 generate_deepseek_explain.py <book_id> [start_chapter] [end_chapter]")
+        print(f"Valid book ids: {', '.join(BOOKS.keys())}")
+        sys.exit(1)
+    book_id = args[0]
     if book_id not in BOOKS:
         print(f"Unknown book id '{book_id}'. Valid ids: {', '.join(BOOKS.keys())}")
         sys.exit(1)
     book_name, total_chapters = BOOKS[book_id]
+    start_ch = int(args[1]) if len(args) > 1 else 1
+    end_ch = int(args[2]) if len(args) > 2 else total_chapters
     end_ch = min(end_ch, total_chapters)
 
-    print(f"Generating {book_name} ({book_id}) chapters {start_ch}-{end_ch} of {total_chapters} total...")
+    out_path = f"{book_id}_explain_zhhans.json"
+    chapters = [None] * total_chapters
+    already_done = 0
+    try:
+        with open(out_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+        existing_chapters = existing.get("chapters", [])
+        for i, c in enumerate(existing_chapters[:total_chapters]):
+            if c is not None:
+                chapters[i] = c
+                already_done += 1
+        if already_done:
+            print(f"Found {out_path} already here with {already_done} chapter(s) done — resuming, skipping those.")
+    except FileNotFoundError:
+        pass
+    except (json.JSONDecodeError, KeyError):
+        print(f"Warning: {out_path} exists but couldn't be read, starting fresh for this file.")
+
+    todo = [ch for ch in range(start_ch, end_ch + 1) if chapters[ch - 1] is None]
+    if not todo:
+        print(f"All requested chapters ({start_ch}-{end_ch}) of {book_name} are already done in {out_path}.")
+        sys.exit(0)
+
+    print(f"Generating {book_name} ({book_id}): {len(todo)} chapter(s) remaining out of {start_ch}-{end_ch} ({total_chapters} total in book)...")
     api_key = getpass.getpass("Paste your DeepSeek API key (input hidden) and press Enter: ").strip()
     if not api_key:
         print("No key entered, stopping.")
         sys.exit(1)
 
-    chapters = [None] * total_chapters
-    for ch in range(start_ch, end_ch + 1):
-        print(f"  chapter {ch}/{end_ch}...", end=" ", flush=True)
+    for ch in todo:
+        print(f"  chapter {ch} ({todo.index(ch) + 1}/{len(todo)})...", end=" ", flush=True)
         result = call_deepseek(api_key, book_name, ch)
         chapters[ch - 1] = result
         print("done")
+        # Save after every chapter, not just at the end, so nothing is lost
+        # if this gets interrupted partway through a long book.
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump({"id": book_id, "chapters": chapters}, f, ensure_ascii=False, indent=2)
 
-    output = {"id": book_id, "chapters": chapters}
-    out_path = f"{book_id}_explain_zhhans.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print(f"\nSaved to {out_path} in this folder.")
-    print("Send that file (or paste its contents) back to Claude to add to the app.\n")
-    print("--- preview of chapter", start_ch, "---")
-    print(json.dumps(chapters[start_ch - 1], ensure_ascii=False, indent=2))
+    filled = sum(1 for c in chapters if c is not None)
+    print(f"\nSaved to {out_path} in this folder ({filled}/{total_chapters} chapters of {book_name} filled).")
+    print("Send that file (or paste its contents) back to Claude to add to the app.")
+    if filled < total_chapters:
+        print(f"Run the exact same command again any time to continue with the rest of {book_name}.")
 
 
 if __name__ == "__main__":
