@@ -44,6 +44,8 @@ POST_FIXES = {
     "併應": "並應",
     "併設": "並設",
     "併賜": "並賜",
+    "地面幹了": "地面乾了",
+    "幹了": "乾了",  # "X幹了" almost always means dried up (乾), not "did X" (幹), in this content
 }
 
 
