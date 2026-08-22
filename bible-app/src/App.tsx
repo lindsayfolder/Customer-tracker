@@ -271,6 +271,10 @@ export default function App() {
                   <div className="section-label">
                     <span>{t.explainSectionLabel}</span>
                   </div>
+                  <ListenButton
+                    id="explain"
+                    text={[explain.summary, ...explain.keyPoints, explain.application].join(" ")}
+                  />
                   <div className="caption-box">{explain.summary}</div>
                   {explain.themes.length > 0 && (
                     <div className="tag-row">
