@@ -36,6 +36,8 @@
   --hairline: rgba(28, 26, 23, 0.14);
   --shadow: rgba(28, 26, 23, 0.22);
   --page-bg: #d9cfb6;
+  --ot-panel: #f7ecd6;
+  --nt-panel: #e6eef3;
 }
 
 :root[data-theme="dark"] {
@@ -51,6 +53,8 @@
   --hairline: rgba(243, 237, 224, 0.16);
   --shadow: rgba(0, 0, 0, 0.55);
   --page-bg: #100f14;
+  --ot-panel: #2e2716;
+  --nt-panel: #1b2830;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -67,6 +71,8 @@
     --hairline: rgba(243, 237, 224, 0.16);
     --shadow: rgba(0, 0, 0, 0.55);
     --page-bg: #100f14;
+    --ot-panel: #2e2716;
+    --nt-panel: #1b2830;
   }
 }
 
@@ -209,11 +215,16 @@ button { font-family: inherit; }
 
 .book-strip { flex: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: var(--paper); border-bottom: 2px solid var(--hairline); }
 .book-chip { flex: none; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 11px; font-weight: 800; font-size: 18px; color: var(--gold-strong); white-space: nowrap; cursor: pointer; transition: transform 0.1s ease, background 0.1s ease; }
+.book-chip.ot { background: var(--ot-panel); }
+.book-chip.nt { background: var(--nt-panel); color: var(--azure); }
 .book-chip:active { background: var(--gold); color: #1c1207; transform: scale(0.94); }
 
 .book-rows { display: flex; flex-direction: column; gap: 8px; }
 .book-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .book-cell { border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 12px; padding: 10px 4px; text-align: center; cursor: pointer; transition: transform 0.1s ease, background 0.1s ease; }
+.book-cell.ot { background: var(--ot-panel); }
+.book-cell.nt { background: var(--nt-panel); }
+.book-cell.nt .glyph { color: var(--azure); }
 .book-cell:active { background: var(--gold); transform: translateY(1px) scale(0.96); }
 .book-cell:active .glyph, .book-cell:active .code { color: #1c1207; }
 .book-cell .glyph { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 17px; display: block; color: var(--gold-strong); }

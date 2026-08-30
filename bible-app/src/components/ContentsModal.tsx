@@ -59,7 +59,12 @@ export function ContentsModal({
         <>
           <div className="book-strip">
             {BOOKS.map((b) => (
-              <button key={b.id} type="button" className="book-chip" onClick={() => openBook(b.id)}>
+              <button
+                key={b.id}
+                type="button"
+                className={`book-chip ${b.testament === "OT" ? "ot" : "nt"}`}
+                onClick={() => openBook(b.id)}
+              >
                 {bookAbbr(b, lang)}
               </button>
             ))}
@@ -71,7 +76,12 @@ export function ContentsModal({
               {ROWS.map((rowBooks, rowIndex) => (
                 <div className="book-row" key={rowIndex}>
                   {rowBooks.map((b) => (
-                    <button key={b.id} type="button" className="book-cell" onClick={() => openBook(b.id)}>
+                    <button
+                      key={b.id}
+                      type="button"
+                      className={`book-cell ${b.testament === "OT" ? "ot" : "nt"}`}
+                      onClick={() => openBook(b.id)}
+                    >
                       <span className="glyph">{bookAbbr(b, lang)}</span>
                       <span className="code">{b.id.slice(0, 3).toUpperCase()}</span>
                     </button>

@@ -80,7 +80,85 @@ export const BOOKS: BookMeta[] = [
   { id: "rev", chapters: 22, testament: "NT", label: { en: "Revelation", web: "Revelation", "zh-hant": "啟示錄", "zh-hans": "启示录" } },
 ];
 
+// Standard one/two-character Chinese Bible book abbreviations (the
+// convention used across Chinese Bible apps/print editions), keyed by book
+// id. Mechanically slicing book.label to its first character (the old
+// approach) collides badly: 约伯记/约珥书/约拿书/约书亚记/约翰福音/约翰一书/
+// 二书/三书 would all abbreviate to "约", and every "上/下" or "前/后" pair
+// (撒母耳记上/下, 列王纪上/下, 历代志上/下, 哥林多前/后书, 帖撒罗尼迦前/后书,
+// 提摩太前/后书, 彼得前/后书) would collapse into one indistinguishable
+// character. This table disambiguates the same way standard references do.
+const ABBR: Record<string, { hans: string; hant: string }> = {
+  gen: { hans: "创", hant: "創" },
+  exo: { hans: "出", hant: "出" },
+  lev: { hans: "利", hant: "利" },
+  num: { hans: "民", hant: "民" },
+  deu: { hans: "申", hant: "申" },
+  jos: { hans: "书", hant: "書" },
+  jdg: { hans: "士", hant: "士" },
+  rut: { hans: "得", hant: "得" },
+  "1sa": { hans: "撒上", hant: "撒上" },
+  "2sa": { hans: "撒下", hant: "撒下" },
+  "1ki": { hans: "王上", hant: "王上" },
+  "2ki": { hans: "王下", hant: "王下" },
+  "1ch": { hans: "代上", hant: "代上" },
+  "2ch": { hans: "代下", hant: "代下" },
+  ezr: { hans: "拉", hant: "拉" },
+  neh: { hans: "尼", hant: "尼" },
+  est: { hans: "斯", hant: "斯" },
+  job: { hans: "伯", hant: "伯" },
+  psa: { hans: "诗", hant: "詩" },
+  pro: { hans: "箴", hant: "箴" },
+  ecc: { hans: "传", hant: "傳" },
+  sos: { hans: "歌", hant: "歌" },
+  isa: { hans: "赛", hant: "賽" },
+  jer: { hans: "耶", hant: "耶" },
+  lam: { hans: "哀", hant: "哀" },
+  eze: { hans: "结", hant: "結" },
+  dan: { hans: "但", hant: "但" },
+  hos: { hans: "何", hant: "何" },
+  joe: { hans: "珥", hant: "珥" },
+  amo: { hans: "摩", hant: "摩" },
+  oba: { hans: "俄", hant: "俄" },
+  jon: { hans: "拿", hant: "拿" },
+  mic: { hans: "弥", hant: "彌" },
+  nah: { hans: "鸿", hant: "鴻" },
+  hab: { hans: "哈", hant: "哈" },
+  zep: { hans: "番", hant: "番" },
+  hag: { hans: "该", hant: "該" },
+  zec: { hans: "亚", hant: "亞" },
+  mal: { hans: "玛", hant: "瑪" },
+  mat: { hans: "太", hant: "太" },
+  mar: { hans: "可", hant: "可" },
+  luk: { hans: "路", hant: "路" },
+  joh: { hans: "约", hant: "約" },
+  act: { hans: "徒", hant: "徒" },
+  rom: { hans: "罗", hant: "羅" },
+  "1co": { hans: "林前", hant: "林前" },
+  "2co": { hans: "林后", hant: "林後" },
+  gal: { hans: "加", hant: "加" },
+  eph: { hans: "弗", hant: "弗" },
+  phi: { hans: "腓", hant: "腓" },
+  col: { hans: "西", hant: "西" },
+  "1th": { hans: "帖前", hant: "帖前" },
+  "2th": { hans: "帖后", hant: "帖後" },
+  "1ti": { hans: "提前", hant: "提前" },
+  "2ti": { hans: "提后", hant: "提後" },
+  tit: { hans: "多", hant: "多" },
+  phm: { hans: "门", hant: "門" },
+  heb: { hans: "来", hant: "來" },
+  jas: { hans: "雅", hant: "雅" },
+  "1pe": { hans: "彼前", hant: "彼前" },
+  "2pe": { hans: "彼后", hant: "彼後" },
+  "1jo": { hans: "约一", hant: "約一" },
+  "2jo": { hans: "约二", hant: "約二" },
+  "3jo": { hans: "约三", hant: "約三" },
+  jud: { hans: "犹", hant: "猶" },
+  rev: { hans: "启", hant: "啟" },
+};
+
 export function bookAbbr(book: BookMeta, lang: LangKey): string {
   if (lang === "en" || lang === "web") return book.id.slice(0, 3).toUpperCase();
-  return book.label[lang].slice(0, 1);
+  const entry = ABBR[book.id];
+  return entry ? entry[lang === "zh-hant" ? "hant" : "hans"] : book.label[lang].slice(0, 1);
 }
