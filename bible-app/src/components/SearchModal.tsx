@@ -1,39 +1,14 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { UI, LANGUAGES, type LangKey } from "../data/languages";
-import { GENESIS_1 } from "../data/genesis1";
-import { stripHtml } from "../lib/tts";
+import { BOOKS, bookAbbr } from "../data/books";
+import { searchScripture, type SearchHit } from "../lib/search";
 
-interface SearchResult {
-  lang: LangKey;
-  tag: string;
-  ref: string;
-  text: string;
-  action: { type: "verse" } | { type: "point"; index: number };
+function refLabel(hit: SearchHit, lang: LangKey): string {
+  const book = BOOKS.find((b) => b.id === hit.bookId);
+  const code = lang === "en" || lang === "web" ? hit.bookId.slice(0, 3).toUpperCase() : book ? bookAbbr(book, lang) : hit.bookId;
+  return `${code} ${hit.chapter}:${hit.verse}`;
 }
-
-function buildIndex(): SearchResult[] {
-  const items: SearchResult[] = [];
-  const tagFor: Record<LangKey, string> = { en: "KJV", web: "WEB", "zh-hant": "繁", "zh-hans": "简" };
-  (Object.keys(GENESIS_1) as LangKey[]).forEach((lang) => {
-    const d = GENESIS_1[lang];
-    d.verses.forEach((v) => {
-      items.push({ lang, tag: tagFor[lang], ref: `Gen 1:${v.n}`, text: v.t, action: { type: "verse" } });
-    });
-    d.points.forEach((p, i) => {
-      items.push({
-        lang,
-        tag: tagFor[lang],
-        ref: `Gen 1 · ${i + 1}`,
-        text: `${p.title} — ${p.teaser}`,
-        action: { type: "point", index: i },
-      });
-    });
-  });
-  return items;
-}
-
-const SEARCH_INDEX = buildIndex();
 
 function highlight(text: string, q: string) {
   if (!q) return text;
@@ -62,19 +37,61 @@ export function SearchModal({
 }: {
   open: boolean;
   onClose: () => void;
-  onResult: (lang: LangKey, action: SearchResult["action"]) => void;
+  onResult: (lang: LangKey, bookId: string, chapter: number, verse: number) => void;
 }) {
   const { lang, setLang } = useApp();
   const t = UI[lang];
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [scope, setScope] = useState<"all" | "ot" | "nt">("all");
   const [langsOn, setLangsOn] = useState<Record<LangKey, boolean>>({ en: true, web: true, "zh-hant": true, "zh-hans": true });
   const [recent, setRecent] = useState(RECENT_SEEDS[lang]);
+  const [hits, setHits] = useState<SearchHit[] | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const matches = useMemo(() => {
-    if (!query.trim() || scope === "nt") return [];
-    return SEARCH_INDEX.filter((item) => langsOn[item.lang] && item.text.toLowerCase().includes(query.toLowerCase()));
-  }, [query, scope, langsOn]);
+  // Small debounce so every keystroke doesn't trigger a fresh whole-Bible
+  // scan across up to 4 versions — the index files are large (a few MB
+  // each), and typing is faster than that's worth re-running per character.
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 200);
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  const activeLangs = useMemo(
+    () => LANGUAGES.map((l) => l.key).filter((k) => langsOn[k]),
+    [langsOn]
+  );
+  const bookIds = useMemo(() => {
+    if (scope === "all") return null;
+    return BOOKS.filter((b) => b.testament === (scope === "ot" ? "OT" : "NT")).map((b) => b.id);
+  }, [scope]);
+
+  useEffect(() => {
+    const q = debouncedQuery.trim();
+    if (!q || activeLangs.length === 0) {
+      setHits(null);
+      setLoading(false);
+      return;
+    }
+    let cancelled = false;
+    setLoading(true);
+    searchScripture(q, activeLangs, bookIds)
+      .then((results) => {
+        if (!cancelled) {
+          setHits(results);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setHits([]);
+          setLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedQuery, activeLangs, bookIds]);
 
   return (
     <div className={`modal-screen${open ? " open" : ""}`}>
@@ -124,22 +141,24 @@ export function SearchModal({
         </div>
 
         {query.trim() ? (
-          matches.length ? (
+          loading ? (
+            <div className="empty-note">{t.loadingLabel}</div>
+          ) : hits && hits.length ? (
             <div>
-              {matches.map((m, i) => (
+              {hits.map((hit, i) => (
                 <button
                   key={i}
                   type="button"
                   className="result-item"
                   onClick={() => {
-                    setLang(m.lang);
-                    onResult(m.lang, m.action);
+                    setLang(hit.lang);
+                    onResult(hit.lang, hit.bookId, hit.chapter, hit.verse);
                     onClose();
                   }}
                 >
-                  <span className="result-tag">{m.tag}</span>
-                  <span className="result-ref">{m.ref}</span>
-                  <div className="result-snippet">{highlight(stripHtml(m.text), query)}</div>
+                  <span className="result-tag">{LANGUAGES.find((l) => l.key === hit.lang)?.label}</span>
+                  <span className="result-ref">{refLabel(hit, hit.lang)}</span>
+                  <div className="result-snippet">{highlight(hit.text, debouncedQuery)}</div>
                 </button>
               ))}
             </div>

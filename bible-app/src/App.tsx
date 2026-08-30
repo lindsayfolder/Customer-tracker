@@ -36,13 +36,30 @@ export default function App() {
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
+  const [pendingVerse, setPendingVerse] = useState<number | null>(null);
 
-  // Jumping chapters (via the fixed toolbar or the top/bottom nav buttons)
+  // Jumping chapters (via the fixed toolbar, the drawer, or a search result)
   // reuses the same scrollable div, so without this the reader would land
-  // mid-scroll in the new chapter instead of at its first verse.
+  // mid-scroll in the new chapter instead of at its first verse. A search
+  // result overrides this with a scroll-to-that-verse below once the new
+  // chapter's text has actually loaded.
   useEffect(() => {
     listScrollRef.current?.scrollTo({ top: 0 });
   }, [bookId, chapter]);
+
+  // Scrolls to and briefly highlights the verse a search result pointed at,
+  // once that chapter's text has finished loading (verses arrives async, so
+  // this can't run in the effect above — the verse row wouldn't exist yet).
+  useEffect(() => {
+    if (!verses || pendingVerse === null) return;
+    const target = pendingVerse;
+    requestAnimationFrame(() => {
+      listScrollRef.current?.querySelector(`[data-verse="${target}"]`)?.scrollIntoView({ block: "center" });
+    });
+    const timer = setTimeout(() => setPendingVerse(null), 2200);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [verses]);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--font-scale", String(settings.fontScale));
@@ -226,7 +243,11 @@ export default function App() {
                 <ListenButton id="scripture" text={verses.map((v) => v.t).join(" ")} />
                 <div className="verse-list">
                   {verses.map((v) => (
-                    <div className="verse-row" key={v.n}>
+                    <div
+                      className={`verse-row${v.n === pendingVerse ? " highlighted" : ""}`}
+                      data-verse={v.n}
+                      key={v.n}
+                    >
                       <div className="verse-num">{v.n}</div>
                       <div className="verse-text">{v.t}</div>
                     </div>
@@ -364,17 +385,12 @@ export default function App() {
       <SearchModal
         open={modal === "search"}
         onClose={() => setModal(null)}
-        onResult={(resultLang, action) => {
-          setBookId("gen");
-          setChapter(1);
-          if (action.type === "point") {
-            setTab("insights");
-            setOpenPointIndex(action.index);
-          } else {
-            setTab("scripture");
-            setOpenPointIndex(null);
-          }
-          void resultLang;
+        onResult={(_resultLang, resultBookId, resultChapter, verse) => {
+          setPendingVerse(verse);
+          setBookId(resultBookId);
+          setChapter(resultChapter);
+          setTab("scripture");
+          setOpenPointIndex(null);
         }}
       />
 

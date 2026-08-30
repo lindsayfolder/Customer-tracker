@@ -88,6 +88,19 @@ export default defineConfig({
             },
           },
           {
+            // Whole-Bible search index (lib/search.ts, scripts/build-search-
+            // index.mjs) — one compact file per version, fetched lazily the
+            // first time Search opens rather than precached, same as the
+            // scripture/insights/explain rules below.
+            urlPattern: /\/search-index\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-search-index",
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
             // Second AI-explanation track (lib/explain.ts). Not yet in the
             // bulk offline manifest — only Genesis 1-3 (en/zh-hant) exists
             // so far, and pre-fetching 66 books' worth of 404s would stall

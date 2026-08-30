@@ -147,7 +147,8 @@ button { font-family: inherit; }
 .listen-btn.playing { background: var(--gold); }
 
 .verse-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 10px; }
-.verse-row { display: flex; gap: 10px; align-items: flex-start; }
+.verse-row { display: flex; gap: 10px; align-items: flex-start; border-radius: 10px; padding: 3px 6px; margin: -3px -6px; transition: background 0.6s ease; }
+.verse-row.highlighted { background: color-mix(in srgb, var(--gold) 28%, transparent); }
 .verse-num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--azure-soft); color: var(--azure); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; margin-top: 2px; font-variant-numeric: tabular-nums; }
 .verse-text { font-size: calc(14px * var(--font-scale, 1)); line-height: 1.75; color: var(--ink); }
 .scripture-note { font-size: 15px; color: var(--ink-faint); text-align: right; margin-top: 6px; }
