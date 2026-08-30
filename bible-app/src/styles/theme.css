@@ -132,7 +132,8 @@ button { font-family: inherit; }
 .chapter-eyebrow { font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-strong); }
 .chapter-title { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 26px; letter-spacing: 0.02em; margin: 3px 0 5px; color: var(--ink); }
 .chapter-sub { font-size: 17.5px; color: var(--ink-soft); line-height: 1.5; }
-.map-btn { flex: none; display: flex; align-items: center; gap: 5px; border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 20px; padding: 6px 12px 6px 10px; font-weight: 800; font-size: 16.5px; color: var(--ink); cursor: pointer; margin-bottom: 6px; }
+.chapter-head-actions { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.map-btn { flex: none; display: flex; align-items: center; gap: 5px; border: 2.5px solid var(--ink); background: var(--paper-panel); border-radius: 20px; padding: 6px 12px 6px 10px; font-weight: 800; font-size: 16.5px; color: var(--ink); cursor: pointer; }
 .map-btn:active { transform: translateY(1px) scale(0.97); }
 .maparea { background: var(--paper-panel); border: 2.5px solid var(--ink); border-radius: 16px; box-shadow: 3px 3px 0 var(--hairline); overflow: hidden; }
 .maparea svg { display: block; width: 100%; height: auto; }

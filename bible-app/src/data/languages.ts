@@ -57,6 +57,10 @@ export interface UiStrings {
   nextChapterLabel: string;
   explainSectionLabel: string;
   explainApplicationLabel: string;
+  introLabel: string;
+  introBackgroundLabel: string;
+  introKeyPointsLabel: string;
+  introUnavailableLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -110,6 +114,10 @@ export const UI: Record<LangKey, UiStrings> = {
     nextChapterLabel: "Next",
     explainSectionLabel: "Further Insight",
     explainApplicationLabel: "Application:",
+    introLabel: "Intro",
+    introBackgroundLabel: "Background",
+    introKeyPointsLabel: "Key Points",
+    introUnavailableLabel: "This book's intro is on the way — check back soon.",
   },
   web: {
     chapterEyebrow: "{book} · Chapter {c}",
@@ -161,6 +169,10 @@ export const UI: Record<LangKey, UiStrings> = {
     nextChapterLabel: "Next",
     explainSectionLabel: "Further Insight",
     explainApplicationLabel: "Application:",
+    introLabel: "Intro",
+    introBackgroundLabel: "Background",
+    introKeyPointsLabel: "Key Points",
+    introUnavailableLabel: "This book's intro is on the way — check back soon.",
   },
   "zh-hant": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -212,6 +224,10 @@ export const UI: Record<LangKey, UiStrings> = {
     nextChapterLabel: "下一章",
     explainSectionLabel: "延伸解讀",
     explainApplicationLabel: "應用：",
+    introLabel: "簡介",
+    introBackgroundLabel: "背景",
+    introKeyPointsLabel: "重點",
+    introUnavailableLabel: "這卷書的簡介還在準備中，請稍後再回來看看。",
   },
   "zh-hans": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -263,6 +279,10 @@ export const UI: Record<LangKey, UiStrings> = {
     nextChapterLabel: "下一章",
     explainSectionLabel: "延伸解读",
     explainApplicationLabel: "应用：",
+    introLabel: "简介",
+    introBackgroundLabel: "背景",
+    introKeyPointsLabel: "重点",
+    introUnavailableLabel: "这卷书的简介还在准备中，请稍后再回来看看。",
   },
 };
 

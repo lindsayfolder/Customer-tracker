@@ -10,6 +10,7 @@ import { ContentsModal } from "./components/ContentsModal";
 import { SearchModal } from "./components/SearchModal";
 import { SettingsModal } from "./components/SettingsModal";
 import { MapModal } from "./components/MapModal";
+import { BookIntroModal } from "./components/BookIntroModal";
 import { Toast } from "./components/Toast";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
@@ -30,6 +31,7 @@ export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modal, setModal] = useState<ModalKey | null>(null);
   const [mapOpen, setMapOpen] = useState(false);
+  const [introOpen, setIntroOpen] = useState(false);
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
   const [explain, setExplain] = useState<ChapterExplain | null>(null);
@@ -221,11 +223,16 @@ export default function App() {
               <div className="chapter-eyebrow">{chapterEyebrow}</div>
               <div className="chapter-title">{book.label[lang]}</div>
             </div>
-            {bookHasMap(bookId) && (
-              <button type="button" className="map-btn" onClick={() => setMapOpen(true)}>
-                <span aria-hidden="true">&#128506;</span> {t.mapLabel}
+            <div className="chapter-head-actions">
+              <button type="button" className="map-btn" onClick={() => setIntroOpen(true)}>
+                <span aria-hidden="true">&#128214;</span> {t.introLabel}
               </button>
-            )}
+              {bookHasMap(bookId) && (
+                <button type="button" className="map-btn" onClick={() => setMapOpen(true)}>
+                  <span aria-hidden="true">&#128506;</span> {t.mapLabel}
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="tabbar">
@@ -397,6 +404,8 @@ export default function App() {
       <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />
 
       <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
+
+      <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
 
       <Toast />
     </div>

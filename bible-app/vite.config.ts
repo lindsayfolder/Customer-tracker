@@ -88,6 +88,17 @@ export default defineConfig({
             },
           },
           {
+            // Per-book intro (background + key points), one small combined
+            // file per language — see lib/bookIntro.ts.
+            urlPattern: /\/bookintro\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-book-intro",
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
             // Whole-Bible search index (lib/search.ts, scripts/build-search-
             // index.mjs) — one compact file per version, fetched lazily the
             // first time Search opens rather than precached, same as the
