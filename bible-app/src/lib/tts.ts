@@ -60,13 +60,31 @@ class TtsController {
     this.listeners.get(id)?.forEach((cb) => cb(speaking));
   }
 
-  private pickVoice(langCode: string): SpeechSynthesisVoice | null {
+  private pickVoice(langCode: string, preferredURI?: string): SpeechSynthesisVoice | null {
     if (!this.synth) return null;
     const voices = this.synth.getVoices();
+    if (preferredURI) {
+      const chosen = voices.find((v) => v.voiceURI === preferredURI);
+      if (chosen) return chosen;
+    }
     const exact = voices.find((v) => v.lang === langCode);
     if (exact) return exact;
     const prefix = langCode.split("-")[0];
     return voices.find((v) => v.lang?.startsWith(prefix)) ?? null;
+  }
+
+  // All installed voices matching a language (e.g. "en" or "zh"), for the
+  // voice picker in Settings. Voice lists load asynchronously on some
+  // browsers — see subscribeVoicesChanged.
+  listVoices(langPrefix: string): SpeechSynthesisVoice[] {
+    if (!this.synth) return [];
+    return this.synth.getVoices().filter((v) => v.lang?.startsWith(langPrefix));
+  }
+
+  subscribeVoicesChanged(cb: () => void): () => void {
+    if (!this.synth) return () => {};
+    this.synth.addEventListener("voiceschanged", cb);
+    return () => this.synth?.removeEventListener("voiceschanged", cb);
   }
 
   stop() {
@@ -78,7 +96,7 @@ class TtsController {
     if (prev) this.notify(prev, false);
   }
 
-  toggle(id: string, text: string, lang: LangKey) {
+  toggle(id: string, text: string, lang: LangKey, preferredVoiceURI?: string) {
     if (!this.synth) return;
     if (this.activeId === id && this.synth.speaking) {
       this.stop();
@@ -88,7 +106,7 @@ class TtsController {
     const langCode = LANGUAGES.find((l) => l.key === lang)?.speechLang ?? "en-US";
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = langCode;
-    const voice = this.pickVoice(langCode);
+    const voice = this.pickVoice(langCode, preferredVoiceURI);
     if (voice) utter.voice = voice;
     utter.rate = 0.95;
     utter.onend = () => {

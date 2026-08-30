@@ -264,6 +264,11 @@ button { font-family: inherit; }
 .seg-row { display: flex; gap: 6px; }
 .seg-btn { border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 12px; font-weight: 800; font-size: 17.5px; color: var(--ink-soft); cursor: pointer; }
 .seg-btn.active { background: var(--ink); color: var(--paper); }
+
+.voice-row { display: flex; gap: 8px; align-items: center; }
+.voice-select { flex: 1; min-width: 0; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 9px 10px; font-family: inherit; font-size: 16.5px; font-weight: 700; color: var(--ink); }
+.voice-preview-btn { flex: none; border: 2px solid var(--ink); background: var(--gold); border-radius: 10px; padding: 9px 14px; font-weight: 800; font-size: 16.5px; color: #1c1207; cursor: pointer; }
+.voice-preview-btn:active { transform: translateY(1px) scale(0.97); }
 .about-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 2px; border-bottom: 1px solid var(--hairline); font-size: 18.5px; font-weight: 700; color: var(--ink); }
 .about-row .v { color: var(--ink-faint); font-weight: 700; }
 

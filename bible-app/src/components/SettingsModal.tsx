@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useApp, TOTAL_CONTENT_FILES } from "../context/AppContext";
-import { UI, fmt } from "../data/languages";
+import { UI, LANGUAGES, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
+import { tts } from "../lib/tts";
 
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const {
@@ -15,6 +17,18 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
     applyUpdate,
   } = useApp();
   const t = UI[lang];
+
+  // Voices load asynchronously on some browsers (empty on first paint,
+  // populated once "voiceschanged" fires), so this re-reads the list on
+  // that event rather than assuming it's ready immediately.
+  const speechLang = LANGUAGES.find((l) => l.key === lang)?.speechLang ?? "en-US";
+  const langPrefix = speechLang.split("-")[0];
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>(() => tts.listVoices(langPrefix));
+  useEffect(() => {
+    setVoices(tts.listVoices(langPrefix));
+    return tts.subscribeVoicesChanged(() => setVoices(tts.listVoices(langPrefix)));
+  }, [langPrefix]);
+  const chosenVoiceURI = settings.voiceByLang[lang] ?? "";
 
   return (
     <div className={`modal-screen${open ? " open" : ""}`}>
@@ -57,6 +71,35 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-label">{t.voiceLabel}</div>
+          {voices.length > 0 ? (
+            <div className="voice-row">
+              <select
+                className="voice-select"
+                value={chosenVoiceURI}
+                onChange={(e) => updateSettings({ voiceByLang: { ...settings.voiceByLang, [lang]: e.target.value || undefined } })}
+              >
+                <option value="">{t.voiceAutoLabel}</option>
+                {voices.map((v) => (
+                  <option key={v.voiceURI} value={v.voiceURI}>
+                    {v.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="voice-preview-btn"
+                onClick={() => tts.toggle("voice-preview", GENESIS_1[lang].verses[0].t, lang, chosenVoiceURI || undefined)}
+              >
+                {t.voicePreviewLabel}
+              </button>
+            </div>
+          ) : (
+            <div className="empty-note">{t.voiceNoneLabel}</div>
+          )}
         </div>
 
         <div className="settings-section">

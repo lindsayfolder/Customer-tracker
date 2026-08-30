@@ -4,7 +4,7 @@ import { useApp } from "../context/AppContext";
 import { UI } from "../data/languages";
 
 export function ListenButton({ id, text }: { id: string; text: string }) {
-  const { lang, toast } = useApp();
+  const { lang, settings, toast } = useApp();
   const [speaking, setSpeaking] = useState(false);
   const t = UI[lang];
 
@@ -21,7 +21,7 @@ export function ListenButton({ id, text }: { id: string; text: string }) {
           toast(t.ttsUnavailable);
           return;
         }
-        tts.toggle(id, text, lang);
+        tts.toggle(id, text, lang, settings.voiceByLang[lang]);
       }}
     >
       <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">

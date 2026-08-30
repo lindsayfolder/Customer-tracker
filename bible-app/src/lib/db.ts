@@ -5,6 +5,10 @@ export interface AppSettings {
   fontScale: number;
   theme: "light" | "dark" | "auto";
   lastLang: LangKey;
+  // Chosen SpeechSynthesisVoice.voiceURI per language, when the reader has
+  // picked one in Settings — see lib/tts.ts. Unset means "let the browser
+  // pick automatically."
+  voiceByLang: Partial<Record<LangKey, string>>;
 }
 
 const STORAGE_KEY = "inkverse-settings";
@@ -14,6 +18,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   fontScale: 1,
   theme: "auto",
   lastLang: "en",
+  voiceByLang: {},
 };
 
 // localStorage, not IndexedDB: writes are synchronous and commit

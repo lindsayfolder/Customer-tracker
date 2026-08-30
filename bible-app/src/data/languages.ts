@@ -61,6 +61,10 @@ export interface UiStrings {
   introBackgroundLabel: string;
   introKeyPointsLabel: string;
   introUnavailableLabel: string;
+  voiceLabel: string;
+  voiceAutoLabel: string;
+  voicePreviewLabel: string;
+  voiceNoneLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -118,6 +122,10 @@ export const UI: Record<LangKey, UiStrings> = {
     introBackgroundLabel: "Background",
     introKeyPointsLabel: "Key Points",
     introUnavailableLabel: "This book's intro is on the way — check back soon.",
+    voiceLabel: "Voice",
+    voiceAutoLabel: "Automatic (recommended)",
+    voicePreviewLabel: "Preview",
+    voiceNoneLabel: "No voices found for this language on this device.",
   },
   web: {
     chapterEyebrow: "{book} · Chapter {c}",
@@ -173,6 +181,10 @@ export const UI: Record<LangKey, UiStrings> = {
     introBackgroundLabel: "Background",
     introKeyPointsLabel: "Key Points",
     introUnavailableLabel: "This book's intro is on the way — check back soon.",
+    voiceLabel: "Voice",
+    voiceAutoLabel: "Automatic (recommended)",
+    voicePreviewLabel: "Preview",
+    voiceNoneLabel: "No voices found for this language on this device.",
   },
   "zh-hant": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -228,6 +240,10 @@ export const UI: Record<LangKey, UiStrings> = {
     introBackgroundLabel: "背景",
     introKeyPointsLabel: "重點",
     introUnavailableLabel: "這卷書的簡介還在準備中，請稍後再回來看看。",
+    voiceLabel: "語音",
+    voiceAutoLabel: "自動（建議）",
+    voicePreviewLabel: "試聽",
+    voiceNoneLabel: "此裝置上找不到這個語言的語音。",
   },
   "zh-hans": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -283,6 +299,10 @@ export const UI: Record<LangKey, UiStrings> = {
     introBackgroundLabel: "背景",
     introKeyPointsLabel: "重点",
     introUnavailableLabel: "这卷书的简介还在准备中，请稍后再回来看看。",
+    voiceLabel: "语音",
+    voiceAutoLabel: "自动（建议）",
+    voicePreviewLabel: "试听",
+    voiceNoneLabel: "此设备上找不到这个语言的语音。",
   },
 };
 
