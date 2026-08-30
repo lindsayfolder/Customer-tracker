@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useApp } from "./context/AppContext";
 import { UI, LANGUAGES, fmt, type LangKey } from "./data/languages";
 import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
@@ -35,6 +35,14 @@ export default function App() {
   const [explain, setExplain] = useState<ChapterExplain | null>(null);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
+  const listScrollRef = useRef<HTMLDivElement>(null);
+
+  // Jumping chapters (via the fixed toolbar or the top/bottom nav buttons)
+  // reuses the same scrollable div, so without this the reader would land
+  // mid-scroll in the new chapter instead of at its first verse.
+  useEffect(() => {
+    listScrollRef.current?.scrollTo({ top: 0 });
+  }, [bookId, chapter]);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--font-scale", String(settings.fontScale));
@@ -167,6 +175,12 @@ export default function App() {
           <path d="M20 14v13" stroke="var(--ink)" strokeWidth="1.6" />
         </svg>
         <div className="wordmark">Inkverse</div>
+        <button className="search-btn" type="button" aria-label={t.drawerSearch} onClick={() => setModal("search")}>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="7" stroke="var(--ink)" strokeWidth="2.4" />
+            <line x1="16.2" y1="16.2" x2="21" y2="21" stroke="var(--ink)" strokeWidth="2.4" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
 
       <div className="lang-row">
@@ -184,7 +198,7 @@ export default function App() {
 
       <div className="panels">
         <div className={`view list${openPointIndex !== null ? " is-hidden" : ""}`}>
-          <div className="view-scroll">
+          <div className="view-scroll" ref={listScrollRef}>
           <div className="chapter-head">
             <div>
               <div className="chapter-eyebrow">{chapterEyebrow}</div>
@@ -195,25 +209,6 @@ export default function App() {
                 <span aria-hidden="true">&#128506;</span> {t.mapLabel}
               </button>
             )}
-          </div>
-
-          <div className="chapter-nav chapter-nav-top">
-            <button
-              type="button"
-              className="chapter-nav-btn"
-              disabled={!prevTarget}
-              onClick={() => goAdjacent(-1)}
-            >
-              <span aria-hidden="true">&larr;</span> {t.prevChapterLabel}
-            </button>
-            <button
-              type="button"
-              className="chapter-nav-btn next"
-              disabled={!nextTarget}
-              onClick={() => goAdjacent(1)}
-            >
-              {t.nextChapterLabel} <span aria-hidden="true">&rarr;</span>
-            </button>
           </div>
 
           <div className="tabbar">
@@ -303,24 +298,6 @@ export default function App() {
             </div>
           )}
 
-          <div className="chapter-nav">
-            <button
-              type="button"
-              className="chapter-nav-btn"
-              disabled={!prevTarget}
-              onClick={() => goAdjacent(-1)}
-            >
-              <span aria-hidden="true">&larr;</span> {t.prevChapterLabel}
-            </button>
-            <button
-              type="button"
-              className="chapter-nav-btn next"
-              disabled={!nextTarget}
-              onClick={() => goAdjacent(1)}
-            >
-              {t.nextChapterLabel} <span aria-hidden="true">&rarr;</span>
-            </button>
-          </div>
           </div>
         </div>
 
@@ -352,6 +329,28 @@ export default function App() {
           )}
           </div>
         </div>
+      </div>
+
+      <div className="chapter-toolbar">
+        <button
+          type="button"
+          className="toolbar-nav-btn"
+          aria-label={t.prevChapterLabel}
+          disabled={!prevTarget}
+          onClick={() => goAdjacent(-1)}
+        >
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <div className="toolbar-chapter-label">{chapterEyebrow}</div>
+        <button
+          type="button"
+          className="toolbar-nav-btn"
+          aria-label={t.nextChapterLabel}
+          disabled={!nextTarget}
+          onClick={() => goAdjacent(1)}
+        >
+          <span aria-hidden="true">&rarr;</span>
+        </button>
       </div>
 
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
