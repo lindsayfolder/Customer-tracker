@@ -3,6 +3,37 @@ import { LANGUAGES } from "../data/languages";
 
 type Listener = (speaking: boolean) => void;
 
+// Apple ships a set of sound-effect "novelty" voices (Bahh, Boing, Bubbles,
+// Wobble, Zarvox, etc. — see Settings > Accessibility > Spoken Content >
+// Voices > English > Novelty) meant for Messages effects, not reading. They
+// show up in speechSynthesis.getVoices() indistinguishably from real
+// voices, so they're filtered out here rather than left for a reader to
+// stumble into while picking a voice for scripture.
+const NOVELTY_VOICE_NAMES = new Set([
+  "albert",
+  "bad news",
+  "bahh",
+  "bells",
+  "boing",
+  "bubbles",
+  "cellos",
+  "deranged",
+  "good news",
+  "hysterical",
+  "jester",
+  "organ",
+  "pipe organ",
+  "superstar",
+  "trinoids",
+  "whisper",
+  "wobble",
+  "zarvox",
+]);
+
+function isNoveltyVoice(voice: SpeechSynthesisVoice): boolean {
+  return NOVELTY_VOICE_NAMES.has(voice.name.trim().toLowerCase());
+}
+
 class TtsController {
   private synth: SpeechSynthesis | null =
     typeof window !== "undefined" && "speechSynthesis" in window ? window.speechSynthesis : null;
@@ -62,7 +93,7 @@ class TtsController {
 
   private pickVoice(langCode: string, preferredURI?: string): SpeechSynthesisVoice | null {
     if (!this.synth) return null;
-    const voices = this.synth.getVoices();
+    const voices = this.synth.getVoices().filter((v) => !isNoveltyVoice(v));
     if (preferredURI) {
       const chosen = voices.find((v) => v.voiceURI === preferredURI);
       if (chosen) return chosen;
@@ -78,7 +109,7 @@ class TtsController {
   // browsers — see subscribeVoicesChanged.
   listVoices(langPrefix: string): SpeechSynthesisVoice[] {
     if (!this.synth) return [];
-    return this.synth.getVoices().filter((v) => v.lang?.startsWith(langPrefix));
+    return this.synth.getVoices().filter((v) => v.lang?.startsWith(langPrefix) && !isNoveltyVoice(v));
   }
 
   subscribeVoicesChanged(cb: () => void): () => void {

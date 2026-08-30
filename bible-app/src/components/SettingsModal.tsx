@@ -28,7 +28,12 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
     setVoices(tts.listVoices(langPrefix));
     return tts.subscribeVoicesChanged(() => setVoices(tts.listVoices(langPrefix)));
   }, [langPrefix]);
-  const chosenVoiceURI = settings.voiceByLang[lang] ?? "";
+  // If the saved choice no longer appears in the (now novelty-filtered)
+  // voice list — e.g. it was a novelty voice picked before that filter
+  // existed — treat it as unset rather than showing a dropdown selection
+  // that doesn't match any option.
+  const savedVoiceURI = settings.voiceByLang[lang] ?? "";
+  const chosenVoiceURI = voices.some((v) => v.voiceURI === savedVoiceURI) ? savedVoiceURI : "";
 
   return (
     <div className={`modal-screen${open ? " open" : ""}`}>
