@@ -95,8 +95,8 @@ button { font-family: inherit; }
   background: var(--paper);
   position: relative;
   overflow: hidden;
-  background-image: radial-gradient(circle, var(--hairline) 1px, transparent 1.4px);
-  background-size: 13px 13px;
+  background-image: radial-gradient(circle, var(--hairline) 0.5px, transparent 0.9px);
+  background-size: 18px 18px;
 }
 
 .appbar {
