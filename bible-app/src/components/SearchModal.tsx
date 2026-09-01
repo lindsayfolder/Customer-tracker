@@ -144,23 +144,44 @@ export function SearchModal({
           loading ? (
             <div className="empty-note">{t.loadingLabel}</div>
           ) : hits && hits.length ? (
-            <div>
-              {hits.map((hit, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  className="result-item"
-                  onClick={() => {
-                    setLang(hit.lang);
-                    onResult(hit.lang, hit.bookId, hit.chapter, hit.verse);
-                    onClose();
-                  }}
-                >
-                  <span className="result-tag">{LANGUAGES.find((l) => l.key === hit.lang)?.label}</span>
-                  <span className="result-ref">{refLabel(hit, hit.lang)}</span>
-                  <div className="result-snippet">{highlight(hit.text, debouncedQuery)}</div>
-                </button>
-              ))}
+            <div className="results-row">
+              <div className="results-list">
+                {hits.map((hit, i) => {
+                  const firstOfBook = i === 0 || hits[i - 1].bookId !== hit.bookId;
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      id={firstOfBook ? `search-book-${hit.bookId}` : undefined}
+                      className="result-item"
+                      onClick={() => {
+                        setLang(hit.lang);
+                        onResult(hit.lang, hit.bookId, hit.chapter, hit.verse);
+                        onClose();
+                      }}
+                    >
+                      <span className="result-tag">{LANGUAGES.find((l) => l.key === hit.lang)?.label}</span>
+                      <span className="result-ref">{refLabel(hit, hit.lang)}</span>
+                      <div className="result-snippet">{highlight(hit.text, debouncedQuery)}</div>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="results-rail">
+                {Array.from(new Set(hits.map((h) => h.bookId))).map((bookId) => {
+                  const book = BOOKS.find((b) => b.id === bookId);
+                  return (
+                    <button
+                      key={bookId}
+                      type="button"
+                      className="rail-btn"
+                      onClick={() => document.getElementById(`search-book-${bookId}`)?.scrollIntoView({ block: "start" })}
+                    >
+                      {book ? bookAbbr(book, lang) : bookId}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           ) : (
             <div className="empty-note">{t.noResults}</div>

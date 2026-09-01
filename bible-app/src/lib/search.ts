@@ -1,4 +1,5 @@
 import type { LangKey } from "../data/languages";
+import { BOOKS } from "../data/books";
 
 // One version's worth of scripture, flattened for search: bookId -> chapters
 // -> verse text (verse number is the array index + 1). Mirrors the shape of
@@ -47,10 +48,15 @@ export async function searchScripture(
 
   const indexes = await Promise.all(langs.map((lang) => loadSearchIndex(lang).then((idx) => [lang, idx] as const)));
 
+  // Book-outer, language-inner (rather than the reverse) so results come
+  // back grouped by canonical Bible order with every active language's
+  // matches for a book together — both so results read in reading order
+  // instead of scattered by version, and so the UI can build a single
+  // book-order jump rail from them (see SearchModal's results-rail).
+  const ids = bookIds ?? BOOKS.map((b) => b.id);
   const hits: SearchHit[] = [];
-  outer: for (const [lang, index] of indexes) {
-    const ids = bookIds ?? Object.keys(index);
-    for (const bookId of ids) {
+  outer: for (const bookId of ids) {
+    for (const [lang, index] of indexes) {
       const chapters = index[bookId];
       if (!chapters) continue;
       for (let ci = 0; ci < chapters.length; ci++) {
