@@ -209,7 +209,7 @@ export default function App() {
           <span className="wordmark">{t.drawerContents}</span>
         </button>
         <button className="search-btn" type="button" aria-label={t.drawerSearch} onClick={() => setModal("search")}>
-          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="11" cy="11" r="7" stroke="var(--ink)" strokeWidth="2.4" />
             <line x1="16.2" y1="16.2" x2="21" y2="21" stroke="var(--ink)" strokeWidth="2.4" strokeLinecap="round" />
           </svg>
