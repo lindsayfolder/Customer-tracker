@@ -101,8 +101,7 @@ export function SearchModal({
           &#10005;
         </button>
       </div>
-      <div className="modal-content-row">
-        <div className="modal-body">
+      <div className="search-controls">
         <div className="scope-row">
           <button type="button" className={`scope-btn${scope === "all" ? " active" : ""}`} onClick={() => setScope("all")}>
             {t.scopeAll}
@@ -140,7 +139,10 @@ export function SearchModal({
             autoComplete="off"
           />
         </div>
+      </div>
 
+      <div className="modal-content-row">
+        <div className="modal-body">
         {query.trim() ? (
           loading ? (
             <div className="empty-note">{t.loadingLabel}</div>

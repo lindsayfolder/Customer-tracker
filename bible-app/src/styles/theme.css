@@ -251,6 +251,7 @@ button { font-family: inherit; }
 .trash-btn { border: none; background: none; cursor: pointer; color: var(--ink-faint); padding: 2px; }
 .recent-list { display: flex; flex-direction: column; gap: 2px; }
 .recent-item { display: flex; align-items: center; gap: 8px; border: none; background: none; text-align: left; padding: 8px 4px; font-size: 18px; color: var(--ink-soft); cursor: pointer; border-bottom: 1px solid var(--hairline); width: 100%; }
+.search-controls { flex: none; padding: 14px 16px 0; }
 .modal-content-row { flex: 1; display: flex; min-height: 0; }
 .results-rail { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 6px 3px; overflow-y: auto; scrollbar-width: none; }
 .results-rail::-webkit-scrollbar { display: none; }
