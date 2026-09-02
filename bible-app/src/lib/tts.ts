@@ -34,6 +34,38 @@ function isNoveltyVoice(voice: SpeechSynthesisVoice): boolean {
   return NOVELTY_VOICE_NAMES.has(voice.name.trim().toLowerCase());
 }
 
+// Chrome (most reliably on Android) silently stops speechSynthesis after
+// ~15s on a single long utterance — no error, it just goes quiet mid-sentence
+// (chromium.org/p/chromium/issues/detail?id=679437, unfixed for years). A
+// whole chapter easily runs several minutes as one utterance, so text is
+// split into short chunks here and queued as separate utterances instead;
+// each finishes well under the cutoff and the next is started from onend.
+const MAX_CHUNK_LEN = 180;
+
+function chunkText(text: string): string[] {
+  const sentences = text.match(/[^.!?。！？]+[.!?。！？]*/g) ?? [text];
+  const chunks: string[] = [];
+  let current = "";
+  for (const sentence of sentences) {
+    const s = sentence.trim();
+    if (!s) continue;
+    if (current && (current + " " + s).length > MAX_CHUNK_LEN) {
+      chunks.push(current);
+      current = s;
+    } else {
+      current = current ? `${current} ${s}` : s;
+    }
+    // A single sentence longer than the cap on its own still needs splitting
+    // (e.g. verses with semicolon-joined clauses and no other punctuation).
+    while (current.length > MAX_CHUNK_LEN) {
+      chunks.push(current.slice(0, MAX_CHUNK_LEN));
+      current = current.slice(MAX_CHUNK_LEN);
+    }
+  }
+  if (current) chunks.push(current);
+  return chunks;
+}
+
 class TtsController {
   private synth: SpeechSynthesis | null =
     typeof window !== "undefined" && "speechSynthesis" in window ? window.speechSynthesis : null;
@@ -127,32 +159,41 @@ class TtsController {
     if (prev) this.notify(prev, false);
   }
 
-  toggle(id: string, text: string, lang: LangKey, preferredVoiceURI?: string) {
+  toggle(id: string, text: string | string[], lang: LangKey, preferredVoiceURI?: string) {
     if (!this.synth) return;
     if (this.activeId === id && this.synth.speaking) {
       this.stop();
       return;
     }
     this.stop();
+    const segments = (Array.isArray(text) ? text : [text]).flatMap(chunkText).filter((s) => s.trim());
+    if (segments.length === 0) return;
     const langCode = LANGUAGES.find((l) => l.key === lang)?.speechLang ?? "en-US";
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = langCode;
     const voice = this.pickVoice(langCode, preferredVoiceURI);
-    if (voice) utter.voice = voice;
-    utter.rate = 0.95;
-    utter.onend = () => {
+    this.activeId = id;
+    this.notify(id, true);
+    this.acquireWakeLock();
+    this.speakQueue(id, segments, 0, langCode, voice);
+  }
+
+  private speakQueue(id: string, segments: string[], index: number, langCode: string, voice: SpeechSynthesisVoice | null) {
+    if (!this.synth || this.activeId !== id) return;
+    if (index >= segments.length) {
       this.activeId = null;
       this.releaseWakeLock();
       this.notify(id, false);
-    };
+      return;
+    }
+    const utter = new SpeechSynthesisUtterance(segments[index]);
+    utter.lang = langCode;
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.onend = () => this.speakQueue(id, segments, index + 1, langCode, voice);
     utter.onerror = () => {
       this.activeId = null;
       this.releaseWakeLock();
       this.notify(id, false);
     };
-    this.activeId = id;
-    this.notify(id, true);
-    this.acquireWakeLock();
     this.synth.speak(utter);
   }
 }

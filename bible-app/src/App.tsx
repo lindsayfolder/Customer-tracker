@@ -258,7 +258,7 @@ export default function App() {
           {tab === "scripture" ? (
             verses ? (
               <div>
-                <ListenButton id="scripture" text={verses.map((v) => v.t).join(" ")} />
+                <ListenButton id="scripture" text={verses.map((v) => v.t)} />
                 <div className="verse-list">
                   {verses.map((v) => (
                     <div
@@ -307,7 +307,7 @@ export default function App() {
                   </div>
                   <ListenButton
                     id="explain"
-                    text={[explain.summary, ...explain.keyPoints, explain.application].join(" ")}
+                    text={[explain.summary, ...explain.keyPoints, explain.application]}
                   />
                   <div className="caption-box">{explain.summary}</div>
                   {explain.themes.length > 0 && (
@@ -354,7 +354,7 @@ export default function App() {
               <div className="ai-tag">
                 <span className="dot" /> {t.aiTag}
               </div>
-              <ListenButton id="detail" text={`${point.title}. ${point.body.map(stripHtml).join(" ")}`} />
+              <ListenButton id="detail" text={[point.title, ...point.body.map(stripHtml)]} />
               <div>
                 {point.body.map((para, idx) => (
                   <div

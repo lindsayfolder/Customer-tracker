@@ -3,7 +3,7 @@ import { tts } from "../lib/tts";
 import { useApp } from "../context/AppContext";
 import { UI } from "../data/languages";
 
-export function ListenButton({ id, text }: { id: string; text: string }) {
+export function ListenButton({ id, text }: { id: string; text: string | string[] }) {
   const { lang, settings, toast } = useApp();
   const [speaking, setSpeaking] = useState(false);
   const t = UI[lang];
