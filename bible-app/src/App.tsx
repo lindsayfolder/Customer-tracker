@@ -199,13 +199,15 @@ export default function App() {
         <button className="menu-btn" type="button" aria-label="Open menu" onClick={() => setDrawerOpen(true)}>
           <span />
         </button>
-        <svg className="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="18" fill="var(--gold)" stroke="var(--ink)" strokeWidth="2.5" />
-          <path d="M11 14c3-2 6-2 9 0v13c-3-2-6-2-9 0V14z" fill="var(--paper-panel)" stroke="var(--ink)" strokeWidth="1.8" strokeLinejoin="round" />
-          <path d="M29 14c-3-2-6-2-9 0v13c3-2 6-2 9 0V14z" fill="var(--paper-panel)" stroke="var(--ink)" strokeWidth="1.8" strokeLinejoin="round" />
-          <path d="M20 14v13" stroke="var(--ink)" strokeWidth="1.6" />
-        </svg>
-        <div className="wordmark">Inkverse</div>
+        <button className="wordmark-btn" type="button" onClick={() => setModal("contents")}>
+          <svg className="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="var(--gold)" stroke="var(--ink)" strokeWidth="2.5" />
+            <path d="M11 14c3-2 6-2 9 0v13c-3-2-6-2-9 0V14z" fill="var(--paper-panel)" stroke="var(--ink)" strokeWidth="1.8" strokeLinejoin="round" />
+            <path d="M29 14c-3-2-6-2-9 0v13c3-2 6-2 9 0V14z" fill="var(--paper-panel)" stroke="var(--ink)" strokeWidth="1.8" strokeLinejoin="round" />
+            <path d="M20 14v13" stroke="var(--ink)" strokeWidth="1.6" />
+          </svg>
+          <span className="wordmark">{t.drawerContents}</span>
+        </button>
         <button className="search-btn" type="button" aria-label={t.drawerSearch} onClick={() => setModal("search")}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="11" cy="11" r="7" stroke="var(--ink)" strokeWidth="2.4" />
