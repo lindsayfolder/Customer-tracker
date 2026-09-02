@@ -56,7 +56,18 @@ export default function App() {
     if (!verses || pendingVerse === null) return;
     const target = pendingVerse;
     requestAnimationFrame(() => {
-      listScrollRef.current?.querySelector(`[data-verse="${target}"]`)?.scrollIntoView({ block: "center" });
+      // Manual delta-scroll rather than Element.scrollIntoView: scrollIntoView
+      // walks every scroll-container ancestor in the DOM chain, including
+      // .app-shell (overflow:hidden still allows programmatic scrollTop), so
+      // it was shoving the whole app up instead of just this list.
+      const container = listScrollRef.current;
+      const row = container?.querySelector<HTMLElement>(`[data-verse="${target}"]`);
+      if (container && row) {
+        const containerRect = container.getBoundingClientRect();
+        const rowRect = row.getBoundingClientRect();
+        const delta = rowRect.top - containerRect.top - (containerRect.height - rowRect.height) / 2;
+        container.scrollTop += delta;
+      }
     });
     const timer = setTimeout(() => setPendingVerse(null), 2200);
     return () => clearTimeout(timer);

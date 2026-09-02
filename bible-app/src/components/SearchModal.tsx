@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { UI, LANGUAGES, type LangKey } from "../data/languages";
 import { BOOKS, bookAbbr } from "../data/books";
@@ -48,6 +48,19 @@ export function SearchModal({
   const [recent, setRecent] = useState(RECENT_SEEDS[lang]);
   const [hits, setHits] = useState<SearchHit[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  // Scroll only the results list itself, rather than Element.scrollIntoView
+  // (which walks every scroll-container ancestor in the DOM chain, including
+  // .app-shell — overflow:hidden still lets it be scrolled programmatically,
+  // so scrollIntoView was shoving the whole app up instead of just the list).
+  function jumpToBook(bookId: string) {
+    const container = bodyRef.current;
+    const target = document.getElementById(`search-book-${bookId}`);
+    if (!container || !target) return;
+    const delta = target.getBoundingClientRect().top - container.getBoundingClientRect().top;
+    container.scrollTop += delta;
+  }
 
   // Small debounce so every keystroke doesn't trigger a fresh whole-Bible
   // scan across up to 4 versions — the index files are large (a few MB
@@ -142,7 +155,7 @@ export function SearchModal({
       </div>
 
       <div className="modal-content-row">
-        <div className="modal-body">
+        <div className="modal-body" ref={bodyRef}>
         {query.trim() ? (
           loading ? (
             <div className="empty-note">{t.loadingLabel}</div>
@@ -211,7 +224,7 @@ export function SearchModal({
                 key={bookId}
                 type="button"
                 className="rail-btn"
-                onClick={() => document.getElementById(`search-book-${bookId}`)?.scrollIntoView({ block: "start" })}
+                onClick={() => jumpToBook(bookId)}
               >
                 {book ? bookAbbr(book, lang) : bookId}
               </button>
