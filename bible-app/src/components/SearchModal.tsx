@@ -27,7 +27,7 @@ const RECENT_SEEDS: Record<LangKey, string[]> = {
   en: ["light", "image"],
   web: ["light", "image"],
   "zh-hant": ["光", "形像"],
-  "zh-hans": ["光", "形象"],
+  "zh-hans": ["光", "形像"],
 };
 
 export function SearchModal({
@@ -48,6 +48,10 @@ export function SearchModal({
   // is ever searched at a time, and everything on screen (the rail's book
   // abbreviations, recent-search seeds) follows whichever one is lit up here.
   const [activeLang, setActiveLang] = useState<LangKey>(lang);
+  // Result-panel copy (loading/no-results) follows the version being
+  // searched rather than the app's reading language — showing a Chinese
+  // "no results" message while searching KJV read as broken.
+  const searchT = UI[activeLang];
   const [recent, setRecent] = useState(RECENT_SEEDS[activeLang]);
   const [hits, setHits] = useState<SearchHit[] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -161,7 +165,7 @@ export function SearchModal({
         <div className="modal-body" ref={bodyRef}>
         {query.trim() ? (
           loading ? (
-            <div className="empty-note">{t.loadingLabel}</div>
+            <div className="empty-note">{searchT.loadingLabel}</div>
           ) : hits && hits.length ? (
             <div className="results-list">
               {hits.map((hit, i) => {
@@ -186,7 +190,7 @@ export function SearchModal({
               })}
             </div>
           ) : (
-            <div className="empty-note">{t.noResults}</div>
+            <div className="empty-note">{searchT.noResults}</div>
           )
         ) : (
           <div>
