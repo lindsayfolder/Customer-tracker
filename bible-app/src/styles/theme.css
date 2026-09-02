@@ -253,8 +253,7 @@ button { font-family: inherit; }
 .recent-item { display: flex; align-items: center; gap: 8px; border: none; background: none; text-align: left; padding: 8px 4px; font-size: 18px; color: var(--ink-soft); cursor: pointer; border-bottom: 1px solid var(--hairline); width: 100%; }
 .results-row { display: flex; gap: 4px; align-items: flex-start; }
 .results-list { flex: 1; min-width: 0; }
-.results-rail { flex: none; position: sticky; top: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; max-height: calc(100dvh - 300px); overflow-y: auto; padding: 2px; scrollbar-width: none; }
-.results-rail::-webkit-scrollbar { display: none; }
+.results-rail { flex: none; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 2px; }
 .rail-btn { border: none; background: none; padding: 2px 3px; font-size: 11.5px; font-weight: 800; color: var(--azure); cursor: pointer; line-height: 1.4; white-space: nowrap; }
 .rail-btn:active { color: var(--gold-strong); }
 .result-item { display: block; width: 100%; text-align: left; border: 1.5px solid var(--hairline); background: var(--paper-panel); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; }
