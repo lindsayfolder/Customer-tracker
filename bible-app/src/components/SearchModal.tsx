@@ -44,8 +44,11 @@ export function SearchModal({
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [scope, setScope] = useState<"all" | "ot" | "nt">("all");
-  const [langsOn, setLangsOn] = useState<Record<LangKey, boolean>>({ en: true, web: true, "zh-hant": true, "zh-hans": true });
-  const [recent, setRecent] = useState(RECENT_SEEDS[lang]);
+  // Single-select rather than independently-toggled chips: only one version
+  // is ever searched at a time, and everything on screen (the rail's book
+  // abbreviations, recent-search seeds) follows whichever one is lit up here.
+  const [activeLang, setActiveLang] = useState<LangKey>(lang);
+  const [recent, setRecent] = useState(RECENT_SEEDS[activeLang]);
   const [hits, setHits] = useState<SearchHit[] | null>(null);
   const [loading, setLoading] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -70,10 +73,7 @@ export function SearchModal({
     return () => clearTimeout(timer);
   }, [query]);
 
-  const activeLangs = useMemo(
-    () => LANGUAGES.map((l) => l.key).filter((k) => langsOn[k]),
-    [langsOn]
-  );
+  const activeLangs = useMemo(() => [activeLang], [activeLang]);
   const bookIds = useMemo(() => {
     if (scope === "all") return null;
     return BOOKS.filter((b) => b.testament === (scope === "ot" ? "OT" : "NT")).map((b) => b.id);
@@ -131,8 +131,11 @@ export function SearchModal({
             <button
               key={l.key}
               type="button"
-              className={`lang-chip${langsOn[l.key] ? " on" : ""}`}
-              onClick={() => setLangsOn((s) => ({ ...s, [l.key]: !s[l.key] }))}
+              className={`lang-chip${activeLang === l.key ? " on" : ""}`}
+              onClick={() => {
+                setActiveLang(l.key);
+                setRecent(RECENT_SEEDS[l.key]);
+              }}
             >
               {l.label}
             </button>
@@ -226,7 +229,7 @@ export function SearchModal({
                 className="rail-btn"
                 onClick={() => jumpToBook(bookId)}
               >
-                {book ? bookAbbr(book, lang) : bookId}
+                {book ? bookAbbr(book, activeLang) : bookId}
               </button>
             );
           })}
