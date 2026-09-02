@@ -91,7 +91,7 @@ button { font-family: inherit; }
 .app-shell {
   max-width: 480px;
   margin: 0 auto;
-  height: 100dvh;
+  height: 100%;
   background: var(--paper);
   position: relative;
   overflow: hidden;
