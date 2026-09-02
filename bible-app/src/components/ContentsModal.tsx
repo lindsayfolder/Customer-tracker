@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
-import { UI } from "../data/languages";
+import { UI, fmt } from "../data/languages";
 import { BOOKS, bookAbbr, type BookMeta } from "../data/books";
+import { loadChapterVerses } from "../lib/scripture";
 
 const COLUMNS = 4;
 
@@ -19,19 +20,22 @@ export function ContentsModal({
 }: {
   open: boolean;
   onClose: () => void;
-  onSelectChapter: (bookId: string, chapter: number) => void;
+  onSelectChapter: (bookId: string, chapter: number, verse?: number) => void;
 }) {
   const { lang } = useApp();
   const t = UI[lang];
-  const [step, setStep] = useState<"books" | "chapters">("books");
+  const [step, setStep] = useState<"books" | "chapters" | "verses">("books");
   const [selectedBookId, setSelectedBookId] = useState("gen");
+  const [selectedChapter, setSelectedChapter] = useState(1);
+  const [verseCount, setVerseCount] = useState<number | null>(null);
   const selectedBook = BOOKS.find((b) => b.id === selectedBookId) ?? BOOKS[0];
   const chapters = Array.from({ length: selectedBook.chapters }, (_, i) => i + 1);
+  const verseNums = verseCount ? Array.from({ length: verseCount }, (_, i) => i + 1) : [];
 
-  // Each screen (book grid, chapter grid) stays small on its own, so it can't
-  // trigger the WebKit paint bug that showed up when both lived together in
-  // one long scrolling list. Reset to the book list every time the modal
-  // reopens.
+  // Each screen (book grid, chapter grid, verse grid) stays small on its own,
+  // so it can't trigger the WebKit paint bug that showed up when several
+  // lived together in one long scrolling list. Reset to the book list every
+  // time the modal reopens.
   useEffect(() => {
     if (open) setStep("books");
   }, [open]);
@@ -41,8 +45,15 @@ export function ContentsModal({
     setStep("chapters");
   }
 
-  function pick(c: number) {
-    onSelectChapter(selectedBookId, c);
+  function openChapter(c: number) {
+    setSelectedChapter(c);
+    setStep("verses");
+    setVerseCount(null);
+    loadChapterVerses(selectedBookId, c, lang).then((verses) => setVerseCount(verses.length));
+  }
+
+  function pick(verse?: number) {
+    onSelectChapter(selectedBookId, selectedChapter, verse);
     onClose();
   }
 
@@ -91,7 +102,7 @@ export function ContentsModal({
             </div>
           </div>
         </>
-      ) : (
+      ) : step === "chapters" ? (
         <div className="modal-body">
           <button type="button" className="back-tab" onClick={() => setStep("books")}>
             <span aria-hidden="true">&larr;</span> {t.contentsTitle}
@@ -101,11 +112,31 @@ export function ContentsModal({
           </div>
           <div className="chapter-grid">
             {chapters.map((c) => (
-              <button key={c} type="button" className="chapter-cell" onClick={() => pick(c)}>
+              <button key={c} type="button" className="chapter-cell" onClick={() => openChapter(c)}>
                 {c}
               </button>
             ))}
           </div>
+        </div>
+      ) : (
+        <div className="modal-body">
+          <button type="button" className="back-tab" onClick={() => setStep("chapters")}>
+            <span aria-hidden="true">&larr;</span> {selectedBook.label[lang]}
+          </button>
+          <div className="chapter-head">
+            <div className="chapter-title">{fmt(t.chapterEyebrow, { book: selectedBook.label[lang], c: selectedChapter })}</div>
+          </div>
+          {verseCount === null ? (
+            <div className="empty-note">{t.loadingLabel}</div>
+          ) : (
+            <div className="chapter-grid">
+              {verseNums.map((v) => (
+                <button key={v} type="button" className="chapter-cell" onClick={() => pick(v)}>
+                  {v}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

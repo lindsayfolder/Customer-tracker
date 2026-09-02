@@ -160,7 +160,8 @@ export default function App() {
       setModal(target);
     }
   }
-  function goToChapter(bId: string, c: number) {
+  function goToChapter(bId: string, c: number, verse?: number) {
+    if (verse) setPendingVerse(verse);
     setBookId(bId);
     setChapter(c);
     setTab("scripture");
@@ -397,7 +398,7 @@ export default function App() {
       <ContentsModal
         open={modal === "contents"}
         onClose={() => setModal(null)}
-        onSelectChapter={(bId, c) => goToChapter(bId, c)}
+        onSelectChapter={(bId, c, verse) => goToChapter(bId, c, verse)}
       />
 
       <SearchModal
