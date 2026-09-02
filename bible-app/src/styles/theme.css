@@ -127,7 +127,12 @@ button { font-family: inherit; }
 .wordmark-btn:active { background: var(--gold); transform: scale(0.96); }
 .wordmark-btn:active .wordmark { color: #1c1207; }
 .wordmark { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 21px; letter-spacing: 0.04em; color: var(--ink); line-height: 1; }
-.search-btn { flex: none; width: 32px; height: 32px; border: none; background: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: auto; }
+.search-btn {
+  flex: none; width: 44px; height: 44px; border: none; background: none; padding: 0;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: auto;
+  transition: transform 0.1s ease;
+}
+.search-btn:active { transform: scale(0.9); }
 
 .lang-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; padding: 0 18px 12px; background: var(--paper); position: relative; z-index: 2; }
 .lang-pill { font-weight: 800; font-size: 16px; letter-spacing: 0.02em; border: 2px solid var(--ink); border-radius: 20px; padding: 4px 9px; background: var(--paper-panel); color: var(--ink-soft); cursor: pointer; }
