@@ -131,7 +131,7 @@ export function ContentsModal({
           ) : (
             <div className="chapter-grid">
               {verseNums.map((v) => (
-                <button key={v} type="button" className="chapter-cell" onClick={() => pick(v)}>
+                <button key={v} type="button" className="chapter-cell verse-cell" onClick={() => pick(v)}>
                   {v}
                 </button>
               ))}
