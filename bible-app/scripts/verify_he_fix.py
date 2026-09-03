@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 """Safety net for the 他->祂 pass: for each book, confirm that reverting every
-祂 back to 他 in the current file exactly reconstructs the git HEAD version.
+祂 back to 他 in the current file exactly reconstructs the PRE-PASS baseline
+version (not necessarily HEAD -- HEAD moves forward as WIP checkpoints get
+committed mid-pass, so diffing against a fixed baseline commit is what
+actually catches unintended changes; diffing against a moving HEAD would
+false-positive "mismatch" on every book already checkpointed in).
 If that holds, the only thing that changed is the intended substitution --
 no verse was dropped, reworded, reformatted, or otherwise touched.
 
 Usage: python3 scripts/verify_he_fix.py <book_id> [book_id ...]
+       python3 scripts/verify_he_fix.py --baseline <commit> <book_id> [book_id ...]
 """
 import json
 import subprocess
@@ -13,6 +18,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BOOK_DIR = ROOT / "public" / "bible" / "zh-hant"
+
+# The commit that added apply_he_fix.py/verify_he_fix.py themselves, i.e. the
+# last commit before any book content was touched by this pass. Every book's
+# true "before" state lives here regardless of how many WIP checkpoints have
+# landed on top of it since.
+DEFAULT_BASELINE = "7489d93"
 
 
 def _git_root() -> Path:
@@ -25,10 +36,10 @@ def _git_root() -> Path:
 GIT_ROOT = _git_root()
 
 
-def git_head_content(book_file: Path) -> str | None:
+def git_baseline_content(book_file: Path, baseline: str) -> str | None:
     rel_to_git_root = book_file.resolve().relative_to(GIT_ROOT).as_posix()
     result = subprocess.run(
-        ["git", "show", f"HEAD:{rel_to_git_root}"], cwd=GIT_ROOT, capture_output=True, text=True
+        ["git", "show", f"{baseline}:{rel_to_git_root}"], cwd=GIT_ROOT, capture_output=True, text=True
     )
     if result.returncode != 0:
         return None
@@ -36,9 +47,14 @@ def git_head_content(book_file: Path) -> str | None:
 
 
 def main():
-    book_ids = sys.argv[1:]
+    args = sys.argv[1:]
+    baseline = DEFAULT_BASELINE
+    if args[:1] == ["--baseline"]:
+        baseline = args[1]
+        args = args[2:]
+    book_ids = args
     if not book_ids:
-        print("usage: verify_he_fix.py <book_id> [book_id ...]", file=sys.stderr)
+        print("usage: verify_he_fix.py [--baseline <commit>] <book_id> [book_id ...]", file=sys.stderr)
         sys.exit(1)
 
     all_ok = True
@@ -50,9 +66,9 @@ def main():
             all_ok = False
             continue
         new_text = book_file.read_text(encoding="utf-8")
-        old_text = git_head_content(book_file)
+        old_text = git_baseline_content(book_file, baseline)
         if old_text is None:
-            print(f"{book_id}: no HEAD version to diff against (new file?) - skipping revert check")
+            print(f"{book_id}: no baseline version to diff against - skipping revert check")
             continue
 
         # Structural sanity: valid JSON, same chapter/verse counts and numbers.
