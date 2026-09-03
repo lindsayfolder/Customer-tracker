@@ -13,7 +13,7 @@ function buildManifest(base: string): Task[] {
   const tasks: Task[] = [];
   for (const book of BOOKS) {
     for (const v of BIBLE_VERSIONS) {
-      tasks.push({ url: `${base}bible/${v}/${book.id}.json`, cacheName: "bible-text" });
+      tasks.push({ url: `${base}bible/${v}/${book.id}.json`, cacheName: "bible-text-v2" });
     }
     for (const l of INSIGHT_LANGS) {
       tasks.push({ url: `${base}insights/${l}/${book.id}.json`, cacheName: "bible-insights" });
@@ -108,7 +108,7 @@ function waitForVisible(): Promise<void> {
 
 async function countCachedEntries(): Promise<number> {
   let total = 0;
-  for (const name of ["bible-text", "bible-insights", "bible-maps"]) {
+  for (const name of ["bible-text-v2", "bible-insights", "bible-maps"]) {
     try {
       const cache = await caches.open(name);
       total += (await cache.keys()).length;

@@ -64,7 +64,15 @@ export default defineConfig({
             urlPattern: /\/bible\/.*\.json$/,
             handler: "CacheFirst",
             options: {
-              cacheName: "bible-text",
+              // Bumped to v2 because the scripture text itself changed (the
+              // 他/祂 divine-pronoun pass) — CacheFirst never re-checks the
+              // network once a URL is cached, so a reader who'd already
+              // opened a book pre-pass would otherwise keep seeing the old
+              // wording forever, even after updating the app shell. Renaming
+              // the cache bucket is what actually forces a re-fetch; bump
+              // the suffix again for any future correction to shipped
+              // scripture text.
+              cacheName: "bible-text-v2",
               expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
@@ -106,7 +114,9 @@ export default defineConfig({
             urlPattern: /\/search-index\/.*\.json$/,
             handler: "CacheFirst",
             options: {
-              cacheName: "bible-search-index",
+              // Bumped to v2 alongside bible-text-v2 above -- the index was
+              // rebuilt from the corrected scripture text.
+              cacheName: "bible-search-index-v2",
               expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
@@ -121,7 +131,10 @@ export default defineConfig({
             urlPattern: /\/explain\/.*\.json$/,
             handler: "CacheFirst",
             options: {
-              cacheName: "bible-explain",
+              // Bumped to v2 -- a couple of Genesis entries had a wording
+              // fix (形象 -> 形像) land after some readers had already
+              // cached the old text.
+              cacheName: "bible-explain-v2",
               expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },

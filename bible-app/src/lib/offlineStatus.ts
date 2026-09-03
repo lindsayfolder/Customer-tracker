@@ -11,7 +11,7 @@
 // bulkOfflineDownload.ts for the expected total (504: kept in sync with
 // the book/version/language counts there).
 
-const CONTENT_CACHE_NAMES = ["bible-text", "bible-insights", "bible-maps"];
+const CONTENT_CACHE_NAMES = ["bible-text-v2", "bible-insights", "bible-maps"];
 
 export async function getCachedEntryCount(): Promise<number> {
   if (typeof caches === "undefined") return 0;
@@ -29,4 +29,22 @@ export async function getCachedEntryCount(): Promise<number> {
 
 export function isReadyCount(count: number, total: number): boolean {
   return count >= Math.floor(total * 0.98);
+}
+
+// Cache buckets renamed with a -v2 (etc.) suffix when their content changes
+// (see vite.config.ts) leave their old-named bucket orphaned — nothing ever
+// reads from it again, but the browser won't free that storage on its own.
+// Runs once at startup to reclaim it; deleting a cache that doesn't exist is
+// a harmless no-op, so this is safe to call unconditionally on every boot.
+const RETIRED_CACHE_NAMES = ["bible-text", "bible-search-index", "bible-explain"];
+
+export async function cleanupLegacyCaches(): Promise<void> {
+  if (typeof caches === "undefined") return;
+  for (const name of RETIRED_CACHE_NAMES) {
+    try {
+      await caches.delete(name);
+    } catch {
+      // ignore
+    }
+  }
 }

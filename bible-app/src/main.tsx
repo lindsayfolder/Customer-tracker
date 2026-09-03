@@ -5,6 +5,9 @@ import "./styles/theme.css";
 import App from "./App.tsx";
 import { AppProvider } from "./context/AppContext";
 import { registerUpdateHooks, setUpdateAvailable } from "./lib/appUpdate";
+import { cleanupLegacyCaches } from "./lib/offlineStatus";
+
+cleanupLegacyCaches();
 
 // Detect new builds, but don't force a reload the moment one is found — a
 // silent reload could yank a reader off whatever they're mid-read on.
