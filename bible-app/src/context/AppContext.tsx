@@ -11,6 +11,7 @@ interface AppContextValue {
   setLang: (l: LangKey) => void;
   settings: AppSettings;
   updateSettings: (patch: Partial<AppSettings>) => void;
+  ready: boolean;
   toast: (msg: string) => void;
   toastMsg: string | null;
   offlineReady: boolean;
@@ -107,6 +108,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setLang,
         settings,
         updateSettings,
+        ready,
         toast,
         toastMsg,
         offlineReady,

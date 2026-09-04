@@ -5,6 +5,10 @@ export interface AppSettings {
   fontScale: number;
   theme: "light" | "dark" | "auto";
   lastLang: LangKey;
+  // Last book/chapter the reader had open, so relaunching the app resumes
+  // there instead of always landing on Genesis 1.
+  lastBookId: string;
+  lastChapter: number;
   // Chosen SpeechSynthesisVoice.voiceURI per language, when the reader has
   // picked one in Settings — see lib/tts.ts. Unset means "let the browser
   // pick automatically."
@@ -18,6 +22,8 @@ export const DEFAULT_SETTINGS: AppSettings = {
   fontScale: 1,
   theme: "auto",
   lastLang: "en",
+  lastBookId: "gen",
+  lastChapter: 1,
   voiceByLang: {},
 };
 

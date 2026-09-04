@@ -21,7 +21,7 @@ import { stripHtml, tts } from "./lib/tts";
 export type ModalKey = "contents" | "search" | "settings";
 
 export default function App() {
-  const { lang, setLang, settings, toast } = useApp();
+  const { lang, setLang, settings, updateSettings, ready, toast } = useApp();
   const t = UI[lang];
 
   const [bookId, setBookId] = useState("gen");
@@ -39,6 +39,25 @@ export default function App() {
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
   const [pendingVerse, setPendingVerse] = useState<number | null>(null);
+  const restoredRef = useRef(false);
+
+  // Resume where the reader left off instead of always opening on Genesis
+  // 1. Settings load from localStorage asynchronously (see lib/db.ts), so
+  // this waits for `ready` rather than reading settings on first render,
+  // and only fires once — later settings changes (e.g. our own writes
+  // below) must not keep jumping the reader back.
+  useEffect(() => {
+    if (!ready || restoredRef.current) return;
+    restoredRef.current = true;
+    setBookId(settings.lastBookId);
+    setChapter(settings.lastChapter);
+  }, [ready, settings.lastBookId, settings.lastChapter]);
+
+  useEffect(() => {
+    if (!restoredRef.current) return;
+    updateSettings({ lastBookId: bookId, lastChapter: chapter });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookId, chapter]);
 
   // Jumping chapters (via the fixed toolbar, the drawer, or a search result)
   // reuses the same scrollable div, so without this the reader would land
