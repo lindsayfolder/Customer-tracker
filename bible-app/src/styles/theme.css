@@ -24,8 +24,8 @@
 }
 
 :root {
-  --paper: #f1e9d8;
-  --paper-panel: #fbf6ea;
+  --paper: #e8dcc3;
+  --paper-panel: #f2e7d3;
   --ink: #1c1a17;
   --ink-soft: #55503f;
   --ink-faint: #8a8367;
@@ -35,9 +35,9 @@
   --azure-soft: #dce8ec;
   --hairline: rgba(28, 26, 23, 0.14);
   --shadow: rgba(28, 26, 23, 0.22);
-  --page-bg: #d9cfb6;
-  --ot-panel: #f7ecd6;
-  --nt-panel: #e6eef3;
+  --page-bg: #d0c2a1;
+  --ot-panel: #eedfc1;
+  --nt-panel: #dae2e7;
 }
 
 :root[data-theme="dark"] {
