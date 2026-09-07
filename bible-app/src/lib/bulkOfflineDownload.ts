@@ -30,6 +30,20 @@ export const TOTAL_CONTENT_FILES = 66 * 4 + 66 * 3 + 21 * 2; // 504
 
 const CONCURRENCY = 6;
 const MAX_ATTEMPTS_PER_URL = 4;
+const FETCH_TIMEOUT_MS = 20000;
+
+// Plain fetch() has no default timeout, so a single connection that stalls
+// instead of erroring — common on Android when the OS throttles or drops a
+// background socket mid-request — never settles. Promise.all over a batch
+// then waits on it forever, freezing the whole download exactly where it
+// stood (a reader stuck at some fixed count forever). Forcing each request
+// to fail after a bounded wait turns that hang into an ordinary retryable
+// failure instead.
+function fetchWithTimeout(url: string): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  return fetch(url, { cache: "no-store", signal: controller.signal }).finally(() => clearTimeout(timer));
+}
 
 let running = false;
 
@@ -76,7 +90,7 @@ export async function runBulkDownload(onProgress?: (done: number, total: number)
             const cache = await caches.open(task.cacheName);
             const already = await cache.match(task.url);
             if (already) return;
-            const res = await fetch(task.url, { cache: "no-store" });
+            const res = await fetchWithTimeout(task.url);
             if (!res.ok) throw new Error(String(res.status));
             await cache.put(task.url, res);
           } catch {
