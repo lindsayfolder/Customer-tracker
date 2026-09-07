@@ -72,7 +72,10 @@ export default defineConfig({
               // the cache bucket is what actually forces a re-fetch; bump
               // the suffix again for any future correction to shipped
               // scripture text.
-              cacheName: "bible-text-v2",
+              // Bumped again to v3: the zh-hans text used the Traditional
+              // particle 著 (帶著/接著/照著) throughout instead of the
+              // correct Simplified 着 — see scripts/fix-zhuo-particle.py.
+              cacheName: "bible-text-v3",
               expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
@@ -81,7 +84,9 @@ export default defineConfig({
             urlPattern: /\/insights\/.*\.json$/,
             handler: "CacheFirst",
             options: {
-              cacheName: "bible-insights",
+              // Bumped to v2: the zh-hans insights content had the same
+              // 著/着 particle bug as bible-text-v3 above.
+              cacheName: "bible-insights-v2",
               expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
@@ -116,7 +121,8 @@ export default defineConfig({
             options: {
               // Bumped to v2 alongside bible-text-v2 above -- the index was
               // rebuilt from the corrected scripture text.
-              cacheName: "bible-search-index-v2",
+              // Bumped again to v3 alongside bible-text-v3.
+              cacheName: "bible-search-index-v3",
               expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
