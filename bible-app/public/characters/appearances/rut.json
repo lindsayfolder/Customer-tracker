@@ -1,0 +1,9 @@
+{
+  "id": "rut",
+  "chapters": {
+    "1": ["elimelech", "naomi", "mahlon", "chilion", "orpah", "ruth"],
+    "2": ["naomi", "ruth", "boaz"],
+    "3": ["naomi", "ruth", "boaz"],
+    "4": ["boaz", "naomi", "ruth", "elimelech", "mahlon", "chilion", "obed", "jesse", "david"]
+  }
+}
