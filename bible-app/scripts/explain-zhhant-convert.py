@@ -65,6 +65,7 @@ POST_FIXES = {
     "儘性": "盡性",  # "尽心尽性尽力" (with all heart/soul/strength) always means "to the utmost" (盡), never "as much as possible" (儘)
     "亞幹": "亞干",  # Achan (Joshua 7) is a proper name — OpenCC sometimes mistakes it for 幹 (trunk/do)
     "米母幹": "米母干",  # Memucan (Esther 1) is a proper name — same 干/幹 mistake as Achan
+    "孃家": "娘家",  # OpenCC occasionally over-corrects 娘 to the archaic 孃 in this compound; the CUV scripture text itself uses 娘家 (see Ruth 1:8), so that's the standard this app follows
 }
 
 

@@ -15,6 +15,8 @@ import { Toast } from "./components/Toast";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
 import { loadChapterExplain } from "./lib/explain";
+import { loadChapterCharacters, type CharacterBio } from "./lib/characters";
+import { renderBioHtml, stripBioMarkdown } from "./lib/bioMarkdown";
 import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
 
@@ -35,6 +37,8 @@ export default function App() {
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
   const [explain, setExplain] = useState<ChapterExplain | null>(null);
+  const [chapterCharacters, setChapterCharacters] = useState<CharacterBio[]>([]);
+  const [openCharacterId, setOpenCharacterId] = useState<string | null>(null);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -154,18 +158,44 @@ export default function App() {
     };
   }, [bookId, chapter, lang]);
 
+  // Character bios (lib/characters.ts): which named figures the appearance
+  // manifest lists for this chapter, driving the "People in this chapter"
+  // chip row below. Not every book has a manifest yet, so this quietly
+  // resolves to an empty list rather than throwing.
+  useEffect(() => {
+    let cancelled = false;
+    setChapterCharacters([]);
+    loadChapterCharacters(bookId, chapter, lang).then((list) => {
+      if (!cancelled) setChapterCharacters(list);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [bookId, chapter, lang]);
+
   function openDetail(i: number) {
     tts.stop();
+    setOpenCharacterId(null);
     setOpenPointIndex(i);
   }
   function closeDetail() {
     tts.stop();
     setOpenPointIndex(null);
   }
+  function openCharacter(id: string) {
+    tts.stop();
+    setOpenPointIndex(null);
+    setOpenCharacterId(id);
+  }
+  function closeCharacter() {
+    tts.stop();
+    setOpenCharacterId(null);
+  }
   function switchLang(l: LangKey) {
     tts.stop();
     setLang(l);
     setOpenPointIndex(null);
+    setOpenCharacterId(null);
   }
   function switchTab(next: "scripture" | "insights") {
     tts.stop();
@@ -175,6 +205,7 @@ export default function App() {
     if (target === "home") {
       setModal(null);
       setOpenPointIndex(null);
+      setOpenCharacterId(null);
     } else {
       setModal(target);
     }
@@ -185,6 +216,7 @@ export default function App() {
     setChapter(c);
     setTab("scripture");
     setOpenPointIndex(null);
+    setOpenCharacterId(null);
   }
 
   const bookIndex = BOOKS.findIndex((b) => b.id === bookId);
@@ -207,9 +239,15 @@ export default function App() {
     setBookId(target.bookId);
     setChapter(target.chapter);
     setOpenPointIndex(null);
+    setOpenCharacterId(null);
   }
 
   const point = points && openPointIndex !== null ? points[openPointIndex] : null;
+  const characterIndex = chapterCharacters.findIndex((c) => c.id === openCharacterId);
+  const character = characterIndex !== -1 ? chapterCharacters[characterIndex] : null;
+  const prevCharacter = characterIndex > 0 ? chapterCharacters[characterIndex - 1] : null;
+  const nextCharacter = characterIndex !== -1 && characterIndex < chapterCharacters.length - 1 ? chapterCharacters[characterIndex + 1] : null;
+  const detailOpen = openPointIndex !== null || openCharacterId !== null;
   const chapterEyebrow = fmt(t.chapterEyebrow, { book: book.label[lang], c: chapter });
 
   return (
@@ -249,7 +287,7 @@ export default function App() {
       </div>
 
       <div className="panels">
-        <div className={`view list${openPointIndex !== null ? " is-hidden" : ""}`}>
+        <div className={`view list${detailOpen ? " is-hidden" : ""}`}>
           <div className="view-scroll" ref={listScrollRef}>
           <div className="chapter-head">
             <div>
@@ -281,6 +319,18 @@ export default function App() {
             verses ? (
               <div>
                 <ListenButton id="scripture" text={verses.map((v) => v.t)} />
+                {chapterCharacters.length > 0 && (
+                  <div className="people-row">
+                    <div className="people-row-label">{t.peopleInChapterLabel}</div>
+                    <div className="tag-row">
+                      {chapterCharacters.map((c) => (
+                        <button key={c.id} type="button" className="person-tag" onClick={() => openCharacter(c.id)}>
+                          {c.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="verse-list">
                   {verses.map((v) => (
                     <div
@@ -362,7 +412,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className={`view detail${openPointIndex !== null ? " is-active" : ""}`}>
+        <div className={`view detail${detailOpen ? " is-active" : ""}`}>
           <div className="view-scroll">
           {point && (
             <>
@@ -385,6 +435,38 @@ export default function App() {
                     dangerouslySetInnerHTML={{ __html: para }}
                   />
                 ))}
+              </div>
+            </>
+          )}
+          {character && (
+            <>
+              <button type="button" className="back-tab" onClick={closeCharacter}>
+                <span aria-hidden="true">&larr;</span> {t.backTab}
+              </button>
+              <div className="splash-banner">
+                <div className="splash-title">{character.name}</div>
+              </div>
+              <ListenButton id="character" text={stripBioMarkdown(character.bio)} />
+              <div className="caption-box bio-box" dangerouslySetInnerHTML={{ __html: renderBioHtml(character.bio) }} />
+              <div className="character-nav-row">
+                <button
+                  type="button"
+                  className="character-nav-btn prev"
+                  disabled={!prevCharacter}
+                  onClick={() => prevCharacter && setOpenCharacterId(prevCharacter.id)}
+                >
+                  <span aria-hidden="true">&larr;</span>
+                  <span className="name">{prevCharacter?.name}</span>
+                </button>
+                <button
+                  type="button"
+                  className="character-nav-btn next"
+                  disabled={!nextCharacter}
+                  onClick={() => nextCharacter && setOpenCharacterId(nextCharacter.id)}
+                >
+                  <span className="name">{nextCharacter?.name}</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </button>
               </div>
             </>
           )}
@@ -431,6 +513,7 @@ export default function App() {
           setChapter(resultChapter);
           setTab("scripture");
           setOpenPointIndex(null);
+          setOpenCharacterId(null);
         }}
       />
 

@@ -65,6 +65,7 @@ export interface UiStrings {
   voiceAutoLabel: string;
   voicePreviewLabel: string;
   voiceNoneLabel: string;
+  peopleInChapterLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -126,6 +127,7 @@ export const UI: Record<LangKey, UiStrings> = {
     voiceAutoLabel: "Automatic (recommended)",
     voicePreviewLabel: "Preview",
     voiceNoneLabel: "No voices found for this language on this device.",
+    peopleInChapterLabel: "People in this chapter",
   },
   web: {
     chapterEyebrow: "{book} · Chapter {c}",
@@ -185,6 +187,7 @@ export const UI: Record<LangKey, UiStrings> = {
     voiceAutoLabel: "Automatic (recommended)",
     voicePreviewLabel: "Preview",
     voiceNoneLabel: "No voices found for this language on this device.",
+    peopleInChapterLabel: "People in this chapter",
   },
   "zh-hant": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -244,6 +247,7 @@ export const UI: Record<LangKey, UiStrings> = {
     voiceAutoLabel: "自動（建議）",
     voicePreviewLabel: "試聽",
     voiceNoneLabel: "此裝置上找不到這個語言的語音。",
+    peopleInChapterLabel: "本章人物",
   },
   "zh-hans": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -303,6 +307,7 @@ export const UI: Record<LangKey, UiStrings> = {
     voiceAutoLabel: "自动（建议）",
     voicePreviewLabel: "试听",
     voiceNoneLabel: "此设备上找不到这个语言的语音。",
+    peopleInChapterLabel: "本章人物",
   },
 };
 

@@ -187,6 +187,24 @@ button { font-family: inherit; }
 .explain-points { margin: 10px 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; }
 .explain-points li { font-size: calc(13.5px * var(--font-scale, 1)); line-height: 1.6; color: var(--ink); }
 
+.people-row { margin: 2px 0 16px; }
+.people-row-label { font-weight: 800; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+.person-tag { font-size: 13.5px; font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 2px solid var(--ink); border-radius: 20px; padding: 4px 12px; cursor: pointer; }
+.person-tag:active { background: var(--gold); color: #1c1207; }
+
+.bio-box h3 { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-weight: 400; font-size: 16px; letter-spacing: 0.02em; color: var(--ink); margin: 14px 0 6px; }
+.bio-box h3:first-child { margin-top: 0; }
+.bio-box p { margin: 0 0 10px; }
+.bio-box ul, .bio-box ol { margin: 6px 0 12px; padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+.bio-box li { line-height: 1.6; }
+
+.character-nav-row { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; }
+.character-nav-btn { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 14px; padding: 9px 12px; font-weight: 800; font-size: 13px; color: var(--ink); cursor: pointer; text-align: left; }
+.character-nav-btn span.name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.character-nav-btn.next { justify-content: flex-end; text-align: right; }
+.character-nav-btn:disabled { opacity: 0.35; cursor: default; }
+.character-nav-btn:active { background: var(--gold); }
+
 .view.detail { transform: translateX(100%); opacity: 0; pointer-events: none; }
 .view.list.is-hidden { transform: translateX(-30%); opacity: 0; pointer-events: none; }
 .view.detail.is-active { transform: translateX(0); opacity: 1; pointer-events: auto; }

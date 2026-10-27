@@ -145,6 +145,19 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          {
+            // Character bios + per-book appearance manifests (lib/characters.ts).
+            // Same lazy-fetch-then-cache pattern as explain/ above — only a
+            // few books are covered so far, so this isn't in the bulk
+            // offline manifest yet either.
+            urlPattern: /\/characters\/.*\.json$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "bible-characters-v1",
+              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
         ],
       },
     }),
