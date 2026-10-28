@@ -11,12 +11,16 @@
     "10": ["samuel", "saul_king"],
     "11": ["nahash", "saul_king", "samuel"],
     "13": ["saul_king", "jonathan", "samuel"],
-    "14": ["jonathan", "saul_king", "ahijah_son_of_ahitub", "michal", "abner"],
+    "14": ["jonathan", "saul_king", "ahimelech_priest", "michal", "abner"],
     "15": ["samuel", "saul_king", "agag"],
     "16": ["samuel", "jesse", "eliab_brother_of_david", "abinadab_brother_of_david", "shammah_brother_of_david", "david", "saul_king"],
     "17": ["saul_king", "goliath", "jesse", "eliab_brother_of_david", "abinadab_brother_of_david", "shammah_brother_of_david", "david", "abner"],
     "18": ["jonathan", "david", "saul_king", "merab", "adriel", "michal"],
     "19": ["saul_king", "jonathan", "david", "michal", "samuel"],
-    "20": ["david", "jonathan", "saul_king", "abner"]
+    "20": ["david", "jonathan", "saul_king", "abner"],
+    "21": ["david", "ahimelech_priest", "doeg", "achish"],
+    "22": ["david", "saul_king", "doeg", "ahimelech_priest", "abiathar", "gad_prophet"],
+    "23": ["david", "abiathar", "saul_king", "jonathan"],
+    "24": ["saul_king", "david"]
   }
 }
