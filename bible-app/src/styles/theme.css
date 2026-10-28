@@ -254,7 +254,7 @@ button { font-family: inherit; }
   transition: transform 0.1s ease, background 0.1s ease;
 }
 .modal-close:active { background: var(--gold); transform: scale(0.94); }
-.modal-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px 16px 28px; }
+.modal-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px 16px max(env(safe-area-inset-bottom), 28px); }
 
 .book-strip { flex: none; display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: var(--paper); border-bottom: 2px solid var(--hairline); }
 .book-chip { flex: none; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 10px; padding: 6px 11px; font-weight: 800; font-size: 18px; color: var(--gold-strong); white-space: nowrap; cursor: pointer; transition: transform 0.1s ease, background 0.1s ease; }
