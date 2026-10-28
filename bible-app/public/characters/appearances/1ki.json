@@ -20,6 +20,7 @@
     "17": ["elijah", "ahab"],
     "18": ["elijah", "ahab", "obadiah_steward", "jezebel"],
     "19": ["elijah", "ahab", "jezebel", "hazael", "jehu_king_of_israel", "elisha"],
-    "20": ["benhadad_ii", "ahab"]
+    "20": ["benhadad_ii", "ahab"],
+    "21": ["naboth", "ahab", "jezebel", "elijah"]
   }
 }
