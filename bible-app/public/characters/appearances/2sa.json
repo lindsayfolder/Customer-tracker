@@ -18,6 +18,9 @@
     "15": ["absalom", "ahithophel", "david", "ittai", "zadok", "abiathar", "ahimaaz", "jonathan_son_of_abiathar", "hushai"],
     "16": ["david", "ziba", "mephibosheth", "shimei_son_of_gera", "abishai", "absalom", "hushai", "ahithophel"],
     "17": ["ahithophel", "absalom", "hushai", "zadok", "abiathar", "jonathan_son_of_abiathar", "ahimaaz", "david", "amasa", "abigail_sister_of_david", "shobi", "machir_son_of_ammiel", "barzillai"],
-    "18": ["david", "joab", "abishai", "ittai", "absalom", "ahimaaz", "cushi"]
+    "18": ["david", "joab", "abishai", "ittai", "absalom", "ahimaaz", "cushi"],
+    "19": ["joab", "david", "zadok", "abiathar", "amasa", "shimei_son_of_gera", "ziba", "abishai", "mephibosheth", "barzillai", "chimham"],
+    "20": ["sheba_son_of_bichri", "amasa", "david", "abishai", "joab", "benaiah_son_of_jehoiada", "adoram", "zadok", "abiathar"],
+    "21": ["david", "armoni", "mephibosheth_son_of_saul", "adriel", "rizpah", "mephibosheth", "abishai", "ishbibenob", "sibbechai", "elhanan", "jonathan_son_of_shimeah"]
   }
 }
