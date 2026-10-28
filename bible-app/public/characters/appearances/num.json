@@ -4,6 +4,17 @@
     "11": ["moses", "eldad", "medad", "joshua"],
     "12": ["miriam", "aaron", "moses"],
     "13": ["moses", "aaron", "caleb", "joshua"],
-    "14": ["moses", "aaron", "joshua", "caleb"]
+    "14": ["moses", "aaron", "joshua", "caleb"],
+    "15": ["moses", "aaron"],
+    "16": ["moses", "aaron", "korah", "dathan", "abiram", "eleazar"],
+    "17": ["moses", "aaron"],
+    "18": ["moses", "aaron"],
+    "19": ["moses", "aaron", "eleazar"],
+    "20": ["moses", "aaron", "eleazar", "miriam"],
+    "21": ["moses", "sihon", "og"],
+    "22": ["balak", "balaam"],
+    "23": ["balak", "balaam"],
+    "24": ["balak", "balaam"],
+    "25": ["moses", "aaron", "eleazar", "phinehas", "zimri", "cozbi"]
   }
 }
