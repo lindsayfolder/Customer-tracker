@@ -2,6 +2,8 @@
   "id": "1ki",
   "chapters": {
     "1": ["david", "abishag", "adonijah", "joab", "abiathar", "zadok", "benaiah_son_of_jehoiada", "nathan_prophet", "solomon", "bathsheba", "jonathan_son_of_abiathar"],
-    "2": ["david", "solomon", "joab", "barzillai", "shimei_son_of_gera", "adonijah", "bathsheba", "abishag", "abiathar", "zadok", "benaiah_son_of_jehoiada", "achish_son_of_maachah"]
+    "2": ["david", "solomon", "joab", "barzillai", "shimei_son_of_gera", "adonijah", "bathsheba", "abishag", "abiathar", "zadok", "benaiah_son_of_jehoiada", "achish_son_of_maachah"],
+    "3": ["solomon"],
+    "4": ["solomon", "zadok", "benaiah_son_of_jehoiada", "abiathar", "adoram", "hushai"]
   }
 }
