@@ -190,7 +190,7 @@ button { font-family: inherit; }
 .people-row { margin: 2px 0 16px; }
 .people-row-label { font-weight: 800; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
 .people-row .tag-row { gap: 9px; }
-.person-tag { display: inline-flex; align-items: center; min-height: 38px; font-size: calc(13.5px * var(--font-scale, 1)); font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 2px solid var(--ink); border-radius: 20px; padding: 7px 14px; cursor: pointer; }
+.person-tag { display: inline-flex; align-items: center; min-height: 32px; font-size: calc(12px * var(--font-scale, 1)); font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 1.5px solid var(--ink); border-radius: 16px; padding: 5px 11px; cursor: pointer; }
 .person-tag:active { background: var(--gold); color: #1c1207; }
 .person-tag.more { color: var(--azure); border-color: var(--azure); background: var(--azure-soft); }
 .person-tag.more:active { background: var(--azure); color: var(--paper-panel); }
