@@ -18,6 +18,24 @@
     "15": ["moses", "miriam"],
     "16": ["moses", "aaron"],
     "17": ["moses", "aaron", "joshua", "hur"],
-    "18": ["moses", "jethro", "zipporah", "gershom", "eliezer_son_of_moses"]
+    "18": ["moses", "jethro", "zipporah", "gershom", "eliezer_son_of_moses"],
+    "19": ["moses", "aaron"],
+    "20": ["moses"],
+    "24": ["moses", "aaron", "nadab", "abihu", "joshua", "hur"],
+    "25": ["moses"],
+    "27": ["aaron"],
+    "28": ["aaron", "nadab", "abihu"],
+    "29": ["aaron", "nadab", "abihu"],
+    "30": ["moses", "aaron"],
+    "31": ["moses", "aaron", "bezalel", "oholiab"],
+    "32": ["moses", "aaron", "joshua"],
+    "33": ["moses", "joshua"],
+    "34": ["moses", "aaron"],
+    "35": ["moses", "aaron", "bezalel", "oholiab"],
+    "36": ["moses", "bezalel", "oholiab"],
+    "37": ["bezalel"],
+    "38": ["moses", "aaron", "bezalel", "oholiab"],
+    "39": ["moses", "aaron"],
+    "40": ["moses", "aaron"]
   }
 }
