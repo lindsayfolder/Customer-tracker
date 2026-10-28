@@ -202,7 +202,7 @@ button { font-family: inherit; }
 .bio-box li { line-height: 1.6; }
 
 .character-nav-row { display: flex; justify-content: space-between; gap: 10px; margin-top: 6px; }
-.character-nav-btn { flex: 1; min-width: 0; min-height: 38px; display: flex; align-items: center; gap: 6px; border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 14px; padding: 8px 12px; font-weight: 800; font-size: calc(13px * var(--font-scale, 1)); color: var(--ink); cursor: pointer; text-align: left; }
+.character-nav-btn { flex: 1; min-width: 0; min-height: 32px; display: flex; align-items: center; gap: 6px; border: 1.5px solid var(--ink); background: var(--paper-panel); border-radius: 16px; padding: 5px 11px; font-weight: 800; font-size: calc(12px * var(--font-scale, 1)); color: var(--gold-strong); cursor: pointer; text-align: left; }
 .character-nav-btn span.name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .character-nav-btn.next { justify-content: flex-end; text-align: right; }
 .character-nav-btn:disabled { opacity: 0.35; cursor: default; }
@@ -235,7 +235,7 @@ button { font-family: inherit; }
 .empty-note { font-size: 17.5px; color: var(--ink-faint); text-align: center; padding: 18px 10px; }
 
 /* menu / drawer / modals / search / settings — see full component styles */
-.scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.38); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 20; }
+.scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 20; }
 .scrim.open { opacity: 1; pointer-events: auto; }
 .drawer { position: absolute; top: 0; bottom: 0; left: 0; width: 72%; max-width: 260px; background: var(--paper-panel); border-right: 2.5px solid var(--ink); transform: translateX(-100%); visibility: hidden; transition: transform 0.3s cubic-bezier(.2,.8,.2,1), visibility 0s linear 0.3s; z-index: 21; padding: max(env(safe-area-inset-top), 26px) 14px 26px; display: flex; flex-direction: column; gap: 3px; }
 .drawer.open { transform: translateX(0); visibility: visible; transition: transform 0.3s cubic-bezier(.2,.8,.2,1); }
