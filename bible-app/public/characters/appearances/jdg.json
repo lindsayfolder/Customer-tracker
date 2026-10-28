@@ -4,6 +4,10 @@
     "1": ["adonibezek", "caleb", "othniel", "achsah"],
     "3": ["othniel", "eglon", "ehud", "shamgar"],
     "4": ["deborah_judge", "barak", "jabin_judges", "sisera", "jael"],
-    "5": ["deborah_judge", "barak", "jael", "sisera"]
+    "5": ["deborah_judge", "barak", "jael", "sisera"],
+    "6": ["gideon", "joash_father_of_gideon"],
+    "7": ["gideon", "oreb", "zeeb"],
+    "8": ["gideon", "zebah", "zalmunna", "jether", "joash_father_of_gideon", "abimelech_son_of_gideon"],
+    "9": ["abimelech_son_of_gideon", "jotham_son_of_gideon", "gaal", "zebul"]
   }
 }
