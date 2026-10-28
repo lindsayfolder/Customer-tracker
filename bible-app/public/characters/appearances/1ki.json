@@ -8,6 +8,9 @@
     "5": ["solomon", "hiram_king_of_tyre", "adoram"],
     "6": ["solomon"],
     "7": ["solomon", "hiram_craftsman"],
-    "8": ["solomon"]
+    "8": ["solomon"],
+    "9": ["solomon", "hiram_king_of_tyre"],
+    "10": ["solomon", "queen_of_sheba", "hiram_king_of_tyre"],
+    "11": ["solomon", "hadad_edomite", "rezon", "jeroboam", "ahijah_shilonite", "shishak", "rehoboam"]
   }
 }
