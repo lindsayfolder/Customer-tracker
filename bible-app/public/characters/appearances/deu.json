@@ -1,0 +1,20 @@
+{
+  "id": "deu",
+  "chapters": {
+    "1": ["moses", "joshua", "caleb"],
+    "2": ["sihon"],
+    "3": ["moses", "joshua", "sihon", "og"],
+    "4": ["moses", "sihon", "og"],
+    "9": ["aaron"],
+    "10": ["aaron", "eleazar"],
+    "11": ["dathan", "abiram"],
+    "23": ["balaam"],
+    "24": ["miriam"],
+    "27": ["moses"],
+    "29": ["moses", "sihon", "og"],
+    "31": ["moses", "joshua"],
+    "32": ["moses", "joshua", "aaron"],
+    "33": ["moses"],
+    "34": ["moses", "joshua"]
+  }
+}
