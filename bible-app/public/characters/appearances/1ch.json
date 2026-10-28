@@ -2,6 +2,7 @@
   "id": "1ch",
   "chapters": {
     "4": ["jabez"],
-    "7": ["ephraim", "ezer_son_of_ephraim", "elead", "beriah_son_of_ephraim", "sherah"]
+    "7": ["ephraim", "ezer_son_of_ephraim", "elead", "beriah_son_of_ephraim", "sherah"],
+    "10": ["saul_king", "jonathan", "abinadab_son_of_saul", "malchishua", "david"]
   }
 }
