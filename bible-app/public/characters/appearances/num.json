@@ -1,0 +1,9 @@
+{
+  "id": "num",
+  "chapters": {
+    "11": ["moses", "eldad", "medad", "joshua"],
+    "12": ["miriam", "aaron", "moses"],
+    "13": ["moses", "aaron", "caleb", "joshua"],
+    "14": ["moses", "aaron", "joshua", "caleb"]
+  }
+}
