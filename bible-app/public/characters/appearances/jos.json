@@ -1,0 +1,19 @@
+{
+  "id": "jos",
+  "chapters": {
+    "1": ["joshua"],
+    "2": ["joshua", "rahab"],
+    "3": ["joshua"],
+    "6": ["joshua", "rahab"],
+    "7": ["joshua", "achan"],
+    "8": ["joshua"],
+    "9": ["joshua"],
+    "10": ["joshua", "adonizedek"],
+    "11": ["joshua", "jabin"],
+    "14": ["joshua", "eleazar", "caleb"],
+    "15": ["caleb", "othniel", "achsah"],
+    "17": ["zelophehad", "mahlah", "noah_daughter_of_zelophehad", "hoglah", "milcah_daughter_of_zelophehad", "tirzah"],
+    "22": ["joshua", "phinehas"],
+    "24": ["joshua", "eleazar"]
+  }
+}
