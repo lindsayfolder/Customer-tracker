@@ -3,6 +3,8 @@
   "chapters": {
     "1": ["elkanah", "hannah", "peninnah", "eli", "samuel"],
     "2": ["hannah", "elkanah", "eli", "hophni", "phinehas_son_of_eli", "samuel"],
-    "3": ["samuel", "eli"]
+    "3": ["samuel", "eli"],
+    "4": ["eli", "hophni", "phinehas_son_of_eli", "ichabod"],
+    "7": ["samuel"]
   }
 }
