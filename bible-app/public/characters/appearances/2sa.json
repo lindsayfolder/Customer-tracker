@@ -4,6 +4,10 @@
     "1": ["david", "saul_king", "jonathan"],
     "2": ["david", "ahinoam_jezreelite", "abigail", "ishbosheth", "abner", "joab", "abishai", "asahel"],
     "3": ["amnon", "ahinoam_jezreelite", "abigail", "absalom", "maacah", "adonijah", "abner", "rizpah", "ishbosheth", "michal", "palti", "joab", "david"],
-    "4": ["ishbosheth", "jonathan", "mephibosheth", "rechab_assassin", "baanah_assassin", "david"]
+    "4": ["ishbosheth", "jonathan", "mephibosheth", "rechab_assassin", "baanah_assassin", "david"],
+    "5": ["david", "hiram_king_of_tyre", "solomon"],
+    "6": ["david", "abinadab_ark_keeper", "uzzah", "ahio", "obededom", "michal"],
+    "7": ["david", "nathan_prophet"],
+    "8": ["david", "hadadezer", "toi", "joram_son_of_toi", "joab", "zadok", "abiathar", "benaiah_son_of_jehoiada"]
   }
 }
