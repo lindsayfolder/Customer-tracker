@@ -24,6 +24,17 @@
     "22": ["abraham", "isaac", "bethuel"],
     "23": ["abraham", "sarah", "ephron"],
     "24": ["abraham", "isaac", "rebekah", "laban", "bethuel", "eliezer"],
-    "25": ["abraham", "isaac", "ishmael", "esau", "jacob", "keturah"]
+    "25": ["abraham", "isaac", "ishmael", "esau", "jacob", "keturah"],
+    "26": ["isaac", "rebekah", "abimelech"],
+    "27": ["isaac", "rebekah", "esau", "jacob"],
+    "28": ["isaac", "jacob", "esau", "laban"],
+    "29": ["jacob", "laban", "rachel", "leah", "reuben", "simeon", "levi", "judah"],
+    "30": ["jacob", "laban", "rachel", "leah", "dan", "naphtali", "gad", "asher", "issachar", "zebulun", "dinah", "joseph"],
+    "31": ["jacob", "laban", "rachel", "leah"],
+    "32": ["jacob", "esau"],
+    "33": ["jacob", "esau", "leah", "rachel", "joseph", "dinah"],
+    "34": ["dinah", "shechem", "hamor", "jacob", "simeon", "levi"],
+    "35": ["jacob", "deborah_nurse", "rachel", "benjamin", "reuben", "isaac", "esau"],
+    "36": ["esau"]
   }
 }
