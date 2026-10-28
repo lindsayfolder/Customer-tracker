@@ -1,0 +1,32 @@
+{
+  "id": "lev",
+  "chapters": {
+    "1": ["moses", "aaron"],
+    "2": ["aaron"],
+    "3": ["aaron"],
+    "4": ["moses"],
+    "5": ["moses"],
+    "6": ["moses", "aaron"],
+    "7": ["moses", "aaron"],
+    "8": ["moses", "aaron"],
+    "9": ["moses", "aaron"],
+    "10": ["nadab", "abihu", "moses", "aaron", "eleazar", "ithamar", "mishael", "elzaphan"],
+    "11": ["moses", "aaron"],
+    "12": ["moses"],
+    "13": ["moses", "aaron"],
+    "14": ["moses", "aaron"],
+    "15": ["moses", "aaron"],
+    "16": ["moses", "aaron"],
+    "17": ["moses", "aaron"],
+    "18": ["moses"],
+    "19": ["moses"],
+    "20": ["moses"],
+    "21": ["moses", "aaron"],
+    "22": ["moses", "aaron"],
+    "23": ["moses"],
+    "24": ["shelomith", "moses", "aaron"],
+    "25": ["moses"],
+    "26": ["moses"],
+    "27": ["moses"]
+  }
+}
