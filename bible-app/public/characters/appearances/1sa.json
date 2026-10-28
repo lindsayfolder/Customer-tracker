@@ -14,6 +14,9 @@
     "14": ["jonathan", "saul_king", "ahijah_son_of_ahitub", "michal", "abner"],
     "15": ["samuel", "saul_king", "agag"],
     "16": ["samuel", "jesse", "eliab_brother_of_david", "abinadab_brother_of_david", "shammah_brother_of_david", "david", "saul_king"],
-    "17": ["saul_king", "goliath", "jesse", "eliab_brother_of_david", "abinadab_brother_of_david", "shammah_brother_of_david", "david", "abner"]
+    "17": ["saul_king", "goliath", "jesse", "eliab_brother_of_david", "abinadab_brother_of_david", "shammah_brother_of_david", "david", "abner"],
+    "18": ["jonathan", "david", "saul_king", "merab", "adriel", "michal"],
+    "19": ["saul_king", "jonathan", "david", "michal", "samuel"],
+    "20": ["david", "jonathan", "saul_king", "abner"]
   }
 }
