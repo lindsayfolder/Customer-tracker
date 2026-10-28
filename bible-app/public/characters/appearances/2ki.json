@@ -7,6 +7,7 @@
     "4": ["elisha", "gehazi"],
     "5": ["naaman", "elisha", "gehazi"],
     "6": ["elisha", "benhadad_ii", "jehoram_king_of_israel"],
-    "7": ["elisha", "jehoram_king_of_israel"]
+    "7": ["elisha", "jehoram_king_of_israel"],
+    "8": ["elisha", "gehazi", "hazael", "benhadad_ii", "jehoram_son_of_jehoshaphat", "athaliah", "ahaziah_king_of_judah", "jehoram_king_of_israel"]
   }
 }
