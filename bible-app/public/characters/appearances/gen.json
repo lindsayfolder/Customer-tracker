@@ -35,6 +35,20 @@
     "33": ["jacob", "esau", "leah", "rachel", "joseph", "dinah"],
     "34": ["dinah", "shechem", "hamor", "jacob", "simeon", "levi"],
     "35": ["jacob", "deborah_nurse", "rachel", "benjamin", "reuben", "isaac", "esau"],
-    "36": ["esau"]
+    "36": ["esau"],
+    "37": ["jacob", "joseph", "reuben", "judah", "potiphar"],
+    "38": ["judah", "tamar", "er", "onan", "shelah", "perez", "zerah"],
+    "39": ["joseph", "potiphar"],
+    "40": ["joseph"],
+    "41": ["joseph", "asenath", "manasseh", "ephraim"],
+    "42": ["jacob", "joseph", "reuben", "simeon", "benjamin"],
+    "43": ["jacob", "judah", "benjamin", "joseph"],
+    "44": ["joseph", "judah", "benjamin"],
+    "45": ["joseph", "benjamin", "jacob"],
+    "46": ["jacob", "joseph"],
+    "47": ["jacob", "joseph"],
+    "48": ["jacob", "joseph", "manasseh", "ephraim"],
+    "49": ["jacob", "reuben", "simeon", "levi", "judah", "zebulun", "issachar", "dan", "gad", "asher", "naphtali", "joseph", "benjamin"],
+    "50": ["joseph", "jacob"]
   }
 }
