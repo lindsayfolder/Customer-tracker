@@ -21,6 +21,9 @@
     "21": ["david", "ahimelech_priest", "doeg", "achish"],
     "22": ["david", "saul_king", "doeg", "ahimelech_priest", "abiathar", "gad_prophet"],
     "23": ["david", "abiathar", "saul_king", "jonathan"],
-    "24": ["saul_king", "david"]
+    "24": ["saul_king", "david"],
+    "25": ["samuel", "nabal", "abigail", "david", "ahinoam_jezreelite", "michal", "palti"],
+    "26": ["saul_king", "david", "abishai", "abner"],
+    "27": ["david", "achish", "ahinoam_jezreelite", "abigail", "saul_king"]
   }
 }
