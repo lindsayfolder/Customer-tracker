@@ -1,0 +1,23 @@
+{
+  "id": "exo",
+  "chapters": {
+    "1": ["shiphrah", "puah"],
+    "2": ["moses", "amram", "jochebed", "miriam", "zipporah", "jethro", "gershom"],
+    "3": ["moses", "jethro"],
+    "4": ["moses", "aaron", "zipporah"],
+    "5": ["moses", "aaron"],
+    "6": ["moses", "aaron", "jochebed", "amram"],
+    "7": ["moses", "aaron"],
+    "8": ["moses", "aaron"],
+    "9": ["moses", "aaron"],
+    "10": ["moses", "aaron"],
+    "11": ["moses"],
+    "12": ["moses", "aaron"],
+    "13": ["moses"],
+    "14": ["moses"],
+    "15": ["moses", "miriam"],
+    "16": ["moses", "aaron"],
+    "17": ["moses", "aaron", "joshua", "hur"],
+    "18": ["moses", "jethro", "zipporah", "gershom", "eliezer_son_of_moses"]
+  }
+}
