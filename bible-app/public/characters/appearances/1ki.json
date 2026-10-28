@@ -14,6 +14,8 @@
     "11": ["solomon", "hadad_edomite", "rezon", "jeroboam", "ahijah_shilonite", "shishak", "rehoboam"],
     "12": ["rehoboam", "jeroboam", "adoram", "shemaiah"],
     "13": ["jeroboam", "josiah"],
-    "14": ["jeroboam", "abijah_son_of_jeroboam", "ahijah_shilonite", "nadab_king_of_israel", "rehoboam", "naamah_ammonitess", "shishak", "abijam"]
+    "14": ["jeroboam", "abijah_son_of_jeroboam", "ahijah_shilonite", "nadab_king_of_israel", "rehoboam", "naamah_ammonitess", "shishak", "abijam"],
+    "15": ["abijam", "maachah_queen_mother", "asa", "benhadad", "jehoshaphat_king", "nadab_king_of_israel", "baasha", "ahijah_shilonite"],
+    "16": ["baasha", "jehu_son_of_hanani", "elah", "zimri_king_of_israel", "omri", "tibni", "ahab", "jezebel", "hiel"]
   }
 }
