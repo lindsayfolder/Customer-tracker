@@ -21,6 +21,7 @@
     "18": ["elijah", "ahab", "obadiah_steward", "jezebel"],
     "19": ["elijah", "ahab", "jezebel", "hazael", "jehu_king_of_israel", "elisha"],
     "20": ["benhadad_ii", "ahab"],
-    "21": ["naboth", "ahab", "jezebel", "elijah"]
+    "21": ["naboth", "ahab", "jezebel", "elijah"],
+    "22": ["ahab", "jehoshaphat_king", "micaiah", "zedekiah_son_of_chenaanah", "amon_governor", "joash_son_of_ahab", "ahaziah_son_of_ahab", "azubah", "jehoram_son_of_jehoshaphat"]
   }
 }
