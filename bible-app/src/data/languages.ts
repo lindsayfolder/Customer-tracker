@@ -66,6 +66,8 @@ export interface UiStrings {
   voicePreviewLabel: string;
   voiceNoneLabel: string;
   peopleInChapterLabel: string;
+  peopleShowMoreTpl: string;
+  peopleShowLessLabel: string;
 }
 
 export const UI: Record<LangKey, UiStrings> = {
@@ -128,6 +130,8 @@ export const UI: Record<LangKey, UiStrings> = {
     voicePreviewLabel: "Preview",
     voiceNoneLabel: "No voices found for this language on this device.",
     peopleInChapterLabel: "People in this chapter",
+    peopleShowMoreTpl: "+{n} more",
+    peopleShowLessLabel: "Show less",
   },
   web: {
     chapterEyebrow: "{book} · Chapter {c}",
@@ -188,6 +192,8 @@ export const UI: Record<LangKey, UiStrings> = {
     voicePreviewLabel: "Preview",
     voiceNoneLabel: "No voices found for this language on this device.",
     peopleInChapterLabel: "People in this chapter",
+    peopleShowMoreTpl: "+{n} more",
+    peopleShowLessLabel: "Show less",
   },
   "zh-hant": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -248,6 +254,8 @@ export const UI: Record<LangKey, UiStrings> = {
     voicePreviewLabel: "試聽",
     voiceNoneLabel: "此裝置上找不到這個語言的語音。",
     peopleInChapterLabel: "本章人物",
+    peopleShowMoreTpl: "還有 {n} 位",
+    peopleShowLessLabel: "收合",
   },
   "zh-hans": {
     chapterEyebrow: "{book} · 第 {c} 章",
@@ -308,6 +316,8 @@ export const UI: Record<LangKey, UiStrings> = {
     voicePreviewLabel: "试听",
     voiceNoneLabel: "此设备上找不到这个语言的语音。",
     peopleInChapterLabel: "本章人物",
+    peopleShowMoreTpl: "还有 {n} 位",
+    peopleShowLessLabel: "收合",
   },
 };
 

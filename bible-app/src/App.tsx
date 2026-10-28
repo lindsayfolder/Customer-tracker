@@ -22,6 +22,11 @@ import { stripHtml, tts } from "./lib/tts";
 
 export type ModalKey = "contents" | "search" | "settings";
 
+// Genealogy-heavy chapters (Genesis 10, 36, 46...) can list dozens of
+// people; showing them all before verse 1 would bury the actual text. Cap
+// the row and let a "+N more" toggle reveal the rest in place instead.
+const PEOPLE_ROW_CAP = 6;
+
 export default function App() {
   const { lang, setLang, settings, updateSettings, ready, toast } = useApp();
   const t = UI[lang];
@@ -39,6 +44,7 @@ export default function App() {
   const [explain, setExplain] = useState<ChapterExplain | null>(null);
   const [chapterCharacters, setChapterCharacters] = useState<CharacterBio[]>([]);
   const [openCharacterId, setOpenCharacterId] = useState<string | null>(null);
+  const [peopleExpanded, setPeopleExpanded] = useState(false);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -165,6 +171,7 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     setChapterCharacters([]);
+    setPeopleExpanded(false);
     loadChapterCharacters(bookId, chapter, lang).then((list) => {
       if (!cancelled) setChapterCharacters(list);
     });
@@ -323,11 +330,20 @@ export default function App() {
                   <div className="people-row">
                     <div className="people-row-label">{t.peopleInChapterLabel}</div>
                     <div className="tag-row">
-                      {chapterCharacters.map((c) => (
+                      {(peopleExpanded ? chapterCharacters : chapterCharacters.slice(0, PEOPLE_ROW_CAP)).map((c) => (
                         <button key={c.id} type="button" className="person-tag" onClick={() => openCharacter(c.id)}>
                           {c.name}
                         </button>
                       ))}
+                      {chapterCharacters.length > PEOPLE_ROW_CAP && (
+                        <button
+                          type="button"
+                          className="person-tag more"
+                          onClick={() => setPeopleExpanded((v) => !v)}
+                        >
+                          {peopleExpanded ? t.peopleShowLessLabel : fmt(t.peopleShowMoreTpl, { n: chapterCharacters.length - PEOPLE_ROW_CAP })}
+                        </button>
+                      )}
                     </div>
                   </div>
                 )}
