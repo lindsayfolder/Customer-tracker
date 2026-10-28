@@ -10,6 +10,20 @@
     "8": ["noah"],
     "9": ["noah", "shem", "ham", "japheth", "canaan"],
     "10": ["shem", "ham", "japheth", "nimrod"],
-    "11": ["shem", "terah", "abraham", "nahor", "haran", "lot", "sarah", "milcah"]
+    "11": ["shem", "terah", "abraham", "nahor", "haran", "lot", "sarah", "milcah"],
+    "12": ["abraham", "sarah", "lot"],
+    "13": ["abraham", "lot"],
+    "14": ["abraham", "lot", "melchizedek"],
+    "15": ["abraham", "eliezer"],
+    "16": ["abraham", "sarah", "hagar", "ishmael"],
+    "17": ["abraham", "sarah", "ishmael"],
+    "18": ["abraham", "sarah"],
+    "19": ["lot", "moab", "benammi"],
+    "20": ["abraham", "sarah", "abimelech"],
+    "21": ["abraham", "sarah", "isaac", "hagar", "ishmael", "abimelech"],
+    "22": ["abraham", "isaac", "bethuel"],
+    "23": ["abraham", "sarah", "ephron"],
+    "24": ["abraham", "isaac", "rebekah", "laban", "bethuel", "eliezer"],
+    "25": ["abraham", "isaac", "ishmael", "esau", "jacob", "keturah"]
   }
 }
