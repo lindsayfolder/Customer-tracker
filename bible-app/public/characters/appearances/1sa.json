@@ -24,6 +24,10 @@
     "24": ["saul_king", "david"],
     "25": ["samuel", "nabal", "abigail", "david", "ahinoam_jezreelite", "michal", "palti"],
     "26": ["saul_king", "david", "abishai", "abner"],
-    "27": ["david", "achish", "ahinoam_jezreelite", "abigail", "saul_king"]
+    "27": ["david", "achish", "ahinoam_jezreelite", "abigail", "saul_king"],
+    "28": ["saul_king", "samuel", "achish", "david"],
+    "29": ["achish", "david"],
+    "30": ["david", "abigail", "ahinoam_jezreelite", "abiathar"],
+    "31": ["saul_king", "jonathan", "abinadab_son_of_saul", "malchishua"]
   }
 }
