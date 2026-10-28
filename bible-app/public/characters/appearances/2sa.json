@@ -1,0 +1,9 @@
+{
+  "id": "2sa",
+  "chapters": {
+    "1": ["david", "saul_king", "jonathan"],
+    "2": ["david", "ahinoam_jezreelite", "abigail", "ishbosheth", "abner", "joab", "abishai", "asahel"],
+    "3": ["amnon", "ahinoam_jezreelite", "abigail", "absalom", "maacah", "adonijah", "abner", "rizpah", "ishbosheth", "michal", "palti", "joab", "david"],
+    "4": ["ishbosheth", "jonathan", "mephibosheth", "rechab_assassin", "baanah_assassin", "david"]
+  }
+}
