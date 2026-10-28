@@ -21,6 +21,9 @@
     "18": ["david", "joab", "abishai", "ittai", "absalom", "ahimaaz", "cushi"],
     "19": ["joab", "david", "zadok", "abiathar", "amasa", "shimei_son_of_gera", "ziba", "abishai", "mephibosheth", "barzillai", "chimham"],
     "20": ["sheba_son_of_bichri", "amasa", "david", "abishai", "joab", "benaiah_son_of_jehoiada", "adoram", "zadok", "abiathar"],
-    "21": ["david", "armoni", "mephibosheth_son_of_saul", "adriel", "rizpah", "mephibosheth", "abishai", "ishbibenob", "sibbechai", "elhanan", "jonathan_son_of_shimeah"]
+    "21": ["david", "armoni", "mephibosheth_son_of_saul", "adriel", "rizpah", "mephibosheth", "abishai", "ishbibenob", "sibbechai", "elhanan", "jonathan_son_of_shimeah"],
+    "22": ["david"],
+    "23": ["david", "adino_eznite", "eleazar_son_of_dodo", "shammah_son_of_agee", "abishai", "benaiah_son_of_jehoiada", "asahel", "uriah"],
+    "24": ["david", "joab", "gad_prophet", "araunah"]
   }
 }
