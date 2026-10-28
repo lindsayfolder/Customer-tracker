@@ -37,6 +37,7 @@ POST_FIXES = {
     "儘性": "盡性",
     "孃家": "娘家",  # OpenCC occasionally over-corrects 娘 to the archaic 孃 in this compound; the CUV scripture text itself uses 娘家 (see Ruth 1:8), so that's the standard this app follows
     "亞幹": "亞干",  # Achan's name is a transliteration (just the character 干, not "dry/do"); OpenCC's 幹/乾 heuristic misfires on it, but the CUV scripture text itself uses 亞干 (see Joshua 7:1)
+    "以比贊": "以比讚",  # Ibzan's name is a transliteration; OpenCC converts 赞 to the wrong of two valid traditional variants, but the CUV scripture text itself uses 以比讚 (see Judges 12:8)
 }
 
 

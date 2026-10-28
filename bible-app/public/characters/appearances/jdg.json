@@ -8,6 +8,9 @@
     "6": ["gideon", "joash_father_of_gideon"],
     "7": ["gideon", "oreb", "zeeb"],
     "8": ["gideon", "zebah", "zalmunna", "jether", "joash_father_of_gideon", "abimelech_son_of_gideon"],
-    "9": ["abimelech_son_of_gideon", "jotham_son_of_gideon", "gaal", "zebul"]
+    "9": ["abimelech_son_of_gideon", "jotham_son_of_gideon", "gaal", "zebul"],
+    "10": ["tola", "jair_judge"],
+    "11": ["jephthah"],
+    "12": ["jephthah", "ibzan", "elon", "abdon"]
   }
 }
