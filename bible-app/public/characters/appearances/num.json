@@ -15,6 +15,12 @@
     "22": ["balak", "balaam"],
     "23": ["balak", "balaam"],
     "24": ["balak", "balaam"],
-    "25": ["moses", "aaron", "eleazar", "phinehas", "zimri", "cozbi"]
+    "25": ["moses", "aaron", "eleazar", "phinehas", "zimri", "cozbi"],
+    "26": ["moses", "eleazar", "aaron", "dathan", "abiram", "korah", "zelophehad", "mahlah", "noah_daughter_of_zelophehad", "hoglah", "milcah_daughter_of_zelophehad", "tirzah"],
+    "27": ["zelophehad", "mahlah", "noah_daughter_of_zelophehad", "hoglah", "milcah_daughter_of_zelophehad", "tirzah", "moses", "eleazar", "joshua"],
+    "31": ["moses", "eleazar", "phinehas", "balaam"],
+    "32": ["moses", "eleazar", "caleb", "joshua", "machir", "jair", "nobah"],
+    "33": ["moses", "aaron"],
+    "36": ["moses", "eleazar", "zelophehad", "mahlah", "tirzah", "hoglah", "milcah_daughter_of_zelophehad", "noah_daughter_of_zelophehad"]
   }
 }
