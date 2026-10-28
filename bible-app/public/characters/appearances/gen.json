@@ -1,0 +1,15 @@
+{
+  "id": "gen",
+  "chapters": {
+    "2": ["adam", "eve"],
+    "3": ["adam", "eve"],
+    "4": ["adam", "eve", "cain", "abel", "seth"],
+    "5": ["seth", "enoch", "methuselah", "lamech", "noah"],
+    "6": ["noah", "shem", "ham", "japheth"],
+    "7": ["noah", "shem", "ham", "japheth"],
+    "8": ["noah"],
+    "9": ["noah", "shem", "ham", "japheth", "canaan"],
+    "10": ["shem", "ham", "japheth", "nimrod"],
+    "11": ["shem", "terah", "abraham", "nahor", "haran", "lot", "sarah", "milcah"]
+  }
+}
