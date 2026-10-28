@@ -15,6 +15,9 @@
     "12": ["nathan_prophet", "david", "bathsheba", "solomon", "joab"],
     "13": ["absalom", "tamar_sister_of_absalom", "amnon", "jonadab", "david", "talmai"],
     "14": ["joab", "david", "absalom", "tamar_sister_of_absalom"],
-    "15": ["absalom", "ahithophel", "david", "ittai", "zadok", "abiathar", "ahimaaz", "jonathan_son_of_abiathar", "hushai"]
+    "15": ["absalom", "ahithophel", "david", "ittai", "zadok", "abiathar", "ahimaaz", "jonathan_son_of_abiathar", "hushai"],
+    "16": ["david", "ziba", "mephibosheth", "shimei_son_of_gera", "abishai", "absalom", "hushai", "ahithophel"],
+    "17": ["ahithophel", "absalom", "hushai", "zadok", "abiathar", "jonathan_son_of_abiathar", "ahimaaz", "david", "amasa", "abigail_sister_of_david", "shobi", "machir_son_of_ammiel", "barzillai"],
+    "18": ["david", "joab", "abishai", "ittai", "absalom", "ahimaaz", "cushi"]
   }
 }
