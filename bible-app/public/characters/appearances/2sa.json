@@ -8,6 +8,10 @@
     "5": ["david", "hiram_king_of_tyre", "solomon"],
     "6": ["david", "abinadab_ark_keeper", "uzzah", "ahio", "obededom", "michal"],
     "7": ["david", "nathan_prophet"],
-    "8": ["david", "hadadezer", "toi", "joram_son_of_toi", "joab", "zadok", "abiathar", "benaiah_son_of_jehoiada"]
+    "8": ["david", "hadadezer", "toi", "joram_son_of_toi", "joab", "zadok", "abiathar", "benaiah_son_of_jehoiada"],
+    "9": ["david", "ziba", "mephibosheth", "jonathan", "machir_son_of_ammiel"],
+    "10": ["hanun", "nahash", "david", "joab", "abishai", "hadadezer", "shobach"],
+    "11": ["david", "joab", "bathsheba", "uriah"],
+    "12": ["nathan_prophet", "david", "bathsheba", "solomon", "joab"]
   }
 }
