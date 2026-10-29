@@ -1,0 +1,29 @@
+{
+  "id": "isa",
+  "chapters": {
+    "1": ["isaiah", "azariah_king_of_judah", "jotham_king_of_judah", "ahaz_king_of_judah", "hezekiah"],
+    "2": ["isaiah"],
+    "6": ["isaiah", "azariah_king_of_judah"],
+    "7": ["isaiah", "ahaz_king_of_judah", "shear_jashub", "rezin", "pekah"],
+    "8": ["isaiah", "maher_shalal_hash_baz", "uriah_priest_of_ahaz", "zechariah_son_of_jeberechiah", "rezin", "pekah"],
+    "9": ["rezin"],
+    "10": ["oreb", "saul_king"],
+    "11": ["jesse"],
+    "13": ["isaiah"],
+    "14": ["ahaz_king_of_judah"],
+    "20": ["isaiah", "sargon", "tartan"],
+    "22": ["eliakim", "hilkiah", "shebna", "david"],
+    "29": ["abraham", "david"],
+    "36": ["eliakim", "hilkiah", "joah", "hezekiah", "shebna", "rabshakeh", "sennacherib"],
+    "37": ["adrammelech_son_of_sennacherib", "sharezer", "david", "eliakim", "esarhaddon", "hezekiah", "isaiah", "rabshakeh", "sennacherib", "shebna", "tirhakah"],
+    "38": ["ahaz_king_of_judah", "david", "hezekiah", "isaiah"],
+    "39": ["berodach_baladan", "hezekiah", "isaiah"],
+    "41": ["abraham"],
+    "44": ["cyrus"],
+    "45": ["cyrus"],
+    "51": ["abraham", "sarah"],
+    "54": ["noah"],
+    "55": ["david"],
+    "63": ["abraham", "moses"]
+  }
+}
