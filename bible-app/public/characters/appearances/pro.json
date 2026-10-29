@@ -1,0 +1,10 @@
+{
+  "id": "pro",
+  "chapters": {
+    "1": ["solomon"],
+    "10": ["solomon"],
+    "25": ["solomon", "hezekiah"],
+    "30": ["agur"],
+    "31": ["lemuel"]
+  }
+}
