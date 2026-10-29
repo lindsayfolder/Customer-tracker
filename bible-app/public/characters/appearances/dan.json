@@ -1,0 +1,16 @@
+{
+  "id": "dan",
+  "chapters": {
+    "1": ["daniel", "shadrach", "meshach", "abednego", "ashpenaz", "jehoiakim", "nebuchadnezzar", "cyrus"],
+    "2": ["daniel", "nebuchadnezzar"],
+    "3": ["shadrach", "meshach", "abednego", "nebuchadnezzar"],
+    "4": ["daniel", "nebuchadnezzar"],
+    "5": ["belshazzar", "daniel", "nebuchadnezzar"],
+    "6": ["daniel", "darius_the_mede"],
+    "7": ["daniel", "belshazzar"],
+    "8": ["daniel", "belshazzar"],
+    "9": ["daniel", "darius_the_mede", "jeremiah", "moses"],
+    "10": ["daniel", "cyrus"],
+    "11": ["darius_the_mede"]
+  }
+}
