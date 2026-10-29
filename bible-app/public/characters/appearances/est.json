@@ -2,6 +2,8 @@
   "id": "est",
   "chapters": {
     "1": ["ahasuerus", "vashti", "memucan"],
-    "2": ["mordecai", "esther", "hegai", "ahasuerus", "bigthan", "teresh"]
+    "2": ["mordecai", "esther", "hegai", "ahasuerus", "bigthan", "teresh"],
+    "3": ["haman", "mordecai", "ahasuerus"],
+    "4": ["mordecai", "esther", "hatach"]
   }
 }
