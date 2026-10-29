@@ -34,6 +34,8 @@
     "31": ["hezekiah", "azariah_chief_priest_hezekiah"],
     "32": ["hezekiah"],
     "33": ["manasseh_king_of_judah", "amon_king_of_judah"],
-    "34": ["josiah", "shaphan", "hilkiah", "ahikam", "achbor", "asahiah", "huldah"]
+    "34": ["josiah", "shaphan", "hilkiah", "ahikam", "achbor", "asahiah", "huldah"],
+    "35": ["josiah", "jeremiah"],
+    "36": ["jehoahaz_king_of_judah", "jehoiakim", "nebuchadnezzar", "jehoiachin", "zedekiah", "jeremiah", "cyrus"]
   }
 }
