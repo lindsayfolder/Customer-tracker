@@ -3,6 +3,9 @@
   "chapters": {
     "1": ["cyrus", "mithredath", "sheshbazzar"],
     "2": ["zerubbabel", "jeshua_high_priest"],
-    "3": ["zerubbabel", "jeshua_high_priest"]
+    "3": ["zerubbabel", "jeshua_high_priest"],
+    "4": ["zerubbabel", "jeshua_high_priest", "rehum", "shimshai", "artaxerxes"],
+    "5": ["haggai", "zechariah_son_of_iddo", "zerubbabel", "jeshua_high_priest", "tatnai", "shetharboznai", "sheshbazzar"],
+    "6": ["darius", "tatnai", "shetharboznai", "haggai", "zechariah_son_of_iddo", "zerubbabel", "jeshua_high_priest"]
   }
 }
