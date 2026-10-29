@@ -21,6 +21,7 @@
     "18": ["jehoshaphat_king", "ahab", "micaiah", "zedekiah_son_of_chenaanah"],
     "19": ["jehoshaphat_king", "jehu_son_of_hanani"],
     "20": ["jehoshaphat_king", "jahaziel", "eliezer_son_of_dodavah"],
-    "21": ["jehoram_son_of_jehoshaphat", "ahaziah_king_of_judah"]
+    "21": ["jehoram_son_of_jehoshaphat", "ahaziah_king_of_judah"],
+    "22": ["ahaziah_king_of_judah", "athaliah", "jehosheba", "joash_king_of_judah", "jehoiada"]
   }
 }
