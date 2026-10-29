@@ -1,0 +1,30 @@
+{
+  "id": "jer",
+  "chapters": {
+    "1": ["jeremiah", "josiah", "jehoiakim", "zedekiah"],
+    "20": ["jeremiah", "pashur_son_of_immer"],
+    "21": ["jeremiah", "zedekiah", "pashur_son_of_melchiah"],
+    "26": ["jeremiah", "jehoiakim", "uriah_prophet", "elnathan_son_of_achbor", "ahikam", "hezekiah"],
+    "27": ["jeremiah", "zedekiah", "jehoiakim"],
+    "28": ["jeremiah", "hananiah_false_prophet", "zedekiah"],
+    "29": ["jeremiah", "zedekiah"],
+    "32": ["jeremiah", "hanameel", "baruch", "zedekiah"],
+    "34": ["jeremiah", "zedekiah"],
+    "35": ["jeremiah", "jehonadab", "jehoiakim"],
+    "36": ["jeremiah", "baruch", "jehoiakim", "elnathan_son_of_achbor"],
+    "37": ["jeremiah", "zedekiah"],
+    "38": ["jeremiah", "zedekiah", "ebed_melech", "pashur_son_of_melchiah"],
+    "39": ["jeremiah", "zedekiah", "nebuchadnezzar", "nebuzaradan", "ebed_melech"],
+    "40": ["jeremiah", "gedaliah", "nebuzaradan", "ishmael_son_of_nethaniah", "johanan_son_of_kareah"],
+    "41": ["gedaliah", "ishmael_son_of_nethaniah", "johanan_son_of_kareah"],
+    "42": ["jeremiah", "johanan_son_of_kareah"],
+    "43": ["jeremiah", "johanan_son_of_kareah", "baruch"],
+    "44": ["jeremiah", "pharaoh_hophra"],
+    "45": ["jeremiah", "baruch"],
+    "46": ["jeremiah", "pharaoh_necho", "nebuchadnezzar", "josiah", "jehoiakim"],
+    "49": ["jeremiah", "nebuchadnezzar", "zedekiah"],
+    "50": ["jeremiah", "nebuchadnezzar"],
+    "51": ["jeremiah", "seraiah_son_of_neriah", "baruch", "zedekiah", "nebuchadnezzar"],
+    "52": ["zedekiah", "hamutal", "nebuchadnezzar", "nebuzaradan", "jehoiachin", "evil_merodach"]
+  }
+}
