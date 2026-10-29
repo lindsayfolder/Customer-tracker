@@ -8,6 +8,8 @@
     "5": ["esther", "ahasuerus", "haman", "mordecai", "zeresh"],
     "6": ["ahasuerus", "haman", "mordecai", "zeresh"],
     "7": ["esther", "ahasuerus", "haman", "harbonah"],
-    "8": ["mordecai", "esther", "ahasuerus"]
+    "8": ["mordecai", "esther", "ahasuerus"],
+    "9": ["mordecai", "esther"],
+    "10": ["mordecai"]
   }
 }
