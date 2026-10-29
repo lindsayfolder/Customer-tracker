@@ -6,6 +6,10 @@
     "3": ["zerubbabel", "jeshua_high_priest"],
     "4": ["zerubbabel", "jeshua_high_priest", "rehum", "shimshai", "artaxerxes"],
     "5": ["haggai", "zechariah_son_of_iddo", "zerubbabel", "jeshua_high_priest", "tatnai", "shetharboznai", "sheshbazzar"],
-    "6": ["darius", "tatnai", "shetharboznai", "haggai", "zechariah_son_of_iddo", "zerubbabel", "jeshua_high_priest"]
+    "6": ["darius", "tatnai", "shetharboznai", "haggai", "zechariah_son_of_iddo", "zerubbabel", "jeshua_high_priest"],
+    "7": ["ezra", "artaxerxes"],
+    "8": ["ezra", "sherebiah", "hashabiah"],
+    "9": ["ezra"],
+    "10": ["ezra", "shechaniah", "jonathan_son_of_asahel", "jahaziah", "meshullam_ezra", "shabbethai"]
   }
 }
