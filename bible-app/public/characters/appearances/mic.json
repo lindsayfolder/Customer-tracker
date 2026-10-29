@@ -1,0 +1,8 @@
+{
+  "id": "mic",
+  "chapters": {
+    "1": ["micah_prophet", "jotham_king_of_judah", "ahaz_king_of_judah", "hezekiah"],
+    "6": ["moses", "aaron", "miriam", "balak", "balaam", "omri", "ahab"],
+    "7": ["abraham"]
+  }
+}
