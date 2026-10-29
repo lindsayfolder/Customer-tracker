@@ -1,0 +1,9 @@
+{
+  "id": "hos",
+  "chapters": {
+    "1": ["hosea", "azariah_king_of_judah", "jotham_king_of_judah", "ahaz_king_of_judah", "hezekiah", "jeroboam_ii", "gomer"],
+    "2": ["gomer"],
+    "3": ["hosea", "gomer", "david"],
+    "12": ["jacob"]
+  }
+}
