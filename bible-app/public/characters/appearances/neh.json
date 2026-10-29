@@ -2,6 +2,9 @@
   "id": "neh",
   "chapters": {
     "1": ["nehemiah", "hanani_brother_of_nehemiah"],
-    "2": ["nehemiah", "sanballat", "tobiah", "geshem"]
+    "2": ["nehemiah", "sanballat", "tobiah", "geshem"],
+    "3": ["eliashib"],
+    "4": ["nehemiah", "sanballat", "tobiah"],
+    "5": ["nehemiah"]
   }
 }
