@@ -1,0 +1,20 @@
+{
+  "id": "psa",
+  "chapters": {
+    "18": ["david"],
+    "72": ["david"],
+    "77": ["moses", "aaron"],
+    "78": ["david"],
+    "83": ["sisera", "jabin_judges", "oreb", "zebah", "zalmunna"],
+    "89": ["david"],
+    "99": ["moses", "aaron", "samuel"],
+    "103": ["moses"],
+    "105": ["abraham", "isaac", "jacob", "moses", "aaron"],
+    "106": ["moses", "aaron", "dathan", "abiram", "phinehas"],
+    "110": ["melchizedek"],
+    "132": ["david"],
+    "135": ["sihon", "og"],
+    "136": ["sihon", "og"],
+    "144": ["david"]
+  }
+}
