@@ -1,0 +1,8 @@
+{
+  "id": "phi",
+  "chapters": {
+    "1": ["saul_of_tarsus", "timothy"],
+    "2": ["epaphroditus"],
+    "4": ["euodia", "syntyche", "clement", "epaphroditus"]
+  }
+}
