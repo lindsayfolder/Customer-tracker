@@ -2,6 +2,7 @@
   "id": "luk",
   "chapters": {
     "1": ["zechariah_father_of_john_baptist", "elizabeth", "john_the_baptist", "elijah", "mary_mother_of_jesus", "joseph_husband_of_mary", "david", "abraham", "jacob"],
-    "2": ["caesar_augustus", "joseph_husband_of_mary", "mary_mother_of_jesus", "jesus", "david", "simeon_the_devout", "anna_prophetess", "moses"]
+    "2": ["caesar_augustus", "joseph_husband_of_mary", "mary_mother_of_jesus", "jesus", "david", "simeon_the_devout", "anna_prophetess", "moses"],
+    "3": ["john_the_baptist", "isaiah", "herod_antipas", "philip_brother_of_herod", "caiaphas", "jesus", "joseph_husband_of_mary", "david", "jesse", "obed", "boaz", "perez", "judah", "jacob", "isaac", "abraham", "shem", "noah", "lamech", "methuselah", "enoch", "seth", "adam", "zerubbabel"]
   }
 }
