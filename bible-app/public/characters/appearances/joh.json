@@ -14,6 +14,9 @@
     "11": ["jesus", "lazarus_of_bethany", "martha", "mary_of_bethany", "thomas", "caiaphas"],
     "12": ["jesus", "lazarus_of_bethany", "martha", "mary_of_bethany", "judas_iscariot", "philip_apostle", "andrew", "isaiah"],
     "13": ["jesus", "peter", "judas_iscariot", "john_apostle"],
-    "14": ["jesus", "thomas", "philip_apostle", "thaddaeus"]
+    "14": ["jesus", "thomas", "philip_apostle", "thaddaeus"],
+    "15": ["jesus"],
+    "16": ["jesus"],
+    "17": ["jesus"]
   }
 }
