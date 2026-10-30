@@ -21,6 +21,8 @@
     "18": ["jesus", "peter"],
     "19": ["jesus", "moses", "peter"],
     "20": ["jesus", "james_son_of_zebedee", "john_apostle", "david"],
-    "21": ["jesus", "david", "zechariah_son_of_iddo", "john_the_baptist"]
+    "21": ["jesus", "david", "zechariah_son_of_iddo", "john_the_baptist"],
+    "22": ["jesus", "moses", "abraham", "isaac", "jacob", "david"],
+    "23": ["jesus", "moses", "abel", "zechariah_son_of_jehoiada"]
   }
 }
