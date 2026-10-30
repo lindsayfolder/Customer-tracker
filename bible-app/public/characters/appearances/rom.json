@@ -1,0 +1,11 @@
+{
+  "id": "rom",
+  "chapters": {
+    "1": ["saul_of_tarsus", "david"],
+    "4": ["abraham", "sarah", "david"],
+    "5": ["adam", "moses"],
+    "9": ["abraham", "isaac", "rebekah", "jacob", "esau", "moses", "hosea", "isaiah"],
+    "11": ["elijah"],
+    "16": ["phoebe", "priscilla", "aquila", "epaenetus", "mary_of_rome", "andronicus", "junia", "amplias", "urbane", "stachys", "apelles", "aristobulus", "herodion", "narcissus", "tryphena", "tryphosa", "persis", "rufus_of_rome", "asyncritus", "phlegon", "hermas", "patrobas", "hermes", "philologus", "julia", "nereus", "olympas", "timothy", "lucius_kinsman_of_paul", "jason", "sopater", "tertius", "gaius_of_corinth", "erastus", "quartus", "saul_of_tarsus"]
+  }
+}
