@@ -19,6 +19,8 @@
     "16": ["jesus", "lazarus_the_beggar", "abraham", "moses"],
     "17": ["jesus", "noah", "lot"],
     "18": ["jesus", "peter", "david"],
-    "19": ["jesus", "zacchaeus", "abraham"]
+    "19": ["jesus", "zacchaeus", "abraham"],
+    "20": ["jesus", "moses", "abraham", "isaac", "jacob", "david"],
+    "21": ["jesus"]
   }
 }
