@@ -10,6 +10,12 @@
     "7": ["jesus", "isaiah"],
     "8": ["jesus", "peter", "john_the_baptist", "elijah"],
     "9": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "moses", "elijah"],
-    "10": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "moses", "bartimaeus", "david"]
+    "10": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "moses", "bartimaeus", "david"],
+    "11": ["jesus", "peter", "david", "john_the_baptist"],
+    "12": ["jesus", "moses", "abraham", "isaac", "jacob", "david"],
+    "13": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "andrew", "daniel"],
+    "14": ["jesus", "simon_the_leper", "judas_iscariot", "peter", "james_son_of_zebedee", "john_apostle"],
+    "15": ["jesus", "pontius_pilate", "barabbas", "simon_of_cyrene", "mary_magdalene", "mary_mother_of_james", "salome", "joseph_of_arimathea"],
+    "16": ["jesus", "mary_magdalene", "mary_mother_of_james", "salome", "peter"]
   }
 }
