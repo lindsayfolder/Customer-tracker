@@ -22,6 +22,7 @@
     "19": ["jesus", "zacchaeus", "abraham"],
     "20": ["jesus", "moses", "abraham", "isaac", "jacob", "david"],
     "21": ["jesus"],
-    "22": ["jesus", "judas_iscariot", "peter", "john_apostle"]
+    "22": ["jesus", "judas_iscariot", "peter", "john_apostle"],
+    "23": ["jesus", "pontius_pilate", "barabbas", "herod_antipas", "simon_of_cyrene", "joseph_of_arimathea"]
   }
 }
