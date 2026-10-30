@@ -103,7 +103,7 @@ button { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: max(env(safe-area-inset-top), 16px) 18px 10px;
+  padding: max(calc(env(safe-area-inset-top) + 10px), 16px) 18px 10px;
   background: var(--paper);
   position: relative;
   z-index: 2;
@@ -138,7 +138,7 @@ button { font-family: inherit; }
 .lang-pill { font-weight: 800; font-size: 16px; letter-spacing: 0.02em; border: 2px solid var(--ink); border-radius: 20px; padding: 4px 9px; background: var(--paper-panel); color: var(--ink-soft); cursor: pointer; }
 .lang-pill.active { background: var(--gold); color: #1c1207; }
 
-.panels { position: relative; height: calc(100% - 118px - 60px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
+.panels { position: relative; height: calc(100% - 118px - 60px - env(safe-area-inset-top) - 10px - env(safe-area-inset-bottom)); }
 .view { position: absolute; inset: 0; overflow: hidden; transition: transform 0.38s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease; }
 .view-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 4px 18px 26px; }
 .chapter-head { padding: 6px 2px 14px; border-bottom: 3px solid var(--ink); margin-bottom: 14px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
