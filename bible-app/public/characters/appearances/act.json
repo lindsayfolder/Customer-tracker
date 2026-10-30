@@ -3,6 +3,7 @@
   "chapters": {
     "1": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "andrew", "philip_apostle", "thomas", "bartholomew", "matthew", "james_son_of_alphaeus", "simon_the_zealot", "thaddaeus", "mary_mother_of_jesus", "judas_iscariot", "david", "joseph_barsabas", "matthias"],
     "2": ["peter", "joel", "david"],
-    "3": ["peter", "john_apostle", "abraham", "isaac", "jacob", "moses"]
+    "3": ["peter", "john_apostle", "abraham", "isaac", "jacob", "moses"],
+    "4": ["peter", "john_apostle", "annas", "caiaphas", "david", "herod_antipas", "pontius_pilate", "barnabas"]
   }
 }
