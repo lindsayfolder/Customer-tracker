@@ -10,6 +10,8 @@
     "7": ["jesus", "john_the_baptist", "simon_the_pharisee"],
     "8": ["jesus", "mary_magdalene", "joanna", "susanna", "mary_mother_of_jesus", "jairus", "peter", "james_son_of_zebedee", "john_apostle"],
     "9": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "herod_antipas", "john_the_baptist", "elijah", "moses", "andrew", "philip_apostle", "bartholomew", "matthew", "thomas", "james_son_of_alphaeus", "thaddaeus", "simon_the_zealot", "judas_iscariot"],
-    "10": ["jesus", "martha", "mary_of_bethany"]
+    "10": ["jesus", "martha", "mary_of_bethany"],
+    "11": ["jesus", "jonah", "solomon", "queen_of_sheba", "abel", "zechariah_son_of_jehoiada"],
+    "12": ["jesus", "peter"]
   }
 }
