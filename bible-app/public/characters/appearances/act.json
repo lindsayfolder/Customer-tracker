@@ -24,6 +24,7 @@
     "21": ["saul_of_tarsus", "philip_the_evangelist", "agabus", "mnason", "james_brother_of_jesus", "trophimus"],
     "22": ["saul_of_tarsus", "gamaliel", "ananias_of_damascus", "stephen"],
     "23": ["saul_of_tarsus", "ananias_the_high_priest", "claudius_lysias", "felix"],
-    "24": ["saul_of_tarsus", "ananias_the_high_priest", "tertullus", "felix", "drusilla", "porcius_festus"]
+    "24": ["saul_of_tarsus", "ananias_the_high_priest", "tertullus", "felix", "drusilla", "porcius_festus"],
+    "25": ["saul_of_tarsus", "porcius_festus", "ananias_the_high_priest", "herod_agrippa_ii", "bernice"]
   }
 }
