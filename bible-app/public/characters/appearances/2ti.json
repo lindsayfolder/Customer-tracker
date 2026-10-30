@@ -1,0 +1,9 @@
+{
+  "id": "2ti",
+  "chapters": {
+    "1": ["saul_of_tarsus", "timothy", "lois", "eunice", "phygellus", "hermogenes", "onesiphorus"],
+    "2": ["hymenaeus", "philetus"],
+    "3": ["jannes", "jambres", "moses"],
+    "4": ["demas", "crescens", "titus", "luke", "john_mark", "carpus", "alexander_the_coppersmith", "priscilla", "aquila", "onesiphorus", "eubulus", "pudens", "linus", "claudia"]
+  }
+}
