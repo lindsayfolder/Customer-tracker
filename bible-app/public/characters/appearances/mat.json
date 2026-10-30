@@ -9,6 +9,7 @@
     "6": ["jesus", "solomon"],
     "7": ["jesus"],
     "8": ["jesus", "moses", "isaiah", "abraham", "isaac", "jacob", "peter"],
-    "9": ["jesus", "matthew", "john_the_baptist", "david"]
+    "9": ["jesus", "matthew", "john_the_baptist", "david"],
+    "10": ["jesus", "peter", "andrew", "james_son_of_zebedee", "john_apostle", "philip_apostle", "bartholomew", "thomas", "matthew", "james_son_of_alphaeus", "thaddaeus", "simon_the_zealot", "judas_iscariot"]
   }
 }
