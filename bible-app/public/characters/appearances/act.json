@@ -6,6 +6,7 @@
     "3": ["peter", "john_apostle", "abraham", "isaac", "jacob", "moses"],
     "4": ["peter", "john_apostle", "annas", "caiaphas", "david", "herod_antipas", "pontius_pilate", "barnabas"],
     "5": ["ananias_husband_of_sapphira", "sapphira", "peter", "gamaliel", "theudas", "judas_of_galilee"],
-    "6": ["stephen", "philip_the_evangelist", "prochorus", "nicanor", "timon", "parmenas", "nicolas", "moses"]
+    "6": ["stephen", "philip_the_evangelist", "prochorus", "nicanor", "timon", "parmenas", "nicolas", "moses"],
+    "7": ["stephen", "abraham", "isaac", "jacob", "joseph", "moses", "aaron", "david", "solomon", "saul_of_tarsus"]
   }
 }
