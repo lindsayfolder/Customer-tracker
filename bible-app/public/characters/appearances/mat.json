@@ -11,6 +11,7 @@
     "8": ["jesus", "moses", "isaiah", "abraham", "isaac", "jacob", "peter"],
     "9": ["jesus", "matthew", "john_the_baptist", "david"],
     "10": ["jesus", "peter", "andrew", "james_son_of_zebedee", "john_apostle", "philip_apostle", "bartholomew", "thomas", "matthew", "james_son_of_alphaeus", "thaddaeus", "simon_the_zealot", "judas_iscariot"],
-    "11": ["jesus", "john_the_baptist", "elijah"]
+    "11": ["jesus", "john_the_baptist", "elijah"],
+    "12": ["jesus", "david", "isaiah", "jonah", "solomon", "queen_of_sheba", "mary_mother_of_jesus"]
   }
 }
