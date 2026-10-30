@@ -1,0 +1,9 @@
+{
+  "id": "heb",
+  "chapters": {
+    "7": ["melchizedek", "abraham", "levi"],
+    "11": ["abel", "cain", "enoch", "noah", "abraham", "sarah", "isaac", "jacob", "esau", "joseph", "moses", "rahab", "gideon", "barak", "samson", "jephthah", "david", "samuel"],
+    "12": ["esau"],
+    "13": ["timothy"]
+  }
+}
