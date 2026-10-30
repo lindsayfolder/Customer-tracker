@@ -1,0 +1,10 @@
+{
+  "id": "mar",
+  "chapters": {
+    "1": ["jesus", "john_the_baptist", "peter", "andrew", "james_son_of_zebedee", "john_apostle", "zebedee"],
+    "2": ["jesus", "matthew", "david", "abiathar"],
+    "3": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "andrew", "philip_apostle", "bartholomew", "matthew", "thomas", "james_son_of_alphaeus", "thaddaeus", "simon_the_zealot", "judas_iscariot", "mary_mother_of_jesus"],
+    "4": ["jesus"],
+    "5": ["jesus", "jairus", "peter", "james_son_of_zebedee", "john_apostle"]
+  }
+}
