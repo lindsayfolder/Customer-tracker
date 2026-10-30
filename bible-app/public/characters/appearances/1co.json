@@ -1,0 +1,10 @@
+{
+  "id": "1co",
+  "chapters": {
+    "1": ["saul_of_tarsus", "sosthenes", "chloe", "apollos", "peter", "crispus", "gaius_of_corinth", "stephanas"],
+    "3": ["saul_of_tarsus", "apollos", "peter"],
+    "9": ["peter", "barnabas"],
+    "15": ["peter", "james_brother_of_jesus", "adam"],
+    "16": ["timothy", "apollos", "stephanas", "fortunatus", "achaicus", "aquila", "priscilla"]
+  }
+}
