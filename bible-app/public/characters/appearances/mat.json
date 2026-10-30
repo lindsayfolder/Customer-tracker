@@ -3,6 +3,7 @@
   "chapters": {
     "1": ["jesus", "joseph_husband_of_mary", "mary_mother_of_jesus", "abraham", "isaac", "jacob", "judah", "tamar", "perez", "boaz", "rahab", "ruth", "jesse", "david", "solomon", "uriah", "rehoboam", "abijam", "asa", "jehoshaphat_king", "azariah_king_of_judah", "jotham_king_of_judah", "ahaz_king_of_judah", "hezekiah", "manasseh_king_of_judah", "amon_king_of_judah", "josiah", "jehoiachin", "zerubbabel"],
     "2": ["jesus", "joseph_husband_of_mary", "mary_mother_of_jesus", "herod_the_great", "jeremiah", "rachel", "archelaus"],
-    "3": ["john_the_baptist", "isaiah", "jesus", "abraham"]
+    "3": ["john_the_baptist", "isaiah", "jesus", "abraham"],
+    "4": ["jesus", "john_the_baptist", "isaiah", "peter", "andrew", "james_son_of_zebedee", "john_apostle", "zebedee"]
   }
 }
