@@ -2,6 +2,7 @@
   "id": "joh",
   "chapters": {
     "1": ["jesus", "john_the_baptist", "isaiah", "moses", "andrew", "peter", "philip_apostle", "bartholomew"],
-    "2": ["jesus", "mary_mother_of_jesus"]
+    "2": ["jesus", "mary_mother_of_jesus"],
+    "3": ["jesus", "nicodemus", "moses", "john_the_baptist"]
   }
 }
