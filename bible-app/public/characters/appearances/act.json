@@ -26,6 +26,7 @@
     "23": ["saul_of_tarsus", "ananias_the_high_priest", "claudius_lysias", "felix"],
     "24": ["saul_of_tarsus", "ananias_the_high_priest", "tertullus", "felix", "drusilla", "porcius_festus"],
     "25": ["saul_of_tarsus", "porcius_festus", "ananias_the_high_priest", "herod_agrippa_ii", "bernice"],
-    "26": ["saul_of_tarsus", "herod_agrippa_ii", "porcius_festus", "bernice"]
+    "26": ["saul_of_tarsus", "herod_agrippa_ii", "porcius_festus", "bernice"],
+    "27": ["saul_of_tarsus", "julius", "aristarchus"]
   }
 }
