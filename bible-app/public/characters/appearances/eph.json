@@ -1,0 +1,7 @@
+{
+  "id": "eph",
+  "chapters": {
+    "1": ["saul_of_tarsus"],
+    "6": ["saul_of_tarsus", "tychicus"]
+  }
+}
