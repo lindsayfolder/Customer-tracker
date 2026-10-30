@@ -12,6 +12,8 @@
     "9": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "herod_antipas", "john_the_baptist", "elijah", "moses", "andrew", "philip_apostle", "bartholomew", "matthew", "thomas", "james_son_of_alphaeus", "thaddaeus", "simon_the_zealot", "judas_iscariot"],
     "10": ["jesus", "martha", "mary_of_bethany"],
     "11": ["jesus", "jonah", "solomon", "queen_of_sheba", "abel", "zechariah_son_of_jehoiada"],
-    "12": ["jesus", "peter"]
+    "12": ["jesus", "peter"],
+    "13": ["jesus", "pontius_pilate", "herod_antipas", "abraham", "isaac", "jacob"],
+    "14": ["jesus"]
   }
 }
