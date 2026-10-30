@@ -1,0 +1,8 @@
+{
+  "id": "gal",
+  "chapters": {
+    "1": ["saul_of_tarsus", "peter", "james_brother_of_jesus"],
+    "2": ["saul_of_tarsus", "barnabas", "titus", "james_brother_of_jesus", "peter", "john_apostle"],
+    "4": ["hagar", "isaac"]
+  }
+}
