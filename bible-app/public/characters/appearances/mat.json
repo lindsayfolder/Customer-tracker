@@ -25,6 +25,7 @@
     "22": ["jesus", "moses", "abraham", "isaac", "jacob", "david"],
     "23": ["jesus", "moses", "abel", "zechariah_son_of_jehoiada"],
     "24": ["jesus", "daniel", "noah"],
-    "25": ["jesus"]
+    "25": ["jesus"],
+    "26": ["jesus", "caiaphas", "simon_the_leper", "judas_iscariot", "peter", "james_son_of_zebedee", "john_apostle"]
   }
 }
