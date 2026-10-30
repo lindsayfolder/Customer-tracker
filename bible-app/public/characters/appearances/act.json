@@ -17,6 +17,7 @@
     "14": ["saul_of_tarsus", "barnabas"],
     "15": ["saul_of_tarsus", "barnabas", "peter", "james_brother_of_jesus", "judas_barsabas", "silas", "john_mark"],
     "16": ["saul_of_tarsus", "timothy", "silas", "lydia"],
-    "17": ["saul_of_tarsus", "silas", "timothy", "jason", "dionysius_the_areopagite", "damaris"]
+    "17": ["saul_of_tarsus", "silas", "timothy", "jason", "dionysius_the_areopagite", "damaris"],
+    "18": ["saul_of_tarsus", "aquila", "priscilla", "silas", "timothy", "justus_of_corinth", "crispus", "gallio", "sosthenes", "apollos"]
   }
 }
