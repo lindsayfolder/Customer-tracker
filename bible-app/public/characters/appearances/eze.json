@@ -1,15 +1,46 @@
 {
   "id": "eze",
   "chapters": {
-    "1": ["ezekiel", "jehoiachin"],
-    "3": ["ezekiel"],
-    "4": ["ezekiel"],
-    "5": ["ezekiel"],
-    "11": ["ezekiel", "pelatiah"],
-    "12": ["ezekiel"],
-    "24": ["ezekiel"],
-    "33": ["ezekiel", "abraham"],
-    "34": ["ezekiel", "david"],
-    "37": ["ezekiel", "david"]
+    "1": [
+      "ezekiel",
+      "jehoiachin"
+    ],
+    "3": [
+      "ezekiel"
+    ],
+    "4": [
+      "ezekiel"
+    ],
+    "5": [
+      "ezekiel"
+    ],
+    "11": [
+      "ezekiel",
+      "pelatiah"
+    ],
+    "12": [
+      "ezekiel"
+    ],
+    "24": [
+      "ezekiel"
+    ],
+    "33": [
+      "ezekiel",
+      "abraham"
+    ],
+    "34": [
+      "ezekiel",
+      "david"
+    ],
+    "37": [
+      "ezekiel",
+      "david"
+    ],
+    "38": [
+      "gog"
+    ],
+    "39": [
+      "gog"
+    ]
   }
 }
