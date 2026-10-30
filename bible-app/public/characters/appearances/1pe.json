@@ -1,0 +1,8 @@
+{
+  "id": "1pe",
+  "chapters": {
+    "1": ["peter"],
+    "3": ["sarah", "noah"],
+    "5": ["silas", "john_mark"]
+  }
+}
