@@ -5,6 +5,8 @@
     "2": ["caesar_augustus", "joseph_husband_of_mary", "mary_mother_of_jesus", "jesus", "david", "simeon_the_devout", "anna_prophetess", "moses"],
     "3": ["john_the_baptist", "isaiah", "herod_antipas", "philip_brother_of_herod", "caiaphas", "jesus", "joseph_husband_of_mary", "david", "jesse", "obed", "boaz", "perez", "judah", "jacob", "isaac", "abraham", "shem", "noah", "lamech", "methuselah", "enoch", "seth", "adam", "zerubbabel"],
     "4": ["jesus", "isaiah", "elijah", "elisha", "naaman", "peter"],
-    "5": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "matthew", "moses"]
+    "5": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "matthew", "moses"],
+    "6": ["jesus", "david", "peter", "andrew", "james_son_of_zebedee", "john_apostle", "philip_apostle", "bartholomew", "matthew", "thomas", "james_son_of_alphaeus", "simon_the_zealot", "thaddaeus", "judas_iscariot"],
+    "7": ["jesus", "john_the_baptist", "simon_the_pharisee"]
   }
 }
