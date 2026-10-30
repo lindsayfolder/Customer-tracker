@@ -11,6 +11,7 @@
     "8": ["saul_of_tarsus", "philip_the_evangelist", "simon_the_sorcerer", "peter", "john_apostle", "isaiah"],
     "9": ["saul_of_tarsus", "ananias_of_damascus", "barnabas", "peter", "aeneas", "tabitha", "simon_the_tanner"],
     "10": ["cornelius", "peter", "simon_the_tanner", "john_the_baptist"],
-    "11": ["peter", "barnabas", "saul_of_tarsus", "agabus"]
+    "11": ["peter", "barnabas", "saul_of_tarsus", "agabus"],
+    "12": ["herod_agrippa_i", "james_son_of_zebedee", "peter", "mary_mother_of_john_mark", "rhoda", "blastus", "barnabas", "saul_of_tarsus", "john_mark"]
   }
 }
