@@ -1,6 +1,7 @@
 {
   "id": "act",
   "chapters": {
-    "1": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "andrew", "philip_apostle", "thomas", "bartholomew", "matthew", "james_son_of_alphaeus", "simon_the_zealot", "thaddaeus", "mary_mother_of_jesus", "judas_iscariot", "david", "joseph_barsabas", "matthias"]
+    "1": ["jesus", "peter", "james_son_of_zebedee", "john_apostle", "andrew", "philip_apostle", "thomas", "bartholomew", "matthew", "james_son_of_alphaeus", "simon_the_zealot", "thaddaeus", "mary_mother_of_jesus", "judas_iscariot", "david", "joseph_barsabas", "matthias"],
+    "2": ["peter", "joel", "david"]
   }
 }
