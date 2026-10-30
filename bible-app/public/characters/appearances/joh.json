@@ -12,6 +12,7 @@
     "9": ["jesus"],
     "10": ["jesus", "john_the_baptist"],
     "11": ["jesus", "lazarus_of_bethany", "martha", "mary_of_bethany", "thomas", "caiaphas"],
-    "12": ["jesus", "lazarus_of_bethany", "martha", "mary_of_bethany", "judas_iscariot", "philip_apostle", "andrew", "isaiah"]
+    "12": ["jesus", "lazarus_of_bethany", "martha", "mary_of_bethany", "judas_iscariot", "philip_apostle", "andrew", "isaiah"],
+    "13": ["jesus", "peter", "judas_iscariot", "john_apostle"]
   }
 }
