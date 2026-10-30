@@ -1,0 +1,7 @@
+{
+  "id": "col",
+  "chapters": {
+    "1": ["saul_of_tarsus", "timothy", "epaphras"],
+    "4": ["tychicus", "onesimus", "aristarchus", "john_mark", "barnabas", "jesus_called_justus", "epaphras", "luke", "demas", "nymphas", "archippus"]
+  }
+}
