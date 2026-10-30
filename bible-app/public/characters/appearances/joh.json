@@ -19,6 +19,7 @@
     "16": ["jesus"],
     "17": ["jesus"],
     "18": ["jesus", "judas_iscariot", "peter", "malchus", "annas", "caiaphas", "john_apostle", "pontius_pilate", "barabbas"],
-    "19": ["jesus", "pontius_pilate", "mary_mother_of_jesus", "mary_mother_of_james", "mary_magdalene", "john_apostle", "joseph_of_arimathea", "nicodemus"]
+    "19": ["jesus", "pontius_pilate", "mary_mother_of_jesus", "mary_mother_of_james", "mary_magdalene", "john_apostle", "joseph_of_arimathea", "nicodemus"],
+    "20": ["jesus", "mary_magdalene", "peter", "john_apostle", "thomas"]
   }
 }
