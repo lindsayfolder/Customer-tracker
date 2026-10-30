@@ -21,6 +21,7 @@
     "18": ["saul_of_tarsus", "aquila", "priscilla", "silas", "timothy", "justus_of_corinth", "crispus", "gallio", "sosthenes", "apollos"],
     "19": ["saul_of_tarsus", "sceva", "timothy", "erastus", "demetrius", "gaius_of_macedonia", "aristarchus", "alexander_of_ephesus"],
     "20": ["saul_of_tarsus", "sopater", "aristarchus", "secundus", "gaius_of_derbe", "timothy", "tychicus", "trophimus", "eutychus"],
-    "21": ["saul_of_tarsus", "philip_the_evangelist", "agabus", "mnason", "james_brother_of_jesus", "trophimus"]
+    "21": ["saul_of_tarsus", "philip_the_evangelist", "agabus", "mnason", "james_brother_of_jesus", "trophimus"],
+    "22": ["saul_of_tarsus", "gamaliel", "ananias_of_damascus", "stephen"]
   }
 }
