@@ -27,6 +27,7 @@
     "24": ["jesus", "daniel", "noah"],
     "25": ["jesus"],
     "26": ["jesus", "caiaphas", "simon_the_leper", "judas_iscariot", "peter", "james_son_of_zebedee", "john_apostle"],
-    "27": ["jesus", "judas_iscariot", "pontius_pilate", "barabbas", "simon_of_cyrene", "mary_magdalene", "mary_mother_of_james", "joseph_of_arimathea"]
+    "27": ["jesus", "judas_iscariot", "pontius_pilate", "barabbas", "simon_of_cyrene", "mary_magdalene", "mary_mother_of_james", "joseph_of_arimathea"],
+    "28": ["jesus", "mary_magdalene", "mary_mother_of_james"]
   }
 }
