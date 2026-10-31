@@ -512,7 +512,7 @@ export default function App() {
         </button>
       </div>
 
-      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
+      <Drawer open={drawerOpen} current={modal ?? "home"} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
 
       <ContentsModal
         open={modal === "contents"}

@@ -5,10 +5,12 @@ import type { ModalKey } from "../App";
 
 export function Drawer({
   open,
+  current,
   onClose,
   onNavigate,
 }: {
   open: boolean;
+  current: ModalKey | "home";
   onClose: () => void;
   onNavigate: (modal: ModalKey | "home") => void;
 }) {
@@ -21,33 +23,37 @@ export function Drawer({
     onClose();
   }
 
+  function itemClass(modal: ModalKey | "home") {
+    return `drawer-item${current === modal ? " active" : ""}`;
+  }
+
   return (
     <>
       <div className={`scrim${open ? " open" : ""}`} onClick={() => go("home")} />
       <nav className={`drawer${open ? " open" : ""}`}>
         <div className="drawer-brand">Inkverse</div>
-        <button type="button" className="drawer-item active" onClick={() => go("home")}>
+        <button type="button" className={itemClass("home")} onClick={() => go("home")}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M4 11L12 4l8 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M6 10v9h12v-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span>{t.drawerHome}</span>
         </button>
-        <button type="button" className="drawer-item" onClick={() => go("contents")}>
+        <button type="button" className={itemClass("contents")} onClick={() => go("contents")}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
             <path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
           <span>{t.drawerContents}</span>
         </button>
-        <button type="button" className="drawer-item" onClick={() => go("search")}>
+        <button type="button" className={itemClass("search")} onClick={() => go("search")}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="2" />
             <path d="M20 20l-4.5-4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
           <span>{t.drawerSearch}</span>
         </button>
-        <button type="button" className="drawer-item" onClick={() => go("settings")}>
+        <button type="button" className={itemClass("settings")} onClick={() => go("settings")}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
             <path
