@@ -1,14 +1,14 @@
 import { chromium } from "playwright";
 
 const errors = [];
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--headless=new", "--no-sandbox"] });
 const page = await browser.newPage({ viewport: { width: 420, height: 900 } });
 page.on("console", (msg) => {
   if (msg.type() === "error") errors.push(msg.text());
 });
 page.on("pageerror", (err) => errors.push("pageerror: " + err.message));
 
-await page.goto("http://localhost:4321/", { waitUntil: "networkidle" });
+await page.goto("http://localhost:4321/", { waitUntil: "domcontentloaded" });
 await page.waitForSelector(".app-shell");
 
 async function openContentsAndGo(bookCode, chapterNum, label) {

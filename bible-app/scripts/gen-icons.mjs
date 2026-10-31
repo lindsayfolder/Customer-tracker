@@ -11,7 +11,7 @@ const svg = (pad) => `
 
 mkdirSync("public/icons", { recursive: true });
 
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--headless=new", "--no-sandbox"] });
 const page = await browser.newPage({ viewport: { width: 512, height: 512 } });
 
 async function render(markup, file) {

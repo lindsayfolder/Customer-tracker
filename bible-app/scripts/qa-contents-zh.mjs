@@ -1,14 +1,14 @@
 import { chromium } from "playwright";
 
 const errors = [];
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--headless=new", "--no-sandbox"] });
 const page = await browser.newPage({ viewport: { width: 420, height: 900 } });
 page.on("console", (msg) => {
   if (msg.type() === "error") errors.push(msg.text());
 });
 page.on("pageerror", (err) => errors.push("pageerror: " + err.message));
 
-await page.goto("http://localhost:4321/", { waitUntil: "networkidle" });
+await page.goto("http://localhost:4321/", { waitUntil: "domcontentloaded" });
 await page.waitForSelector(".app-shell");
 
 // Switch to Traditional Chinese first, matching the user's repro steps.
@@ -18,7 +18,7 @@ await page.waitForTimeout(200);
 // Open Contents — two-step now: book grid first, chapter grid after tapping a book.
 await page.click(".menu-btn");
 await page.waitForTimeout(350);
-await page.click("text=目錄");
+await page.click(".drawer.open .drawer-item:has-text('目錄')");
 await page.waitForTimeout(400);
 await page.screenshot({ path: "/tmp/qa-zh-1-books.png" });
 
