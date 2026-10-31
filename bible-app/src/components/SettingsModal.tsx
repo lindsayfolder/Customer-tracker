@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useApp, TOTAL_CONTENT_FILES } from "../context/AppContext";
+import { useApp } from "../context/AppContext";
 import { UI, LANGUAGES, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
 import { tts } from "../lib/tts";
@@ -11,6 +11,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
     updateSettings,
     offlineReady,
     offlineCount,
+    offlineTotal,
     updateAvailable,
     checkingForUpdate,
     checkForUpdate,
@@ -111,7 +112,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
           <div className="settings-label">{t.offlineStatusLabel}</div>
           <div className={`offline-status${offlineReady ? " ready" : ""}`}>
             <span className="dot" />
-            {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: TOTAL_CONTENT_FILES })}
+            {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: offlineTotal })}
           </div>
         </div>
 

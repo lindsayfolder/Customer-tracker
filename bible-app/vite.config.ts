@@ -46,9 +46,11 @@ export default defineConfig({
         // Only the small app shell is precached at install time (~300KB) —
         // deliberately, so the service worker installs fast and reliably
         // even on iOS Safari, which doesn't guarantee an install event can
-        // run indefinitely in the background. The full ~30MB of scripture/
-        // insights/maps content (all 66 books x 4 versions, all 66 books x
-        // 3 insight languages, all 21 maps) is instead downloaded from
+        // run indefinitely in the background. The rest of the library —
+        // scripture (66 books x 4 versions), insights and explain (66
+        // books x 3 languages each), character bios (every named
+        // individual x 3 languages, plus a per-book appearance manifest),
+        // book intros, and all 21 maps — is instead downloaded from
         // ordinary page code after the app has booted (see
         // lib/bulkOfflineDownload.ts), in small resumable batches that
         // write into the exact same cache names these runtime-caching
@@ -87,7 +89,10 @@ export default defineConfig({
               // Bumped to v2: the zh-hans insights content had the same
               // 著/着 particle bug as bible-text-v3 above.
               cacheName: "bible-insights-v2",
-              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              // 66 books x 3 languages = 198 — maxEntries was also 200,
+              // leaving almost no headroom before LRU eviction started
+              // dropping already-cached books. Bumped for breathing room.
+              expiration: { maxEntries: 260, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -96,7 +101,11 @@ export default defineConfig({
             handler: "CacheFirst",
             options: {
               cacheName: "bible-maps",
-              expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              // 21 mapped books x 2 files (en + zh) = 42 — maxEntries was
+              // 30, under the real count, so the bulk downloader's own
+              // storage was silently evicting earlier maps as later ones
+              // were cached. Bumped with headroom for more mapped books.
+              expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -128,33 +137,40 @@ export default defineConfig({
             },
           },
           {
-            // Second AI-explanation track (lib/explain.ts). Not yet in the
-            // bulk offline manifest — only Genesis 1-3 (en/zh-hant) exists
-            // so far, and pre-fetching 66 books' worth of 404s would stall
-            // the offline-ready progress bar. This rule still lets whatever
-            // does exist get cached for offline reuse after a normal visit,
-            // same as insights/maps before the bulk downloader existed.
+            // Second AI-explanation track (lib/explain.ts), now covering all
+            // 66 books in all 3 languages and included in the bulk offline
+            // manifest (see lib/bulkOfflineDownload.ts).
             urlPattern: /\/explain\/.*\.json$/,
             handler: "CacheFirst",
             options: {
               // Bumped to v2 -- a couple of Genesis entries had a wording
               // fix (形象 -> 形像) land after some readers had already
               // cached the old text.
+              // 66 books x 3 languages = 198 — maxEntries was 200, leaving
+              // almost no headroom; bumped alongside bible-insights-v2.
               cacheName: "bible-explain-v2",
-              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              expiration: { maxEntries: 260, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
-            // Character bios + per-book appearance manifests (lib/characters.ts).
-            // Same lazy-fetch-then-cache pattern as explain/ above — only a
-            // few books are covered so far, so this isn't in the bulk
-            // offline manifest yet either.
+            // Character bios + per-book appearance manifests
+            // (lib/characters.ts), now covering every named individual in
+            // every book of the Bible — included in the bulk offline
+            // manifest via lib/bulkOfflineDownload.ts's runtime discovery
+            // (character ids aren't enumerable from the book list alone,
+            // unlike every other track above, so they're read out of each
+            // book's own appearance manifest at download time).
             urlPattern: /\/characters\/.*\.json$/,
             handler: "CacheFirst",
             options: {
+              // 684 character ids x 3 languages + 66 appearance manifests
+              // = 2,118 — maxEntries was 200, so the vast majority of
+              // bios were being evicted under LRU almost as soon as they
+              // were cached. Bumped with generous headroom for more
+              // characters to be added over time.
               cacheName: "bible-characters-v1",
-              expiration: { maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              expiration: { maxEntries: 3000, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

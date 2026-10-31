@@ -4,14 +4,22 @@
 // downloading. Used to show the reader a real "ready to go offline" signal
 // instead of leaving them to guess (see the app's Settings screen).
 //
-// Counts the same three named caches lib/bulkOfflineDownload.ts writes
-// into (and vite.config.ts's runtime-caching rules also read from), not
-// the workbox app-shell precache — content is downloaded separately from
-// the small, fast app-shell precache. See TOTAL_CONTENT_FILES in
-// bulkOfflineDownload.ts for the expected total (504: kept in sync with
-// the book/version/language counts there).
+// Counts the same named caches lib/bulkOfflineDownload.ts writes into (and
+// vite.config.ts's runtime-caching rules also read from), not the workbox
+// app-shell precache — content is downloaded separately from the small,
+// fast app-shell precache. See TOTAL_CONTENT_FILES in
+// bulkOfflineDownload.ts for the expected (fixed-size) total; the real
+// total used by the actual download run is reported dynamically from
+// there instead, since it also includes however many character bios exist.
 
-const CONTENT_CACHE_NAMES = ["bible-text-v3", "bible-insights-v2", "bible-maps"];
+const CONTENT_CACHE_NAMES = [
+  "bible-text-v3",
+  "bible-insights-v2",
+  "bible-explain-v2",
+  "bible-characters-v1",
+  "bible-book-intro",
+  "bible-maps",
+];
 
 export async function getCachedEntryCount(): Promise<number> {
   if (typeof caches === "undefined") return 0;

@@ -16,6 +16,7 @@ interface AppContextValue {
   toastMsg: string | null;
   offlineReady: boolean;
   offlineCount: number;
+  offlineTotal: number;
   updateAvailable: boolean;
   checkingForUpdate: boolean;
   checkForUpdate: () => void;
@@ -32,7 +33,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [offlineReady, setOfflineReady] = useState(false);
   const [offlineCount, setOfflineCount] = useState(0);
+  // Starts at the fixed-size estimate (TOTAL_CONTENT_FILES) so Settings has
+  // something sane to show before the first real progress report arrives;
+  // runBulkDownload's callback then replaces it with the real total, which
+  // also folds in however many character bios actually exist (not knowable
+  // up front — see lib/bulkOfflineDownload.ts).
+  const [offlineTotal, setOfflineTotal] = useState(TOTAL_CONTENT_FILES);
   const [updateState, setUpdateState] = useState(getUpdateState());
+  const langRef = useRef(lang);
+  langRef.current = lang;
 
   useEffect(() => {
     loadSettings().then((s) => {
@@ -56,6 +65,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     runBulkDownload((done, total) => {
       if (cancelled) return;
       setOfflineCount(done);
+      setOfflineTotal(total);
       const nowReady = isReadyCount(done, total);
       // Only announce the *transition* into ready — a returning reader
       // who was already fully cached from a previous visit shouldn't get
@@ -63,7 +73,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (!nowReady) sawNotReady = true;
       if (nowReady && sawNotReady && !toastedThisSession) {
         toastedThisSession = true;
-        toast(UI[lang].offlineReadyToast);
+        // Reads the *current* language via a ref rather than closing over
+        // `lang` directly — this effect only runs once (see the deps array
+        // below), so a plain closure would keep toasting in whatever
+        // language was active on mount even after the reader switches,
+        // since the transition into "ready" can land well after that.
+        toast(UI[langRef.current].offlineReadyToast);
       }
       setOfflineReady(nowReady);
     });
@@ -113,6 +128,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         toastMsg,
         offlineReady,
         offlineCount,
+        offlineTotal,
         updateAvailable: updateState.available,
         checkingForUpdate: updateState.checking,
         checkForUpdate,
@@ -129,5 +145,3 @@ export function useApp(): AppContextValue {
   if (!ctx) throw new Error("useApp must be used within AppProvider");
   return ctx;
 }
-
-export { TOTAL_CONTENT_FILES };
