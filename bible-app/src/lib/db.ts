@@ -13,6 +13,11 @@ export interface AppSettings {
   // picked one in Settings — see lib/tts.ts. Unset means "let the browser
   // pick automatically."
   voiceByLang: Partial<Record<LangKey, string>>;
+  // Real search history, most-recent-first, per version searched (see
+  // components/SearchModal.tsx) — kept separate per language the same way
+  // voiceByLang is, since a recent query in one version isn't necessarily
+  // meaningful when searching another.
+  recentSearches: Partial<Record<LangKey, string[]>>;
 }
 
 const STORAGE_KEY = "inkverse-settings";
@@ -25,6 +30,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   lastBookId: "gen",
   lastChapter: 1,
   voiceByLang: {},
+  recentSearches: {},
 };
 
 // localStorage, not IndexedDB: writes are synchronous and commit

@@ -39,7 +39,7 @@ export function SearchModal({
   onClose: () => void;
   onResult: (lang: LangKey, bookId: string, chapter: number, verse: number) => void;
 }) {
-  const { lang, setLang } = useApp();
+  const { lang, setLang, settings, updateSettings } = useApp();
   const t = UI[lang];
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -52,10 +52,21 @@ export function SearchModal({
   // searched rather than the app's reading language — showing a Chinese
   // "no results" message while searching KJV read as broken.
   const searchT = UI[activeLang];
-  const [recent, setRecent] = useState(RECENT_SEEDS[activeLang]);
+  // Real history once the reader has searched in this version; the seed
+  // words are only an illustrative placeholder shown before that, so they
+  // must not reappear once history has been explicitly cleared to [].
+  const recent = settings.recentSearches[activeLang] ?? RECENT_SEEDS[activeLang];
   const [hits, setHits] = useState<SearchHit[] | null>(null);
   const [loading, setLoading] = useState(false);
   const bodyRef = useRef<HTMLDivElement>(null);
+
+  function recordSearch(l: LangKey, q: string) {
+    const trimmed = q.trim();
+    if (!trimmed) return;
+    const existing = settings.recentSearches[l] ?? [];
+    const next = [trimmed, ...existing.filter((s) => s !== trimmed)].slice(0, 8);
+    updateSettings({ recentSearches: { ...settings.recentSearches, [l]: next } });
+  }
 
   // Scroll only the results list itself, rather than Element.scrollIntoView
   // (which walks every scroll-container ancestor in the DOM chain, including
@@ -136,10 +147,7 @@ export function SearchModal({
               key={l.key}
               type="button"
               className={`lang-chip${activeLang === l.key ? " on" : ""}`}
-              onClick={() => {
-                setActiveLang(l.key);
-                setRecent(RECENT_SEEDS[l.key]);
-              }}
+              onClick={() => setActiveLang(l.key)}
             >
               {l.label}
             </button>
@@ -177,6 +185,7 @@ export function SearchModal({
                     id={firstOfBook ? `search-book-${hit.bookId}` : undefined}
                     className="result-item"
                     onClick={() => {
+                      recordSearch(hit.lang, debouncedQuery);
                       setLang(hit.lang);
                       onResult(hit.lang, hit.bookId, hit.chapter, hit.verse);
                       onClose();
@@ -196,7 +205,12 @@ export function SearchModal({
           <div>
             <div className="recent-head">
               <span>{t.recentLabel}</span>
-              <button type="button" className="trash-btn" onClick={() => setRecent([])} aria-label="Clear recent searches">
+              <button
+                type="button"
+                className="trash-btn"
+                onClick={() => updateSettings({ recentSearches: { ...settings.recentSearches, [activeLang]: [] } })}
+                aria-label="Clear recent searches"
+              >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M5 7h14M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-8 0l1 13a1 1 0 001 1h6a1 1 0 001-1l1-13"

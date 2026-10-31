@@ -91,24 +91,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => subscribeUpdateState(() => setUpdateState(getUpdateState())), []);
 
-  const setLang = useCallback(
-    (l: LangKey) => {
-      setLangState(l);
-      const next = { ...settings, lastLang: l };
-      setSettings(next);
-      if (ready) saveSettings(next);
-    },
-    [settings, ready],
-  );
+  // Functional setSettings updates, rather than computing `next` from the
+  // `settings` closure: callers like SearchModal's result click fire
+  // updateSettings and setLang back to back in the same event, and both
+  // would otherwise read the same pre-click `settings` snapshot, so the
+  // second call's spread would silently drop the first call's change.
+  const setLang = useCallback((l: LangKey) => {
+    setLangState(l);
+    setSettings((prev) => ({ ...prev, lastLang: l }));
+  }, []);
 
-  const updateSettings = useCallback(
-    (patch: Partial<AppSettings>) => {
-      const next = { ...settings, ...patch };
-      setSettings(next);
-      if (ready) saveSettings(next);
-    },
-    [settings, ready],
-  );
+  const updateSettings = useCallback((patch: Partial<AppSettings>) => {
+    setSettings((prev) => ({ ...prev, ...patch }));
+  }, []);
+
+  // Persisting here, keyed off the settled `settings` value, means every
+  // update path (however many setSettings calls landed in one event) is
+  // saved exactly once with its final merged shape.
+  useEffect(() => {
+    if (ready) saveSettings(settings);
+  }, [settings, ready]);
 
   const toast = useCallback((msg: string) => {
     setToastMsg(msg);
