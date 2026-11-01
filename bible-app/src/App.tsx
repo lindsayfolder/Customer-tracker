@@ -91,6 +91,13 @@ export default function App() {
   const [chapterPlayerState, setChapterPlayerState] = useState<ChapterPlayerState>("idle");
   const [playToken, setPlayToken] = useState(0);
   const spokenTokenRef = useRef(-1);
+  // Read inside the natural-end settling delay (below) to check the
+  // player is still "playing" once that timeout actually fires — a plain
+  // closure over chapterPlayerState would see the stale value from
+  // whichever render scheduled the timeout, not a manual pause/stop that
+  // happened during the wait.
+  const chapterPlayerStateRef = useRef(chapterPlayerState);
+  chapterPlayerStateRef.current = chapterPlayerState;
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -198,13 +205,31 @@ export default function App() {
         toast(t.listenFinishedToast);
         return;
       }
-      debugPlayerLog(`advance -> ${next.bookId}/${next.chapter}`);
-      setBookId(next.bookId);
-      setChapter(next.chapter);
-      setTab("scripture");
-      setOpenPointIndex(null);
-      setOpenCharacterId(null);
-      setPlayToken((v) => v + 1);
+      // Real speechSynthesis engines can fire an utterance's onend slightly
+      // before the hardware audio buffer has actually finished draining —
+      // queuing the next chapter's speech immediately then overlaps with
+      // the tail end of the chapter that just "finished", audible as the
+      // old chapter briefly repeating under the new one. A short pause
+      // here gives the engine time to fully settle before anything new is
+      // queued; the chapter flip (UI) and the next speak() both wait for
+      // it together so they stay in sync with each other.
+      window.setTimeout(() => {
+        // The natural end already happened, so by now tts's activeId is
+        // already null — a manual interrupt during this wait (tapping
+        // Contents, Search, prev/next, a detail card, etc.) has nothing
+        // live to stop and can't reach this closure, so it's handled by
+        // explicitly setting chapterPlayerState to idle in each of those
+        // handlers instead; checking the ref here is what actually skips
+        // the advance when that happened.
+        if (chapterPlayerStateRef.current !== "playing") return;
+        debugPlayerLog(`advance -> ${next.bookId}/${next.chapter}`);
+        setBookId(next.bookId);
+        setChapter(next.chapter);
+        setTab("scripture");
+        setOpenPointIndex(null);
+        setOpenCharacterId(null);
+        setPlayToken((v) => v + 1);
+      }, 400);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chapterPlayerState, verses, playToken]);
@@ -262,30 +287,36 @@ export default function App() {
 
   function openDetail(i: number) {
     tts.stop();
+    setChapterPlayerState("idle");
     setOpenCharacterId(null);
     setOpenPointIndex(i);
   }
   function closeDetail() {
     tts.stop();
+    setChapterPlayerState("idle");
     setOpenPointIndex(null);
   }
   function openCharacter(id: string) {
     tts.stop();
+    setChapterPlayerState("idle");
     setOpenPointIndex(null);
     setOpenCharacterId(id);
   }
   function closeCharacter() {
     tts.stop();
+    setChapterPlayerState("idle");
     setOpenCharacterId(null);
   }
   function switchLang(l: LangKey) {
     tts.stop();
+    setChapterPlayerState("idle");
     setLang(l);
     setOpenPointIndex(null);
     setOpenCharacterId(null);
   }
   function switchTab(next: "scripture" | "insights") {
     tts.stop();
+    setChapterPlayerState("idle");
     setTab(next);
   }
   function navigateFromDrawer(target: ModalKey | "home") {
@@ -299,6 +330,7 @@ export default function App() {
   }
   function goToChapter(bId: string, c: number, verse?: number) {
     tts.stop();
+    setChapterPlayerState("idle");
     if (verse) setPendingVerse(verse);
     setBookId(bId);
     setChapter(c);
@@ -324,6 +356,7 @@ export default function App() {
     const target = direction === -1 ? prevTarget : nextTarget;
     if (!target) return;
     tts.stop();
+    setChapterPlayerState("idle");
     setBookId(target.bookId);
     setChapter(target.chapter);
     setOpenPointIndex(null);
@@ -626,6 +659,7 @@ export default function App() {
         onClose={() => setModal(null)}
         onResult={(_resultLang, resultBookId, resultChapter, verse) => {
           tts.stop();
+          setChapterPlayerState("idle");
           setPendingVerse(verse);
           setBookId(resultBookId);
           setChapter(resultChapter);
