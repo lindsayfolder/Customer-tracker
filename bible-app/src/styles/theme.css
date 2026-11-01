@@ -97,9 +97,20 @@ button { font-family: inherit; }
   overflow: hidden;
   background-image: radial-gradient(circle, var(--hairline) 0.5px, transparent 0.9px);
   background-size: 18px 18px;
+  /* Flex column so .panels fills exactly whatever's left under the appbar
+     and lang-row, in flow. Previously .panels got a fixed height from a
+     calc() of hardcoded appbar/lang-row pixel estimates, which drifted out
+     of sync with their real rendered height (e.g. after safe-area-inset
+     padding changes) and left dead space below the bottom toolbar instead
+     of the toolbar sitting flush with the screen edge. .modal-screen,
+     .drawer and .toast are all position: absolute/fixed, so they're
+     unaffected by this becoming a flex container. */
+  display: flex;
+  flex-direction: column;
 }
 
 .appbar {
+  flex: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -134,11 +145,11 @@ button { font-family: inherit; }
 }
 .search-btn:active { transform: scale(0.9); }
 
-.lang-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; padding: 0 18px 12px; background: var(--paper); position: relative; z-index: 2; }
+.lang-row { flex: none; display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; padding: 0 18px 12px; background: var(--paper); position: relative; z-index: 2; }
 .lang-pill { font-weight: 800; font-size: 16px; letter-spacing: 0.02em; border: 2px solid var(--ink); border-radius: 20px; padding: 4px 9px; background: var(--paper-panel); color: var(--ink-soft); cursor: pointer; }
 .lang-pill.active { background: var(--gold); color: #1c1207; }
 
-.panels { position: relative; height: calc(100% - 118px - 60px - env(safe-area-inset-top) - 24px - env(safe-area-inset-bottom)); }
+.panels { position: relative; flex: 1; min-height: 0; }
 .view { position: absolute; inset: 0; overflow: hidden; transition: transform 0.38s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease; }
 .view-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 4px 18px 26px; }
 .chapter-head { padding: 6px 2px 14px; border-bottom: 3px solid var(--ink); margin-bottom: 14px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
