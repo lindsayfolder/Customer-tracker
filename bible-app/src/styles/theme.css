@@ -38,9 +38,6 @@
   --page-bg: #d0c2a1;
   --ot-panel: #eedfc1;
   --nt-panel: #dae2e7;
-  /* TEMPORARY — read by DebugViewportBadge so env(safe-area-inset-bottom)'s
-     resolved value is visible on screen. Remove with that component. */
-  --sab-probe: env(safe-area-inset-bottom);
 }
 
 :root[data-theme="dark"] {
@@ -80,14 +77,13 @@
 }
 
 * { box-sizing: border-box; }
-/* max(), not a plain override: --app-height (see lib/viewportHeight.ts) exists
-   to correct 100dvh on iOS versions where it over-reports, but real-device
-   testing showed the opposite failure too — visualViewport.height
-   under-reporting the true viewport, which left a dead band below the
-   bottom-anchored toolbar/content that no in-page layout fix could close,
-   since the whole shell was stopping short of the real screen edge. Taking
-   the larger of the two never lets either failure mode make the app
-   shorter than the real viewport. */
+/* max(), not a plain override: --app-height (see lib/viewportHeight.ts) is
+   iOS's own visualViewport/innerHeight reading, folded together with
+   window.screen.height to correct a confirmed real-device under-report (see
+   that file for the measured numbers). 100dvh is kept as a second floor here
+   too, on the general principle that neither measurement should ever be
+   allowed to make the app shorter than whatever the browser itself reports
+   as the real viewport. */
 html, body, #root { height: max(var(--app-height, 0px), 100dvh); overflow: hidden; overscroll-behavior: none; }
 
 body {
