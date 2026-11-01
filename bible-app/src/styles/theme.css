@@ -38,6 +38,9 @@
   --page-bg: #d0c2a1;
   --ot-panel: #eedfc1;
   --nt-panel: #dae2e7;
+  /* TEMPORARY — read by DebugViewportBadge so env(safe-area-inset-bottom)'s
+     resolved value is visible on screen. Remove with that component. */
+  --sab-probe: env(safe-area-inset-bottom);
 }
 
 :root[data-theme="dark"] {

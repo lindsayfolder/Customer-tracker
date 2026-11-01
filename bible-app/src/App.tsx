@@ -12,6 +12,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import { MapModal } from "./components/MapModal";
 import { BookIntroModal } from "./components/BookIntroModal";
 import { Toast } from "./components/Toast";
+import { DebugViewportBadge } from "./components/DebugViewportBadge";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
 import { loadChapterExplain } from "./lib/explain";
@@ -540,6 +541,7 @@ export default function App() {
       <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
 
       <Toast />
+      <DebugViewportBadge />
     </div>
   );
 }
