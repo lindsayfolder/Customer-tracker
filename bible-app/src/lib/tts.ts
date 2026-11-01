@@ -66,12 +66,20 @@ function chunkText(text: string): string[] {
   return chunks;
 }
 
+type EndReason = "natural" | "error" | "stopped";
+
 class TtsController {
   private synth: SpeechSynthesis | null =
     typeof window !== "undefined" && "speechSynthesis" in window ? window.speechSynthesis : null;
   private activeId: string | null = null;
   private listeners = new Map<string, Set<Listener>>();
   private wakeLock: WakeLockSentinel | null = null;
+  // Only one utterance queue is ever active at a time (one shared synth
+  // channel), so a single slot — not a map — is enough to track who gets
+  // told why their speech ended: "natural" (queue ran out on its own, e.g.
+  // so a caller can advance to the next chapter) vs. "error" or "stopped"
+  // (interrupted — don't advance).
+  private activeOnEnd: ((reason: EndReason) => void) | null = null;
 
   constructor() {
     if (typeof document !== "undefined") {
@@ -150,13 +158,21 @@ class TtsController {
     return () => this.synth?.removeEventListener("voiceschanged", cb);
   }
 
+  // Clears activeId/activeOnEnd *before* calling cancel(), not after — some
+  // engines fire the in-flight utterance's onend/onerror synchronously
+  // inside cancel(), and speakQueue's `this.activeId !== id` guard only
+  // blocks that spurious continuation if activeId has already been nulled
+  // out by the time it runs.
   stop() {
     if (!this.synth) return;
+    const prev = this.activeId;
+    const onEnd = this.activeOnEnd;
+    this.activeId = null;
+    this.activeOnEnd = null;
     this.synth.cancel();
     this.releaseWakeLock();
-    const prev = this.activeId;
-    this.activeId = null;
     if (prev) this.notify(prev, false);
+    onEnd?.("stopped");
   }
 
   toggle(id: string, text: string | string[], lang: LangKey, preferredVoiceURI?: string) {
@@ -165,23 +181,55 @@ class TtsController {
       this.stop();
       return;
     }
+    this.speak(id, text, lang, preferredVoiceURI);
+  }
+
+  // Start-only primitive (stops whatever was playing first, same as
+  // toggle, but always starts the new one rather than toggling it off).
+  // onEnd fires exactly once per call, with "natural" only when the whole
+  // queue finished on its own — the signal a caller like the chapter
+  // player uses to decide whether to advance.
+  speak(id: string, text: string | string[], lang: LangKey, preferredVoiceURI?: string, onEnd?: (reason: EndReason) => void) {
+    if (!this.synth) return;
     this.stop();
     const segments = (Array.isArray(text) ? text : [text]).flatMap(chunkText).filter((s) => s.trim());
     if (segments.length === 0) return;
     const langCode = LANGUAGES.find((l) => l.key === lang)?.speechLang ?? "en-US";
     const voice = this.pickVoice(langCode, preferredVoiceURI);
     this.activeId = id;
+    this.activeOnEnd = onEnd ?? null;
     this.notify(id, true);
     this.acquireWakeLock();
     this.speakQueue(id, segments, 0, langCode, voice);
   }
 
+  pause(id: string) {
+    if (!this.synth || this.activeId !== id || this.synth.paused) return;
+    this.synth.pause();
+  }
+
+  resume(id: string) {
+    if (!this.synth || this.activeId !== id || !this.synth.paused) return;
+    this.synth.resume();
+  }
+
+  isPaused(id: string): boolean {
+    return this.activeId === id && !!this.synth?.paused;
+  }
+
+  private finish(id: string, reason: EndReason) {
+    const onEnd = this.activeOnEnd;
+    this.activeId = null;
+    this.activeOnEnd = null;
+    this.releaseWakeLock();
+    this.notify(id, false);
+    onEnd?.(reason);
+  }
+
   private speakQueue(id: string, segments: string[], index: number, langCode: string, voice: SpeechSynthesisVoice | null) {
     if (!this.synth || this.activeId !== id) return;
     if (index >= segments.length) {
-      this.activeId = null;
-      this.releaseWakeLock();
-      this.notify(id, false);
+      this.finish(id, "natural");
       return;
     }
     const utter = new SpeechSynthesisUtterance(segments[index]);
@@ -189,11 +237,7 @@ class TtsController {
     if (voice) utter.voice = voice;
     utter.rate = 0.95;
     utter.onend = () => this.speakQueue(id, segments, index + 1, langCode, voice);
-    utter.onerror = () => {
-      this.activeId = null;
-      this.releaseWakeLock();
-      this.notify(id, false);
-    };
+    utter.onerror = () => this.finish(id, "error");
     this.synth.speak(utter);
   }
 }

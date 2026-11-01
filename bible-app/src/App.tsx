@@ -5,6 +5,7 @@ import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
 import type { ChapterExplain } from "./data/explain";
 import { BOOKS } from "./data/books";
 import { ListenButton } from "./components/ListenButton";
+import { ChapterPlayerButton, type ChapterPlayerState } from "./components/ChapterPlayerButton";
 import { Drawer } from "./components/Drawer";
 import { ContentsModal } from "./components/ContentsModal";
 import { SearchModal } from "./components/SearchModal";
@@ -45,6 +46,18 @@ export default function App() {
   const [chapterCharacters, setChapterCharacters] = useState<CharacterBio[]>([]);
   const [openCharacterId, setOpenCharacterId] = useState<string | null>(null);
   const [peopleExpanded, setPeopleExpanded] = useState(false);
+  // "Listen" reading more than one chapter: idle -> playing (speaking,
+  // advances to the next chapter and keeps going when one finishes on its
+  // own) -> paused (tap to resume) -> back to playing, or idle again on
+  // any manual navigation/interruption elsewhere in the app. playToken is
+  // bumped to request a fresh tts.speak() call (initial start, or after an
+  // auto-advance once the new chapter's verses have loaded); spokenTokenRef
+  // makes sure each bump only ever triggers speak() once, so a pause/resume
+  // cycle (which also touches chapterPlayerState) can't accidentally
+  // restart the chapter from the beginning.
+  const [chapterPlayerState, setChapterPlayerState] = useState<ChapterPlayerState>("idle");
+  const [playToken, setPlayToken] = useState(0);
+  const spokenTokenRef = useRef(-1);
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -128,6 +141,36 @@ export default function App() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId, chapter, lang]);
+
+  // Drives the chapter player: fires once per playToken bump, as soon as
+  // that chapter's verses are actually loaded (immediately for the initial
+  // tap, or once an auto-advance's fetch resolves). Guarded by
+  // spokenTokenRef so a pause/resume toggle — which also changes
+  // chapterPlayerState — can't re-trigger this and restart the chapter.
+  useEffect(() => {
+    if (chapterPlayerState !== "playing" || !verses) return;
+    if (spokenTokenRef.current === playToken) return;
+    spokenTokenRef.current = playToken;
+    tts.speak("chapter-player", verses.map((v) => v.t), lang, settings.voiceByLang[lang], (reason) => {
+      if (reason !== "natural") {
+        setChapterPlayerState("idle");
+        return;
+      }
+      const next = adjacentChapter(1);
+      if (!next) {
+        setChapterPlayerState("idle");
+        toast(t.listenFinishedToast);
+        return;
+      }
+      setBookId(next.bookId);
+      setChapter(next.chapter);
+      setTab("scripture");
+      setOpenPointIndex(null);
+      setOpenCharacterId(null);
+      setPlayToken((v) => v + 1);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapterPlayerState, verses, playToken]);
 
   // AI insights: every chapter ships pre-generated in the bundle (see
   // lib/insights.ts); the Genesis 1 seed is kept as a defensive fallback.
@@ -218,6 +261,7 @@ export default function App() {
     }
   }
   function goToChapter(bId: string, c: number, verse?: number) {
+    tts.stop();
     if (verse) setPendingVerse(verse);
     setBookId(bId);
     setChapter(c);
@@ -247,6 +291,23 @@ export default function App() {
     setChapter(target.chapter);
     setOpenPointIndex(null);
     setOpenCharacterId(null);
+  }
+
+  function toggleChapterPlayer() {
+    if (!tts.isSupported) {
+      toast(t.ttsUnavailable);
+      return;
+    }
+    if (chapterPlayerState === "playing") {
+      tts.pause("chapter-player");
+      setChapterPlayerState("paused");
+    } else if (chapterPlayerState === "paused") {
+      tts.resume("chapter-player");
+      setChapterPlayerState("playing");
+    } else if (verses) {
+      setChapterPlayerState("playing");
+      setPlayToken((v) => v + 1);
+    }
   }
 
   const point = points && openPointIndex !== null ? points[openPointIndex] : null;
@@ -325,7 +386,7 @@ export default function App() {
           {tab === "scripture" ? (
             verses ? (
               <div>
-                <ListenButton id="scripture" text={verses.map((v) => v.t)} />
+                <ChapterPlayerButton lang={lang} state={chapterPlayerState} onToggle={toggleChapterPlayer} />
                 {chapterCharacters.length > 0 && (
                   <div className="people-row">
                     <div className="people-row-label">{t.peopleInChapterLabel}</div>
@@ -524,6 +585,7 @@ export default function App() {
         open={modal === "search"}
         onClose={() => setModal(null)}
         onResult={(_resultLang, resultBookId, resultChapter, verse) => {
+          tts.stop();
           setPendingVerse(verse);
           setBookId(resultBookId);
           setChapter(resultChapter);

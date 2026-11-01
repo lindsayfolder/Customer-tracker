@@ -38,6 +38,9 @@ export interface UiStrings {
   versionLabel: string;
   listenLabel: string;
   stopLabel: string;
+  listenPauseLabel: string;
+  listenResumeLabel: string;
+  listenFinishedToast: string;
   ttsUnavailable: string;
   loadingLabel: string;
   mapLabel: string;
@@ -102,6 +105,9 @@ export const UI: Record<LangKey, UiStrings> = {
     versionLabel: "Version",
     listenLabel: "Listen",
     stopLabel: "Stop",
+    listenPauseLabel: "Pause",
+    listenResumeLabel: "Resume",
+    listenFinishedToast: "Reached the end — playback stopped.",
     ttsUnavailable: "Voice isn't available on this device/browser.",
     loadingLabel: "Loading…",
     mapLabel: "Map",
@@ -164,6 +170,9 @@ export const UI: Record<LangKey, UiStrings> = {
     versionLabel: "Version",
     listenLabel: "Listen",
     stopLabel: "Stop",
+    listenPauseLabel: "Pause",
+    listenResumeLabel: "Resume",
+    listenFinishedToast: "Reached the end — playback stopped.",
     ttsUnavailable: "Voice isn't available on this device/browser.",
     loadingLabel: "Loading…",
     mapLabel: "Map",
@@ -226,6 +235,9 @@ export const UI: Record<LangKey, UiStrings> = {
     versionLabel: "版本",
     listenLabel: "朗讀",
     stopLabel: "停止",
+    listenPauseLabel: "暫停",
+    listenResumeLabel: "繼續",
+    listenFinishedToast: "已讀完全部章節，播放已停止。",
     ttsUnavailable: "此裝置或瀏覽器無法使用語音功能。",
     loadingLabel: "載入中……",
     mapLabel: "地圖",
@@ -288,6 +300,9 @@ export const UI: Record<LangKey, UiStrings> = {
     versionLabel: "版本",
     listenLabel: "朗读",
     stopLabel: "停止",
+    listenPauseLabel: "暂停",
+    listenResumeLabel: "继续",
+    listenFinishedToast: "已读完全部章节，播放已停止。",
     ttsUnavailable: "此设备或浏览器无法使用语音功能。",
     loadingLabel: "载入中……",
     mapLabel: "地图",
