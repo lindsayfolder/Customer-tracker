@@ -13,6 +13,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import { MapModal } from "./components/MapModal";
 import { BookIntroModal } from "./components/BookIntroModal";
 import { Toast } from "./components/Toast";
+import { DebugPlayerLog } from "./components/DebugPlayerLog";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
 import { loadChapterExplain } from "./lib/explain";
@@ -27,6 +28,15 @@ export type ModalKey = "contents" | "search" | "settings";
 // people; showing them all before verse 1 would bury the actual text. Cap
 // the row and let a "+N more" toggle reveal the rest in place instead.
 const PEOPLE_ROW_CAP = 6;
+
+// TEMPORARY — see components/DebugPlayerLog.tsx. Remove alongside it once
+// the real cause of the reported real-device chapter-repeat bug is found.
+function debugPlayerLog(line: string) {
+  const w = window as typeof window & { __playerLog?: string[] };
+  if (!w.__playerLog) w.__playerLog = [];
+  w.__playerLog.push(`${new Date().toISOString().slice(11, 19)} ${line}`);
+  if (w.__playerLog.length > 30) w.__playerLog.shift();
+}
 
 export default function App() {
   const { lang, setLang, settings, updateSettings, ready, toast } = useApp();
@@ -151,7 +161,9 @@ export default function App() {
     if (chapterPlayerState !== "playing" || !verses) return;
     if (spokenTokenRef.current === playToken) return;
     spokenTokenRef.current = playToken;
+    debugPlayerLog(`speak ${bookId}/${chapter} tok=${playToken} verses=${verses.length}`);
     tts.speak("chapter-player", verses.map((v) => v.t), lang, settings.voiceByLang[lang], (reason) => {
+      debugPlayerLog(`onEnd reason=${reason} wasAt=${bookId}/${chapter} tok=${playToken}`);
       if (reason !== "natural") {
         setChapterPlayerState("idle");
         return;
@@ -162,6 +174,7 @@ export default function App() {
         toast(t.listenFinishedToast);
         return;
       }
+      debugPlayerLog(`advance -> ${next.bookId}/${next.chapter}`);
       setBookId(next.bookId);
       setChapter(next.chapter);
       setTab("scripture");
@@ -299,12 +312,15 @@ export default function App() {
       return;
     }
     if (chapterPlayerState === "playing") {
+      debugPlayerLog(`tap pause (${bookId}/${chapter})`);
       tts.pause("chapter-player");
       setChapterPlayerState("paused");
     } else if (chapterPlayerState === "paused") {
+      debugPlayerLog(`tap resume (${bookId}/${chapter})`);
       tts.resume("chapter-player");
       setChapterPlayerState("playing");
     } else if (verses) {
+      debugPlayerLog(`tap play (${bookId}/${chapter})`);
       setChapterPlayerState("playing");
       setPlayToken((v) => v + 1);
     }
@@ -602,6 +618,7 @@ export default function App() {
       <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
 
       <Toast />
+      <DebugPlayerLog />
     </div>
   );
 }

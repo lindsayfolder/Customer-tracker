@@ -167,6 +167,7 @@ class TtsController {
     if (!this.synth) return;
     const prev = this.activeId;
     const onEnd = this.activeOnEnd;
+    if (prev) debugTtsLog(`stop ${prev}`);
     this.activeId = null;
     this.activeOnEnd = null;
     this.synth.cancel();
@@ -218,6 +219,7 @@ class TtsController {
   }
 
   private finish(id: string, reason: EndReason) {
+    debugTtsLog(`finish ${id} reason=${reason} wasActive=${this.activeId === id}`);
     const onEnd = this.activeOnEnd;
     this.activeId = null;
     this.activeOnEnd = null;
@@ -227,11 +229,15 @@ class TtsController {
   }
 
   private speakQueue(id: string, segments: string[], index: number, langCode: string, voice: SpeechSynthesisVoice | null) {
-    if (!this.synth || this.activeId !== id) return;
+    if (!this.synth || this.activeId !== id) {
+      debugTtsLog(`speakQueue skip ${id} idx=${index} activeId=${this.activeId}`);
+      return;
+    }
     if (index >= segments.length) {
       this.finish(id, "natural");
       return;
     }
+    debugTtsLog(`chunk ${id} ${index}/${segments.length}`);
     const utter = new SpeechSynthesisUtterance(segments[index]);
     utter.lang = langCode;
     if (voice) utter.voice = voice;
@@ -240,6 +246,15 @@ class TtsController {
     utter.onerror = () => this.finish(id, "error");
     this.synth.speak(utter);
   }
+}
+
+// TEMPORARY — see components/DebugPlayerLog.tsx. Remove alongside it once
+// the real cause of the reported real-device chapter-repeat bug is found.
+function debugTtsLog(line: string) {
+  const w = window as typeof window & { __playerLog?: string[] };
+  if (!w.__playerLog) w.__playerLog = [];
+  w.__playerLog.push(`${new Date().toISOString().slice(11, 19)} tts: ${line}`);
+  if (w.__playerLog.length > 30) w.__playerLog.shift();
 }
 
 export const tts = new TtsController();
