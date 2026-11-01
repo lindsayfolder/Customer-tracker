@@ -167,7 +167,6 @@ class TtsController {
     if (!this.synth) return;
     const prev = this.activeId;
     const onEnd = this.activeOnEnd;
-    if (prev) debugTtsLog(`stop ${prev}`);
     this.activeId = null;
     this.activeOnEnd = null;
     this.synth.cancel();
@@ -219,7 +218,6 @@ class TtsController {
   }
 
   private finish(id: string, reason: EndReason) {
-    debugTtsLog(`finish ${id} reason=${reason} wasActive=${this.activeId === id}`);
     const onEnd = this.activeOnEnd;
     this.activeId = null;
     this.activeOnEnd = null;
@@ -229,61 +227,19 @@ class TtsController {
   }
 
   private speakQueue(id: string, segments: string[], index: number, langCode: string, voice: SpeechSynthesisVoice | null) {
-    if (!this.synth || this.activeId !== id) {
-      debugTtsLog(`speakQueue skip ${id} idx=${index} activeId=${this.activeId}`);
-      return;
-    }
+    if (!this.synth || this.activeId !== id) return;
     if (index >= segments.length) {
       this.finish(id, "natural");
       return;
     }
-    debugTtsLog(`chunk ${id} ${index}/${segments.length}`);
-    const queuedAt = Date.now();
     const utter = new SpeechSynthesisUtterance(segments[index]);
     utter.lang = langCode;
     if (voice) utter.voice = voice;
     utter.rate = 0.95;
-    // Measures whether the real engine is keeping up with how fast chunks
-    // are queued, or working through a growing backlog of already-queued
-    // audio — the gap between "I asked it to speak this" and "it confirms
-    // it actually started" is the direct signal, not anything inferrable
-    // from onend timing alone.
-    utter.onstart = () => debugTtsStart(Date.now() - queuedAt);
     utter.onend = () => this.speakQueue(id, segments, index + 1, langCode, voice);
-    utter.onerror = (e) => {
-      debugTtsLog(`chunk ${id} ${index}/${segments.length} error=${e.error}`);
-      this.finish(id, "error");
-    };
+    utter.onerror = () => this.finish(id, "error");
     this.synth.speak(utter);
   }
-}
-
-// TEMPORARY — see components/DebugPlayerLog.tsx. Remove alongside it once
-// the real cause of the reported real-device chapter-repeat bug is found.
-function debugTtsLog(line: string) {
-  const w = window as typeof window & { __playerLog?: string[] };
-  if (!w.__playerLog) w.__playerLog = [];
-  w.__playerLog.push(`${new Date().toISOString().slice(11, 19)} tts: ${line}`);
-  if (w.__playerLog.length > 80) w.__playerLog.shift();
-}
-
-// TEMPORARY — persistent (never-rolls-off) engine-backlog measurement: the
-// gap in ms between queuing a chunk (synth.speak()) and the engine
-// confirming it actually started (utter.onstart). A real device
-// consistently reporting a growing/large gap here — not just the first
-// chunk after a pause, which is expected to take a moment — would confirm
-// the engine is working through a backlog of already-queued audio rather
-// than the app's own logic mis-sequencing chapters.
-function debugTtsStart(gapMs: number) {
-  const w = window as typeof window & {
-    __playerAudioLag?: { lastGapMs: number; maxGapMs: number; startedCount: number };
-  };
-  const prev = w.__playerAudioLag ?? { lastGapMs: 0, maxGapMs: 0, startedCount: 0 };
-  w.__playerAudioLag = {
-    lastGapMs: gapMs,
-    maxGapMs: Math.max(prev.maxGapMs, gapMs),
-    startedCount: prev.startedCount + 1,
-  };
 }
 
 export const tts = new TtsController();
