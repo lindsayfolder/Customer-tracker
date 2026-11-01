@@ -18,7 +18,7 @@ export function DebugPlayerLog() {
     const w = window as typeof window & { __playerLog?: string[] };
     if (!w.__playerLog) w.__playerLog = [];
     const id = window.setInterval(() => {
-      setLines([...(w.__playerLog ?? [])].slice(-10));
+      setLines([...(w.__playerLog ?? [])].slice(-20));
     }, 300);
     return () => window.clearInterval(id);
   }, []);

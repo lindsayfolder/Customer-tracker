@@ -35,7 +35,7 @@ function debugPlayerLog(line: string) {
   const w = window as typeof window & { __playerLog?: string[] };
   if (!w.__playerLog) w.__playerLog = [];
   w.__playerLog.push(`${new Date().toISOString().slice(11, 19)} ${line}`);
-  if (w.__playerLog.length > 30) w.__playerLog.shift();
+  if (w.__playerLog.length > 80) w.__playerLog.shift();
 }
 
 export default function App() {

@@ -243,7 +243,10 @@ class TtsController {
     if (voice) utter.voice = voice;
     utter.rate = 0.95;
     utter.onend = () => this.speakQueue(id, segments, index + 1, langCode, voice);
-    utter.onerror = () => this.finish(id, "error");
+    utter.onerror = (e) => {
+      debugTtsLog(`chunk ${id} ${index}/${segments.length} error=${e.error}`);
+      this.finish(id, "error");
+    };
     this.synth.speak(utter);
   }
 }
@@ -254,7 +257,7 @@ function debugTtsLog(line: string) {
   const w = window as typeof window & { __playerLog?: string[] };
   if (!w.__playerLog) w.__playerLog = [];
   w.__playerLog.push(`${new Date().toISOString().slice(11, 19)} tts: ${line}`);
-  if (w.__playerLog.length > 30) w.__playerLog.shift();
+  if (w.__playerLog.length > 80) w.__playerLog.shift();
 }
 
 export const tts = new TtsController();
