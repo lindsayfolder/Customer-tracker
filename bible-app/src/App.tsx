@@ -38,6 +38,29 @@ function debugPlayerLog(line: string) {
   if (w.__playerLog.length > 80) w.__playerLog.shift();
 }
 
+// TEMPORARY — tracks how many times in a row tts.speak() has been called
+// for the SAME chapter, and the worst streak seen this session, in a
+// persistent (non-scrolling) counter — the rolling log above can get
+// overwritten if the real bug loops a chapter many times before a
+// screenshot is taken (a short psalm can loop 5-6x inside a few minutes),
+// but this counter can't roll off no matter how long that takes.
+function debugPlayerSpeak(key: string) {
+  const w = window as typeof window & {
+    __playerSummary?: { key: string; count: number; maxKey: string; maxCount: number };
+  };
+  const prev = w.__playerSummary;
+  if (prev && prev.key === key) {
+    prev.count += 1;
+  } else {
+    w.__playerSummary = { key, count: 1, maxKey: prev?.maxKey ?? key, maxCount: prev?.maxCount ?? 1 };
+  }
+  const cur = w.__playerSummary!;
+  if (cur.count > cur.maxCount) {
+    cur.maxKey = cur.key;
+    cur.maxCount = cur.count;
+  }
+}
+
 export default function App() {
   const { lang, setLang, settings, updateSettings, ready, toast } = useApp();
   const t = UI[lang];
@@ -162,6 +185,7 @@ export default function App() {
     if (spokenTokenRef.current === playToken) return;
     spokenTokenRef.current = playToken;
     debugPlayerLog(`speak ${bookId}/${chapter} tok=${playToken} verses=${verses.length}`);
+    debugPlayerSpeak(`${bookId}/${chapter}`);
     tts.speak("chapter-player", verses.map((v) => v.t), lang, settings.voiceByLang[lang], (reason) => {
       debugPlayerLog(`onEnd reason=${reason} wasAt=${bookId}/${chapter} tok=${playToken}`);
       if (reason !== "natural") {
