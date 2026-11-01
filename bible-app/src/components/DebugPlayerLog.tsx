@@ -13,22 +13,31 @@ import { useEffect, useState } from "react";
 // counter of how many times in a row the current chapter has been
 // (re-)spoken, plus the worst streak seen all session, shown at the top
 // in red once it exceeds 1 — this survives regardless of how long the
-// loop ran before a screenshot was taken. Remove this component, its
-// mount point, and the window.__playerLog/__playerSummary writes once the
-// real cause is confirmed.
+// loop ran before a screenshot was taken. window.__playerAudioLag tracks
+// the gap between queuing a chunk and the real engine confirming it
+// started (lib/tts.ts's utter.onstart) — a reader reported the page
+// flipping to the next chapter while audio for an earlier one was still
+// audible/repeating even though the request-level log showed no double
+// speak() calls, which points at the real engine falling behind on
+// already-queued audio; this measures that directly. Remove this
+// component, its mount point, and the window.__playerLog/__playerSummary/
+// __playerAudioLag writes once the real cause is confirmed.
 export function DebugPlayerLog() {
   const [lines, setLines] = useState<string[]>([]);
   const [summary, setSummary] = useState<{ key: string; count: number; maxKey: string; maxCount: number } | null>(null);
+  const [lag, setLag] = useState<{ lastGapMs: number; maxGapMs: number; startedCount: number } | null>(null);
 
   useEffect(() => {
     const w = window as typeof window & {
       __playerLog?: string[];
       __playerSummary?: { key: string; count: number; maxKey: string; maxCount: number };
+      __playerAudioLag?: { lastGapMs: number; maxGapMs: number; startedCount: number };
     };
     if (!w.__playerLog) w.__playerLog = [];
     const id = window.setInterval(() => {
       setLines([...(w.__playerLog ?? [])].slice(-20));
       setSummary(w.__playerSummary ? { ...w.__playerSummary } : null);
+      setLag(w.__playerAudioLag ? { ...w.__playerAudioLag } : null);
     }, 300);
     return () => window.clearInterval(id);
   }, []);
@@ -55,6 +64,11 @@ export function DebugPlayerLog() {
       {summary && (
         <div style={{ color: summary.maxCount > 1 ? "#f55" : "#ff5", fontWeight: "bold", marginBottom: 2 }}>
           now: {summary.key} x{summary.count} | worst this session: {summary.maxKey} x{summary.maxCount}
+        </div>
+      )}
+      {lag && (
+        <div style={{ color: lag.maxGapMs > 2000 ? "#f55" : "#ff5", fontWeight: "bold", marginBottom: 2 }}>
+          audio-start lag: last={lag.lastGapMs}ms max={lag.maxGapMs}ms (n={lag.startedCount})
         </div>
       )}
       {lines.map((l, i) => (
