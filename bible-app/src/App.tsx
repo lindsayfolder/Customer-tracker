@@ -91,6 +91,17 @@ export default function App() {
   const [chapterPlayerState, setChapterPlayerState] = useState<ChapterPlayerState>("idle");
   const [playToken, setPlayToken] = useState(0);
   const spokenTokenRef = useRef(-1);
+  // Which bookId/chapter the current `verses` state actually holds, set
+  // alongside setVerses() in the loader effect below. Advancing to the
+  // next chapter bumps playToken and sets bookId/chapter in the same
+  // batch, but that's a *separate* effect from the one that nulls out and
+  // reloads `verses` — on the very next render, bookId/chapter are already
+  // new while `verses` is still the old chapter's data (not yet nulled;
+  // effects run after the render, not during it), and the driving effect
+  // below would otherwise speak that stale array under the new chapter's
+  // label. Comparing against this ref is what actually waits for the real
+  // reload instead of just checking `verses` isn't null.
+  const versesKeyRef = useRef<string | null>(null);
   // Read inside the natural-end settling delay (below) to check the
   // player is still "playing" once that timeout actually fires — a plain
   // closure over chapterPlayerState would see the stale value from
@@ -171,7 +182,10 @@ export default function App() {
     setVerses(null);
     loadChapterVerses(bookId, chapter, lang)
       .then((v) => {
-        if (!cancelled) setVerses(v);
+        if (!cancelled) {
+          setVerses(v);
+          versesKeyRef.current = `${bookId}/${chapter}`;
+        }
       })
       .catch(() => {
         if (!cancelled) toast("Couldn't load that chapter's text — check your connection.");
@@ -187,8 +201,11 @@ export default function App() {
   // tap, or once an auto-advance's fetch resolves). Guarded by
   // spokenTokenRef so a pause/resume toggle — which also changes
   // chapterPlayerState — can't re-trigger this and restart the chapter.
+  // versesKeyRef must also match the current bookId/chapter — see its
+  // declaration above for why `verses` alone being non-null isn't enough.
   useEffect(() => {
     if (chapterPlayerState !== "playing" || !verses) return;
+    if (versesKeyRef.current !== `${bookId}/${chapter}`) return;
     if (spokenTokenRef.current === playToken) return;
     spokenTokenRef.current = playToken;
     debugPlayerLog(`speak ${bookId}/${chapter} tok=${playToken} verses=${verses.length}`);
