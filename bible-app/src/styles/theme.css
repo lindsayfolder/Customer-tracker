@@ -316,7 +316,16 @@ button { font-family: inherit; }
 .result-snippet { font-size: 18px; line-height: 1.5; color: var(--ink); }
 .result-snippet mark { background: var(--gold); color: #1c1207; border-radius: 3px; padding: 0 1px; }
 
+/* Settings' own list of sections is short enough on a tall phone to leave
+   a dead-feeling band below "About" with nothing in it. Laying the
+   sections out as a flex column and pushing the last one (.settings-about)
+   down with margin-top: auto turns that slack into breathing room above
+   the version row instead of an empty gap trailing everything — while
+   still behaving like ordinary block stacking if the list ever grows
+   tall enough to need .modal-body's own scrolling. */
+.settings-body { display: flex; flex-direction: column; }
 .settings-section { margin-bottom: 22px; }
+.settings-about { margin-top: auto; margin-bottom: 0; }
 .settings-label { font-weight: 800; font-size: 16.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
 .settings-slider { flex: 1; accent-color: var(--gold); width: 100%; }
 .font-preview { background: var(--paper-panel); border: 2px solid var(--hairline); border-radius: 12px; padding: 12px 14px; margin: 10px 0 4px; font-size: calc(13.5px * var(--font-scale, 1)); line-height: 1.7; color: var(--ink); }

@@ -44,7 +44,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
           &#10005;
         </button>
       </div>
-      <div className="modal-body">
+      <div className="modal-body settings-body">
         <div className="settings-section">
           <div className="settings-label">{t.fontSizeLabel}</div>
           <input
@@ -132,7 +132,7 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
           )}
         </div>
 
-        <div className="settings-section">
+        <div className="settings-section settings-about">
           <div className="settings-label">{t.aboutLabel}</div>
           <div className="about-row">
             <span>{t.versionLabel}</span>
