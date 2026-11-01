@@ -77,7 +77,15 @@
 }
 
 * { box-sizing: border-box; }
-html, body, #root { height: var(--app-height, 100dvh); overflow: hidden; overscroll-behavior: none; }
+/* max(), not a plain override: --app-height (see lib/viewportHeight.ts) exists
+   to correct 100dvh on iOS versions where it over-reports, but real-device
+   testing showed the opposite failure too — visualViewport.height
+   under-reporting the true viewport, which left a dead band below the
+   bottom-anchored toolbar/content that no in-page layout fix could close,
+   since the whole shell was stopping short of the real screen edge. Taking
+   the larger of the two never lets either failure mode make the app
+   shorter than the real viewport. */
+html, body, #root { height: max(var(--app-height, 0px), 100dvh); overflow: hidden; overscroll-behavior: none; }
 
 body {
   margin: 0;
@@ -91,7 +99,7 @@ button { font-family: inherit; }
 .app-shell {
   max-width: 480px;
   margin: 0 auto;
-  height: var(--app-height, 100dvh);
+  height: max(var(--app-height, 0px), 100dvh);
   background: var(--paper);
   position: relative;
   overflow: hidden;
