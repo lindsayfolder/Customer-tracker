@@ -126,6 +126,9 @@ export function ContentsModal({
           <div className="chapter-head">
             <div className="chapter-title">{fmt(t.chapterEyebrow, { book: selectedBook.label[lang], c: selectedChapter })}</div>
           </div>
+          <button type="button" className="goto-chapter-btn" onClick={() => pick()}>
+            {fmt(t.goToChapterTpl, { c: selectedChapter })}
+          </button>
           {verseCount === null ? (
             <div className="empty-note">{t.loadingLabel}</div>
           ) : (

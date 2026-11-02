@@ -292,6 +292,22 @@ button { font-family: inherit; }
 .book-cell .code { font-size: 14.5px; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; display: block; margin-top: 2px; }
 .contents-hint { font-size: 16.5px; color: var(--ink-faint); line-height: 1.5; margin-bottom: 12px; }
 
+.goto-chapter-btn {
+  display: block;
+  width: 100%;
+  border: 2.5px solid var(--ink);
+  background: var(--gold);
+  color: #1c1207;
+  border-radius: 14px;
+  padding: 11px;
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: transform 0.1s ease;
+}
+.goto-chapter-btn:active { transform: scale(0.97); }
+
 .chapter-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
 .chapter-cell { border: 2px solid var(--ink); background: var(--paper-panel); border-radius: 9px; padding: 7px 0; text-align: center; font-weight: 800; font-size: 17.5px; color: var(--gold-strong); cursor: pointer; transition: transform 0.1s ease, background 0.1s ease; }
 .chapter-cell:active { background: var(--gold); color: #1c1207; transform: scale(0.92); }

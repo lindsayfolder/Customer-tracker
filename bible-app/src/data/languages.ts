@@ -22,6 +22,7 @@ export interface UiStrings {
   drawerSettings: string;
   contentsTitle: string;
   contentsHint: string;
+  goToChapterTpl: string;
   searchTitle: string;
   searchPlaceholder: string;
   scopeAll: string;
@@ -89,6 +90,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerSettings: "Settings",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
+    goToChapterTpl: "Go to Chapter {c}",
     searchTitle: "Search",
     searchPlaceholder: "Search verses & insights",
     scopeAll: "All",
@@ -154,6 +156,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerSettings: "Settings",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
+    goToChapterTpl: "Go to Chapter {c}",
     searchTitle: "Search",
     searchPlaceholder: "Search verses & insights",
     scopeAll: "All",
@@ -219,6 +222,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerSettings: "設定",
     contentsTitle: "目錄",
     contentsHint: "先選書卷，再選章節。",
+    goToChapterTpl: "前往第 {c} 章",
     searchTitle: "搜尋",
     searchPlaceholder: "搜尋經文與要點",
     scopeAll: "全部",
@@ -284,6 +288,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerSettings: "设置",
     contentsTitle: "目录",
     contentsHint: "先选书卷，再选章节。",
+    goToChapterTpl: "前往第 {c} 章",
     searchTitle: "搜索",
     searchPlaceholder: "搜索经文与要点",
     scopeAll: "全部",

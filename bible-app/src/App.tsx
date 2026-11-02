@@ -76,6 +76,19 @@ export default function App() {
   // happened during the wait.
   const chapterPlayerStateRef = useRef(chapterPlayerState);
   chapterPlayerStateRef.current = chapterPlayerState;
+  // Holds a deferred "advance to the next chapter" action when the reader
+  // pauses during the brief settling gap between chapters (see the driving
+  // effect below) — at that exact moment nothing is actually playing, so
+  // pause/resume have nothing live to act on, and without this the pending
+  // advance was simply dropped, leaving the button showing "playing" with
+  // nothing queued until the reader navigated away manually. Cleared by
+  // resetChapterPlayer() alongside every interrupt below so a resume long
+  // after an abandoned/interrupted gap can never fire a stale advance.
+  const pendingAdvanceRef = useRef<(() => void) | null>(null);
+  function resetChapterPlayer() {
+    setChapterPlayerState("idle");
+    pendingAdvanceRef.current = null;
+  }
 
   const book = BOOKS.find((b) => b.id === bookId)!;
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -177,15 +190,23 @@ export default function App() {
     spokenTokenRef.current = playToken;
     tts.speak("chapter-player", verses.map((v) => v.t), lang, settings.voiceByLang[lang], (reason) => {
       if (reason !== "natural") {
-        setChapterPlayerState("idle");
+        resetChapterPlayer();
         return;
       }
       const next = adjacentChapter(1);
       if (!next) {
-        setChapterPlayerState("idle");
+        resetChapterPlayer();
         toast(t.listenFinishedToast);
         return;
       }
+      const advance = () => {
+        setBookId(next.bookId);
+        setChapter(next.chapter);
+        setTab("scripture");
+        setOpenPointIndex(null);
+        setOpenCharacterId(null);
+        setPlayToken((v) => v + 1);
+      };
       // Real speechSynthesis engines can fire an utterance's onend slightly
       // before the hardware audio buffer has actually finished draining —
       // queuing the next chapter's speech immediately then overlaps with
@@ -199,16 +220,19 @@ export default function App() {
         // already null — a manual interrupt during this wait (tapping
         // Contents, Search, prev/next, a detail card, etc.) has nothing
         // live to stop and can't reach this closure, so it's handled by
-        // explicitly setting chapterPlayerState to idle in each of those
-        // handlers instead; checking the ref here is what actually skips
-        // the advance when that happened.
-        if (chapterPlayerStateRef.current !== "playing") return;
-        setBookId(next.bookId);
-        setChapter(next.chapter);
-        setTab("scripture");
-        setOpenPointIndex(null);
-        setOpenCharacterId(null);
-        setPlayToken((v) => v + 1);
+        // resetChapterPlayer() in each of those handlers instead; the idle
+        // case here means one of those already fired and correctly wants
+        // no advance at all.
+        if (chapterPlayerStateRef.current === "playing") {
+          advance();
+        } else if (chapterPlayerStateRef.current === "paused") {
+          // The reader paused during this exact settling gap — nothing
+          // was actually playing yet for pause/resume to act on, so defer
+          // the advance itself until they resume (toggleChapterPlayer)
+          // instead of just dropping it, which used to leave the button
+          // showing "playing" with nothing queued and no way to progress.
+          pendingAdvanceRef.current = advance;
+        }
       }, 400);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -267,36 +291,36 @@ export default function App() {
 
   function openDetail(i: number) {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setOpenCharacterId(null);
     setOpenPointIndex(i);
   }
   function closeDetail() {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setOpenPointIndex(null);
   }
   function openCharacter(id: string) {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setOpenPointIndex(null);
     setOpenCharacterId(id);
   }
   function closeCharacter() {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setOpenCharacterId(null);
   }
   function switchLang(l: LangKey) {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setLang(l);
     setOpenPointIndex(null);
     setOpenCharacterId(null);
   }
   function switchTab(next: "scripture" | "insights") {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setTab(next);
   }
   function navigateFromDrawer(target: ModalKey | "home") {
@@ -310,7 +334,7 @@ export default function App() {
   }
   function goToChapter(bId: string, c: number, verse?: number) {
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     if (verse) setPendingVerse(verse);
     setBookId(bId);
     setChapter(c);
@@ -336,7 +360,7 @@ export default function App() {
     const target = direction === -1 ? prevTarget : nextTarget;
     if (!target) return;
     tts.stop();
-    setChapterPlayerState("idle");
+    resetChapterPlayer();
     setBookId(target.bookId);
     setChapter(target.chapter);
     setOpenPointIndex(null);
@@ -352,8 +376,15 @@ export default function App() {
       tts.pause("chapter-player");
       setChapterPlayerState("paused");
     } else if (chapterPlayerState === "paused") {
-      tts.resume("chapter-player");
-      setChapterPlayerState("playing");
+      if (pendingAdvanceRef.current) {
+        const advance = pendingAdvanceRef.current;
+        pendingAdvanceRef.current = null;
+        setChapterPlayerState("playing");
+        advance();
+      } else {
+        tts.resume("chapter-player");
+        setChapterPlayerState("playing");
+      }
     } else if (verses) {
       setChapterPlayerState("playing");
       setPlayToken((v) => v + 1);
@@ -636,7 +667,7 @@ export default function App() {
         onClose={() => setModal(null)}
         onResult={(_resultLang, resultBookId, resultChapter, verse) => {
           tts.stop();
-          setChapterPlayerState("idle");
+          resetChapterPlayer();
           setPendingVerse(verse);
           setBookId(resultBookId);
           setChapter(resultChapter);
