@@ -159,12 +159,17 @@ button { font-family: inherit; }
 .panels { position: relative; flex: 1; min-height: 0; }
 .view { position: absolute; inset: 0; overflow: hidden; transition: transform 0.38s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease; }
 .view-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 4px 18px 26px; }
-/* Sticks to the top of .view-scroll's own scroll port once the reader
-   scrolls past it, so the chapter reference stays visible without
-   scrolling all the way back up — the negative margin/matching padding
-   cancels .view-scroll's own padding so this bleeds edge-to-edge instead
-   of leaving the scrolling verse text visible on either side of it. */
-.sticky-chapter-bar { position: sticky; top: 0; z-index: 3; margin: -4px -18px 12px; padding: 11px 18px 9px; background: var(--paper); border-bottom: 2px solid var(--hairline); }
+/* A genuinely fixed bar (a sibling of .lang-row in .app-shell's own flex
+   column, not something living inside the scrolling content) rather than
+   a position: sticky element inside .view-scroll — sticky plus the
+   negative-margin bleed needed to reach the true edge showed a thin gap
+   on a real device with the scrolling verse text visible through it, the
+   same class of WebKit scroll-layout quirk this app has hit before.
+   Being an ordinary flex sibling instead means .panels (flex: 1) simply
+   shrinks to leave room for it, with nothing to get subtly out of sync
+   while scrolling. Always shows the current chapter regardless of which
+   tab or detail view is open, same as the toolbar below it. */
+.chapter-bar { flex: none; padding: 9px 18px; background: var(--paper); border-bottom: 2px solid var(--hairline); }
 .chapter-head { padding: 6px 2px 14px; border-bottom: 3px solid var(--ink); margin-bottom: 14px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
 .chapter-eyebrow { font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-strong); }
 .chapter-title { font-family: "Bangers", "PingFang SC", "PingFang TC", sans-serif; font-size: 26px; letter-spacing: 0.02em; margin: 3px 0 5px; color: var(--ink); }

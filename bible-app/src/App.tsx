@@ -435,12 +435,13 @@ export default function App() {
         ))}
       </div>
 
+      <div className="chapter-bar">
+        <span className="chapter-eyebrow">{chapterEyebrow}</span>
+      </div>
+
       <div className="panels">
         <div className={`view list${detailOpen ? " is-hidden" : ""}`}>
           <div className="view-scroll" ref={listScrollRef}>
-          <div className="sticky-chapter-bar">
-            <span className="chapter-eyebrow">{chapterEyebrow}</span>
-          </div>
           <div className="chapter-head">
             <div>
               <div className="chapter-title">{book.label[lang]}</div>
