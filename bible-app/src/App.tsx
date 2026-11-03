@@ -4,7 +4,6 @@ import { UI, LANGUAGES, fmt, type LangKey } from "./data/languages";
 import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
 import type { ChapterExplain } from "./data/explain";
 import { BOOKS } from "./data/books";
-import { ListenButton } from "./components/ListenButton";
 import { ChapterPlayerButton, type ChapterPlayerState } from "./components/ChapterPlayerButton";
 import { Drawer } from "./components/Drawer";
 import { ContentsModal } from "./components/ContentsModal";
@@ -82,12 +81,19 @@ export default function App() {
   // pause/resume have nothing live to act on, and without this the pending
   // advance was simply dropped, leaving the button showing "playing" with
   // nothing queued until the reader navigated away manually. Cleared by
-  // resetChapterPlayer() alongside every interrupt below so a resume long
+  // resetPlayers() alongside every interrupt below so a resume long
   // after an abandoned/interrupted gap can never fire a stale advance.
   const pendingAdvanceRef = useRef<(() => void) | null>(null);
-  function resetChapterPlayer() {
+  // Generic "listen to this page" player for Insights content (a highlight
+  // detail, a character bio, or the list view's Further Insight block) —
+  // the same toolbar play/pause slot as the chapter player above, but
+  // simpler: one block of text, no auto-advance. Which content it drives
+  // is derived from the current view in `pageContent` below.
+  const [pagePlayerState, setPagePlayerState] = useState<ChapterPlayerState>("idle");
+  function resetPlayers() {
     setChapterPlayerState("idle");
     pendingAdvanceRef.current = null;
+    setPagePlayerState("idle");
   }
 
   const book = BOOKS.find((b) => b.id === bookId)!;
@@ -190,12 +196,12 @@ export default function App() {
     spokenTokenRef.current = playToken;
     tts.speak("chapter-player", verses.map((v) => v.t), lang, settings.voiceByLang[lang], (reason) => {
       if (reason !== "natural") {
-        resetChapterPlayer();
+        resetPlayers();
         return;
       }
       const next = adjacentChapter(1);
       if (!next) {
-        resetChapterPlayer();
+        resetPlayers();
         toast(t.listenFinishedToast);
         return;
       }
@@ -220,7 +226,7 @@ export default function App() {
         // already null — a manual interrupt during this wait (tapping
         // Contents, Search, prev/next, a detail card, etc.) has nothing
         // live to stop and can't reach this closure, so it's handled by
-        // resetChapterPlayer() in each of those handlers instead; the idle
+        // resetPlayers() in each of those handlers instead; the idle
         // case here means one of those already fired and correctly wants
         // no advance at all.
         if (chapterPlayerStateRef.current === "playing") {
@@ -291,36 +297,36 @@ export default function App() {
 
   function openDetail(i: number) {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setOpenCharacterId(null);
     setOpenPointIndex(i);
   }
   function closeDetail() {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setOpenPointIndex(null);
   }
   function openCharacter(id: string) {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setOpenPointIndex(null);
     setOpenCharacterId(id);
   }
   function closeCharacter() {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setOpenCharacterId(null);
   }
   function switchLang(l: LangKey) {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setLang(l);
     setOpenPointIndex(null);
     setOpenCharacterId(null);
   }
   function switchTab(next: "scripture" | "insights") {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setTab(next);
   }
   function navigateFromDrawer(target: ModalKey | "home") {
@@ -334,7 +340,7 @@ export default function App() {
   }
   function goToChapter(bId: string, c: number, verse?: number) {
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     if (verse) setPendingVerse(verse);
     setBookId(bId);
     setChapter(c);
@@ -360,7 +366,7 @@ export default function App() {
     const target = direction === -1 ? prevTarget : nextTarget;
     if (!target) return;
     tts.stop();
-    resetChapterPlayer();
+    resetPlayers();
     setBookId(target.bookId);
     setChapter(target.chapter);
     setOpenPointIndex(null);
@@ -398,6 +404,40 @@ export default function App() {
   const nextCharacter = characterIndex !== -1 && characterIndex < chapterCharacters.length - 1 ? chapterCharacters[characterIndex + 1] : null;
   const detailOpen = openPointIndex !== null || openCharacterId !== null;
   const chapterEyebrow = fmt(t.chapterEyebrow, { book: book.label[lang], c: chapter });
+
+  // Whichever Insights content is on screen, if any — a highlight detail
+  // takes priority over a character bio (both live in the same detail
+  // view, but only one is ever open at once), and the Further Insight
+  // block only counts while the Insights tab's list view is showing (not
+  // behind an open detail). Scripture never has page content: the toolbar
+  // button falls back to the chapter player in that case.
+  const pageContent: { id: string; text: string | string[] } | null = point
+    ? { id: "detail", text: [point.title, ...point.body.map(stripHtml)] }
+    : character
+    ? { id: "character", text: stripBioMarkdown(character.bio) }
+    : tab === "insights" && explain
+    ? { id: "explain", text: [explain.summary, ...explain.keyPoints, explain.application] }
+    : null;
+
+  function togglePagePlayer() {
+    if (!pageContent) return;
+    if (!tts.isSupported) {
+      toast(t.ttsUnavailable);
+      return;
+    }
+    if (pagePlayerState === "playing") {
+      tts.pause(pageContent.id);
+      setPagePlayerState("paused");
+    } else if (pagePlayerState === "paused") {
+      tts.resume(pageContent.id);
+      setPagePlayerState("playing");
+    } else {
+      setPagePlayerState("playing");
+      tts.speak(pageContent.id, pageContent.text, lang, settings.voiceByLang[lang], () => {
+        setPagePlayerState("idle");
+      });
+    }
+  }
 
   return (
     <div className="app-shell">
@@ -537,10 +577,6 @@ export default function App() {
                   <div className="section-label">
                     <span>{t.explainSectionLabel}</span>
                   </div>
-                  <ListenButton
-                    id="explain"
-                    text={[explain.summary, ...explain.keyPoints, explain.application]}
-                  />
                   <div className="caption-box">{explain.summary}</div>
                   {explain.themes.length > 0 && (
                     <div className="tag-row">
@@ -586,7 +622,6 @@ export default function App() {
               <div className="ai-tag">
                 <span className="dot" /> {t.aiTag}
               </div>
-              <ListenButton id="detail" text={[point.title, ...point.body.map(stripHtml)]} />
               <div>
                 {point.body.map((para, idx) => (
                   <div
@@ -606,7 +641,6 @@ export default function App() {
               <div className="splash-banner">
                 <div className="splash-title">{character.name}</div>
               </div>
-              <ListenButton id="character" text={stripBioMarkdown(character.bio)} />
               <div className="caption-box bio-box" dangerouslySetInnerHTML={{ __html: renderBioHtml(character.bio) }} />
               <div className="character-nav-row">
                 <button
@@ -646,9 +680,9 @@ export default function App() {
         </button>
         <ChapterPlayerButton
           lang={lang}
-          state={chapterPlayerState}
-          disabled={chapterPlayerState === "idle" && !verses}
-          onToggle={toggleChapterPlayer}
+          state={pageContent ? pagePlayerState : chapterPlayerState}
+          disabled={pageContent ? false : tab !== "scripture" || (chapterPlayerState === "idle" && !verses)}
+          onToggle={pageContent ? togglePagePlayer : toggleChapterPlayer}
         />
         <button
           type="button"
@@ -674,7 +708,7 @@ export default function App() {
         onClose={() => setModal(null)}
         onResult={(_resultLang, resultBookId, resultChapter, verse) => {
           tts.stop();
-          resetChapterPlayer();
+          resetPlayers();
           setPendingVerse(verse);
           setBookId(resultBookId);
           setChapter(resultChapter);
