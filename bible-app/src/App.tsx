@@ -438,9 +438,11 @@ export default function App() {
       <div className="panels">
         <div className={`view list${detailOpen ? " is-hidden" : ""}`}>
           <div className="view-scroll" ref={listScrollRef}>
+          <div className="sticky-chapter-bar">
+            <span className="chapter-eyebrow">{chapterEyebrow}</span>
+          </div>
           <div className="chapter-head">
             <div>
-              <div className="chapter-eyebrow">{chapterEyebrow}</div>
               <div className="chapter-title">{book.label[lang]}</div>
             </div>
             <div className="chapter-head-actions">
@@ -467,7 +469,6 @@ export default function App() {
           {tab === "scripture" ? (
             verses ? (
               <div>
-                <ChapterPlayerButton lang={lang} state={chapterPlayerState} onToggle={toggleChapterPlayer} />
                 {chapterCharacters.length > 0 && (
                   <div className="people-row">
                     <div className="people-row-label">{t.peopleInChapterLabel}</div>
@@ -642,7 +643,12 @@ export default function App() {
         >
           <span aria-hidden="true">&larr;</span>
         </button>
-        <div className="toolbar-chapter-label">{chapterEyebrow}</div>
+        <ChapterPlayerButton
+          lang={lang}
+          state={chapterPlayerState}
+          disabled={chapterPlayerState === "idle" && !verses}
+          onToggle={toggleChapterPlayer}
+        />
         <button
           type="button"
           className="toolbar-nav-btn"
