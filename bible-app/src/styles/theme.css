@@ -264,7 +264,7 @@ button { font-family: inherit; }
    shaped to match those arrows (not a pill) since it now sits as a third
    circular control alongside them, not a text label. */
 .toolbar-play-btn-wrap { flex: 1; display: flex; justify-content: center; }
-.toolbar-play-btn { flex: none; width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; }
+.toolbar-play-btn { flex: none; width: 58px; height: 58px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper); display: flex; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; }
 .toolbar-play-btn.active { background: var(--gold); }
 .toolbar-play-btn:active { transform: translateY(1px) scale(0.96); }
 .toolbar-play-btn:disabled { opacity: 0.35; cursor: default; }

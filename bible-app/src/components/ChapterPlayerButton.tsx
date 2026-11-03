@@ -34,7 +34,7 @@ export function ChapterPlayerButton({
         disabled={disabled}
         aria-label={label}
       >
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor">
           {state === "playing" ? (
             <>
               <rect x="5" y="4" width="4" height="12" rx="1" />
