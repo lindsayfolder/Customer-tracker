@@ -81,10 +81,16 @@ export async function searchScripture(
   // Whole-Bible search: books are scanned in canonical order, Old Testament
   // first, so a word common enough in the OT's 39 books (e.g. "love") can
   // fill the entire cap before the scan ever reaches the New Testament —
-  // "All" would then silently show only OT hits. Scanning each testament
-  // separately, each with its own share of the cap, guarantees both are
-  // represented.
+  // "All" would then silently show only OT hits. Giving each testament its
+  // own full MAX_HITS budget (rather than splitting one cap between them)
+  // fixes that properly: a word concentrated early in a testament (e.g.
+  // "love" in the Gospels) still fills its own budget before moving on to
+  // the rest of that testament's books, same as it would under the OT/NT
+  // scope filters alone — splitting a single cap in half only let it reach
+  // as far as the Gospels, not the whole NT. "All" can show up to 2x
+  // MAX_HITS this way, same ceiling the reader would hit by running the OT
+  // and NT searches separately.
   const otIds = BOOKS.filter((b) => b.testament === "OT").map((b) => b.id);
   const ntIds = BOOKS.filter((b) => b.testament === "NT").map((b) => b.id);
-  return [...scanBooks(otIds, indexes, q, MAX_HITS / 2), ...scanBooks(ntIds, indexes, q, MAX_HITS / 2)];
+  return [...scanBooks(otIds, indexes, q, MAX_HITS), ...scanBooks(ntIds, indexes, q, MAX_HITS)];
 }
