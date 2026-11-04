@@ -140,15 +140,14 @@ export async function runBulkDownload(onProgress?: (done: number, total: number)
     const base = import.meta.env.BASE_URL;
     const fixed = buildFixedManifest(base);
 
-    const report = async (total: number) => {
-      if (!onProgress) return;
-      onProgress(await countCachedEntries(), total);
-    };
-
-    // First report uses the fixed-size portion's own real count (not the
-    // TOTAL_CONTENT_FILES estimate) as the total, so progress is accurate
-    // from the very first paint even before character ids are known.
-    await report(fixed.length);
+    // Whole-cache enumeration (countCachedEntries) happens exactly once
+    // here, purely to give the very first progress paint an accurate
+    // "already done from a previous session" reading before the loop below
+    // has processed anything itself. First report uses the fixed-size
+    // portion's own real count (not the TOTAL_CONTENT_FILES estimate) as
+    // the total, so progress is accurate from the very first paint even
+    // before character ids are known.
+    onProgress?.(await countCachedEntries(), fixed.length);
 
     const characterIds = await discoverCharacterIds(base);
     const characterTasks: Task[] = [];
@@ -161,8 +160,6 @@ export async function runBulkDownload(onProgress?: (done: number, total: number)
     const manifest = [...fixed, ...characterTasks];
     const attempts = new Map<string, number>();
     let pending = manifest.slice();
-
-    await report(manifest.length);
 
     while (pending.length > 0) {
       if (document.visibilityState === "hidden") {
@@ -187,7 +184,26 @@ export async function runBulkDownload(onProgress?: (done: number, total: number)
         }),
       );
 
-      await report(manifest.length);
+      // Every task in `manifest` sits in exactly one place at a time: still
+      // in `pending` (never attempted, or re-queued for retry) or resolved
+      // out of it (cached successfully, or permanently given up on after
+      // MAX_ATTEMPTS_PER_URL). So manifest.length - pending.length is
+      // always the exact count of resolved tasks — no need to re-derive it
+      // by re-scanning the caches from scratch on every batch the way this
+      // used to (via countCachedEntries, see above). That re-scan used to
+      // run once per batch of CONCURRENCY=6 — with the library now spanning
+      // thousands of files (character bios in particular), that was
+      // thousands of cache.keys() calls over a growing cache, tens of
+      // seconds of cumulative time and hundreds of extra app-wide
+      // re-renders over one download, which is very likely what the reader
+      // felt as the app "loading slower" after that content grew. This also
+      // fixes a latent correctness issue the old approach had: a URL that
+      // permanently fails is never actually cached, so cache.keys() would
+      // never count it either, leaving the progress bar stuck below 100%
+      // forever if even one file kept failing — here it still counts as
+      // resolved (removed from circulation) the moment the retry budget is
+      // spent, same as a successful fetch.
+      onProgress?.(manifest.length - pending.length, manifest.length);
     }
   } finally {
     running = false;
