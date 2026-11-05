@@ -48,6 +48,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setSettings(s);
       setLangState(s.lastLang);
       setReady(true);
+      // TEMPORARY: see main.tsx's __loadTiming comment.
+      (window as unknown as { __loadTiming?: Record<string, number> }).__loadTiming ??= {};
+      (window as unknown as { __loadTiming: Record<string, number> }).__loadTiming.settingsReady ??= performance.now();
     });
   }, []);
 

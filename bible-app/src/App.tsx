@@ -12,6 +12,7 @@ import { SettingsModal } from "./components/SettingsModal";
 import { MapModal } from "./components/MapModal";
 import { BookIntroModal } from "./components/BookIntroModal";
 import { Toast } from "./components/Toast";
+import { DebugLoadTiming } from "./components/DebugLoadTiming";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
 import { loadChapterExplain } from "./lib/explain";
@@ -171,6 +172,9 @@ export default function App() {
         if (!cancelled) {
           setVerses(v);
           versesKeyRef.current = `${bookId}/${chapter}`;
+          // TEMPORARY: see main.tsx's __loadTiming comment.
+          (window as unknown as { __loadTiming?: Record<string, number> }).__loadTiming ??= {};
+          (window as unknown as { __loadTiming: Record<string, number> }).__loadTiming.firstVersesLoaded ??= performance.now();
         }
       })
       .catch(() => {
@@ -725,6 +729,7 @@ export default function App() {
       <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
 
       <Toast />
+      <DebugLoadTiming />
     </div>
   );
 }
