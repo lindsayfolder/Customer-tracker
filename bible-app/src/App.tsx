@@ -6,7 +6,6 @@ import type { ChapterExplain } from "./data/explain";
 import { BOOKS } from "./data/books";
 import { ChapterPlayerButton, type ChapterPlayerState } from "./components/ChapterPlayerButton";
 import { Toast } from "./components/Toast";
-import { DebugLoadTiming } from "./components/DebugLoadTiming";
 import { loadChapterVerses } from "./lib/scripture";
 import { loadChapterPoints } from "./lib/insights";
 import { loadChapterExplain } from "./lib/explain";
@@ -181,9 +180,6 @@ export default function App() {
         if (!cancelled) {
           setVerses(v);
           versesKeyRef.current = `${bookId}/${chapter}`;
-          // TEMPORARY: see main.tsx's __loadTiming comment.
-          (window as unknown as { __loadTiming?: Record<string, number> }).__loadTiming ??= {};
-          (window as unknown as { __loadTiming: Record<string, number> }).__loadTiming.firstVersesLoaded ??= performance.now();
         }
       })
       .catch(() => {
@@ -740,7 +736,6 @@ export default function App() {
       </Suspense>
 
       <Toast />
-      <DebugLoadTiming />
     </div>
   );
 }

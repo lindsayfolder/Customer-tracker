@@ -7,10 +7,6 @@ import { registerUpdateHooks, setUpdateAvailable } from "./lib/appUpdate";
 import { cleanupLegacyCaches } from "./lib/offlineStatus";
 import { initViewportHeight } from "./lib/viewportHeight";
 
-// TEMPORARY: load-timing diagnostic (see DebugLoadTiming.tsx) — remove once
-// the real-device "2 seconds to open" report is diagnosed.
-(window as unknown as { __loadTiming: Record<string, number> }).__loadTiming = { scriptStart: performance.now() };
-
 cleanupLegacyCaches();
 initViewportHeight();
 
