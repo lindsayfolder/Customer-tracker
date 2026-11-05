@@ -188,19 +188,39 @@ class TtsController {
   // toggle, but always starts the new one rather than toggling it off).
   // onEnd fires exactly once per call, with "natural" only when the whole
   // queue finished on its own — the signal a caller like the chapter
-  // player uses to decide whether to advance.
-  speak(id: string, text: string | string[], lang: LangKey, preferredVoiceURI?: string, onEnd?: (reason: EndReason) => void) {
+  // player uses to decide whether to advance. onItemStart, if given, fires
+  // once per *input* array element (not per post-chunking chunk) the
+  // moment its first chunk starts speaking — a single long verse can still
+  // split into several chunks internally (see chunkText), but that should
+  // never move a verse-by-verse "now reading" highlight mid-verse, only
+  // when playback actually crosses into the next one.
+  speak(
+    id: string,
+    text: string | string[],
+    lang: LangKey,
+    preferredVoiceURI?: string,
+    onEnd?: (reason: EndReason) => void,
+    onItemStart?: (itemIndex: number) => void,
+  ) {
     if (!this.synth) return;
     this.stop();
-    const segments = (Array.isArray(text) ? text : [text]).flatMap(chunkText).filter((s) => s.trim());
-    if (segments.length === 0) return;
+    const items = Array.isArray(text) ? text : [text];
+    const chunks: string[] = [];
+    const chunkItemIndex: number[] = [];
+    items.forEach((item, itemIndex) => {
+      for (const chunk of chunkText(item).filter((s) => s.trim())) {
+        chunks.push(chunk);
+        chunkItemIndex.push(itemIndex);
+      }
+    });
+    if (chunks.length === 0) return;
     const langCode = LANGUAGES.find((l) => l.key === lang)?.speechLang ?? "en-US";
     const voice = this.pickVoice(langCode, preferredVoiceURI);
     this.activeId = id;
     this.activeOnEnd = onEnd ?? null;
     this.notify(id, true);
     this.acquireWakeLock();
-    this.speakQueue(id, segments, 0, langCode, voice);
+    this.speakQueue(id, chunks, chunkItemIndex, 0, langCode, voice, onItemStart);
   }
 
   pause(id: string) {
@@ -226,17 +246,30 @@ class TtsController {
     onEnd?.(reason);
   }
 
-  private speakQueue(id: string, segments: string[], index: number, langCode: string, voice: SpeechSynthesisVoice | null) {
+  private speakQueue(
+    id: string,
+    chunks: string[],
+    chunkItemIndex: number[],
+    index: number,
+    langCode: string,
+    voice: SpeechSynthesisVoice | null,
+    onItemStart?: (itemIndex: number) => void,
+  ) {
     if (!this.synth || this.activeId !== id) return;
-    if (index >= segments.length) {
+    if (index >= chunks.length) {
       this.finish(id, "natural");
       return;
     }
-    const utter = new SpeechSynthesisUtterance(segments[index]);
+    // Only fires on the first chunk of a new item, not every chunk within
+    // one long verse that had to be split — see speak()'s onItemStart doc.
+    if (index === 0 || chunkItemIndex[index] !== chunkItemIndex[index - 1]) {
+      onItemStart?.(chunkItemIndex[index]);
+    }
+    const utter = new SpeechSynthesisUtterance(chunks[index]);
     utter.lang = langCode;
     if (voice) utter.voice = voice;
     utter.rate = 0.95;
-    utter.onend = () => this.speakQueue(id, segments, index + 1, langCode, voice);
+    utter.onend = () => this.speakQueue(id, chunks, chunkItemIndex, index + 1, langCode, voice, onItemStart);
     utter.onerror = () => this.finish(id, "error");
     this.synth.speak(utter);
   }

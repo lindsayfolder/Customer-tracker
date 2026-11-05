@@ -99,10 +99,19 @@ export default function App() {
   // simpler: one block of text, no auto-advance. Which content it drives
   // is derived from the current view in `pageContent` below.
   const [pagePlayerState, setPagePlayerState] = useState<ChapterPlayerState>("idle");
+  // Which verse (by number, matching each row's data-verse) the chapter
+  // player is currently speaking, so the scripture view can highlight and
+  // gently scroll to it as playback moves through the chapter — cleared on
+  // every interrupt alongside the rest of the player state, and also the
+  // instant a new chapter starts loading (see the verses effect below),
+  // so a stale highlight from the chapter just left can never flash under
+  // the next one while it loads.
+  const [spokenVerseNum, setSpokenVerseNum] = useState<number | null>(null);
   function resetPlayers() {
     setChapterPlayerState("idle");
     pendingAdvanceRef.current = null;
     setPagePlayerState("idle");
+    setSpokenVerseNum(null);
   }
 
   const book = BOOKS.find((b) => b.id === bookId)!;
@@ -162,6 +171,27 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [verses]);
 
+  // Chapter player: gently scrolls to keep whichever verse is currently
+  // being read in view as playback moves through the chapter, rolling
+  // down verse by verse — same manual delta-scroll approach as the
+  // search-result effect above, but smooth rather than an instant jump,
+  // and placing the row a bit above center so upcoming verses stay
+  // visible below it rather than splitting evenly. Skipped when the row's
+  // already close enough to that position so short, quick verses don't
+  // cause jittery back-to-back micro-scrolls.
+  useEffect(() => {
+    if (spokenVerseNum === null) return;
+    const container = listScrollRef.current;
+    const row = container?.querySelector<HTMLElement>(`[data-verse="${spokenVerseNum}"]`);
+    if (!container || !row) return;
+    const containerRect = container.getBoundingClientRect();
+    const rowRect = row.getBoundingClientRect();
+    const delta = rowRect.top - containerRect.top - containerRect.height * 0.3;
+    if (Math.abs(delta) > 40) {
+      container.scrollBy({ top: delta, behavior: "smooth" });
+    }
+  }, [spokenVerseNum]);
+
   useEffect(() => {
     document.documentElement.style.setProperty("--font-scale", String(settings.fontScale));
   }, [settings.fontScale]);
@@ -175,6 +205,7 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     setVerses(null);
+    setSpokenVerseNum(null);
     loadChapterVerses(bookId, chapter, lang)
       .then((v) => {
         if (!cancelled) {
@@ -249,7 +280,7 @@ export default function App() {
           pendingAdvanceRef.current = advance;
         }
       }, 400);
-    });
+    }, (itemIndex) => setSpokenVerseNum(verses[itemIndex].n));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chapterPlayerState, verses, playToken]);
 
@@ -543,7 +574,7 @@ export default function App() {
                 <div className="verse-list">
                   {verses.map((v) => (
                     <div
-                      className={`verse-row${v.n === pendingVerse ? " highlighted" : ""}`}
+                      className={`verse-row${v.n === pendingVerse || v.n === spokenVerseNum ? " highlighted" : ""}`}
                       data-verse={v.n}
                       key={v.n}
                     >
