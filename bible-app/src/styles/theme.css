@@ -158,7 +158,18 @@ button { font-family: inherit; }
 
 .panels { position: relative; flex: 1; min-height: 0; }
 .view { position: absolute; inset: 0; overflow: hidden; transition: transform 0.38s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease; }
-.view-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 4px 18px 26px; }
+/* Bottom padding must clear .chapter-toolbar's own real height (58px
+   button + 9px top padding + border + its safe-area-matched bottom
+   padding below), not just an arbitrary small value — .chapter-toolbar is
+   position: absolute and so takes no space in .panels' flex layout, it
+   just floats on top of whatever is scrolled to the bottom of
+   .view-scroll. A too-small padding here left the last verse of a
+   chapter, and especially the longer "Further Insight" / detail text,
+   permanently hidden behind the toolbar with no way to scroll it into
+   view — worse on notched/home-indicator phones, where the toolbar is
+   taller still. The +20px is breathing room so the last line doesn't sit
+   flush against the toolbar's top edge. */
+.view-scroll { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 4px 18px calc(90px + max(env(safe-area-inset-bottom), 9px)); }
 /* A genuinely fixed bar (a sibling of .lang-row in .app-shell's own flex
    column, not something living inside the scrolling content) rather than
    a position: sticky element inside .view-scroll — sticky plus the
