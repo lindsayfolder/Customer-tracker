@@ -1,16 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useApp } from "./context/AppContext";
 import { UI, LANGUAGES, fmt, type LangKey } from "./data/languages";
 import { GENESIS_1, type Verse, type Point } from "./data/genesis1";
 import type { ChapterExplain } from "./data/explain";
 import { BOOKS } from "./data/books";
 import { ChapterPlayerButton, type ChapterPlayerState } from "./components/ChapterPlayerButton";
-import { Drawer } from "./components/Drawer";
-import { ContentsModal } from "./components/ContentsModal";
-import { SearchModal } from "./components/SearchModal";
-import { SettingsModal } from "./components/SettingsModal";
-import { MapModal } from "./components/MapModal";
-import { BookIntroModal } from "./components/BookIntroModal";
 import { Toast } from "./components/Toast";
 import { DebugLoadTiming } from "./components/DebugLoadTiming";
 import { loadChapterVerses } from "./lib/scripture";
@@ -20,6 +14,21 @@ import { loadChapterCharacters, type CharacterBio } from "./lib/characters";
 import { renderBioHtml, stripBioMarkdown } from "./lib/bioMarkdown";
 import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
+
+// Lazy-loaded rather than imported statically: none of these render
+// anything visible until the reader actually opens them (drawer, Contents,
+// Search, Settings, a book's map, a book's intro), so their code has no
+// reason to be part of the one bundle that has to be fully fetched and
+// parsed before the scripture view itself can render — on a real phone
+// that parse time is the dominant cost of opening the app at all. Each
+// resolves from its own small separate chunk, which the browser fetches
+// in parallel with (not blocking) the initial paint.
+const Drawer = lazy(() => import("./components/Drawer").then((m) => ({ default: m.Drawer })));
+const ContentsModal = lazy(() => import("./components/ContentsModal").then((m) => ({ default: m.ContentsModal })));
+const SearchModal = lazy(() => import("./components/SearchModal").then((m) => ({ default: m.SearchModal })));
+const SettingsModal = lazy(() => import("./components/SettingsModal").then((m) => ({ default: m.SettingsModal })));
+const MapModal = lazy(() => import("./components/MapModal").then((m) => ({ default: m.MapModal })));
+const BookIntroModal = lazy(() => import("./components/BookIntroModal").then((m) => ({ default: m.BookIntroModal })));
 
 export type ModalKey = "contents" | "search" | "settings";
 
@@ -699,34 +708,36 @@ export default function App() {
         </button>
       </div>
 
-      <Drawer open={drawerOpen} current={modal ?? "home"} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
+      <Suspense fallback={null}>
+        <Drawer open={drawerOpen} current={modal ?? "home"} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
 
-      <ContentsModal
-        open={modal === "contents"}
-        onClose={() => setModal(null)}
-        onSelectChapter={(bId, c, verse) => goToChapter(bId, c, verse)}
-      />
+        <ContentsModal
+          open={modal === "contents"}
+          onClose={() => setModal(null)}
+          onSelectChapter={(bId, c, verse) => goToChapter(bId, c, verse)}
+        />
 
-      <SearchModal
-        open={modal === "search"}
-        onClose={() => setModal(null)}
-        onResult={(_resultLang, resultBookId, resultChapter, verse) => {
-          tts.stop();
-          resetPlayers();
-          setPendingVerse(verse);
-          setBookId(resultBookId);
-          setChapter(resultChapter);
-          setTab("scripture");
-          setOpenPointIndex(null);
-          setOpenCharacterId(null);
-        }}
-      />
+        <SearchModal
+          open={modal === "search"}
+          onClose={() => setModal(null)}
+          onResult={(_resultLang, resultBookId, resultChapter, verse) => {
+            tts.stop();
+            resetPlayers();
+            setPendingVerse(verse);
+            setBookId(resultBookId);
+            setChapter(resultChapter);
+            setTab("scripture");
+            setOpenPointIndex(null);
+            setOpenCharacterId(null);
+          }}
+        />
 
-      <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />
+        <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />
 
-      <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
+        <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
 
-      <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
+        <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
+      </Suspense>
 
       <Toast />
       <DebugLoadTiming />
