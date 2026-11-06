@@ -203,7 +203,14 @@ button { font-family: inherit; }
 .verse-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 10px; }
 .verse-row { display: flex; gap: 10px; align-items: flex-start; border-radius: 10px; padding: 3px 6px; margin: -3px -6px; transition: background 0.6s ease; }
 .verse-row.highlighted { background: color-mix(in srgb, var(--gold) 28%, transparent); }
-.verse-num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--azure-soft); color: var(--azure); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.verse-num {
+  flex: none; width: 28px; height: 28px; border-radius: 50%; border: none; padding: 0;
+  background: var(--azure-soft); color: var(--azure); display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 15px; margin-top: 2px; font-variant-numeric: tabular-nums; cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease, color 0.15s ease;
+}
+.verse-num:active { transform: scale(0.88); }
+.verse-num.bookmarked { background: var(--gold); color: #1c1207; }
 .verse-text { font-size: calc(14px * var(--font-scale, 1)); line-height: 1.75; color: var(--ink); }
 .scripture-note { font-size: 15px; color: var(--ink-faint); text-align: right; margin-top: 6px; }
 
@@ -223,7 +230,8 @@ button { font-family: inherit; }
 .explain-block { margin-top: 20px; padding-top: 18px; border-top: 3px solid var(--ink); }
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
 .theme-tag { font-size: 13.5px; font-weight: 800; color: var(--azure); background: var(--azure-soft); border-radius: 20px; padding: 4px 11px; }
-.verse-tag { font-size: 13.5px; font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 2px solid var(--ink); border-radius: 20px; padding: 3px 10px; font-variant-numeric: tabular-nums; }
+.verse-tag { font-size: 13.5px; font-weight: 800; color: var(--gold-strong); background: var(--paper-panel); border: 2px solid var(--ink); border-radius: 20px; padding: 3px 10px; font-variant-numeric: tabular-nums; cursor: pointer; }
+.verse-tag:active { transform: translateY(1px) scale(0.96); }
 .explain-points { margin: 10px 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; }
 .explain-points li { font-size: calc(13.5px * var(--font-scale, 1)); line-height: 1.6; color: var(--ink); }
 
@@ -370,6 +378,15 @@ button { font-family: inherit; }
 .result-ref { font-size: 15.5px; color: var(--ink-faint); font-weight: 700; margin-left: 4px; }
 .result-snippet { font-size: 18px; line-height: 1.5; color: var(--ink); }
 .result-snippet mark { background: var(--gold); color: #1c1207; border-radius: 3px; padding: 0 1px; }
+
+.bookmark-row { display: flex; align-items: center; gap: 8px; }
+.bookmark-row .result-item { flex: 1; }
+.bookmark-remove-btn {
+  flex: none; width: 36px; height: 36px; margin-bottom: 8px; border-radius: 50%; border: 1.5px solid var(--hairline);
+  background: var(--paper-panel); color: var(--ink-faint); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: transform 0.1s ease;
+}
+.bookmark-remove-btn:active { transform: scale(0.9); background: var(--gold); color: #1c1207; }
 
 /* Settings' own list of sections is short enough on a tall phone to leave
    a dead-feeling band below "About" with nothing in it. Laying the

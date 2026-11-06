@@ -1,5 +1,12 @@
 import type { LangKey } from "../data/languages";
 
+export interface Bookmark {
+  bookId: string;
+  chapter: number;
+  verse: number;
+  addedAt: number;
+}
+
 export interface AppSettings {
   id: "app";
   fontScale: number;
@@ -18,6 +25,10 @@ export interface AppSettings {
   // voiceByLang is, since a recent query in one version isn't necessarily
   // meaningful when searching another.
   recentSearches: Partial<Record<LangKey, string[]>>;
+  // Saved verses (see BookmarksModal), one entry per bookmarked verse —
+  // not keyed by language, since a bookmark is the same place in the text
+  // no matter which version the reader is currently viewing it in.
+  bookmarks: Bookmark[];
 }
 
 const STORAGE_KEY = "inkverse-settings";
@@ -31,6 +42,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   lastChapter: 1,
   voiceByLang: {},
   recentSearches: {},
+  bookmarks: [],
 };
 
 // localStorage, not IndexedDB: writes are synchronous and commit

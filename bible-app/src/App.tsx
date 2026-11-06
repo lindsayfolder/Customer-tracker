@@ -13,6 +13,7 @@ import { loadChapterCharacters, type CharacterBio } from "./lib/characters";
 import { renderBioHtml, stripBioMarkdown } from "./lib/bioMarkdown";
 import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
+import type { Bookmark } from "./lib/db";
 
 // Lazy-loaded rather than imported statically: none of these render
 // anything visible until the reader actually opens them (drawer, Contents,
@@ -25,11 +26,12 @@ import { stripHtml, tts } from "./lib/tts";
 const Drawer = lazy(() => import("./components/Drawer").then((m) => ({ default: m.Drawer })));
 const ContentsModal = lazy(() => import("./components/ContentsModal").then((m) => ({ default: m.ContentsModal })));
 const SearchModal = lazy(() => import("./components/SearchModal").then((m) => ({ default: m.SearchModal })));
+const BookmarksModal = lazy(() => import("./components/BookmarksModal").then((m) => ({ default: m.BookmarksModal })));
 const SettingsModal = lazy(() => import("./components/SettingsModal").then((m) => ({ default: m.SettingsModal })));
 const MapModal = lazy(() => import("./components/MapModal").then((m) => ({ default: m.MapModal })));
 const BookIntroModal = lazy(() => import("./components/BookIntroModal").then((m) => ({ default: m.BookIntroModal })));
 
-export type ModalKey = "contents" | "search" | "settings";
+export type ModalKey = "contents" | "search" | "bookmarks" | "settings";
 
 // Genealogy-heavy chapters (Genesis 10, 36, 46...) can list dozens of
 // people; showing them all before verse 1 would bury the actual text. Cap
@@ -389,6 +391,30 @@ export default function App() {
     setOpenCharacterId(null);
   }
 
+  // The Further Insight block's "key verses" tags (e.g. "9:9", "38:5-6")
+  // always reference a chapter:verse[-verse] in the *current* book — see
+  // scripts that generate explain/ content — so there's no book to parse
+  // out, just the chapter and the range's starting verse.
+  function goToKeyVerse(ref: string) {
+    const [chapterStr, verseStr] = ref.split(":");
+    goToChapter(bookId, Number(chapterStr), Number(verseStr.split("-")[0]));
+  }
+
+  function isVerseBookmarked(verse: number): boolean {
+    return settings.bookmarks.some((b) => b.bookId === bookId && b.chapter === chapter && b.verse === verse);
+  }
+  function toggleBookmark(verse: number) {
+    const existing = settings.bookmarks.find((b) => b.bookId === bookId && b.chapter === chapter && b.verse === verse);
+    if (existing) {
+      updateSettings({ bookmarks: settings.bookmarks.filter((b) => b !== existing) });
+      toast(t.bookmarkRemovedToast);
+    } else {
+      const next: Bookmark = { bookId, chapter, verse, addedAt: Date.now() };
+      updateSettings({ bookmarks: [...settings.bookmarks, next] });
+      toast(t.bookmarkAddedToast);
+    }
+  }
+
   const bookIndex = BOOKS.findIndex((b) => b.id === bookId);
   function adjacentChapter(direction: 1 | -1): { bookId: string; chapter: number } | null {
     if (direction === -1) {
@@ -578,7 +604,14 @@ export default function App() {
                       data-verse={v.n}
                       key={v.n}
                     >
-                      <div className="verse-num">{v.n}</div>
+                      <button
+                        type="button"
+                        className={`verse-num${isVerseBookmarked(v.n) ? " bookmarked" : ""}`}
+                        aria-label={isVerseBookmarked(v.n) ? t.unbookmarkLabel : t.bookmarkLabel}
+                        onClick={() => toggleBookmark(v.n)}
+                      >
+                        {v.n}
+                      </button>
                       <div className="verse-text">{v.t}</div>
                     </div>
                   ))}
@@ -633,7 +666,9 @@ export default function App() {
                   {explain.keyVerses.length > 0 && (
                     <div className="tag-row">
                       {explain.keyVerses.map((v) => (
-                        <span key={v} className="verse-tag">{v}</span>
+                        <button key={v} type="button" className="verse-tag" onClick={() => goToKeyVerse(v)}>
+                          {v}
+                        </button>
                       ))}
                     </div>
                   )}
@@ -757,6 +792,14 @@ export default function App() {
             setOpenPointIndex(null);
             setOpenCharacterId(null);
           }}
+        />
+
+        <BookmarksModal
+          open={modal === "bookmarks"}
+          bookmarks={settings.bookmarks}
+          onClose={() => setModal(null)}
+          onSelect={(bId, c, verse) => goToChapter(bId, c, verse)}
+          onRemove={(bm) => updateSettings({ bookmarks: settings.bookmarks.filter((b) => b !== bm) })}
         />
 
         <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />

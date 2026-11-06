@@ -19,7 +19,14 @@ export interface UiStrings {
   drawerHome: string;
   drawerContents: string;
   drawerSearch: string;
+  drawerBookmarks: string;
   drawerSettings: string;
+  bookmarksTitle: string;
+  bookmarksEmptyLabel: string;
+  bookmarkLabel: string;
+  unbookmarkLabel: string;
+  bookmarkAddedToast: string;
+  bookmarkRemovedToast: string;
   contentsTitle: string;
   contentsHint: string;
   goToChapterTpl: string;
@@ -87,7 +94,14 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerHome: "Home",
     drawerContents: "Contents",
     drawerSearch: "Search",
+    drawerBookmarks: "Bookmarks",
     drawerSettings: "Settings",
+    bookmarksTitle: "Bookmarks",
+    bookmarksEmptyLabel: "No bookmarks yet — tap a verse number to save it here.",
+    bookmarkLabel: "Bookmark this verse",
+    unbookmarkLabel: "Remove bookmark",
+    bookmarkAddedToast: "Verse bookmarked",
+    bookmarkRemovedToast: "Bookmark removed",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -153,7 +167,14 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerHome: "Home",
     drawerContents: "Contents",
     drawerSearch: "Search",
+    drawerBookmarks: "Bookmarks",
     drawerSettings: "Settings",
+    bookmarksTitle: "Bookmarks",
+    bookmarksEmptyLabel: "No bookmarks yet — tap a verse number to save it here.",
+    bookmarkLabel: "Bookmark this verse",
+    unbookmarkLabel: "Remove bookmark",
+    bookmarkAddedToast: "Verse bookmarked",
+    bookmarkRemovedToast: "Bookmark removed",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -219,7 +240,14 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerHome: "首頁",
     drawerContents: "目錄",
     drawerSearch: "搜尋",
+    drawerBookmarks: "書籤",
     drawerSettings: "設定",
+    bookmarksTitle: "書籤",
+    bookmarksEmptyLabel: "還沒有書籤——點一下經文編號即可收藏。",
+    bookmarkLabel: "收藏這節經文",
+    unbookmarkLabel: "移除書籤",
+    bookmarkAddedToast: "已加入書籤",
+    bookmarkRemovedToast: "已移除書籤",
     contentsTitle: "目錄",
     contentsHint: "先選書卷，再選章節。",
     goToChapterTpl: "前往第 {c} 章",
@@ -285,7 +313,14 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerHome: "首页",
     drawerContents: "目录",
     drawerSearch: "搜索",
+    drawerBookmarks: "书签",
     drawerSettings: "设置",
+    bookmarksTitle: "书签",
+    bookmarksEmptyLabel: "还没有书签——点一下经文编号即可收藏。",
+    bookmarkLabel: "收藏这节经文",
+    unbookmarkLabel: "移除书签",
+    bookmarkAddedToast: "已加入书签",
+    bookmarkRemovedToast: "已移除书签",
     contentsTitle: "目录",
     contentsHint: "先选书卷，再选章节。",
     goToChapterTpl: "前往第 {c} 章",
