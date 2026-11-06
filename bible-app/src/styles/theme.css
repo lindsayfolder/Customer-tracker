@@ -207,10 +207,16 @@ button { font-family: inherit; }
   flex: none; width: 28px; height: 28px; border-radius: 50%; border: none; padding: 0;
   background: var(--azure-soft); color: var(--azure); display: flex; align-items: center; justify-content: center;
   font-weight: 800; font-size: 15px; margin-top: 2px; font-variant-numeric: tabular-nums; cursor: pointer;
-  transition: transform 0.1s ease, background 0.15s ease, color 0.15s ease;
+  /* A faint dashed ring, not a filled icon, so it reads as "this is
+     tappable" without adding visible clutter down a long chapter of
+     otherwise-identical circles — removed once bookmarked, since the
+     solid gold fill below already signals "saved" on its own. */
+  outline: 1.5px dashed var(--ink-faint);
+  outline-offset: 2px;
+  transition: transform 0.1s ease, background 0.15s ease, color 0.15s ease, outline-color 0.15s ease;
 }
 .verse-num:active { transform: scale(0.88); }
-.verse-num.bookmarked { background: var(--gold); color: #1c1207; }
+.verse-num.bookmarked { background: var(--gold); color: #1c1207; outline: none; }
 .verse-text { font-size: calc(14px * var(--font-scale, 1)); line-height: 1.75; color: var(--ink); }
 .scripture-note { font-size: 15px; color: var(--ink-faint); text-align: right; margin-top: 6px; }
 

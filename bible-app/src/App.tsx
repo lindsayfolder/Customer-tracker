@@ -224,6 +224,20 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId, chapter, lang]);
 
+  // One-time "tap a verse number to bookmark it" tip: the feature isn't
+  // obvious at a glance on its own (see the dashed-ring hint on .verse-num
+  // in theme.css), so this surfaces it once, the first time a chapter's
+  // text actually lands on screen — but only for a reader who hasn't
+  // already found it themselves (no bookmarks saved yet). Fires at most
+  // once ever per device; settings.seenBookmarkHint flips to true right
+  // after, which removes this effect's own trigger condition.
+  useEffect(() => {
+    if (!ready || !verses || settings.seenBookmarkHint || settings.bookmarks.length > 0) return;
+    toast(t.bookmarkHintToast, 4000);
+    updateSettings({ seenBookmarkHint: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, verses]);
+
   // Drives the chapter player: fires once per playToken bump, as soon as
   // that chapter's verses are actually loaded (immediately for the initial
   // tap, or once an auto-advance's fetch resolves). Guarded by

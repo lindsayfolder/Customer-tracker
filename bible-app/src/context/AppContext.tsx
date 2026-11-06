@@ -12,7 +12,7 @@ interface AppContextValue {
   settings: AppSettings;
   updateSettings: (patch: Partial<AppSettings>) => void;
   ready: boolean;
-  toast: (msg: string) => void;
+  toast: (msg: string, durationMs?: number) => void;
   toastMsg: string | null;
   offlineReady: boolean;
   offlineCount: number;
@@ -112,10 +112,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (ready) saveSettings(settings);
   }, [settings, ready]);
 
-  const toast = useCallback((msg: string) => {
+  const toast = useCallback((msg: string, durationMs = 2200) => {
     setToastMsg(msg);
     window.clearTimeout(toastTimer.current);
-    toastTimer.current = window.setTimeout(() => setToastMsg(null), 2200);
+    toastTimer.current = window.setTimeout(() => setToastMsg(null), durationMs);
   }, []);
 
   return (

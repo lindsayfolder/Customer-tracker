@@ -29,6 +29,11 @@ export interface AppSettings {
   // not keyed by language, since a bookmark is the same place in the text
   // no matter which version the reader is currently viewing it in.
   bookmarks: Bookmark[];
+  // Whether the reader has already been shown the one-time "tap a verse
+  // number to bookmark it" tip (see App.tsx) — the feature wasn't obvious
+  // at a glance (the verse-num circles looked identical before and after
+  // this field existed), so this fires the hint once, ever, per device.
+  seenBookmarkHint: boolean;
 }
 
 const STORAGE_KEY = "inkverse-settings";
@@ -43,6 +48,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   voiceByLang: {},
   recentSearches: {},
   bookmarks: [],
+  seenBookmarkHint: false,
 };
 
 // localStorage, not IndexedDB: writes are synchronous and commit

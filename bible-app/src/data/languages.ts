@@ -27,6 +27,7 @@ export interface UiStrings {
   unbookmarkLabel: string;
   bookmarkAddedToast: string;
   bookmarkRemovedToast: string;
+  bookmarkHintToast: string;
   contentsTitle: string;
   contentsHint: string;
   goToChapterTpl: string;
@@ -102,6 +103,7 @@ export const UI: Record<LangKey, UiStrings> = {
     unbookmarkLabel: "Remove bookmark",
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
+    bookmarkHintToast: "Tip: tap a verse number to bookmark it",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -175,6 +177,7 @@ export const UI: Record<LangKey, UiStrings> = {
     unbookmarkLabel: "Remove bookmark",
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
+    bookmarkHintToast: "Tip: tap a verse number to bookmark it",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -248,6 +251,7 @@ export const UI: Record<LangKey, UiStrings> = {
     unbookmarkLabel: "移除書籤",
     bookmarkAddedToast: "已加入書籤",
     bookmarkRemovedToast: "已移除書籤",
+    bookmarkHintToast: "提示：點一下經文編號即可收藏",
     contentsTitle: "目錄",
     contentsHint: "先選書卷，再選章節。",
     goToChapterTpl: "前往第 {c} 章",
@@ -321,6 +325,7 @@ export const UI: Record<LangKey, UiStrings> = {
     unbookmarkLabel: "移除书签",
     bookmarkAddedToast: "已加入书签",
     bookmarkRemovedToast: "已移除书签",
+    bookmarkHintToast: "提示：点一下经文编号即可收藏",
     contentsTitle: "目录",
     contentsHint: "先选书卷，再选章节。",
     goToChapterTpl: "前往第 {c} 章",
