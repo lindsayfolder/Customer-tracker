@@ -148,9 +148,15 @@ export default function App() {
     listScrollRef.current?.scrollTo({ top: 0 });
   }, [bookId, chapter]);
 
-  // Scrolls to and briefly highlights the verse a search result pointed at,
-  // once that chapter's text has finished loading (verses arrives async, so
-  // this can't run in the effect above — the verse row wouldn't exist yet).
+  // Scrolls to and briefly highlights the verse a search result (or a
+  // key-verse cross-reference tag) pointed at. Depends on both verses and
+  // pendingVerse, not just verses: a cross-chapter jump needs to wait for
+  // the new chapter's verses to actually load before its row exists (verses
+  // arrives async), but a same-chapter jump (e.g. a cross-reference tag
+  // pointing within the chapter already on screen) never changes `verses`
+  // at all — depending on it alone meant that case silently never scrolled
+  // anywhere, leaving the reader wherever the Insights tab happened to be
+  // scrolled when they tapped the tag.
   useEffect(() => {
     if (!verses || pendingVerse === null) return;
     const target = pendingVerse;
@@ -171,7 +177,7 @@ export default function App() {
     const timer = setTimeout(() => setPendingVerse(null), 2200);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [verses]);
+  }, [verses, pendingVerse]);
 
   // Chapter player: gently scrolls to keep whichever verse is currently
   // being read in view as playback moves through the chapter, rolling
