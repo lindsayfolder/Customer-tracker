@@ -15,6 +15,7 @@ import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
 import type { Bookmark } from "./lib/db";
 import { markDayComplete, startOrRestartPlan } from "./lib/readingPlans";
+import { shareVerse } from "./lib/share";
 
 // Lazy-loaded rather than imported statically: none of these render
 // anything visible until the reader actually opens them (drawer, Contents,
@@ -58,6 +59,10 @@ export default function App() {
   const [chapterCharacters, setChapterCharacters] = useState<CharacterBio[]>([]);
   const [openCharacterId, setOpenCharacterId] = useState<string | null>(null);
   const [peopleExpanded, setPeopleExpanded] = useState(false);
+  // Which verse (if any) has a share in flight — just enough state to
+  // disable that one button for the duration, so a second tap while the
+  // OS share sheet is opening can't fire an overlapping share() call.
+  const [sharingVerse, setSharingVerse] = useState<number | null>(null);
   // "Listen" reading more than one chapter: idle -> playing (speaking,
   // advances to the next chapter and keeps going when one finishes on its
   // own) -> paused (tap to resume) -> back to playing, or idle again on
@@ -437,6 +442,18 @@ export default function App() {
     }
   }
 
+  async function shareVerseText(verse: number) {
+    if (sharingVerse !== null) return;
+    const v = verses?.find((vv) => vv.n === verse);
+    if (!v) return;
+    setSharingVerse(verse);
+    const reference = `${book.label[lang]} ${chapter}:${verse}`;
+    const outcome = await shareVerse({ reference, text: v.t, appName: "Inkverse" });
+    setSharingVerse(null);
+    if (outcome === "copied") toast(t.shareCopiedToast);
+    else if (outcome === "failed" || outcome === "unavailable") toast(t.shareFailedToast);
+  }
+
   function startPlan(planId: string) {
     updateSettings({ readingPlans: startOrRestartPlan(settings.readingPlans, planId) });
   }
@@ -644,6 +661,21 @@ export default function App() {
                         {v.n}
                       </button>
                       <div className="verse-text">{v.t}</div>
+                      <button
+                        type="button"
+                        className="verse-share-btn"
+                        aria-label={t.shareLabel}
+                        disabled={sharingVerse === v.n}
+                        onClick={() => shareVerseText(v.n)}
+                      >
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="18" cy="5" r="3" stroke="currentColor" strokeWidth="2" />
+                          <circle cx="6" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+                          <circle cx="18" cy="19" r="3" stroke="currentColor" strokeWidth="2" />
+                          <line x1="8.6" y1="10.7" x2="15.4" y2="6.3" stroke="currentColor" strokeWidth="2" />
+                          <line x1="8.6" y1="13.3" x2="15.4" y2="17.7" stroke="currentColor" strokeWidth="2" />
+                        </svg>
+                      </button>
                     </div>
                   ))}
                 </div>

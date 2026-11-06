@@ -29,6 +29,9 @@ export interface UiStrings {
   bookmarkAddedToast: string;
   bookmarkRemovedToast: string;
   bookmarkHintToast: string;
+  shareLabel: string;
+  shareCopiedToast: string;
+  shareFailedToast: string;
   plansTitle: string;
   planBackLabel: string;
   planStartButton: string;
@@ -125,6 +128,9 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
     bookmarkHintToast: "Tip: tap a verse number to bookmark it",
+    shareLabel: "Share this verse",
+    shareCopiedToast: "Copied to clipboard",
+    shareFailedToast: "Couldn't share — try again",
     plansTitle: "Reading Plans",
     planBackLabel: "Plans",
     planStartButton: "Start Plan",
@@ -219,6 +225,9 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
     bookmarkHintToast: "Tip: tap a verse number to bookmark it",
+    shareLabel: "Share this verse",
+    shareCopiedToast: "Copied to clipboard",
+    shareFailedToast: "Couldn't share — try again",
     plansTitle: "Reading Plans",
     planBackLabel: "Plans",
     planStartButton: "Start Plan",
@@ -313,6 +322,9 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "已加入書籤",
     bookmarkRemovedToast: "已移除書籤",
     bookmarkHintToast: "提示：點一下經文編號即可收藏",
+    shareLabel: "分享這節經文",
+    shareCopiedToast: "已複製到剪貼簿",
+    shareFailedToast: "分享失敗，請重試",
     plansTitle: "讀經計畫",
     planBackLabel: "讀經計畫",
     planStartButton: "開始計畫",
@@ -407,6 +419,9 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "已加入书签",
     bookmarkRemovedToast: "已移除书签",
     bookmarkHintToast: "提示：点一下经文编号即可收藏",
+    shareLabel: "分享这节经文",
+    shareCopiedToast: "已复制到剪贴板",
+    shareFailedToast: "分享失败，请重试",
     plansTitle: "读经计划",
     planBackLabel: "读经计划",
     planStartButton: "开始计划",
