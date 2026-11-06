@@ -36,7 +36,7 @@ function buildFixedManifest(base: string): Task[] {
     for (const l of EXPLAIN_LANGS) {
       tasks.push({ url: `${base}explain/${l}/${book.id}.json`, cacheName: "bible-explain-v2" });
     }
-    tasks.push({ url: `${base}characters/appearances/${book.id}.json`, cacheName: "bible-characters-v1" });
+    tasks.push({ url: `${base}characters/appearances/${book.id}.json`, cacheName: "bible-characters-v2" });
     if (BOOKS_WITH_MAPS.has(book.id)) {
       tasks.push({ url: `${base}maps/${book.id}.svg`, cacheName: "bible-maps" });
       tasks.push({ url: `${base}maps/${book.id}-zh.svg`, cacheName: "bible-maps" });
@@ -92,7 +92,7 @@ let running = false;
 // relaunches" approach rather than needing its own retry logic.
 async function discoverCharacterIds(base: string): Promise<Set<string>> {
   const ids = new Set<string>();
-  const cache = await caches.open("bible-characters-v1");
+  const cache = await caches.open("bible-characters-v2");
   await Promise.all(
     BOOKS.map(async (book) => {
       const url = `${base}characters/appearances/${book.id}.json`;
@@ -153,7 +153,7 @@ export async function runBulkDownload(onProgress?: (done: number, total: number)
     const characterTasks: Task[] = [];
     for (const id of characterIds) {
       for (const lang of CHARACTER_LANGS) {
-        characterTasks.push({ url: `${base}characters/${lang}/${id}.json`, cacheName: "bible-characters-v1" });
+        characterTasks.push({ url: `${base}characters/${lang}/${id}.json`, cacheName: "bible-characters-v2" });
       }
     }
 
@@ -228,7 +228,7 @@ async function countCachedEntries(): Promise<number> {
     "bible-text-v3",
     "bible-insights-v2",
     "bible-explain-v2",
-    "bible-characters-v1",
+    "bible-characters-v2",
     "bible-book-intro",
     "bible-maps",
   ]) {

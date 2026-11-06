@@ -16,7 +16,7 @@ const CONTENT_CACHE_NAMES = [
   "bible-text-v3",
   "bible-insights-v2",
   "bible-explain-v2",
-  "bible-characters-v1",
+  "bible-characters-v2",
   "bible-book-intro",
   "bible-maps",
 ];
@@ -51,6 +51,7 @@ const RETIRED_CACHE_NAMES = [
   "bible-search-index-v2",
   "bible-explain",
   "bible-insights",
+  "bible-characters-v1",
 ];
 
 export async function cleanupLegacyCaches(): Promise<void> {

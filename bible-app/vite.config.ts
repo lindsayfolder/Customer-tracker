@@ -169,7 +169,20 @@ export default defineConfig({
               // bios were being evicted under LRU almost as soon as they
               // were cached. Bumped with generous headroom for more
               // characters to be added over time.
-              cacheName: "bible-characters-v1",
+              //
+              // Bumped to v2: bios were written incrementally, book by
+              // book, over several days — e.g. David's own bio started as
+              // a two-sentence stub (his mention in Ruth's closing
+              // genealogy) when Ruth shipped, then was rewritten and
+              // expanded repeatedly as 1-2 Samuel, 1 Chronicles, and 1
+              // Kings were added. CacheFirst never re-checks the network
+              // once a URL is cached, so a reader who opened a character's
+              // bio early (while a book covering them was still being
+              // built out) would keep seeing that old, incomplete version
+              // forever — same class of bug already hit and fixed for
+              // bible-text and bible-insights/explain above. Renaming the
+              // bucket forces every client to re-fetch fresh.
+              cacheName: "bible-characters-v2",
               expiration: { maxEntries: 3000, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
