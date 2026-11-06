@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { LangKey } from "../data/languages";
 import { UI } from "../data/languages";
-import { DEFAULT_SETTINGS, loadSettings, saveSettings, type AppSettings } from "../lib/db";
+import { DEFAULT_SETTINGS, emergencyTrim, loadSettings, pruneOldPlans, saveSettings, type AppSettings } from "../lib/db";
 import { isReadyCount } from "../lib/offlineStatus";
 import { runBulkDownload, TOTAL_CONTENT_FILES } from "../lib/bulkOfflineDownload";
 import { applyUpdate, checkForUpdate, getUpdateState, subscribeUpdateState } from "../lib/appUpdate";
@@ -45,8 +45,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     loadSettings().then((s) => {
-      setSettings(s);
-      setLangState(s.lastLang);
+      // Applies the reader's configured reading-plan retention (Settings)
+      // once per app launch — there's no durable background process in a
+      // PWA to run this on a true fixed schedule, so "every N days/months/
+      // years" means "pruned on the first launch after that window has
+      // elapsed," which is the standard pattern for this kind of cleanup
+      // in a web app.
+      const prunedPlans = pruneOldPlans(s.readingPlans, s.planRetention, Date.now());
+      const cleaned = prunedPlans.length === s.readingPlans.length ? s : { ...s, readingPlans: prunedPlans };
+      setSettings(cleaned);
+      setLangState(cleaned.lastLang);
       setReady(true);
     });
   }, []);
@@ -107,9 +115,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Persisting here, keyed off the settled `settings` value, means every
   // update path (however many setSettings calls landed in one event) is
-  // saved exactly once with its final merged shape.
+  // saved exactly once with its final merged shape. A failed save (storage
+  // quota, or unavailable e.g. private browsing) never crashes anything —
+  // it's a plain thrown exception inside saveSettings' own try/catch — but
+  // silently dropping new progress forever without the reader ever knowing
+  // is a real problem on its own, so a failure here gets one retry against
+  // an aggressively trimmed copy (emergencyTrim), and only warns if even
+  // that doesn't fit.
   useEffect(() => {
-    if (ready) saveSettings(settings);
+    if (!ready) return;
+    saveSettings(settings).then((ok) => {
+      if (ok) return;
+      const trimmed = emergencyTrim(settings);
+      saveSettings(trimmed).then((ok2) => {
+        if (ok2) setSettings(trimmed);
+        else toast(UI[langRef.current].storageFullToast);
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings, ready]);
 
   const toast = useCallback((msg: string, durationMs = 2200) => {

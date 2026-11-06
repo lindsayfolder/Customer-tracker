@@ -14,6 +14,7 @@ import { renderBioHtml, stripBioMarkdown } from "./lib/bioMarkdown";
 import { bookHasMap } from "./lib/maps";
 import { stripHtml, tts } from "./lib/tts";
 import type { Bookmark } from "./lib/db";
+import { markDayComplete, startOrRestartPlan } from "./lib/readingPlans";
 
 // Lazy-loaded rather than imported statically: none of these render
 // anything visible until the reader actually opens them (drawer, Contents,
@@ -27,11 +28,12 @@ const Drawer = lazy(() => import("./components/Drawer").then((m) => ({ default: 
 const ContentsModal = lazy(() => import("./components/ContentsModal").then((m) => ({ default: m.ContentsModal })));
 const SearchModal = lazy(() => import("./components/SearchModal").then((m) => ({ default: m.SearchModal })));
 const BookmarksModal = lazy(() => import("./components/BookmarksModal").then((m) => ({ default: m.BookmarksModal })));
+const PlansModal = lazy(() => import("./components/PlansModal").then((m) => ({ default: m.PlansModal })));
 const SettingsModal = lazy(() => import("./components/SettingsModal").then((m) => ({ default: m.SettingsModal })));
 const MapModal = lazy(() => import("./components/MapModal").then((m) => ({ default: m.MapModal })));
 const BookIntroModal = lazy(() => import("./components/BookIntroModal").then((m) => ({ default: m.BookIntroModal })));
 
-export type ModalKey = "contents" | "search" | "bookmarks" | "settings";
+export type ModalKey = "contents" | "search" | "bookmarks" | "plans" | "settings";
 
 // Genealogy-heavy chapters (Genesis 10, 36, 46...) can list dozens of
 // people; showing them all before verse 1 would bury the actual text. Cap
@@ -435,6 +437,15 @@ export default function App() {
     }
   }
 
+  function startPlan(planId: string) {
+    updateSettings({ readingPlans: startOrRestartPlan(settings.readingPlans, planId) });
+  }
+  function markPlanDayComplete(planId: string, dayIndex: number) {
+    const { plans, justCompleted } = markDayComplete(settings.readingPlans, planId, dayIndex);
+    updateSettings({ readingPlans: plans });
+    if (justCompleted) toast(t.planAllDoneToast);
+  }
+
   const bookIndex = BOOKS.findIndex((b) => b.id === bookId);
   function adjacentChapter(direction: 1 | -1): { bookId: string; chapter: number } | null {
     if (direction === -1) {
@@ -820,6 +831,16 @@ export default function App() {
           onClose={() => setModal(null)}
           onSelect={(bId, c, verse) => goToChapter(bId, c, verse)}
           onRemove={(bm) => updateSettings({ bookmarks: settings.bookmarks.filter((b) => b !== bm) })}
+        />
+
+        <PlansModal
+          open={modal === "plans"}
+          plans={settings.readingPlans}
+          onClose={() => setModal(null)}
+          onStart={startPlan}
+          onRestart={startPlan}
+          onMarkDayComplete={markPlanDayComplete}
+          onGoToChapter={(bId, c) => goToChapter(bId, c)}
         />
 
         <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />

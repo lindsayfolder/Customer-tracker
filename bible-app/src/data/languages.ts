@@ -20,6 +20,7 @@ export interface UiStrings {
   drawerContents: string;
   drawerSearch: string;
   drawerBookmarks: string;
+  drawerPlans: string;
   drawerSettings: string;
   bookmarksTitle: string;
   bookmarksEmptyLabel: string;
@@ -28,6 +29,25 @@ export interface UiStrings {
   bookmarkAddedToast: string;
   bookmarkRemovedToast: string;
   bookmarkHintToast: string;
+  plansTitle: string;
+  planBackLabel: string;
+  planStartButton: string;
+  planResumeButton: string;
+  planRestartButton: string;
+  planTodayLabel: string;
+  planDayTpl: string;
+  planProgressTpl: string;
+  planMarkCompleteButton: string;
+  planMarkedCompleteLabel: string;
+  planCompletedLabel: string;
+  planAllDoneToast: string;
+  planRetentionSectionLabel: string;
+  planRetentionToggleLabel: string;
+  planRetentionAfterLabel: string;
+  planRetentionUnitDays: string;
+  planRetentionUnitMonths: string;
+  planRetentionUnitYears: string;
+  storageFullToast: string;
   contentsTitle: string;
   contentsHint: string;
   goToChapterTpl: string;
@@ -96,6 +116,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerContents: "Contents",
     drawerSearch: "Search",
     drawerBookmarks: "Bookmarks",
+    drawerPlans: "Plans",
     drawerSettings: "Settings",
     bookmarksTitle: "Bookmarks",
     bookmarksEmptyLabel: "No bookmarks yet — tap a verse number to save it here.",
@@ -104,6 +125,25 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
     bookmarkHintToast: "Tip: tap a verse number to bookmark it",
+    plansTitle: "Reading Plans",
+    planBackLabel: "Plans",
+    planStartButton: "Start Plan",
+    planResumeButton: "Resume",
+    planRestartButton: "Restart",
+    planTodayLabel: "Today's Reading",
+    planDayTpl: "Day {d} of {total}",
+    planProgressTpl: "{done} / {total} days",
+    planMarkCompleteButton: "Mark Day Complete",
+    planMarkedCompleteLabel: "Done for today",
+    planCompletedLabel: "Plan completed",
+    planAllDoneToast: "Plan complete — well done!",
+    planRetentionSectionLabel: "Reading Plan History",
+    planRetentionToggleLabel: "Automatically clean up finished plans",
+    planRetentionAfterLabel: "after",
+    planRetentionUnitDays: "days",
+    planRetentionUnitMonths: "months",
+    planRetentionUnitYears: "years",
+    storageFullToast: "Storage is full — some data may not be saved",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -170,6 +210,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerContents: "Contents",
     drawerSearch: "Search",
     drawerBookmarks: "Bookmarks",
+    drawerPlans: "Plans",
     drawerSettings: "Settings",
     bookmarksTitle: "Bookmarks",
     bookmarksEmptyLabel: "No bookmarks yet — tap a verse number to save it here.",
@@ -178,6 +219,25 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "Verse bookmarked",
     bookmarkRemovedToast: "Bookmark removed",
     bookmarkHintToast: "Tip: tap a verse number to bookmark it",
+    plansTitle: "Reading Plans",
+    planBackLabel: "Plans",
+    planStartButton: "Start Plan",
+    planResumeButton: "Resume",
+    planRestartButton: "Restart",
+    planTodayLabel: "Today's Reading",
+    planDayTpl: "Day {d} of {total}",
+    planProgressTpl: "{done} / {total} days",
+    planMarkCompleteButton: "Mark Day Complete",
+    planMarkedCompleteLabel: "Done for today",
+    planCompletedLabel: "Plan completed",
+    planAllDoneToast: "Plan complete — well done!",
+    planRetentionSectionLabel: "Reading Plan History",
+    planRetentionToggleLabel: "Automatically clean up finished plans",
+    planRetentionAfterLabel: "after",
+    planRetentionUnitDays: "days",
+    planRetentionUnitMonths: "months",
+    planRetentionUnitYears: "years",
+    storageFullToast: "Storage is full — some data may not be saved",
     contentsTitle: "Contents",
     contentsHint: "Tap a book, then a chapter.",
     goToChapterTpl: "Go to Chapter {c}",
@@ -244,6 +304,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerContents: "目錄",
     drawerSearch: "搜尋",
     drawerBookmarks: "書籤",
+    drawerPlans: "讀經計畫",
     drawerSettings: "設定",
     bookmarksTitle: "書籤",
     bookmarksEmptyLabel: "還沒有書籤——點一下經文編號即可收藏。",
@@ -252,6 +313,25 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "已加入書籤",
     bookmarkRemovedToast: "已移除書籤",
     bookmarkHintToast: "提示：點一下經文編號即可收藏",
+    plansTitle: "讀經計畫",
+    planBackLabel: "讀經計畫",
+    planStartButton: "開始計畫",
+    planResumeButton: "繼續",
+    planRestartButton: "重新開始",
+    planTodayLabel: "今日進度",
+    planDayTpl: "第 {d} 天，共 {total} 天",
+    planProgressTpl: "{done} / {total} 天",
+    planMarkCompleteButton: "標記今日完成",
+    planMarkedCompleteLabel: "今日已完成",
+    planCompletedLabel: "計畫已完成",
+    planAllDoneToast: "計畫完成了，做得好！",
+    planRetentionSectionLabel: "讀經計畫紀錄",
+    planRetentionToggleLabel: "自動清除已完成的計畫",
+    planRetentionAfterLabel: "經過",
+    planRetentionUnitDays: "天",
+    planRetentionUnitMonths: "個月",
+    planRetentionUnitYears: "年",
+    storageFullToast: "儲存空間已滿，部分資料可能無法儲存",
     contentsTitle: "目錄",
     contentsHint: "先選書卷，再選章節。",
     goToChapterTpl: "前往第 {c} 章",
@@ -318,6 +398,7 @@ export const UI: Record<LangKey, UiStrings> = {
     drawerContents: "目录",
     drawerSearch: "搜索",
     drawerBookmarks: "书签",
+    drawerPlans: "读经计划",
     drawerSettings: "设置",
     bookmarksTitle: "书签",
     bookmarksEmptyLabel: "还没有书签——点一下经文编号即可收藏。",
@@ -326,6 +407,25 @@ export const UI: Record<LangKey, UiStrings> = {
     bookmarkAddedToast: "已加入书签",
     bookmarkRemovedToast: "已移除书签",
     bookmarkHintToast: "提示：点一下经文编号即可收藏",
+    plansTitle: "读经计划",
+    planBackLabel: "读经计划",
+    planStartButton: "开始计划",
+    planResumeButton: "继续",
+    planRestartButton: "重新开始",
+    planTodayLabel: "今日进度",
+    planDayTpl: "第 {d} 天，共 {total} 天",
+    planProgressTpl: "{done} / {total} 天",
+    planMarkCompleteButton: "标记今日完成",
+    planMarkedCompleteLabel: "今日已完成",
+    planCompletedLabel: "计划已完成",
+    planAllDoneToast: "计划完成了，做得好！",
+    planRetentionSectionLabel: "读经计划记录",
+    planRetentionToggleLabel: "自动清除已完成的计划",
+    planRetentionAfterLabel: "经过",
+    planRetentionUnitDays: "天",
+    planRetentionUnitMonths: "个月",
+    planRetentionUnitYears: "年",
+    storageFullToast: "存储空间已满，部分数据可能无法保存",
     contentsTitle: "目录",
     contentsHint: "先选书卷，再选章节。",
     goToChapterTpl: "前往第 {c} 章",

@@ -3,6 +3,7 @@ import { useApp } from "../context/AppContext";
 import { UI, LANGUAGES, fmt } from "../data/languages";
 import { GENESIS_1 } from "../data/genesis1";
 import { tts } from "../lib/tts";
+import type { RetentionUnit } from "../lib/db";
 
 export function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const {
@@ -114,6 +115,41 @@ export function SettingsModal({ open, onClose }: { open: boolean; onClose: () =>
             <span className="dot" />
             {offlineReady ? t.offlineReadyLabel : fmt(t.offlinePreparingTpl, { n: offlineCount, total: offlineTotal })}
           </div>
+        </div>
+
+        <div className="settings-section">
+          <div className="settings-label">{t.planRetentionSectionLabel}</div>
+          <label className="retention-toggle-row">
+            <input
+              type="checkbox"
+              checked={settings.planRetention.enabled}
+              onChange={(e) => updateSettings({ planRetention: { ...settings.planRetention, enabled: e.target.checked } })}
+            />
+            <span>{t.planRetentionToggleLabel}</span>
+          </label>
+          {settings.planRetention.enabled && (
+            <div className="retention-detail-row">
+              <span>{t.planRetentionAfterLabel}</span>
+              <input
+                type="number"
+                min={1}
+                className="retention-amount-input"
+                value={settings.planRetention.amount}
+                onChange={(e) =>
+                  updateSettings({ planRetention: { ...settings.planRetention, amount: Math.max(1, Number(e.target.value) || 1) } })
+                }
+              />
+              <select
+                className="voice-select retention-unit-select"
+                value={settings.planRetention.unit}
+                onChange={(e) => updateSettings({ planRetention: { ...settings.planRetention, unit: e.target.value as RetentionUnit } })}
+              >
+                <option value="days">{t.planRetentionUnitDays}</option>
+                <option value="months">{t.planRetentionUnitMonths}</option>
+                <option value="years">{t.planRetentionUnitYears}</option>
+              </select>
+            </div>
+          )}
         </div>
 
         <div className="settings-section">
