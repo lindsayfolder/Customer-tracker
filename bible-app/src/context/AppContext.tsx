@@ -12,6 +12,7 @@ interface AppContextValue {
   settings: AppSettings;
   updateSettings: (patch: Partial<AppSettings>) => void;
   ready: boolean;
+  markContentReady: () => void;
   toast: (msg: string, durationMs?: number) => void;
   toastMsg: string | null;
   offlineReady: boolean;
@@ -44,6 +45,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
   langRef.current = lang;
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
+  // Resolved once the reader's actual chapter has rendered — see
+  // markContentReady below and its App.tsx call site. The bulk background
+  // download (next effect) waits on this before issuing any of its own
+  // requests, so it never competes with the handful of fetches the first
+  // paint itself is waiting on for bandwidth on a constrained connection.
+  //
+  // Built with useState's lazy initializer, not useRef(new Promise(...)):
+  // that expression would still run on *every* render (React only
+  // discards the result after the first), reassigning the resolver to a
+  // new, disconnected Promise each time — so by the time markContentReady
+  // actually fires, it would be resolving an orphaned promise instead of
+  // the one this effect is awaiting below, and the download would simply
+  // never start. useState's initializer function runs exactly once.
+  const [contentReadyGate] = useState(() => {
+    let resolve: () => void = () => {};
+    const promise = new Promise<void>((r) => {
+      resolve = r;
+    });
+    return { promise, resolve };
+  });
+  const markContentReady = useCallback(() => {
+    contentReadyGate.resolve();
+  }, [contentReadyGate]);
 
   useEffect(() => {
     loadSettings().then((s) => {
@@ -67,39 +91,54 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // progress in Settings instead of leaving the reader to guess whether
   // it's safe to go offline yet, and toasts once on the transition to
   // fully ready.
+  //
+  // Waits for markContentReady() first: this fires dozens of requests the
+  // moment it starts (one appearance-manifest fetch per book, among
+  // others), which on a real mobile connection shares the same limited
+  // downlink bandwidth as the handful of fetches the reader's *current*
+  // chapter is waiting on — competing with them measurably delays the
+  // first paint the reader is actually looking at. Letting the critical
+  // chapter load first, then starting the background library download,
+  // costs nothing once everything's already cached (the common case,
+  // where markContentReady fires within a tick anyway) and meaningfully
+  // speeds up the one case that matters: a reader opening the app cold
+  // on a slow connection.
   useEffect(() => {
     let cancelled = false;
     let toastedThisSession = false;
     let sawNotReady = false;
 
-    runBulkDownload((done, total) => {
+    contentReadyGate.promise.then(() => {
       if (cancelled) return;
-      setOfflineCount(done);
-      setOfflineTotal(total);
-      const nowReady = isReadyCount(done, total);
-      // Only announce the *transition* into ready — a returning reader
-      // who was already fully cached from a previous visit shouldn't get
-      // a "ready!" toast every time they simply open the app.
-      if (!nowReady) sawNotReady = true;
-      if (nowReady && sawNotReady && !toastedThisSession && !settingsRef.current.seenOfflineReadyToast) {
-        toastedThisSession = true;
-        // Reads the *current* language via a ref rather than closing over
-        // `lang` directly — this effect only runs once (see the deps array
-        // below), so a plain closure would keep toasting in whatever
-        // language was active on mount even after the reader switches,
-        // since the transition into "ready" can land well after that.
-        toast(UI[langRef.current].offlineReadyToast);
-        // Persisted so this never shows again on this device: the
-        // not-ready-to-ready "transition" above can still fire on a later
-        // launch even when nothing new actually needed downloading (the
-        // ready-percentage briefly dips while the real total, including
-        // however many character bios exist, is being worked out) — for a
-        // reader who's had the app a while with everything already
-        // offline, that looked like "download complete!" announcing
-        // itself on every single open.
-        updateSettings({ seenOfflineReadyToast: true });
-      }
-      setOfflineReady(nowReady);
+      runBulkDownload((done, total) => {
+        if (cancelled) return;
+        setOfflineCount(done);
+        setOfflineTotal(total);
+        const nowReady = isReadyCount(done, total);
+        // Only announce the *transition* into ready — a returning reader
+        // who was already fully cached from a previous visit shouldn't get
+        // a "ready!" toast every time they simply open the app.
+        if (!nowReady) sawNotReady = true;
+        if (nowReady && sawNotReady && !toastedThisSession && !settingsRef.current.seenOfflineReadyToast) {
+          toastedThisSession = true;
+          // Reads the *current* language via a ref rather than closing over
+          // `lang` directly — this effect only runs once (see the deps array
+          // below), so a plain closure would keep toasting in whatever
+          // language was active on mount even after the reader switches,
+          // since the transition into "ready" can land well after that.
+          toast(UI[langRef.current].offlineReadyToast);
+          // Persisted so this never shows again on this device: the
+          // not-ready-to-ready "transition" above can still fire on a later
+          // launch even when nothing new actually needed downloading (the
+          // ready-percentage briefly dips while the real total, including
+          // however many character bios exist, is being worked out) — for a
+          // reader who's had the app a while with everything already
+          // offline, that looked like "download complete!" announcing
+          // itself on every single open.
+          updateSettings({ seenOfflineReadyToast: true });
+        }
+        setOfflineReady(nowReady);
+      });
     });
 
     return () => {
@@ -160,6 +199,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         settings,
         updateSettings,
         ready,
+        markContentReady,
         toast,
         toastMsg,
         offlineReady,

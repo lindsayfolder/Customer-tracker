@@ -42,7 +42,7 @@ export type ModalKey = "contents" | "search" | "bookmarks" | "plans" | "settings
 const PEOPLE_ROW_CAP = 6;
 
 export default function App() {
-  const { lang, setLang, settings, updateSettings, ready, toast } = useApp();
+  const { lang, setLang, settings, updateSettings, ready, markContentReady, toast } = useApp();
   const t = UI[lang];
 
   const [bookId, setBookId] = useState("gen");
@@ -53,6 +53,21 @@ export default function App() {
   const [modal, setModal] = useState<ModalKey | null>(null);
   const [mapOpen, setMapOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
+  // Which of the lazy-loaded drawer/modals have ever been opened — each
+  // only mounts (and so only fetches its own chunk) the first time it's
+  // actually needed, then stays mounted so closing/reopening it is instant
+  // and its close transition can still play. Rendering all of them
+  // unconditionally from the first paint (even hidden behind `open={false}`)
+  // would make React resolve every one of their lazy() imports immediately,
+  // which is exactly backwards: it was each one competing for bandwidth
+  // with the reader's actual chapter load, on a slow connection, that
+  // lazy-loading them was meant to avoid in the first place.
+  const everOpenedRef = useRef(new Set<string>());
+  if (drawerOpen) everOpenedRef.current.add("drawer");
+  if (modal) everOpenedRef.current.add(modal);
+  if (mapOpen) everOpenedRef.current.add("map");
+  if (introOpen) everOpenedRef.current.add("bookIntro");
+  const everOpened = everOpenedRef.current;
   const [verses, setVerses] = useState<Verse[] | null>(null);
   const [points, setPoints] = useState<Point[] | null>(null);
   const [explain, setExplain] = useState<ChapterExplain | null>(null);
@@ -230,6 +245,13 @@ export default function App() {
       })
       .catch(() => {
         if (!cancelled) toast("Couldn't load that chapter's text — check your connection.");
+      })
+      .finally(() => {
+        // Lets the background offline-library download start, whether this
+        // chapter load succeeded or not — see AppContext's bulk-download
+        // effect: it's deliberately held back until the reader's own
+        // chapter is done competing for bandwidth, not held back forever.
+        markContentReady();
       });
     return () => {
       cancelled = true;
@@ -834,52 +856,66 @@ export default function App() {
       </div>
 
       <Suspense fallback={null}>
-        <Drawer open={drawerOpen} current={modal ?? "home"} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
+        {everOpened.has("drawer") && (
+          <Drawer open={drawerOpen} current={modal ?? "home"} onClose={() => setDrawerOpen(false)} onNavigate={navigateFromDrawer} />
+        )}
 
-        <ContentsModal
-          open={modal === "contents"}
-          onClose={() => setModal(null)}
-          onSelectChapter={(bId, c, verse) => goToChapter(bId, c, verse)}
-        />
+        {everOpened.has("contents") && (
+          <ContentsModal
+            open={modal === "contents"}
+            onClose={() => setModal(null)}
+            onSelectChapter={(bId, c, verse) => goToChapter(bId, c, verse)}
+          />
+        )}
 
-        <SearchModal
-          open={modal === "search"}
-          onClose={() => setModal(null)}
-          onResult={(_resultLang, resultBookId, resultChapter, verse) => {
-            tts.stop();
-            resetPlayers();
-            setPendingVerse(verse);
-            setBookId(resultBookId);
-            setChapter(resultChapter);
-            setTab("scripture");
-            setOpenPointIndex(null);
-            setOpenCharacterId(null);
-          }}
-        />
+        {everOpened.has("search") && (
+          <SearchModal
+            open={modal === "search"}
+            onClose={() => setModal(null)}
+            onResult={(_resultLang, resultBookId, resultChapter, verse) => {
+              tts.stop();
+              resetPlayers();
+              setPendingVerse(verse);
+              setBookId(resultBookId);
+              setChapter(resultChapter);
+              setTab("scripture");
+              setOpenPointIndex(null);
+              setOpenCharacterId(null);
+            }}
+          />
+        )}
 
-        <BookmarksModal
-          open={modal === "bookmarks"}
-          bookmarks={settings.bookmarks}
-          onClose={() => setModal(null)}
-          onSelect={(bId, c, verse) => goToChapter(bId, c, verse)}
-          onRemove={(bm) => updateSettings({ bookmarks: settings.bookmarks.filter((b) => b !== bm) })}
-        />
+        {everOpened.has("bookmarks") && (
+          <BookmarksModal
+            open={modal === "bookmarks"}
+            bookmarks={settings.bookmarks}
+            onClose={() => setModal(null)}
+            onSelect={(bId, c, verse) => goToChapter(bId, c, verse)}
+            onRemove={(bm) => updateSettings({ bookmarks: settings.bookmarks.filter((b) => b !== bm) })}
+          />
+        )}
 
-        <PlansModal
-          open={modal === "plans"}
-          plans={settings.readingPlans}
-          onClose={() => setModal(null)}
-          onStart={startPlan}
-          onRestart={startPlan}
-          onMarkDayComplete={markPlanDayComplete}
-          onGoToChapter={(bId, c) => goToChapter(bId, c)}
-        />
+        {everOpened.has("plans") && (
+          <PlansModal
+            open={modal === "plans"}
+            plans={settings.readingPlans}
+            onClose={() => setModal(null)}
+            onStart={startPlan}
+            onRestart={startPlan}
+            onMarkDayComplete={markPlanDayComplete}
+            onGoToChapter={(bId, c) => goToChapter(bId, c)}
+          />
+        )}
 
-        <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />
+        {everOpened.has("settings") && <SettingsModal open={modal === "settings"} onClose={() => setModal(null)} />}
 
-        <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
+        {everOpened.has("map") && (
+          <MapModal open={mapOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setMapOpen(false)} />
+        )}
 
-        <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
+        {everOpened.has("bookIntro") && (
+          <BookIntroModal open={introOpen} bookId={bookId} bookLabel={book.label[lang]} onClose={() => setIntroOpen(false)} />
+        )}
       </Suspense>
 
       <Toast />
