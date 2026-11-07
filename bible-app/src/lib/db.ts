@@ -92,6 +92,16 @@ export interface AppSettings {
   // at a glance (the verse-num circles looked identical before and after
   // this field existed), so this fires the hint once, ever, per device.
   seenBookmarkHint: boolean;
+  // Whether the "offline copy ready" toast has already been shown once,
+  // ever, on this device. The download itself is correctly skipped once
+  // everything's cached, but the ready-percentage calculation can still
+  // dip briefly on a fresh launch while the real total (which includes
+  // however many character bios exist) is still being worked out — for a
+  // reader who's had the app a while with everything already offline,
+  // that reads as "download complete!" announcing itself on every single
+  // open, which is the actual complaint this flag fixes: the toast is
+  // only ever useful the first time a reader crosses into offline-ready.
+  seenOfflineReadyToast: boolean;
   // One record per reading plan ever started — see PlanProgress above.
   readingPlans: PlanProgress[];
   // Reader-configured auto-cleanup for completed reading-plan history (see
@@ -116,6 +126,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   recentSearches: {},
   bookmarks: [],
   seenBookmarkHint: false,
+  seenOfflineReadyToast: false,
   readingPlans: [],
   planRetention: { enabled: false, amount: 90, unit: "days" },
 };

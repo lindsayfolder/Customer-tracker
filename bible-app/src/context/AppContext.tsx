@@ -42,6 +42,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [updateState, setUpdateState] = useState(getUpdateState());
   const langRef = useRef(lang);
   langRef.current = lang;
+  const settingsRef = useRef(settings);
+  settingsRef.current = settings;
 
   useEffect(() => {
     loadSettings().then((s) => {
@@ -79,7 +81,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       // who was already fully cached from a previous visit shouldn't get
       // a "ready!" toast every time they simply open the app.
       if (!nowReady) sawNotReady = true;
-      if (nowReady && sawNotReady && !toastedThisSession) {
+      if (nowReady && sawNotReady && !toastedThisSession && !settingsRef.current.seenOfflineReadyToast) {
         toastedThisSession = true;
         // Reads the *current* language via a ref rather than closing over
         // `lang` directly — this effect only runs once (see the deps array
@@ -87,6 +89,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
         // language was active on mount even after the reader switches,
         // since the transition into "ready" can land well after that.
         toast(UI[langRef.current].offlineReadyToast);
+        // Persisted so this never shows again on this device: the
+        // not-ready-to-ready "transition" above can still fire on a later
+        // launch even when nothing new actually needed downloading (the
+        // ready-percentage briefly dips while the real total, including
+        // however many character bios exist, is being worked out) — for a
+        // reader who's had the app a while with everything already
+        // offline, that looked like "download complete!" announcing
+        // itself on every single open.
+        updateSettings({ seenOfflineReadyToast: true });
       }
       setOfflineReady(nowReady);
     });
